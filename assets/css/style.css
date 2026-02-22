@@ -1,0 +1,31 @@
+/* static/css/style.css */
+body { 
+    background-color: #121212; 
+    color: #00ffcc; 
+    font-family: 'Courier New', monospace; 
+    overflow: hidden; 
+}
+.bg-image { /* Using .bg-image or similar to avoid conflict with old .bg-video name */
+    position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
+    z-index: -1; opacity: 0.4; pointer-events: none;
+    /* Updated for Image Background */
+    background-image: url('../img/dcBg.png'); /* Relative path within static/ */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+.hero-content {
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; z-index: 1;
+}
+.btn-drone {
+    background: transparent; border: 2px solid #00ffcc; color: #00ffcc;
+    padding: 15px 30px; margin: 10px; text-transform: uppercase;
+    transition: 0.3s; width: 250px;
+}
+.btn-drone:hover { 
+    background: #00ffcc; 
+    color: #000; 
+    box-shadow: 0 0 15px #00ffcc; 
+}

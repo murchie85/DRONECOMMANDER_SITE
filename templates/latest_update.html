@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Update - Drone Commander</title>
+    <meta name="description" content="The latest development update for Drone Commander — current progress, recent highlights and roadmap.">
+    <meta property="og:title" content="Latest Update - Drone Commander">
+    <meta property="og:description" content="The latest development update for Drone Commander — current progress, recent highlights and roadmap.">
+    <meta property="og:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Latest Update - Drone Commander">
+    <meta name="twitter:description" content="The latest development update for Drone Commander — current progress, recent highlights and roadmap.">
+    <meta name="twitter:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ffcc;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .top-bar .brand {
+            color: #00ffcc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .top-bar .nav-link:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+        }
+
+        .section-title {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Status banner */
+        .status-banner {
+            background: linear-gradient(135deg, rgba(0,255,204,0.1) 0%, rgba(0,100,80,0.1) 100%);
+            border: 2px solid #00ffcc;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 900px;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.15);
+        }
+        .status-banner h1 {
+            color: #00ffcc;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0,255,204,0.5);
+            margin-bottom: 8px;
+        }
+        .status-badge {
+            display: inline-block;
+            background: rgba(0,255,204,0.15);
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        /* Update card */
+        .update-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.2);
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+        .update-card h3 {
+            color: #00ffcc;
+            font-size: 1.15rem;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+        .update-card p { color: #bbb; }
+        .update-card ul {
+            color: #bbb;
+            padding-left: 20px;
+        }
+        .update-card ul li {
+            margin-bottom: 8px;
+        }
+        .update-card ul li strong { color: #00ffcc; }
+
+        .text-glow { color: #00ffcc; }
+
+        /* Screenshot pair */
+        .screenshot-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .screenshot-pair img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid rgba(0,255,204,0.2);
+        }
+
+        /* Roadmap items */
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .roadmap-item:last-child { border-bottom: none; }
+        .roadmap-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+        .dot-done { background: #00ffcc; box-shadow: 0 0 8px rgba(0,255,204,0.5); }
+        .dot-active { background: #ffcc00; box-shadow: 0 0 8px rgba(255,204,0,0.5); }
+        .dot-upcoming { background: #555; border: 1px solid #777; }
+        .roadmap-text { font-size: 0.9rem; color: #bbb; }
+        .roadmap-text strong { color: #e0e0e0; }
+
+        /* CTA buttons */
+        .cta-btn {
+            display: inline-block;
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            padding: 12px 28px;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 6px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+        .cta-btn:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0,255,204,0.4);
+        }
+
+        @media (max-width: 576px) {
+            .screenshot-pair { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/devlog" class="nav-link">DevLog</a>
+            <a href="/compendium" class="nav-link">Compendium</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <!-- Status Banner -->
+    <div class="status-banner">
+        <h1>Latest Update</h1>
+        <p style="color:#aaa; margin-bottom: 6px;">Drone Commander Development Status</p>
+        <span class="status-badge">In Active Development</span>
+    </div>
+
+    <!-- Current Update -->
+    <div class="content-section">
+        <h2 class="section-title">// Most Recent: Floramel Scene &amp; Art Pipeline</h2>
+        <div class="update-card">
+            <p style="color:#00ffcc; font-size: 0.8rem; margin-bottom: 14px;">FEBRUARY 19, 2026</p>
+            <p>
+                Floramel's scene is nearly complete &mdash; code and prototype done, waiting on final art.
+                This cutscene is being earmarked as <strong class="text-glow">one of the five game trailers</strong>.
+                A massive batch of new character art and Visual Novel cutscene artwork is currently in the design pipeline.
+            </p>
+        </div>
+    </div>
+
+    <!-- What's been happening -->
+    <div class="content-section" style="padding-top: 0;">
+        <h2 class="section-title">// Recent Highlights</h2>
+
+        <div class="update-card">
+            <h3>RTS Complete Rewrite</h3>
+            <ul>
+                <li><strong>200x faster loading</strong> &mdash; almost instant map loads after full rewrite</li>
+                <li><strong>60% code reduction</strong> &mdash; cleaner and more maintainable codebase</li>
+                <li><strong>AI Intelligence System</strong> &mdash; IQ 0-4 with tactical preferences and aggression scopes. IQ 4 enemies probe your favourites and send feints.</li>
+                <li><strong>Mothership Design</strong> &mdash; Three motherships (Drone Freighter, Drone Carrier, Research Ship) with modular turrets, power, and field generators</li>
+                <li><strong>Dynamic Grouping</strong> &mdash; 0.1mt to 100mt group sizes, cruise mode at 3x speed</li>
+            </ul>
+        </div>
+
+        <div class="update-card">
+            <h3>RPG &amp; World Building</h3>
+            <ul>
+                <li><strong>All core RPG battle objectives done</strong> &mdash; 10 playable levels can now be produced rapidly</li>
+                <li><strong>Drunmuire breakthrough</strong> &mdash; a major creative revelation that ties Amu, Entropy, and Earth together. Scottish Gaelic singer being brought on for the soundtrack.</li>
+                <li><strong>Team decoupling</strong> &mdash; party members can operate independently with Search &amp; Destroy, Loose Support, or Hold the Fort behaviours</li>
+                <li><strong>Forge content</strong> &mdash; Soul tanks, extraction chambers, Dark Crystal containment vessels</li>
+                <li><strong>Performance validated</strong> &mdash; 100 enemies on screen in daylight, no lag</li>
+            </ul>
+        </div>
+
+        <div class="update-card">
+            <h3>Art &amp; Characters</h3>
+            <ul>
+                <li><strong>0% AI art commitment</strong> &mdash; all AI-generated art being replaced with hand-drawn work</li>
+                <li><strong>FOM soldiers</strong> complete with grenades and flashbangs</li>
+                <li><strong>Boss spider walker</strong> &mdash; Dominion walkers inspired by War of the Worlds tripods</li>
+                <li><strong>Snow assets</strong> &mdash; cliffs, frozen waterfalls, crystal caves and more</li>
+                <li><strong>Human gunship</strong> &mdash; for when the Sekarri need humanity to step up</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="content-section" style="padding-top: 0;">
+        <h2 class="section-title">// Development Roadmap</h2>
+        <div class="update-card">
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-done"></div>
+                <div class="roadmap-text"><strong>Core Engine &amp; Systems</strong> &mdash; RPG, RTS, and VN frameworks all operational and validated</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-done"></div>
+                <div class="roadmap-text"><strong>All Core RPG Battle Objectives</strong> &mdash; Dominion bases, Thunderporter, FPV drone, prisoner rescue, data uplinks</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-done"></div>
+                <div class="roadmap-text"><strong>RTS Rewrite</strong> &mdash; 200x faster, AI IQ system, mothership design, dynamic grouping</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-done"></div>
+                <div class="roadmap-text"><strong>Cutscene &amp; Dialogue System</strong> &mdash; Music-synced cutscenes, automated dialogue chains, briefing templates</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-active"></div>
+                <div class="roadmap-text"><strong>Character Art &amp; VN Scenes</strong> &mdash; Massive batch in production, 0% AI art target</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-active"></div>
+                <div class="roadmap-text"><strong>Level Production</strong> &mdash; Building out playable levels, exploration content, Forge and Drunmuire</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-upcoming"></div>
+                <div class="roadmap-text"><strong>Alpha / Demo</strong> &mdash; Playable demo for community testing</div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot dot-upcoming"></div>
+                <div class="roadmap-text"><strong>Steam Release</strong> &mdash; Full game launch</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stay Updated -->
+    <div class="content-section" style="padding-top: 0; text-align: center;">
+        <h2 class="section-title">// Stay in the Loop</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">
+            Follow development across these platforms for the latest updates, early access content, and community discussion.
+        </p>
+        <a href="https://www.patreon.com/DroneCommander" target="_blank" rel="noopener" class="cta-btn">Patreon</a>
+        <a href="https://murchie85.itch.io/drone-commander" target="_blank" rel="noopener" class="cta-btn">itch.io</a>
+        <a href="https://www.youtube.com/@McMurchie" target="_blank" rel="noopener" class="cta-btn">YouTube</a>
+        <a href="https://x.com/OmegaStormX" target="_blank" rel="noopener" class="cta-btn">X / Twitter</a>
+        <a href="https://www.reddit.com/r/DroneCommander/" target="_blank" rel="noopener" class="cta-btn">Reddit</a>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
+    </div>
+</body>
+</html>

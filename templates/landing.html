@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Commander — Command Center</title>
+    <meta name="description" content="Drone Commander — a sci-fi Visual Novel, RTS and RPG. Command drones, build alliances, and shape the fate of the galaxy.">
+    <meta property="og:title" content="Drone Commander — Command Center">
+    <meta property="og:description" content="A sci-fi Visual Novel, RTS and RPG. Command drones, build alliances, and shape the fate of the galaxy.">
+    <meta property="og:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Drone Commander — Command Center">
+    <meta name="twitter:description" content="A sci-fi Visual Novel, RTS and RPG. Command drones, build alliances, and shape the fate of the galaxy.">
+    <meta name="twitter:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ffcc;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Background image as a separate dim layer */
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('/assets/img/dcBg.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.12;
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        /* YouTube video layer */
+        .bg-video {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
+            z-index: -2;
+            opacity: 0.35;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-video iframe,
+        .bg-video #ytPlayer {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Floating title — upper area, no box */
+        .hero-title {
+            position: absolute;
+            top: 12%;
+            left: 0; right: 0;
+            text-align: center;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-title h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #00ffcc;
+            text-shadow:
+                0 0 20px rgba(0,255,204,0.6),
+                0 0 60px rgba(0,255,204,0.3),
+                0 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 8px;
+        }
+        .hero-title p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Bottom dock nav */
+        .bottom-dock {
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            z-index: 10;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85) 30%);
+            padding: 30px 20px 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .dock-btn {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,255,204,0.5);
+            color: #00ffcc;
+            padding: 10px 22px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .dock-btn:hover {
+            background: #00ffcc;
+            color: #000;
+            border-color: #00ffcc;
+            box-shadow: 0 0 18px rgba(0,255,204,0.5);
+        }
+
+        /* Audio Toggle */
+        .audio-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+        .audio-toggle:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+        }
+        .audio-toggle.playing {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 204, 0.7); }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title h1 { font-size: 2.2rem; letter-spacing: 3px; }
+            .hero-title p { font-size: 0.85rem; }
+            .hero-title { top: 8%; }
+            .dock-btn { padding: 8px 14px; font-size: 0.72rem; }
+            .bottom-dock { gap: 6px; padding: 20px 12px 22px; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Drone Commander",
+        "description": "A sci-fi Visual Novel, RTS and RPG. Command drones, build alliances, and shape the fate of the galaxy.",
+        "genre": ["Visual Novel", "Real-Time Strategy", "Role-Playing Game"],
+        "gamePlatform": "PC",
+        "operatingSystem": "Windows",
+        "author": {
+            "@type": "Person",
+            "name": "Adam McMurchie"
+        },
+        "image": "https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png",
+        "url": "https://murchie85.itch.io/drone-commander"
+    }
+    </script>
+</head>
+<body>
+    <!-- Audio Toggle -->
+    <button class="audio-toggle" id="audioToggle" title="Toggle Music">
+        <span id="audioIcon">&#9835;</span>
+    </button>
+
+    <!-- Background image (dim fallback layer) -->
+    <div class="bg-image"></div>
+
+    <!-- YouTube background video (controlled via IFrame API) -->
+    <div class="bg-video">
+        <div id="ytPlayer"></div>
+    </div>
+
+    <!-- Floating title -->
+    <div class="hero-title">
+        <h1>Drone Commander</h1>
+        <p>Command Center Access</p>
+    </div>
+
+    <!-- Bottom dock nav -->
+    <nav class="bottom-dock">
+        <a href="/about" class="dock-btn">About</a>
+        <a href="/devlog" class="dock-btn">DevLog</a>
+        <a href="/latest-update" class="dock-btn">Latest Update</a>
+        <a href="/compendium" class="dock-btn">Compendium</a>
+        <a href="/community-tools" class="dock-btn">Community Tools</a>
+    </nav>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let isMuted = true;
+        const toggle = document.getElementById('audioToggle');
+        const icon = document.getElementById('audioIcon');
+
+        function updateIcon() {
+            if (isMuted) {
+                icon.innerHTML = '&#9835;';
+                toggle.classList.remove('playing');
+            } else {
+                icon.innerHTML = '&#9836;';
+                toggle.classList.add('playing');
+            }
+        }
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytPlayer', {
+                videoId: 'z5eVzHrp2aM',
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    controls: 0,
+                    loop: 1,
+                    playlist: 'z5eVzHrp2aM',
+                    vq: 'hd1080',
+                    modestbranding: 1,
+                    showinfo: 0,
+                    rel: 0,
+                    disablekb: 1,
+                    fs: 0,
+                    iv_load_policy: 3,
+                    playsinline: 1
+                },
+                events: {
+                    onReady: function(event) {
+                        event.target.playVideo();
+                        // Restore saved audio preference
+                        if (localStorage.getItem('dcAudioState') === 'playing') {
+                            event.target.unMute();
+                            event.target.setVolume(100);
+                            isMuted = false;
+                            updateIcon();
+                        }
+                    }
+                }
+            });
+        }
+
+        toggle.addEventListener('click', function() {
+            if (!player || !player.isMuted) return;
+            if (player.isMuted()) {
+                player.unMute();
+                player.setVolume(100);
+                isMuted = false;
+                localStorage.setItem('dcAudioState', 'playing');
+            } else {
+                player.mute();
+                isMuted = true;
+                localStorage.setItem('dcAudioState', 'paused');
+            }
+            updateIcon();
+        });
+    </script>
+</body>
+</html>

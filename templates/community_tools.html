@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Tools - Drone Commander</title>
+    <meta name="description" content="Community tools for Drone Commander — report bugs, upload scripts and maps to help shape the game.">
+    <meta property="og:title" content="Community Tools - Drone Commander">
+    <meta property="og:description" content="Report bugs, upload scripts and maps to help shape Drone Commander.">
+    <meta property="og:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Community Tools - Drone Commander">
+    <meta name="twitter:description" content="Report bugs, upload scripts and maps to help shape Drone Commander.">
+    <meta name="twitter:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ffcc;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .top-bar .brand {
+            color: #00ffcc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .top-bar .nav-link:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero-banner {
+            background: linear-gradient(180deg, rgba(0,255,204,0.08) 0%, rgba(18,18,18,1) 100%);
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid rgba(0,255,204,0.2);
+        }
+        .hero-banner h1 {
+            color: #00ffcc;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0,255,204,0.5);
+            margin-bottom: 10px;
+        }
+        .hero-banner .tagline {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.2);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .tool-card:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 20px rgba(0,255,204,0.25);
+            transform: translateY(-2px);
+        }
+        .tool-card .tool-icon {
+            font-size: 2.5rem;
+            color: #00ffcc;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .tool-card h3 {
+            color: #00ffcc;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .tool-card p {
+            color: #888;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        .tool-card .status {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .status-live {
+            background: rgba(0,255,204,0.15);
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+        }
+        .status-wip {
+            background: rgba(255,204,0,0.1);
+            border: 1px solid #ffcc00;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/devlog" class="nav-link">DevLog</a>
+            <a href="/latest-update" class="nav-link">Updates</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero-banner">
+        <h1>Community Tools</h1>
+        <p class="tagline">Report bugs, upload content, and help shape Drone Commander</p>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="content-section">
+        <div class="tool-grid">
+            <a href="/bug-reporter" class="tool-card">
+                <span class="tool-icon">&#128027;</span>
+                <h3>Bug Reporter</h3>
+                <p>Report and track bugs across RPG, RTS, Visual Novel, and system components.</p>
+                <span class="status status-live">Online</span>
+            </a>
+
+            <a href="/script-uploader" class="tool-card">
+                <span class="tool-icon">&#128196;</span>
+                <h3>Script Uploader</h3>
+                <p>Upload and manage game scripts and dialogue files.</p>
+                <span class="status status-wip">Coming Soon</span>
+            </a>
+
+            <a href="/map-uploader" class="tool-card">
+                <span class="tool-icon">&#127758;</span>
+                <h3>Map Uploader</h3>
+                <p>Submit custom maps and level designs for review.</p>
+                <span class="status status-wip">Coming Soon</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
+    </div>
+</body>
+</html>

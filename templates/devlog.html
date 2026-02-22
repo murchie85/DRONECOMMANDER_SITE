@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLog - Drone Commander</title>
+    <meta name="description" content="Development log for Drone Commander — follow the journey from RTS rewrites to character art and cutscene systems.">
+    <meta property="og:title" content="DevLog - Drone Commander">
+    <meta property="og:description" content="Follow the development journey of Drone Commander — RTS rewrites, character art, cutscene systems and more.">
+    <meta property="og:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DevLog - Drone Commander">
+    <meta name="twitter:description" content="Follow the development journey of Drone Commander — RTS rewrites, character art, cutscene systems and more.">
+    <meta name="twitter:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ffcc;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .top-bar .brand {
+            color: #00ffcc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .top-bar .nav-link:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero-banner {
+            background: linear-gradient(180deg, rgba(0,255,204,0.08) 0%, rgba(18,18,18,1) 100%);
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid rgba(0,255,204,0.2);
+        }
+        .hero-banner h1 {
+            color: #00ffcc;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0,255,204,0.5);
+            margin-bottom: 10px;
+        }
+        .hero-banner .tagline {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(0,255,204,0.2);
+        }
+
+        .timeline-entry {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .timeline-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: #121212;
+            border: 2px solid #00ffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0,255,204,0.4);
+        }
+
+        .timeline-entry .date {
+            color: #00ffcc;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+
+        .timeline-entry h3 {
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-entry p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-entry .tags span {
+            display: inline-block;
+            background: rgba(0,255,204,0.1);
+            border: 1px solid rgba(0,255,204,0.2);
+            color: #00ffcc;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-right: 4px;
+            text-transform: uppercase;
+        }
+
+        .featured-label {
+            display: inline-block;
+            background: #00ffcc;
+            color: #000;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .done-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .done-list li {
+            color: #bbb;
+            font-size: 0.88rem;
+            padding: 4px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .done-list li::before {
+            content: '\2713';
+            color: #00ffcc;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .done-list li strong { color: #e0e0e0; }
+
+        .wip-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .wip-list li {
+            color: #888;
+            font-size: 0.88rem;
+            padding: 4px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .wip-list li::before {
+            content: '\25B6';
+            color: #ffcc00;
+            position: absolute;
+            left: 0;
+            font-size: 0.7rem;
+            top: 6px;
+        }
+
+        .dev-quote {
+            border-left: 3px solid rgba(0,255,204,0.3);
+            padding: 10px 16px;
+            margin: 12px 0;
+            color: #999;
+            font-style: italic;
+            font-size: 0.88rem;
+            background: rgba(0,255,204,0.02);
+        }
+
+        .text-glow { color: #00ffcc; }
+
+        /* Social footer links */
+        .social-footer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 10px 0 30px;
+        }
+        .social-footer a {
+            display: inline-block;
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            padding: 10px 22px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+        .social-footer a:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0,255,204,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/latest-update" class="nav-link">Updates</a>
+            <a href="/compendium" class="nav-link">Compendium</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero-banner">
+        <h1>Development Log</h1>
+        <p class="tagline">Raw updates from the trenches &mdash; tracking the journey from concept to launch</p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="content-section">
+        <h2 class="section-title">// Dev Timeline</h2>
+
+        <div class="timeline">
+
+            <!-- Feb 19 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 19, 2026</div>
+                <h3>Floramel Scene &amp; VN Art Pipeline <span class="featured-label">Latest</span></h3>
+                <p>
+                    Floramel's scene is nearly complete &mdash; code and prototype done, waiting on final art.
+                    This cutscene is being earmarked as one of the five game trailers. Massive batch of new
+                    character art and VN cutscene artwork currently in the design pipeline.
+                </p>
+                <div class="tags">
+                    <span>visual novel</span>
+                    <span>characters</span>
+                    <span>art</span>
+                </div>
+            </div>
+
+            <!-- Feb 15-17 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 15&ndash;17, 2026</div>
+                <h3>Snow Assets, Forge Content &amp; New Units</h3>
+                <ul class="done-list">
+                    <li><strong>Snow Assets</strong> &mdash; Cliffs, snow tiles, frozen waterfalls, frozen trees, crystal caves, crystal orb switches</li>
+                    <li><strong>Forge: Soul Tanks</strong> &mdash; Destroy to release entropy of the dead and prevent consumption</li>
+                    <li><strong>Extraction Chambers</strong> &mdash; Slaves placed inside for entropy extraction via torture</li>
+                    <li><strong>Dark Crystal</strong> &mdash; Containment for special prisoners, frozen in crystal, subconsciously investigated</li>
+                    <li><strong>Entropy Spire</strong> &mdash; Now in development</li>
+                    <li><strong>Human Gunship</strong> &mdash; Off-the-shelf attack chopper for when the Sekarri need humanity to step up</li>
+                    <li><strong>FOM Soldiers</strong> &mdash; Complete with grenades and flashbangs</li>
+                </ul>
+                <div class="dev-quote">
+                    "The game is 180 gig right now. 14x bigger than GTA5 and double Cyberpunk.
+                    Don't worry, half of that is redundancy and I've got compression to do.
+                    But in any case &mdash; this is a 'proper game'."
+                </div>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>assets</span>
+                    <span>forge</span>
+                </div>
+            </div>
+
+            <!-- Feb 11 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 11, 2026</div>
+                <h3>Drunmuire Breakthrough</h3>
+                <p>
+                    A major creative breakthrough on the Drunmuire level. The final piece that unites all sublevels,
+                    stitches the story together, and explains key lore about Amu and Entropy &mdash; while linking
+                    Earth in a meaningful way. A Scottish female Gaelic singer is being brought on for the main theme.
+                </p>
+                <div class="dev-quote">
+                    "This will be the most controversial part of the game... it's quite raw and made me shed some tears."
+                </div>
+                <div class="tags">
+                    <span>story</span>
+                    <span>lore</span>
+                    <span>music</span>
+                </div>
+            </div>
+
+            <!-- Feb 9 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 9, 2026</div>
+                <h3>Team Decoupling &amp; Dominion Dropships</h3>
+                <ul class="done-list">
+                    <li><strong>Team Decoupling</strong> &mdash; Press I to decouple party members. Set behaviour: Search and Destroy, Loose Support, Hold the Fort, or Default</li>
+                    <li><strong>Dominion Dropship</strong> &mdash; Code for dynamic ambushes at the worst moments</li>
+                </ul>
+                <p>
+                    This isn't a JRPG &mdash; your team doesn't need to follow you everywhere.
+                    Independent unit behaviour adds real tactical depth to RPG sections.
+                </p>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>gameplay</span>
+                </div>
+            </div>
+
+            <!-- Feb 6 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 6, 2026</div>
+                <h3>Mothership Design &amp; RTS Building</h3>
+                <p>
+                    Three motherships finalised: <strong class="text-glow">Drone Freighter</strong>,
+                    <strong class="text-glow">Drone Carrier</strong>, and <strong class="text-glow">Research Ship</strong>.
+                    All three can have turrets, power, and field generators installed. Constructor drones fly between
+                    them to do the work. No modular hell &mdash; just giant carriers you upgrade.
+                </p>
+                <ul class="done-list">
+                    <li>Drone Carrier can launch a massive shell from its cannon</li>
+                    <li>Enemy Drone mothership can hack your ships out of range</li>
+                    <li>Counter with forward shielding and carrier cannon strikes</li>
+                </ul>
+                <div class="tags">
+                    <span>rts</span>
+                    <span>design</span>
+                    <span>ships</span>
+                </div>
+            </div>
+
+            <!-- Feb 5 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 5, 2026</div>
+                <h3>RPG Exploration Design</h3>
+                <p>
+                    Building out big RPG exploration levels. Outside of towns, players will find:
+                </p>
+                <ul class="wip-list">
+                    <li>Chests and treasure items</li>
+                    <li>Lone travellers to talk to</li>
+                    <li>Collector cards and data logs</li>
+                    <li>Save points</li>
+                    <li>Chant spots for echo shards</li>
+                    <li>Espers to chase for XP</li>
+                    <li>Amu's fragments &mdash; collectible pieces she left behind, key to the lore</li>
+                </ul>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>exploration</span>
+                    <span>design</span>
+                </div>
+            </div>
+
+            <!-- Feb 2 2026 -->
+            <div class="timeline-entry">
+                <div class="date">February 2, 2026</div>
+                <h3>Pixel Art &amp; Boss Walker</h3>
+                <p>
+                    Pixel artist returns to work on a boss spider bot walker &mdash; Dominion walkers inspired
+                    by War of the Worlds tripods that players must bring down. Also finalising the RTS mothership
+                    approach: simplified to core + research + supercarrier, no modular mess.
+                </p>
+                <div class="tags">
+                    <span>art</span>
+                    <span>rts</span>
+                    <span>boss</span>
+                </div>
+            </div>
+
+            <!-- Jan 28-30 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 28&ndash;30, 2026</div>
+                <h3>RTS Release Notes &mdash; Major Rewrite</h3>
+                <p>
+                    The RTS has been completely rewritten. All old code archived and rebuilt from scratch.
+                </p>
+                <ul class="done-list">
+                    <li><strong>200x faster loading</strong> &mdash; almost instant</li>
+                    <li><strong>60% code reduction</strong> &mdash; cleaner, more maintainable</li>
+                    <li><strong>Cruise Mode</strong> &mdash; ships fast travel at 3x speed, 1.4x vulnerability</li>
+                    <li><strong>Ship damage VFX</strong> &mdash; ships vent gas and fire near destruction</li>
+                    <li><strong>In-game RTS Menu</strong> &mdash; briefing, reserve fleet, formations, music, save, settings</li>
+                    <li><strong>Dynamic grouping</strong> &mdash; 0.1mt to 100mt group sizes, adjustable in-game</li>
+                    <li><strong>AI Intelligence System</strong> &mdash; IQ 0-4, tactical preferences (Defensive/Offensive/Explore/Pass), scope (Passive/Pragmatic/Aggressive)</li>
+                </ul>
+                <div class="dev-quote">
+                    "IQ 4... uses basic tells to see if you'll emotionally react &mdash; probing favourite units,
+                    going for harvesters, sending faints whilst pursuing beheading objectives."
+                </div>
+                <div class="tags">
+                    <span>rts</span>
+                    <span>ai</span>
+                    <span>major update</span>
+                </div>
+            </div>
+
+            <!-- Jan 26-27 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 26&ndash;27, 2026</div>
+                <h3>RTS Complete Overhaul Begins</h3>
+                <p>
+                    The entire RTS system has been stripped out and rebuilt. Skills gained over the past year of
+                    RPG development made the complexity gap obvious &mdash; the RTS is simpler to build than
+                    expected. All previous showcase levels (Battle with Morrigan, rescuing Tabby, the Nexus Point)
+                    will be rebuilt, but it's mostly copy-paste now.
+                </p>
+                <div class="dev-quote">
+                    "Without being dismissive to the RTS, it's way less work and way easier than the RPG &mdash;
+                    which is a good thing but also quite surprising."
+                </div>
+                <div class="tags">
+                    <span>rts</span>
+                    <span>refactor</span>
+                </div>
+            </div>
+
+            <!-- Jan 12 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 12, 2026</div>
+                <h3>Performance Optimisation &amp; Florida Map</h3>
+                <p>
+                    The Florida map hit performance issues. Root cause: collision checks running for all
+                    entities on and off screen. Solution: event manager that specifies which off-screen
+                    activities matter. After the fix, performance is validated &mdash; Python proven viable
+                    for the engine via C under the covers, same approach used by all AI frameworks.
+                </p>
+                <ul class="done-list">
+                    <li>100 enemies shooting on screen in daylight &mdash; no lag</li>
+                    <li>30-50 in night mode with lighting effects</li>
+                    <li>20 to 300+ enemies per map depending on size</li>
+                </ul>
+                <div class="tags">
+                    <span>optimization</span>
+                    <span>rpg</span>
+                    <span>engine</span>
+                </div>
+            </div>
+
+            <!-- Jan 11 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 11, 2026</div>
+                <h3>Cutscenes, Music &amp; Automated Dialogue</h3>
+                <ul class="done-list">
+                    <li><strong>Freexyl comms cutscene</strong> &mdash; for when the boss calls in</li>
+                    <li><strong>Cutscenes synced to music timing</strong> &mdash; cinematic feel</li>
+                    <li><strong>Florida plot</strong> &mdash; written and implemented</li>
+                    <li><strong>FOM Briefing cutscenes</strong> &mdash; reusable template</li>
+                    <li><strong>Vanguard Intel Terminal</strong> &mdash; briefing system</li>
+                    <li><strong>RPG Dialogue Chain automated</strong> &mdash; just add conversation text and character names, it does the rest</li>
+                </ul>
+                <p>
+                    Also in flight: Dominion gunship, Gdansk level, Amu's cave background art (real, not AI).
+                    A new music track is being composed for an enchanted forest scene on Mirelexia where
+                    you fight the original Drone Commander.
+                </p>
+                <div class="tags">
+                    <span>cutscenes</span>
+                    <span>music</span>
+                    <span>tools</span>
+                </div>
+            </div>
+
+            <!-- Jan 7-8 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 7&ndash;8, 2026</div>
+                <h3>All Core RPG Battle Objectives Done</h3>
+                <ul class="done-list">
+                    <li><strong>Thunderporter fully complete</strong> &mdash; animates, interacts, sends enemies in batches, terminal to disable for 60 seconds</li>
+                    <li><strong>All core RPG battle objectives done</strong> &mdash; can now pump out 10 playable levels in a day or two</li>
+                    <li><strong>Side Quests planning page</strong> created &mdash; preserving ideas for DC2 to prevent scope creep</li>
+                </ul>
+                <ul class="wip-list">
+                    <li>Polish Thunderporter bombing</li>
+                    <li>Polish evac visuals and mortar</li>
+                    <li>Entropy Spire art</li>
+                    <li>Honnehari temple</li>
+                    <li>Forge boss mechanism</li>
+                </ul>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>milestone</span>
+                </div>
+            </div>
+
+            <!-- Jan 4-5 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 4&ndash;5, 2026</div>
+                <h3>Thunderporter, Data Uplink &amp; Prisoners</h3>
+                <ul class="done-list">
+                    <li><strong>Data uplink panel</strong> &mdash; Activate the panel next to the prison and enter override codes in real-time (Amu/Kira send you codes to enter)</li>
+                    <li><strong>Thunderporter done</strong> &mdash; enemies zip down fast with 1-second vulnerability window</li>
+                    <li><strong>Thunderporter scheduling</strong> &mdash; batched sends with map limits</li>
+                    <li><strong>All Dominion weapons completed</strong></li>
+                    <li><strong>Slave transport truck</strong> &mdash; in progress with new artist</li>
+                </ul>
+                <p>
+                    Prisoner rescue and evacuation coding underway. Complex work but the systems are coming together.
+                    Decided to include children as prisoners for stakes &mdash; if a kid dies, instant mission failure.
+                </p>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>gameplay</span>
+                    <span>mechanics</span>
+                </div>
+            </div>
+
+            <!-- Jan 3-4 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 3&ndash;4, 2026</div>
+                <h3>Drone FPV &amp; Dominion Weapons</h3>
+                <ul class="done-list">
+                    <li><strong>Drone FPV support mode</strong> &mdash; call in the drone for close support instead of a strike; dual chain gun follows you</li>
+                    <li><strong>Field generator</strong> in game</li>
+                    <li><strong>Thunderporter</strong> now in game</li>
+                    <li><strong>New character designs</strong> &mdash; next big batch finalised</li>
+                </ul>
+                <div class="dev-quote">
+                    "I just spent 25 minutes on a mission and got smoked in the Dominion base just before
+                    getting to the prisoners. This game is coming on hugely... and a massive surprise
+                    I'll share on a YouTube vid."
+                </div>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>drone</span>
+                    <span>weapons</span>
+                </div>
+            </div>
+
+            <!-- Jan 3 2026 -->
+            <div class="timeline-entry">
+                <div class="date">January 3, 2026</div>
+                <h3>Dominion Base Essentials Complete</h3>
+                <ul class="done-list">
+                    <li><strong>Dominion base essentials</strong> &mdash; the hardest stuff, done</li>
+                    <li><strong>Map editor tile fill</strong> &mdash; drag/select area to fill with tiles instead of one at a time</li>
+                    <li><strong>Collision masks and structures</strong> &mdash; all complete</li>
+                    <li><strong>Dominion wall gates</strong> &mdash; can be blown down, "very satisfying"</li>
+                </ul>
+                <div class="tags">
+                    <span>rpg</span>
+                    <span>tools</span>
+                    <span>dominion</span>
+                </div>
+            </div>
+
+            <!-- Dec 2025 -->
+            <div class="timeline-entry">
+                <div class="date">December 2025</div>
+                <h3>Art Direction &amp; Character Work</h3>
+                <p>
+                    Major push on replacing all AI-generated art with hand-drawn work. New character reveals
+                    including Deritonian Chronicler designs. Concept art for the 1985 opening scene &mdash;
+                    Kane with his Pride, Ivakan, Snep and Gia arm wrestling, Makara and others on
+                    Gallahan's Boulevard.
+                </p>
+                <div class="dev-quote">
+                    "Remember I said in the end there would be 0% AI art."
+                </div>
+                <div class="tags">
+                    <span>art</span>
+                    <span>characters</span>
+                    <span>lore</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Philosophy -->
+    <div class="content-section" style="padding-top: 0;">
+        <h2 class="section-title">// The Vision</h2>
+        <div class="dev-quote" style="font-size: 0.95rem; border-left-color: #00ffcc;">
+            "Drone Commander is my attempt to: relive the feeling of my first major RPG (FF7) exploring caves
+            with deep tunes. Partake in huge RTS space battles that aren't boring slogfests. Tell hard SF that
+            you only see in books. Date alien chics that aren't just girls painted green. Be fun to play without
+            lecturing or 3 hours in tutorials. So far it's everything I wanted it to be. The only pain is it takes
+            time to build. Please hang with me guys, I'm putting every free minute and penny into it."
+        </div>
+    </div>
+
+    <!-- Tech Styles -->
+    <div class="content-section" style="padding-top: 0;">
+        <h2 class="section-title">// Faction Tech Design Notes</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Honnehari</strong><br><span style="color:#888; font-size:0.8rem;">Ancient, epic</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Sekarri</strong><br><span style="color:#888; font-size:0.8rem;">Familiar, high-end, morphic</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Kethri</strong><br><span style="color:#888; font-size:0.8rem;">Varied, jury rigged</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Real Kethri</strong><br><span style="color:#888; font-size:0.8rem;">Biological, natural</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Amu's People</strong><br><span style="color:#888; font-size:0.8rem;">Ethereal, high tech</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Vionite</strong><br><span style="color:#888; font-size:0.8rem;">Grandiose, field based</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Drakhan</strong><br><span style="color:#888; font-size:0.8rem;">Interdimensional, rift-like</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Drone Fleet</strong><br><span style="color:#888; font-size:0.8rem;">Entropic, phase-like</span>
+            </div>
+            <div style="background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.15); border-radius: 6px; padding: 12px;">
+                <strong class="text-glow">Human</strong><br><span style="color:#888; font-size:0.8rem;">Windows XP</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="content-section" style="text-align: center; padding-top: 10px;">
+        <p style="color: #888; font-size: 0.9rem; margin-bottom: 16px;">
+            Follow development and join the community discussion.
+        </p>
+        <div class="social-footer">
+            <a href="https://www.patreon.com/DroneCommander" target="_blank" rel="noopener">Patreon</a>
+            <a href="https://www.youtube.com/@McMurchie" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://x.com/OmegaStormX" target="_blank" rel="noopener">X / Twitter</a>
+            <a href="https://www.reddit.com/r/DroneCommander/" target="_blank" rel="noopener">Reddit</a>
+            <a href="https://murchie85.itch.io/drone-commander" target="_blank" rel="noopener">itch.io</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
+    </div>
+</body>
+</html>

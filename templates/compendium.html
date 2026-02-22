@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compendium - Drone Commander</title>
+    <meta name="description" content="The Drone Commander compendium — species, factions, characters, science-lore and world-building for the full universe.">
+    <meta property="og:title" content="Compendium - Drone Commander">
+    <meta property="og:description" content="Species, factions, characters, science-lore and world-building for the Drone Commander universe.">
+    <meta property="og:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compendium - Drone Commander">
+    <meta name="twitter:description" content="Species, factions, characters, science-lore and world-building for the Drone Commander universe.">
+    <meta name="twitter:image" content="https://img.itch.zone/aW1nLzIzOTMyMTQwLnBuZw==/original/P7uhta.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ffcc;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .top-bar .brand {
+            color: #00ffcc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .top-bar .nav-link:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero-banner {
+            background: linear-gradient(180deg, rgba(0,255,204,0.08) 0%, rgba(18,18,18,1) 100%);
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid rgba(0,255,204,0.2);
+        }
+        .hero-banner h1 {
+            color: #00ffcc;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0,255,204,0.5);
+            margin-bottom: 10px;
+        }
+        .hero-banner .tagline {
+            color: #aaa;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Layout: sidebar TOC + main content */
+        .comp-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+            padding: 30px 20px;
+        }
+
+        /* Sidebar TOC */
+        .toc-sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 70px;
+            align-self: flex-start;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .toc-sidebar::-webkit-scrollbar { width: 4px; }
+        .toc-sidebar::-webkit-scrollbar-thumb { background: rgba(0,255,204,0.3); border-radius: 2px; }
+        .toc-title {
+            color: #00ffcc;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0,255,204,0.2);
+        }
+        .toc-link {
+            display: block;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.78rem;
+            padding: 4px 0;
+            transition: 0.2s;
+        }
+        .toc-link:hover { color: #00ffcc; }
+        .toc-link.active { color: #00ffcc; text-shadow: 0 0 6px rgba(0,255,204,0.3); }
+        .toc-sub {
+            padding-left: 14px;
+        }
+        .toc-sub .toc-link { font-size: 0.72rem; color: #666; }
+
+        /* Main content */
+        .comp-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .section-title {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        .section-title:first-child { margin-top: 0; }
+
+        .sub-title {
+            color: #00ffcc;
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            margin-top: 30px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .lore-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .lore-card p { color: #bbb; line-height: 1.7; margin-bottom: 10px; }
+        .lore-card p:last-child { margin-bottom: 0; }
+        .lore-card ul { color: #bbb; padding-left: 20px; }
+        .lore-card ul li { margin-bottom: 6px; line-height: 1.6; }
+        .lore-card ul li strong { color: #00ffcc; }
+        .lore-card h4 {
+            color: #00ffcc;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .text-glow { color: #00ffcc; }
+        .text-warn { color: #ffcc00; }
+
+        /* Character cards */
+        .char-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 14px;
+        }
+        .char-card h4 {
+            color: #00ffcc;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .char-card p { color: #bbb; line-height: 1.6; margin-bottom: 8px; }
+        .char-card .char-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .tag-sekarri { background: rgba(0,255,204,0.12); border: 1px solid rgba(0,255,204,0.4); color: #00ffcc; }
+        .tag-human { background: rgba(100,150,255,0.12); border: 1px solid rgba(100,150,255,0.4); color: #8ab4ff; }
+        .tag-vionite { background: rgba(200,100,255,0.12); border: 1px solid rgba(200,100,255,0.4); color: #c89aff; }
+        .tag-deritonian { background: rgba(100,255,100,0.12); border: 1px solid rgba(100,255,100,0.4); color: #7dff7d; }
+        .tag-kethri { background: rgba(255,170,50,0.12); border: 1px solid rgba(255,170,50,0.4); color: #ffaa55; }
+        .tag-honnehari { background: rgba(180,180,255,0.12); border: 1px solid rgba(180,180,255,0.4); color: #b4b4ff; }
+        .tag-mirelexian { background: rgba(255,100,150,0.12); border: 1px solid rgba(255,100,150,0.4); color: #ff8faa; }
+        .tag-ai { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3); color: #ccc; }
+
+        /* Faction cards */
+        .faction-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 14px;
+        }
+        .faction-card h4 { color: #00ffcc; font-size: 1rem; margin-bottom: 10px; }
+        .faction-card p { color: #bbb; line-height: 1.6; margin-bottom: 8px; }
+
+        /* Rank table */
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        .rank-table th {
+            background: rgba(0,255,204,0.1);
+            color: #00ffcc;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+        }
+        .rank-table td {
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #bbb;
+            font-size: 0.85rem;
+        }
+        .rank-table tr:hover td { background: rgba(0,255,204,0.03); }
+
+        /* Collapsible details */
+        details {
+            margin-bottom: 10px;
+        }
+        details summary {
+            cursor: pointer;
+            color: #00ffcc;
+            font-size: 0.9rem;
+            padding: 8px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        details summary::before {
+            content: '\25B6';
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        details summary::-webkit-details-marker { display: none; }
+
+        /* Spoiler warning */
+        .spoiler-warn {
+            background: rgba(255,204,0,0.08);
+            border: 1px solid rgba(255,204,0,0.3);
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            color: #ffcc00;
+            font-size: 0.85rem;
+        }
+
+        /* War timeline */
+        .war-item {
+            border-left: 2px solid rgba(0,255,204,0.3);
+            padding-left: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .war-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ffcc;
+            box-shadow: 0 0 6px rgba(0,255,204,0.5);
+        }
+        .war-item h4 { color: #00ffcc; font-size: 0.95rem; margin-bottom: 6px; }
+        .war-item p { color: #bbb; font-size: 0.88rem; line-height: 1.6; }
+
+        /* Continent cards */
+        .continent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .continent-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 8px;
+            padding: 18px;
+        }
+        .continent-card h4 { color: #00ffcc; font-size: 0.9rem; margin-bottom: 8px; }
+        .continent-card p { color: #bbb; font-size: 0.85rem; line-height: 1.5; }
+
+        /* Ship classes */
+        .ship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 14px 0;
+        }
+        .ship-card {
+            background: rgba(255,50,50,0.04);
+            border: 1px solid rgba(255,50,50,0.2);
+            border-radius: 6px;
+            padding: 14px;
+        }
+        .ship-card h5 { color: #ff6666; font-size: 0.85rem; margin-bottom: 6px; text-transform: uppercase; }
+        .ship-card p { color: #999; font-size: 0.8rem; line-height: 1.5; }
+
+        @media (max-width: 768px) {
+            .comp-layout { flex-direction: column; }
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                width: 100%;
+                max-height: none;
+                border-bottom: 1px solid rgba(0,255,204,0.15);
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/devlog" class="nav-link">DevLog</a>
+            <a href="/latest-update" class="nav-link">Updates</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero-banner">
+        <h1>Compendium</h1>
+        <p class="tagline">The definitive guide to the Drone Commander universe &mdash; species, factions, characters, technology, and lore.</p>
+    </div>
+
+    <!-- Layout -->
+    <div class="comp-layout">
+
+        <!-- Sidebar TOC -->
+        <nav class="toc-sidebar">
+            <div class="toc-title">Contents</div>
+            <a href="#synopsis" class="toc-link">Synopsis</a>
+            <a href="#species" class="toc-link">Species</a>
+            <div class="toc-sub">
+                <a href="#dark-worlders" class="toc-link">Dark Worlders / Drone Fleet</a>
+                <a href="#humans" class="toc-link">Humans</a>
+                <a href="#sekarri" class="toc-link">Sekarri</a>
+                <a href="#mirelexians" class="toc-link">Mirelexians</a>
+                <a href="#kethri" class="toc-link">Kethri</a>
+                <a href="#deritonians" class="toc-link">Deritonians &amp; Drakhans</a>
+                <a href="#vionites" class="toc-link">Vionites</a>
+                <a href="#skrill" class="toc-link">Skrill</a>
+                <a href="#honnehari" class="toc-link">Honnehari</a>
+                <a href="#canines" class="toc-link">Canines</a>
+            </div>
+            <a href="#factions" class="toc-link">Factions</a>
+            <div class="toc-sub">
+                <a href="#vanguard" class="toc-link">The Vanguard</a>
+                <a href="#fom" class="toc-link">Foundation of Man</a>
+                <a href="#aligned" class="toc-link">The Aligned / Black Fleet</a>
+                <a href="#umbra" class="toc-link">Umbra Consortium</a>
+                <a href="#breakers" class="toc-link">The Breakers</a>
+                <a href="#fna" class="toc-link">Free Nations Alliance</a>
+            </div>
+            <a href="#characters" class="toc-link">Characters</a>
+            <div class="toc-sub">
+                <a href="#char-amu" class="toc-link">Amu</a>
+                <a href="#char-straker" class="toc-link">Straker</a>
+                <a href="#char-fel" class="toc-link">Felynna</a>
+                <a href="#char-snep" class="toc-link">Snep</a>
+                <a href="#char-kira" class="toc-link">Kira</a>
+                <a href="#char-nyrissa" class="toc-link">Nyrissa</a>
+                <a href="#char-isara" class="toc-link">Isara</a>
+                <a href="#char-yevera" class="toc-link">Yevera</a>
+                <a href="#char-cynthia" class="toc-link">Cynthia</a>
+                <a href="#char-myriel" class="toc-link">Myriel</a>
+                <a href="#char-erika" class="toc-link">Erika</a>
+                <a href="#char-daria" class="toc-link">Daria</a>
+                <a href="#char-ezorath" class="toc-link">Ezorath</a>
+                <a href="#char-kaelix" class="toc-link">Kaelix</a>
+                <a href="#char-vess" class="toc-link">Vess Avraxian</a>
+                <a href="#char-tif" class="toc-link">Tif Avraxian</a>
+                <a href="#char-lysandara" class="toc-link">Lysandara</a>
+                <a href="#char-larz" class="toc-link">Larz</a>
+            </div>
+            <a href="#science-lore" class="toc-link">Science-Lore</a>
+            <div class="toc-sub">
+                <a href="#entropy" class="toc-link">Entropy</a>
+                <a href="#entropy-spawn" class="toc-link">Entropy Spawn</a>
+                <a href="#starlanes" class="toc-link">Starlanes, Shards &amp; FTL</a>
+            </div>
+            <a href="#sekarri-lore" class="toc-link">Sekarri-Lore</a>
+            <div class="toc-sub">
+                <a href="#pride-system" class="toc-link">Birth Rates &amp; Pride System</a>
+                <a href="#military-units" class="toc-link">Military Units</a>
+                <a href="#veska" class="toc-link">Veska Filaments</a>
+                <a href="#parenting" class="toc-link">Parenting Roles</a>
+                <a href="#bondlove" class="toc-link">Bondlove</a>
+                <a href="#langara" class="toc-link">Langara &amp; Geography</a>
+                <a href="#world-wars" class="toc-link">The World Wars</a>
+            </div>
+            <a href="#vionite-lore" class="toc-link">Vionite-Lore</a>
+            <div class="toc-sub">
+                <a href="#vionite-ranks" class="toc-link">Ranks</a>
+                <a href="#resonant-essence" class="toc-link">Resonant Essence</a>
+            </div>
+            <a href="#rpg-enemies" class="toc-link">RPG Enemies</a>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="comp-main">
+
+            <!-- ============ SYNOPSIS ============ -->
+            <h2 class="section-title" id="synopsis">// Synopsis</h2>
+            <div class="lore-card">
+                <p>
+                    <strong class="text-glow">Drone Commander</strong> is a hybrid <strong>Visual Novel / RTS / RPG</strong> game that dynamically alternates between gameplay modes to keep the experience varied and cinematic. Players engage in story-driven conversations, tactical real-time strategy battles, and explore RPG-style sections with character interaction and minigames.
+                </p>
+                <p>
+                    The player, an ordinary human, is abducted into a galactic conflict involving several alien factions and an ominous, destructive <strong>Type 3 drone fleet</strong>. Initially seen as primitive, the player gradually gains influence by showing an uncanny ability to control drones and coordinate defense strategies.
+                </p>
+                <p>
+                    The player's fleet, called the <strong class="text-glow">Vanguard</strong>, is on the run from the drone fleet while rescuing alien races and occasionally launching counterattacks. Humanity has only recently begun to advance technologically after surviving a near-catastrophic drone attack. Characters have rich backstories and personality-driven arcs, and the choices you make shape alliances, friendships, rivalries, and even romance.
+                </p>
+                <h4>Gameplay Modes</h4>
+                <ul>
+                    <li><strong>VN Mode:</strong> Storytelling, dialogue trees, choices with consequences</li>
+                    <li><strong>RTS Mode:</strong> Command fleets, deploy drones, manage shields, formations, and superweapons</li>
+                    <li><strong>RPG Mode:</strong> Explore ships and alien planets, interact with crew, complete quests, and engage in pixel-art shooter combat</li>
+                    <li><strong>Minigames:</strong> Crew hiring, job assignment, research progression, morale tracking, fleet economy management</li>
+                </ul>
+                <h4>Tone &amp; Themes</h4>
+                <p>
+                    A balance of emotional storytelling, sci-fi mystery, and tactical warfare. Explores themes of identity, trust between species, power, and redemption. Blends anime-style drama with strategic gameplay and rich lore.
+                </p>
+            </div>
+
+            <!-- ============ SPECIES ============ -->
+            <h2 class="section-title" id="species">// Species</h2>
+
+            <!-- Dark Worlders -->
+            <h3 class="sub-title" id="dark-worlders">Dark Worlders / Drone Fleet</h3>
+            <div class="lore-card">
+                <p>
+                    Originally known as the <strong class="text-glow">Dark Worlders</strong> by the ancient Skrill race. The Sekarri refer to them as the <strong>Drone Fleet</strong> to reduce panic, as the name "Dark Worlder" carries a legacy of hopelessness.
+                </p>
+                <h4>Origins</h4>
+                <p>
+                    Proto-Human in origin &mdash; the original humans, grey in colour, from another galaxy. They once had nations, many races and colours, but eventually formed a single totalitarian government and a single skin colour: grey. As they expanded outward, they were intensely xenophobic.
+                </p>
+                <p>
+                    They originated on a planet over <strong>1 billion years ago</strong>. Originally a civilization with culture and wars similar to others, they became obsessed with technological supremacy, eventually utilizing eugenics and total domination. They were eventually trapped on a planet surrounded by a <strong>Null Field</strong> &mdash; a barrier that prevented matter from existing.
+                </p>
+                <h4>Visual Evolution</h4>
+                <ul>
+                    <li><strong>Early Expansion:</strong> Their army and politicians looked mechanised &mdash; giant armoured suits, faces concealed, breathing mask fittings. Like Vorlons from Babylon 5.</li>
+                    <li><strong>Mid-Expansion:</strong> Their form shifted from metallic to wizard-like: robes, cloaks, facial masks became capes. Front line troops looked like mages.</li>
+                    <li><strong>Late Expansion:</strong> Ethereal, light-bending material. Face obscured to prevent aliens looking upon the face of their "gods."</li>
+                </ul>
+                <h4>The Skrill War &amp; The White Hole Event</h4>
+                <p>
+                    An ancient race called the <strong>Skrill</strong> (Keepers of the Universe) broke the barrier, believing they could "fix" the Dark Worlders' programming. This acted as Pandora's Box. Upon release, the Dark Worlders destroyed the Skrill's 10th Fleet and ignited a <strong>10,000-year war</strong>.
+                </p>
+                <p>
+                    The Skrill attempted a diplomatic meeting near an entropy sink (black hole) to contain the threat. The Dark Worlders betrayed them, corrupted the entropy sink, turning a black hole into a <strong>White Hole</strong>. This rift allowed reinforcements from another galaxy, leading to the extinction of <strong>95% of all life in the galaxy</strong>.
+                </p>
+                <h4>Hierarchy</h4>
+                <ul>
+                    <li><strong>Arkons:</strong> Regional/Galactic political masters. Visible as orbs of energy with no physical body. They oversee harvesting quotas, entropy conversion, and construction of exotic artefacts.</li>
+                    <li><strong>Sovereigns:</strong> Supreme military commanders charged with conquering entire galaxies. Appear as mages in cloaks wielding "magical" staves (high-technology weapons). Cannot be killed and can spawn like instances of an app.</li>
+                    <li><strong>Arch-Pestel:</strong> Brigade/corps leaders who micromanage at the solar system/planetary level. Charged with ensuring the expungement of 95% of populations. Now exist as part of the Sovereign's mind.</li>
+                </ul>
+                <h4>Military Capabilities</h4>
+                <p>
+                    According to Kira, <strong>no race has ever won a single skirmish</strong> against them. Their technology appears as "magic" to the Sekarri (who are 300 years ahead of humans). They have wiped out <strong>95% of tier 2 and 3 sentient life</strong> in the galaxy.
+                </p>
+                <p>
+                    <strong>The "Hornet" Strategy:</strong> They utilize scouts. If a scout is alerted, the fleet swarms in overwhelming force. The only counter-measure is to destroy or distract the scout instantly. The Sekarri once sacrificed an entire fleet just to stop a scout from reporting their location.
+                </p>
+            </div>
+            <div class="ship-grid">
+                <div class="ship-card">
+                    <h5>Harbinger</h5>
+                    <p>Designed for obliterating any naval/space-borne resistance</p>
+                </div>
+                <div class="ship-card">
+                    <h5>Exterminator</h5>
+                    <p>Designed for eradicating populations on a planet's surface, usually after forges are erected</p>
+                </div>
+                <div class="ship-card">
+                    <h5>End-Bringer</h5>
+                    <p>Emergency enforcement, 1000x stronger than a Harbinger. Can destroy an entire solar system from a distance.</p>
+                </div>
+                <div class="ship-card">
+                    <h5>Rift Ships</h5>
+                    <p>Unknown capabilities. Work closely with entropy and simulated universes.</p>
+                </div>
+            </div>
+
+            <!-- Humans -->
+            <h3 class="sub-title" id="humans">Humans</h3>
+            <div class="lore-card">
+                <ul>
+                    <li><strong>Classification:</strong> Tier 0 species (year 2029+), on the edge of Dispersion networks</li>
+                    <li>Deep culture shock after first Drone Fleet invasion</li>
+                    <li>Transformed after the war &mdash; several massive leaps in technology, unexplained to the outside observer</li>
+                    <li>Desperation forced humanity to strip naval ships for material to build starships</li>
+                    <li>Relies mostly on young ship captains under the age of 35</li>
+                </ul>
+            </div>
+
+            <!-- Sekarri -->
+            <h3 class="sub-title" id="sekarri">Sekarri</h3>
+            <div class="lore-card">
+                <p>
+                    A race of humanoid feline-like species. Very advanced but now a nomadic travelling race. They came from a world called <strong class="text-glow">Alara</strong> that was destroyed. Alara had continents: Langara, Caelin, Lyran, Gerestone and Mythan.
+                </p>
+                <ul>
+                    <li><strong>Classification:</strong> Tier 1 species, 300+ years more advanced than humanity</li>
+                    <li>Extermination survivors; post Alara and Deridana</li>
+                    <li>Females outnumber males <strong>7:1</strong></li>
+                    <li>Height: approximately 7'6"</li>
+                    <li>Their society revolves around <strong>prides</strong>, and the supply of men often lies at the center of politics and culture</li>
+                </ul>
+                <p>
+                    Modern-day Sekarri, though 300 years ahead of Earth technically, are culturally very similar to humans. Technological developments allow them to be more progressive and inclusive, but some stereotypes linger.
+                </p>
+                <p>
+                    Sekarri females have adapted to "maidenhood" &mdash; true poly-type relationships including love for the male, love for other females in the group (pride love), and love for the crown (first female). Their relationship dynamic is both complex and simple.
+                </p>
+            </div>
+
+            <!-- Mirelexians -->
+            <h3 class="sub-title" id="mirelexians">Mirelexians</h3>
+            <div class="lore-card">
+                <p>
+                    A corporate-driven planet, with smaller moons and planets where anti-capitalists have fled. They still believe in nobility, monarchs, and love buzzwords.
+                </p>
+                <p>
+                    They evolved from spiders. Their star shouldn't be what it is &mdash; a mystery that hints at deeper secrets in the galaxy.
+                </p>
+            </div>
+
+            <!-- Kethri -->
+            <h3 class="sub-title" id="kethri">Kethri (Foxes)</h3>
+            <div class="lore-card">
+                <ul>
+                    <li><strong>Decentralised</strong>, spread out through the galaxy</li>
+                    <li>No home world (destroyed by the Drone Fleet)</li>
+                    <li>Can blend in and infiltrate other races, better than Sekarri Demi technology</li>
+                    <li>Mercantile in nature with spiritual underpinnings</li>
+                </ul>
+                <p>
+                    A faction-driven species split into two main sides: <strong>A)</strong> A totalitarian, mafia-like state with connections and hubs on planets all over the galaxy. <strong>B)</strong> A rebellious resistance faction, still substantial but built of many decentralised splinter cells.
+                </p>
+                <p>
+                    Their species lost their home world to the drone fleet, but never had the interest nor resolve to fight back. Rather, they expanded their influence with as many races as they could. By definition, they mix with all sorts of aliens and do business with anyone.
+                </p>
+            </div>
+
+            <!-- Deritonians & Drakhans -->
+            <h3 class="sub-title" id="deritonians">Deritonians &amp; Drakhans</h3>
+            <div class="lore-card">
+                <p><strong>Planet:</strong> Shal</p>
+                <p>
+                    Deritonians are bipedal and <strong>reptilian</strong> in appearance, possessing mammalian features like hair. They come in varied colours from green to pink, with heights from 5ft to 8ft.
+                </p>
+                <p>
+                    A hardy, externally pacifistic species organized into a traditional, feudal society of houses and clans &mdash; blending rituals and nature-spirit beliefs (akin to feudal Japan's Shinto) with medieval European culture (Wales, England, Scotland, Ireland). They have templar knights.
+                </p>
+                <p>
+                    <strong>Drakhans</strong> are a Tier 3 dragon-like ancient species who are extremely pacifist, hiding from the galaxy after devastating wars. They share the planet with the Deritonians, but enforce a strict policy of isolation causing Deritonian civilization to stagnate.
+                </p>
+                <p>
+                    The Deritonian government is formally seeking asylum with humanity, offering <strong>500,000 battle-hardened warriors</strong> and rare minerals in exchange. Deritonians and humans have already begun forming personal bonds, including romantic relationships.
+                </p>
+            </div>
+
+            <!-- Vionites -->
+            <h3 class="sub-title" id="vionites">Vionites</h3>
+            <div class="lore-card">
+                <p>
+                    Mouse and squirrel-like in form, with large diversity in both appearance and culture depending on distance from the <strong class="text-glow">Core Worlds</strong>. Vionites are the most advanced Tier 1 civilization.
+                </p>
+                <ul>
+                    <li><strong>Population:</strong> ~100 billion citizens across multiple star systems</li>
+                    <li><strong>Height:</strong> 4.8 ft (1.45 meters) on average</li>
+                    <li>Highly intelligent, passionate and aggressive</li>
+                    <li>The only T1 race that can travel in space without dispersion fields</li>
+                    <li><strong>Core Worlds:</strong> Militaristic mouse-like generals</li>
+                    <li><strong>Home Worlds:</strong> Retail sector, politicians and luxury</li>
+                    <li><strong>Fringe Worlds:</strong> Hippie squirrel-like populations</li>
+                </ul>
+                <p>
+                    Unlike others, the Vionites' energy footprint is too high to hide. So they prepare for war &mdash; culturally, politically and scientifically. They are currently undergoing a massive <strong>Total War</strong> military campaign, the only race insane enough to go toe-to-toe with the Drone Fleet.
+                </p>
+            </div>
+
+            <!-- Skrill -->
+            <h3 class="sub-title" id="skrill">Skrill</h3>
+            <div class="lore-card">
+                <p>
+                    An aquatic, noble and benevolent race. They were the first &mdash; the elders, the founders, the forerunners. They built all the infrastructure found in the galaxy today. But they were wiped out by the Dark Worlders after releasing them from their prison, in an event known as the <strong>White Hole incident</strong>.
+                </p>
+            </div>
+
+            <!-- Honnehari -->
+            <h3 class="sub-title" id="honnehari">Honnehari (Wolves)</h3>
+            <div class="lore-card">
+                <p>
+                    Reclusive and ancient. Legend has it they were around when the Dark Worlders were first released &mdash; millions and millions of years ago. As a Tier 3 race, they are godlike in technology compared to all other living species.
+                </p>
+                <p>
+                    The Honnehari knew they couldn't stay or they'd be wiped by competition (the Drone Fleet), or eventually atrophy as all intelligent races do. So they left the galaxy &mdash; no one is sure how.
+                </p>
+            </div>
+
+            <!-- Canines -->
+            <h3 class="sub-title" id="canines">Canines</h3>
+            <div class="lore-card">
+                <p>
+                    Previously known as the Adamant. A species still being fleshed out in the lore &mdash; details to come.
+                </p>
+            </div>
+
+            <!-- ============ FACTIONS ============ -->
+            <h2 class="section-title" id="factions">// Factions</h2>
+
+            <div class="faction-card" id="vanguard">
+                <h4>The Vanguard (Sekarri)</h4>
+                <p>
+                    The Sekarri travelling fleet, comprising over <strong>1 million civilians</strong> and <strong>350,000 active military personnel</strong>. Believed to be the largest surviving group of Sekarri to have fled Alara. Their destination appears ambiguous as all Admirals are currently AWOL.
+                </p>
+            </div>
+
+            <div class="faction-card" id="fom">
+                <h4>The Foundation of Man</h4>
+                <p>
+                    A splinter group of humanity who believe Earth is better united under a single banner, not separate nations. They push for <strong>human survival at all costs</strong>.
+                </p>
+                <p>
+                    Their leadership, part of a shadow government that brewed during early contact between Earth and Neph, shaped the FOM into a top-down totalitarian regime. Though generally xenophobic ("Humanity First" mentality), they ally with the Dominion (Neph), who gave them a homeworld in exchange for assisting her annexation of Earth and tribute humans to the Dark Worlders.
+                </p>
+            </div>
+
+            <div class="faction-card" id="aligned">
+                <h4>The Aligned / The Black Fleet (Sekarri)</h4>
+                <p>
+                    Believed to be led by Morrigan but actually backed by ex-pirate, now venture capitalist <strong>Vess Avraxian</strong>. Morrigan made her case for the fleet years prior to Alara's invasion.
+                </p>
+            </div>
+
+            <div class="faction-card" id="umbra">
+                <h4>The Umbra Consortium (Kethri)</h4>
+                <p>
+                    A large, distributed, semi-decentralised mafia-like organisation. Led by various Kethri kingpins, warlords and corrupt politicians. They have infiltrated major factions all over the galaxy with advanced forms of blending in, beyond Sekarri Demi technology. It's believed they infiltrated Earth before the 1960s.
+                </p>
+            </div>
+
+            <div class="faction-card" id="breakers">
+                <h4>The Breakers (Kethri)</h4>
+                <p>
+                    Rebels against the Umbra Consortium. A resistance faction fighting against the mafia-like grip the Consortium holds over Kethri society.
+                </p>
+            </div>
+
+            <div class="faction-card" id="fna">
+                <h4>The Free Nations Alliance</h4>
+                <p>
+                    An informal coalition of surviving Earth nations &mdash; highly business and economic driven.
+                </p>
+            </div>
+
+            <!-- ============ CHARACTERS ============ -->
+            <h2 class="section-title" id="characters">// Characters</h2>
+
+            <div class="char-card" id="char-amu">
+                <h4>Amu</h4>
+                <span class="char-tag tag-ai">AI</span>
+                <p>
+                    Amu isn't a typical off-the-shelf guardian AI from generic sci-fi. She has her own hopes, desires, and is on a mission to recover memories she isn't even sure are her own.
+                </p>
+                <p>
+                    Straker helps Amu in the beginning with something huge she will never forget. But Amu was always going to be drawn towards Straker, in this part of space and time anyway. As Straker, you can choose to go all the way with her &mdash; and she will take you to her special place.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-straker">
+                <h4>Straker</h4>
+                <span class="char-tag tag-human">Human</span>
+                <p>
+                    An average, run-of-the-mill human male, shorter in stature at 5'6", working a 9-5 job in an office. Not popular, not successful in life. Frustrated by the lack of purpose, he spends much of his time with his friend Brian.
+                </p>
+                <p>
+                    After being abducted and coming face to face with Fel, Straker learns about the 400 abducted humans, that humanity is not alone, and the threat to the galaxy. He becomes vested in the stake, funnelling all his energies into drone training and finding a way to contribute.
+                </p>
+                <p>
+                    Straker is a quiet MC &mdash; most of his dialogue is selected by the player but not voiced. He isn't mute, it's just left to the imagination of the player.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-fel">
+                <h4>Felynna Quorialis</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Military combat instructor on the Freexyl ship. 7 feet tall, blonde-haired, feline in appearance. Alongside Straker, Fel is one of the main characters in the game.
+                </p>
+                <p>
+                    When the Sekarri fleet first spotted Earth, she formulated all the plans for the Drone program, the abductions, and her vision to allow humans a place in fighting the drone fleet. She convinced many into her vision, though the fleet was not headed for Earth.
+                </p>
+                <p>
+                    Fel has a connection to Straker she doesn't understand &mdash; dreams which link them and an affinity. She is monogamous, extremely rare for Sekarri females. She insists Straker only have her or not at all, though there is a difficult path to get her into a poly pride.
+                </p>
+                <p>
+                    She appears emotionally balanced, but has had issues with uncontrollable rage in the past. Straker has given her a new lease on life. Fel was a fleet Tier 1 operator &mdash; one of the very few with actual space combat experience.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-snep">
+                <h4>Snep Dagrant</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Once worked as a fleet intelligence officer, kicked out for being overzealous. Paranoid security chief now active aboard the fleet during the leadership slumber.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-kira">
+                <h4>Kira Virethorne</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Over 7'9" tall with blue soft, short fur and red hair. A Science Fleet officer and one of the main characters. Senior officer and best friends with Tabby. She went to the academy with Fel and Tabby.
+                </p>
+                <p>
+                    Kira has multiple sisters, though they don't keep close relationships. She is Astraea (sexually open but focused on her career), one of the highest functioning intellectuals on the Freexyl.
+                </p>
+                <p>
+                    Her personality is <strong>open, friendly, and emotionally expressive</strong>. She can be playful and flirtatious &mdash; blushing when complimented and reacting with a "Meow!" when intrigued. She is also insightful and perceptive, able to sense attraction through pheromones, a Sekarri trait.
+                </p>
+                <p>
+                    Kira becomes pivotal in the game: she joins your team, can support on the field and in RTS, and helps make important breakthroughs.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-nyrissa">
+                <h4>Nyrissa Hallebard</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Aphoros is a clone &mdash; Nyrissa is the original and made her. Nyrissa was always gifted, but needed to double her productivity so she created a clone. Aphoros became a twisted version of her, emphasising hidden prejudices and suppressing empathy. The ethics board stripped Nyrissa of title and merit.
+                </p>
+                <p>
+                    Come to Nyrissa when you need an unfiltered but educated opinion on things. She's not easily found early on, but worth seeking out before you meet Aphoros.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-isara">
+                <h4>Isara Virethorne</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Kira's sister. A promising researcher in Fake Matter and Null Fields who once eclipsed even Kira. That was until a lab experiment went horribly wrong.
+                </p>
+                <details>
+                    <summary>Read Isara's backstory</summary>
+                    <p style="color:#bbb; line-height:1.6; margin-top:10px;">
+                        Isara was working on "Temporary Constructs" &mdash; matter that could be summoned then dispelled with no residue. Using a stolen classified Shard and a hacked grade-B reactor, she activated the construct. Every atom in her lab was phase-rotated into an orthogonal axis &mdash; shifted to where no physical observer could reach.
+                    </p>
+                    <p style="color:#bbb; line-height:1.6;">
+                        She found herself at the threshold of something alien &mdash; a biome awash in shifting crimson and deep violets, pulsing as if alive. A cloaked figure with burning red eyes strangled the life from her. With her last strength, she triggered the emergency shut-off and escaped. The figure whispered: <em>"Do not come back."</em>
+                    </p>
+                    <p style="color:#bbb; line-height:1.6;">
+                        No one believed her. She quit, drifted apart from Kira, and eventually found herself serving drinks at the Stellar Grove. But Isara couldn't banish her ambitions. Her path crosses with Eris Tabby's sister, who recruits her as an informant.
+                    </p>
+                </details>
+            </div>
+
+            <div class="char-card" id="char-yevera">
+                <h4>Yevera &mdash; Yeverinthii'shael</h4>
+                <span class="char-tag tag-honnehari">Honnehari</span>
+                <p>
+                    Full ceremonial name: <em>Yeverinthii'shael</em> (yeh-veh-RIN-thee-shy-el). "Echo of stars" or "bound to starlight."
+                </p>
+                <p>
+                    A female wolf-like alien with native-style vibes. Tired of millennia alone, tired of her people's new approach to things. Still non-interfering and thinks of most species as primitive. She has experienced everything, but it fleets away &mdash; she has to refresh herself often.
+                </p>
+                <p>
+                    Her people, the Honnehari, have long left this part of the universe. They were hyper-advanced and saw the Skrill get wiped out by the Drone Fleet tens of millions of years ago. As a Tier 3 race, they knew they couldn't stay longer or they'd be wiped by competition. So they left.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-cynthia">
+                <h4>Cynthia Cynthakialixianovara</h4>
+                <span class="char-tag tag-deritonian">Deritonian</span>
+                <p>
+                    An attractive but shy Deritonian diplomat and ambassador. She represents the Deritonian people and considers Straker a <strong>hero</strong> for pushing back the drone fleet.
+                </p>
+                <p>
+                    Her society is rigidly bound by family traditions (similar to feudal Japan) and she was expected to follow her diplomat parents, though she secretly wishes to pursue science or nature. Her primary mission is to ask Straker for <strong>asylum</strong> for her people, offering 500,000 battle-hardened combatants and rare minerals.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-myriel">
+                <h4>Myriel Myrielnysydore</h4>
+                <span class="char-tag tag-deritonian">Deritonian</span>
+                <p>
+                    A travelling Chronicler who journeys across her home world Shal and through its forests. She wants to interview Straker and tells him stories of her travels.
+                </p>
+                <p>
+                    To romance her, you must be unapologetically honest about being a screw-up. She is bored by "Heroes." She may carry a recording device &mdash; seemingly magical, but actually Drakhan tech.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-erika">
+                <h4>Erika</h4>
+                <span class="char-tag tag-kethri">Sekarri-Kethri Hybrid</span>
+                <p>
+                    The first hybrid you meet early on. Her mum and dad were Sekarri and Kethri respectively. While Fel is a combat instructor, she isn't allowed to be Straker's direct teacher &mdash; Erika trains you at the Battle Center in the Stellar Grove.
+                </p>
+                <p>
+                    Erika naturally gravitates to a <strong>Lorena</strong> role in pride dynamics. She's asked to join Straker's pride and you can partake in battles at the centre to gain stats, level up and earn money.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-daria">
+                <h4>Daria Ozerane</h4>
+                <span class="char-tag tag-vionite">Vionite &mdash; Black Genesis</span>
+                <p>
+                    Daria is not a soldier or weapon in the conventional sense. She is the Vionites' version of the Manhattan Project &mdash; an unnatural, unrepeatable creation born from fear. A technological leap several magnitudes ahead of their current level.
+                </p>
+                <p>
+                    Her DNA is layered across additional spatial dimensions, allowing it to encode capabilities far beyond normal lifeforms. She is infused with entropic energy, null potentials, and synthetic matter structures &mdash; a living battery of high-concept physics.
+                </p>
+                <p>
+                    For now, Daria lies dormant &mdash; suspended in stasis, encased in containment fields built to withstand cosmic anomalies. She is arrogant and self-believing but secretly self-doubting. She wants to find her father, and is angry at her abandonment. She likes lighting candles with her mind and watching them burn out.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-ezorath">
+                <h4>Strategon Ezorath Tarinel Ozerane</h4>
+                <span class="char-tag tag-vionite">Vionite</span>
+                <p>
+                    Originally served as a Spectral Warden, rising over 120 years of military service. Rose from ground commander to Supreme Core Strategon during the "Freylen Collapse" &mdash; the rebellion of the outer worlds. Later demoted in scandals, reinstated, and transitioned into the Navy branch.
+                </p>
+                <p>
+                    Secretly worked on Honnehari corpses and an <strong>Eridix</strong> (residual AI construct), reverse-engineering hyper-advanced technology 2 tiers above Vionite level. Oversaw the Black Genesis program &mdash; Daria's creation &mdash; but never knew the biological link to himself.
+                </p>
+                <p>
+                    <strong>Personality:</strong> Calm, polite and warm but distant. Has 100 grandkids. A world-weary pragmatist who believes in structure but knows when to give way to chaos. Secretly hates the total war path but sees no alternative. Never married, never divorced. Can joke from time to time &mdash; enjoys a dad joke.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-kaelix">
+                <h4>Kaelix Freexyl</h4>
+                <span class="char-tag tag-sekarri">Sekarri &mdash; Clone</span>
+                <p>
+                    Kaelix's mind was cloned into another cloned body. A long time ago she was a person &mdash; the Freexyl's granddaughter. She was a trained assassin and killer, an artefact of an earlier, more violent Sekarri era.
+                </p>
+                <p>
+                    Her deeper inner kernel wants to break out and express herself, but layers of programming and indoctrination suppress that. You CAN date Kaelix, but it's not easy &mdash; if you help her fight her demons, she will go to hell and back for you.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-vess">
+                <h4>Vess Avraxian</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    Chief investor in the Black Fleet. She is the major shareholder who funded Morrigan's operation. Her previous role was as a formidable pirate who made her wealth through shady means &mdash; far more ruthless than Morrigan in her prime.
+                </p>
+                <p>
+                    Vess has access to highly sought-after <strong>Shards</strong> &mdash; dispersion material made from synthetic, processed degenerate strange matter. Most people think Morrigan is the big boss, and Vess likes to keep it that way. Make no mistake: Vess wants her money's worth.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-tif">
+                <h4>Tif Avraxian</h4>
+                <span class="char-tag tag-sekarri">Sekarri</span>
+                <p>
+                    A senior Admiral in the Vanguard fleet. Found by Straker and Fel locked away in a Kryptosis storage container &mdash; put on digital ice.
+                </p>
+                <p>
+                    Tif is a work-hard, play-hard personality. Very powerful, very competent, but with her vices. She is seen as a feminist symbol on Earth after the events of the Drone Fleet invasion, having developed impressive tactical capabilities and led human legions to victory.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-lysandara">
+                <h4>Lysandara</h4>
+                <span class="char-tag tag-vionite">Vionite</span>
+                <p>
+                    A Vionite journalist. Lysandara hears about the pending demise of humanity and that the drone fleet are apparently on their way while Rhyzark is leaving them out to dry.
+                </p>
+                <p>
+                    Not one to let a potential bombshell of a story pass her by, she pays a smuggler called Snow to get her on a fast stealth transport to Earth. She's told there is only one human the Sekarri are interested in. Lysandara will do whatever it takes to meet that man.
+                </p>
+            </div>
+
+            <div class="char-card" id="char-larz">
+                <h4>Larz</h4>
+                <span class="char-tag tag-vionite">Vionite</span>
+                <p>
+                    A hotshot super-soldier who acts dumb. Might actually have an IQ lower than 100, but constantly ruins Ezorath's day. Leads a combat unit, always getting into trouble. Every time he's in Ezorath's office, he makes the old Strategon age 50 years.
+                </p>
+            </div>
+
+            <!-- ============ SCIENCE-LORE ============ -->
+            <h2 class="section-title" id="science-lore">// Science-Lore</h2>
+
+            <h3 class="sub-title" id="entropy">Entropy</h3>
+            <div class="lore-card">
+                <p>
+                    <strong>In short:</strong> Sovereigns harvest life in the galaxy to extract entropy (crystallised/locked information). The entropy can be used to create <strong class="text-glow">Fake Universes</strong>, in which they build things they need. They then import those things using Virtual Entropy.
+                </p>
+                <p>
+                    Entropy is a <strong>base layer of reality</strong>. The real-world definition is the measure of the unavailability of energy to do work, or a measure of disorder. Drone Commander expands this interpretation as the <strong>percentage of locked-in information, unmodifiable</strong> &mdash; essentially, the soul.
+                </p>
+                <p>
+                    Entropy is superior to available information, in that entropy can be used to <strong>generate new information</strong>. This is what makes it so valuable. The Dark Worlders have limits on what they can create (stars, black holes, etc.) as physics limits what information can do. Entropy allows them to work around this &mdash; a minable resource giving access to exotic matter like Shard Strange Matter.
+                </p>
+                <h4>Casting Alternate Fake Universes</h4>
+                <p>
+                    The Dark Worlders treat entropy like an oil rush. They don't care that harvesting extracts souls or destabilises local space &mdash; it powers their economy, allowing them to make Fake Universes, Shards, and cosmic-constant altering matter.
+                </p>
+                <p>
+                    Alternate realities don't exist in Drone Commander. However, the top-tier species can <strong>manipulate and cast alternate probabilities</strong> into micro-universe bubbles within our existing universe. With Fake Universes they can build whatever they want; with Virtual Entropy, they import what they built.
+                </p>
+                <p>
+                    The Dark Worlders believe they are doing good, because they think they can prevent the universe from ending by leaching Fake Universes.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="entropy-spawn">Entropy Spawn</h3>
+            <div class="lore-card">
+                <ul>
+                    <li>The leftovers of when entropy is harvested or corrupted. Must be processed to form into Spawn.</li>
+                    <li>When a forge is created and people (alive or dead) are brought for processing, wastage is left over that festers into <strong>malicious energy</strong>.</li>
+                    <li>The Dark Worlders realised that if left untouched the energy would dissipate, so they channel it into Entropic Spawn &mdash; a second layer of defence for the forges.</li>
+                </ul>
+            </div>
+
+            <h3 class="sub-title" id="starlanes">Starlanes, Shards &amp; FTL</h3>
+            <div class="lore-card">
+                <p>
+                    It's not faster than light, nor transportation, nor quantum nonsense.
+                </p>
+                <p>
+                    Billions of years ago, species noticed that not all CMBR (Cosmic Microwave Background Radiation) was equally distributed &mdash; it appeared to clump together in <strong>12 places</strong>. On closer inspection, CMBR seemed to almost instantly appear in another location. There were 12 regions in the galaxy where physics behaved differently.
+                </p>
+                <p>
+                    The top races of that era began a <strong>gold rush</strong>, racing to each location and bottling up the super-resource into <strong class="text-glow">Shards</strong>. Shards are like batteries for special matter that can change the physical constants of the universe.
+                </p>
+                <ul>
+                    <li>If you have a shard, you don't need to play by the rules of the universe</li>
+                    <li>You could double your weight or make the speed limit 5x faster</li>
+                    <li>You could make distances shorter</li>
+                    <li>But like oil, you have to refine it for what you want &mdash; there are hundreds, maybe thousands of shards</li>
+                </ul>
+                <p>
+                    The shards are bottled super-physics from regions of early CMBR where physical constants were different and variable. These clumps of space have long dissipated, but the ancients raced to mine, refine and purpose them. Different shards have different functions related to the part of space they came from.
+                </p>
+            </div>
+
+            <!-- ============ SEKARRI-LORE ============ -->
+            <h2 class="section-title" id="sekarri-lore">// Sekarri-Lore</h2>
+
+            <h3 class="sub-title" id="pride-system">Birth Rates &amp; The Pride System</h3>
+            <div class="lore-card">
+                <h4>History of the Sekarri (Sekar venatrix)</h4>
+                <p>
+                    <em>Venatrix</em> meaning gender imbalance. Sekarri come from a wider family of <em>Sekar</em>, meaning smart hunters.
+                </p>
+                <p>
+                    <strong>Pre-History:</strong> During their last major evolutionary phase ~200,000 years ago, environmental factors caused females to die at much higher rates in childbirth. Through selective breeding and survival of the fittest, women who bore more females were selected for &mdash; creating the 7:1 forcing function.
+                </p>
+                <p>
+                    <strong>Early History:</strong> Social bonding dominated their civilisation. The instability of breeding meant many Sekarri still carry epigenetics from previous Sekar favouring monogamous relationships. It took the rule of law, religion and even caste systems to engrain their polygamous society. A <strong class="text-glow">Pride System</strong> was formed.
+                </p>
+                <p>
+                    <strong>&lt; 800 Years Ago:</strong> Sekarri maintained strict traditions &mdash; any male not pairing with more than 6 women would be severely punished, as would women who attempted to keep a man to herself.
+                </p>
+                <p>
+                    <strong>After 400 Years Ago:</strong> Living standards improved. Autonomy and individual rights became more of a thing. Cultural revolutions followed. People were free to form relationships how they pleased &mdash; with the final caveat being that high-level government officials must still be seen to follow traditions.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="military-units">Military Units</h3>
+            <div class="lore-card">
+                <ul>
+                    <li><strong>Swat Sisters:</strong> Sub-specialist unit, high volume, called upon in most urgent war theatres. High fatality rates, well paid.</li>
+                    <li><strong>Battle Bros:</strong> The male contingent of Swat Sisters. Normally separated by gender until the fall of Alara.</li>
+                    <li><strong>Red Sisters:</strong> Super-specialist hit women. Contracted by governments or lucrative companies with government approval. Have an ethical checklist and can refuse jobs.</li>
+                    <li><strong>Tier 1 Operators:</strong> The elite. Fel was a fleet Tier 1 operator &mdash; one of the very few with space combat experience. Irivin was all-terrain, specialised full-core army.</li>
+                </ul>
+            </div>
+
+            <h3 class="sub-title" id="veska">Veska Filaments</h3>
+            <div class="lore-card">
+                <p>
+                    To adapt to the gender imbalance, Sekarri females developed fine needle-like hairs below the belly button that stand on end during arousal. These inject a form of organic hormones into males on contact &mdash; a genetic historical adaptation.
+                </p>
+                <p>
+                    As centuries progressed, they lost utility as cultural mechanisms took precedence. However, some females still have active filaments: 1/5 Sekarri women have them, but 1/3 Langarans do.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="parenting">Parenting Roles</h3>
+            <div class="lore-card">
+                <ul>
+                    <li><strong>Velara (Primary Nurturers):</strong> "Heartkeeper" &mdash; deeply involved in the child's upbringing, providing love, guidance, and daily care. The emotional anchors of a child's life.</li>
+                    <li><strong>Lorena (On-and-Off Caregivers):</strong> "Lifebringer" &mdash; participate more sporadically, offering support when present but with other duties or interests. Still contribute to the child's upbringing when they can.</li>
+                    <li><strong>Astraea (Rarely Present):</strong> "Star-touched" &mdash; more remote, often due to duties or personal choices. Serve as a figure of admiration or distant influence. Astraea have been known to float between prides.</li>
+                </ul>
+            </div>
+
+            <h3 class="sub-title" id="bondlove">Bondlove: Maidenhood of Touch</h3>
+            <div class="lore-card">
+                <p>
+                    The Sekarri's polyamorous lifestyle isn't simply a consequence of the 7:1 ratio &mdash; it's a deeply woven emotional tradition rooted in something far more profound than physical need.
+                </p>
+                <p>
+                    At the center of their prides is <strong class="text-glow">Bondlove</strong> &mdash; a sacred, near-sexual connection shared between women. It transcends friendship, built on mutual comfort, emotional syncing, and intimate touch: nuzzling, holding, shared warmth. Though not explicitly sexual, bondlove carries a closeness that often feels just as fulfilling as time with the male partner &mdash; sometimes more so.
+                </p>
+                <p>
+                    There is no envy, no rivalry. When the male is unavailable, one woman may take on the <strong>Veyla</strong> role &mdash; altering her voice and posture in a respectful ritual. She doesn't just comfort the others; she is rewarded with favour and affection. Bondlove is more than custom &mdash; it is the very fabric of Sekarri identity, sisterhood, and healing.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="langara">Langara &amp; Geography</h3>
+            <div class="lore-card">
+                <p>Alara has multiple continents, much like Earth. The Sekarri World Wars revolved around the supply and rights of men.</p>
+            </div>
+            <div class="continent-grid">
+                <div class="continent-card">
+                    <h4>Langara (The Blue Continent)</h4>
+                    <p>A huge island continent like Australia but with lush jungles and tall mountain ranges. The most aggressively traditionalist and authoritarian. They institutionalized the Pride System and started WW1 and WW3. The last to abolish slavery.</p>
+                </div>
+                <div class="continent-card">
+                    <h4>Gerestone (Cougar Pride Lands)</h4>
+                    <p>Tribal and traditional, driven by survival not ideology. They maintained the Pride-like system through ancient custom and necessity. Retained monogamous epigenetic preferences more openly.</p>
+                </div>
+                <div class="continent-card">
+                    <h4>Caelin (The Neutral Archipelago)</h4>
+                    <p>Progressive and autonomous. First to move away from rigid state-enforced pairing. Used advanced genomics and adoption to stabilise society without authoritarian control.</p>
+                </div>
+                <div class="continent-card">
+                    <h4>Mythan (The Battleground)</h4>
+                    <p>Highly mixed and unstable. A melting pot of traditionalists, progressives, and those with deep monogamous desires. The central stage for all five conflicts.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-title" id="world-wars">The World Wars of Alara</h3>
+            <div class="lore-card">
+                <p style="color:#aaa; font-size:0.85rem; margin-bottom:16px;">First three wars &mdash; The Supply of Men &nbsp;|&nbsp; Fourth and fifth wars &mdash; The Rights of Men</p>
+
+                <div class="war-item">
+                    <h4>World War 1 &mdash; The Pride War (The Abduction Wars)</h4>
+                    <p>
+                        <strong>Belligerents:</strong> Langara vs. Rest of the World<br>
+                        <strong>Outcome:</strong> Total Langaran Victory &mdash; formalisation of the Pride Laws<br>
+                        Pre-emptive strikes using thousands of warships, blimps, frigates and slave ships. Langara's core goal was to extract male "comfort husbands" from all nations. Night-snatching tactics with specialised hooks dropped from blimps into remote villages. The male slave trade formalised husband registries.
+                    </p>
+                </div>
+
+                <div class="war-item">
+                    <h4>World War 2 &mdash; The Royalty Wars</h4>
+                    <p>
+                        <strong>Belligerents:</strong> Continental powers<br>
+                        <strong>Outcome:</strong> End of the Patriarchy, rise of aristocracy<br>
+                        Massive continental wars fighting for: recognition of male royalty, formation and extermination of the patriarchy, and the closest equivalent to human wars. Included a Langaran civil war.
+                    </p>
+                </div>
+
+                <div class="war-item">
+                    <h4>World War 3 &mdash; The Husband Registries</h4>
+                    <p>
+                        <strong>Outcome:</strong> Coalition victory<br>
+                        Langara pushed back via a primitive but effective use of male pheromones to lure Langaran combatants into ambushes. First documented instance of male participation in war. Coalition forced Langara to recognise the pridelands and the Freexyl bloodline.
+                    </p>
+                </div>
+
+                <div class="war-item">
+                    <h4>World War 4 &mdash; The Genetic Wars</h4>
+                    <p>
+                        Caelin scientists attempted to fix the 7:1 ratio via genomics. This sparked war between Traditionalists (who wanted male scarcity to maintain power) and Progressives (who wanted 1:1 ratios). The first <strong>Kaelix clones</strong> were deployed. The ratio stayed 7:1, but "Custom Men" became possible. First direct use of male servicemen.
+                    </p>
+                </div>
+
+                <div class="war-item">
+                    <h4>World War 5</h4>
+                    <p><em>Details to be revealed&hellip;</em></p>
+                </div>
+
+                <div class="war-item">
+                    <h4>World War 6 &mdash; Shadow Corporate Wars</h4>
+                    <p>
+                        <strong>Outcome:</strong> Financial control over the pride economy<br>
+                        War between corporate entities like the Umbra Consortium. Men became "Celebrity Assets." This era produced characters like <strong>Tif Avraxian</strong>, who used influence over high-value males to leverage entire fleets. Creation of Merit Shares (originally male meritshares).
+                    </p>
+                </div>
+            </div>
+
+            <!-- ============ VIONITE-LORE ============ -->
+            <h2 class="section-title" id="vionite-lore">// Vionite-Lore</h2>
+
+            <h3 class="sub-title" id="vionite-ranks">Ranks</h3>
+            <div class="lore-card">
+                <h4>Tactical &amp; Military Command</h4>
+                <table class="rank-table">
+                    <tr><th>Rank</th><th>Role</th></tr>
+                    <tr><td>StratZar</td><td>Overall command of multiple Star System campaigns</td></tr>
+                    <tr><td>Strategon</td><td>In-system general, responsible for multiple planetary campaigns</td></tr>
+                    <tr><td>Field Stratarch</td><td>Directs planetary surface operations; hover-forces and orbital coordination</td></tr>
+                    <tr><td>Sub-Marshal</td><td>Commands individual battle groups or flotillas</td></tr>
+                    <tr><td>Praetor-Wing</td><td>Oversees planetary airspace and defense satellites</td></tr>
+                    <tr><td>Orbital Warden</td><td>Keeper of system-defense rings and AI fleet control</td></tr>
+                    <tr><td>Fleet Magister</td><td>Oversees ship doctrine, training, and combat simulation networks</td></tr>
+                    <tr><td>War-Chancellor</td><td>Handles doctrine, morale, and psychological warfare planning</td></tr>
+                    <tr><td>Drift Commander</td><td>Leads anti-gravity ground forces in suspensor drift</td></tr>
+                </table>
+
+                <h4 style="margin-top:20px;">Intelligence, Science &amp; Control</h4>
+                <table class="rank-table">
+                    <tr><th>Rank</th><th>Role</th></tr>
+                    <tr><td>Neural Prefect</td><td>Oversees implant integrity and telepathic comm networks</td></tr>
+                    <tr><td>Synapse Magister</td><td>Directs tactical AI fusion and human-Vionite interface projects</td></tr>
+                    <tr><td>Cognition Auditor</td><td>Monitors mental corruption, entropy deviation, and subversion</td></tr>
+                    <tr><td>Spectral Warden</td><td>Commander of stealth fleets and phase-veil intelligence units</td></tr>
+                    <tr><td>Entropy Liaison</td><td>Interfaces with dispersion-based technologies and Honnehari relic systems</td></tr>
+                </table>
+
+                <h4 style="margin-top:20px;">Civil &amp; Political Caste</h4>
+                <table class="rank-table">
+                    <tr><th>Rank</th><th>Role</th></tr>
+                    <tr><td>Home Prefect</td><td>Oversees planetary administration and economic war planning</td></tr>
+                    <tr><td>Regent-Magistrate</td><td>Represents Core mandates to Home Worlds and trade syndicates</td></tr>
+                    <tr><td>Councilor of Balance</td><td>Manages allocation of resources between warfront and civilian needs</td></tr>
+                    <tr><td>Grand Vicerant</td><td>Semi-autonomous ruler of non-Core planetary clusters</td></tr>
+                    <tr><td>High Arbitrator</td><td>Legal overseer of empire disputes and sanction protocols</td></tr>
+                    <tr><td>Matriarch/Patriarch of Sectors</td><td>Traditional family-dynasty leaders holding military influence</td></tr>
+                    <tr><td>Societal Curator</td><td>Maintains propaganda, cultural cohesion, and morale broadcast networks</td></tr>
+                </table>
+            </div>
+
+            <h3 class="sub-title" id="resonant-essence">Resonant Essence</h3>
+            <div class="lore-card">
+                <p>
+                    Just as humans once knew of light speed but believed in the Ether before Einstein showed the true 4-dimensional nature of the universe, the Vionites have glimpsed the basic principles of entropy in action. They understand this as <strong class="text-glow">Resonant Essence</strong>.
+                </p>
+                <p>
+                    This discovery took <strong>200 fleet ships working for 300 years</strong> in one of the most extreme environments known &mdash; a pulsar system. The combination of time-dilation, intense radiation, and the gravity gradient allowed them to view how information works at the fundamental level.
+                </p>
+                <p>
+                    700 years ago, the Vionites came across several dead Honnehari corpses in a Void Stasis Krypt. General Ozerath's staff, working with a Honnehari <strong>Eridix</strong> (Ethereal AI/droid), were able to reverse-engineer ancient, godlike Tier 3 technologies. This hinted at Resonant Essence.
+                </p>
+                <p>
+                    After centuries of work, they finally built instruments to measure Resonant Essence. They expected to see a new field, particle, or dimension.
+                </p>
+                <p>
+                    <strong>They did not expect to see the fundamental soul data of living beings.</strong>
+                </p>
+                <p>
+                    Vionites, Sekarri, humans &mdash; all complex, branching data snippets that grow, split and merge. Not DNA code created from parents, but <strong>immortal data streams that resonate through different dimensions and time domains</strong>. Even after death, their Essence directly influences the evolution of the galaxy.
+                </p>
+                <p>
+                    This shocked the Vionites to the core. The pragmatic conclusion: they were at least 100,000 years behind from being able to make Tier 3 status. The system is now off-limits, but like Area 51, the technology benefits are being slowly siphoned to the populace &mdash; including <strong>Stellar Architecture</strong> via resonant stream fields.
+                </p>
+            </div>
+
+            <!-- ============ RPG ENEMIES ============ -->
+            <h2 class="section-title" id="rpg-enemies">// RPG Enemies</h2>
+            <div class="lore-card">
+                <h4>Carapax</h4>
+                <p>
+                    A semi-sentient species that used to live on Alara. Before the evacuation, Neph was free to abduct as many as she could and convert them into her armies.
+                </p>
+                <h4>Tiny</h4>
+                <p>
+                    <em>Details to be revealed&hellip;</em>
+                </p>
+            </div>
+
+        </div><!-- /comp-main -->
+    </div><!-- /comp-layout -->
+
+    <!-- Footer -->
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
+    </div>
+
+    <script>
+        // Highlight current TOC section on scroll
+        const sections = document.querySelectorAll('[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => {
+                        link.classList.toggle('active',
+                            link.getAttribute('href') === '#' + entry.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: '-80px 0px -70% 0px' });
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
