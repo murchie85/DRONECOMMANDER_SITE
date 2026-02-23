@@ -155,34 +155,27 @@
             50% { box-shadow: 0 0 25px rgba(0, 255, 204, 0.7); }
         }
 
-        /* Social links — top left */
+        /* Social links — bottom left */
         .social-links {
-            position: fixed;
-            top: 20px;
+            position: absolute;
+            bottom: 12px;
             left: 20px;
-            z-index: 100;
+            z-index: 11;
             display: flex;
-            gap: 10px;
+            gap: 14px;
         }
         .social-links a {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(0,255,204,0.4);
-            color: #00ffcc;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: rgba(0,255,204,0.6);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.65rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
         }
         .social-links a:hover {
-            background: #00ffcc;
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0,255,204,0.6);
         }
 
         @media (max-width: 576px) {
@@ -191,8 +184,8 @@
             .hero-title { top: 8%; }
             .dock-btn { padding: 8px 14px; font-size: 0.72rem; }
             .bottom-dock { gap: 6px; padding: 20px 12px 22px; }
-            .social-links { top: 14px; left: 14px; gap: 8px; }
-            .social-links a { width: 34px; height: 34px; font-size: 0.85rem; }
+            .social-links { bottom: 8px; left: 12px; gap: 10px; }
+            .social-links a { font-size: 0.58rem; }
         }
     </style>
     <script type="application/ld+json">
@@ -214,13 +207,6 @@
     </script>
 </head>
 <body>
-    <!-- Social Links -->
-    <div class="social-links">
-        <a href="https://www.patreon.com/DroneCommander" target="_blank" rel="noopener" title="Patreon">P</a>
-        <a href="https://x.com/OmegaStormX" target="_blank" rel="noopener" title="X / Twitter">X</a>
-        <a href="https://www.reddit.com/r/DroneCommander/" target="_blank" rel="noopener" title="Reddit">R</a>
-    </div>
-
     <!-- Audio Toggle -->
     <button class="audio-toggle" id="audioToggle" title="Toggle Music">
         <span id="audioIcon">&#9835;</span>
@@ -248,6 +234,13 @@
         <a href="/compendium" class="dock-btn">Compendium</a>
         <a href="/community-tools" class="dock-btn">Community Tools</a>
     </nav>
+
+    <!-- Social links — bottom left -->
+    <div class="social-links">
+        <a href="https://www.patreon.com/DroneCommander" target="_blank" rel="noopener">Patreon</a>
+        <a href="https://x.com/OmegaStormX" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://www.reddit.com/r/DroneCommander/" target="_blank" rel="noopener">Reddit</a>
+    </div>
 
     <!-- YouTube IFrame API -->
     <script src="https://www.youtube.com/iframe_api"></script>
