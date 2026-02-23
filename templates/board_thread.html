@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ thread.message[:60] }} - Board - Drone Commander</title>
+    <meta name="description" content="Thread by {{ thread.username }} in {{ category }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: #e0e0e0; font-family: 'Courier New', monospace; min-height: 100vh; }
+        .top-bar { background: rgba(0,0,0,0.9); border-bottom: 2px solid #00ffcc; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+        .top-bar .brand { color: #00ffcc; font-size: 1.2rem; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link { color: #00ffcc; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; padding: 6px 14px; border: 1px solid transparent; transition: 0.3s; }
+        .top-bar .nav-link:hover { border-color: #00ffcc; box-shadow: 0 0 8px rgba(0,255,204,0.3); }
+        .content-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .section-title { color: #00ffcc; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(0,255,204,0.3); padding-bottom: 10px; margin-bottom: 20px; }
+        .text-glow { color: #00ffcc; }
+
+        /* Thread original post */
+        .op-card { background: rgba(0,255,204,0.06); border: 2px solid rgba(0,255,204,0.3); border-radius: 8px; padding: 24px; margin-bottom: 30px; }
+        .op-card .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .op-card .username { color: #00ffcc; font-size: 1rem; font-weight: bold; }
+        .op-card .time { color: #666; font-size: 0.8rem; }
+        .op-card .message { color: #ddd; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; }
+
+        /* Replies */
+        .reply-card { background: rgba(255,255,255,0.02); border-left: 3px solid rgba(0,255,204,0.3); padding: 16px 20px; margin-bottom: 10px; margin-left: 20px; border-radius: 0 6px 6px 0; }
+        .reply-card .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .reply-card .username { color: #00ffcc; font-size: 0.85rem; font-weight: bold; }
+        .reply-card .time { color: #666; font-size: 0.75rem; }
+        .reply-card .message { color: #bbb; font-size: 0.9rem; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; }
+
+        /* Reply form */
+        .reply-form { background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.2); border-radius: 8px; padding: 24px; margin-top: 30px; }
+        .reply-form h3 { color: #00ffcc; font-size: 1rem; text-transform: uppercase; margin-bottom: 16px; }
+        .form-input { background: rgba(0,0,0,0.6); border: 1px solid rgba(0,255,204,0.3); color: #e0e0e0; font-family: 'Courier New', monospace; border-radius: 4px; padding: 10px 14px; width: 100%; font-size: 0.9rem; margin-bottom: 12px; }
+        .form-input:focus { outline: none; border-color: #00ffcc; box-shadow: 0 0 8px rgba(0,255,204,0.2); }
+        .form-input::placeholder { color: #555; }
+        textarea.form-input { resize: vertical; min-height: 80px; }
+        .submit-btn { background: transparent; border: 2px solid #00ffcc; color: #00ffcc; padding: 10px 24px; text-transform: uppercase; font-family: 'Courier New', monospace; font-size: 0.85rem; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { background: #00ffcc; color: #000; box-shadow: 0 0 15px rgba(0,255,204,0.4); }
+        .error-msg { background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.4); color: #ff6666; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-size: 0.85rem; }
+        .reply-divider { color: #555; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 16px; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/board/{{ category }}" class="nav-link">{{ category }}</a>
+            <a href="/board" class="nav-link">Board</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <!-- Original post -->
+        <div class="op-card">
+            <div class="meta">
+                <span class="username">{{ thread.username }}</span>
+                <span class="time">{{ thread.timestamp.strftime('%d %b %Y, %H:%M') }}</span>
+            </div>
+            <div class="message">{{ thread.message }}</div>
+        </div>
+
+        <!-- Replies -->
+        {% if replies %}
+        <div class="reply-divider">{{ replies|length }} repl{{ 'ies' if replies|length != 1 else 'y' }}</div>
+        {% for r in replies %}
+        <div class="reply-card">
+            <div class="meta">
+                <span class="username">{{ r.username }}</span>
+                <span class="time">{{ r.timestamp.strftime('%d %b %Y, %H:%M') }}</span>
+            </div>
+            <div class="message">{{ r.message }}</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        <!-- Reply form -->
+        <div class="reply-form">
+            <h3>Reply</h3>
+            <form method="POST" action="/board/{{ category }}/thread/{{ thread.id }}/reply">
+                <input type="text" name="username" class="form-input" placeholder="Username (or leave blank for Anonymous Pilot)" maxlength="50">
+                <textarea name="message" class="form-input" placeholder="Write your reply..." maxlength="2000" required></textarea>
+                <button type="submit" class="submit-btn">Reply</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/board/{{ category }}" style="color: #00ffcc; text-decoration: none;">&#9664; Back to {{ category }}</a>
+    </div>
+</body>
+</html>

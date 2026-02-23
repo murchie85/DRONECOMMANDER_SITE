@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board - Drone Commander</title>
+    <meta name="description" content="Drone Commander community board — discuss lore, share suggestions, and chat about the game.">
+    <meta property="og:title" content="Board - Drone Commander">
+    <meta property="og:description" content="Community board for Drone Commander — discuss lore, share suggestions, and chat.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Board - Drone Commander">
+    <meta name="twitter:description" content="Community board for Drone Commander — discuss lore, share suggestions, and chat.">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: #e0e0e0; font-family: 'Courier New', monospace; min-height: 100vh; }
+        .top-bar { background: rgba(0,0,0,0.9); border-bottom: 2px solid #00ffcc; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+        .top-bar .brand { color: #00ffcc; font-size: 1.2rem; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link { color: #00ffcc; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; padding: 6px 14px; border: 1px solid transparent; transition: 0.3s; }
+        .top-bar .nav-link:hover { border-color: #00ffcc; box-shadow: 0 0 8px rgba(0,255,204,0.3); }
+        .content-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .section-title { color: #00ffcc; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(0,255,204,0.3); padding-bottom: 10px; margin-bottom: 20px; }
+        .text-glow { color: #00ffcc; }
+        .cat-card { display: block; background: rgba(0,255,204,0.04); border: 1px solid rgba(0,255,204,0.2); border-radius: 8px; padding: 24px; margin-bottom: 14px; text-decoration: none; transition: 0.3s; }
+        .cat-card:hover { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0,255,204,0.2); transform: translateX(4px); }
+        .cat-card h3 { color: #00ffcc; font-size: 1.15rem; text-transform: uppercase; margin: 0; }
+        .cat-card .count { color: #888; font-size: 0.85rem; margin-top: 4px; }
+        .board-note { color: #666; font-size: 0.8rem; margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/community-tools" class="nav-link">Tools</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">// Community Board</h2>
+        <p style="color: #aaa; margin-bottom: 30px;">No sign-up required. Pick a username and jump in.</p>
+
+        {% for cat in categories %}
+        <a href="/board/{{ cat }}" class="cat-card">
+            <h3>{{ cat }}</h3>
+            <p class="count">{{ counts[cat] }} thread{{ 's' if counts[cat] != 1 else '' }}</p>
+        </a>
+        {% endfor %}
+
+        <p class="board-note">Posts are automatically cleared after 30 days. Be respectful — this is a shared space.</p>
+    </div>
+
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
+    </div>
+</body>
+</html>
