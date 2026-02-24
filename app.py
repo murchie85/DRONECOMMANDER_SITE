@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request, jsonify, Response, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime, timedelta
+from datetime import datetime
 from markupsafe import escape
 
 app = Flask(__name__, static_folder='assets', static_url_path='/assets')
@@ -36,7 +36,6 @@ class Bug(db.Model):
 BOARD_CATEGORIES = ['General', 'Lore', 'Suggestions', 'GameChat']
 MAX_POSTS_PER_DAY = 30
 MAX_POSTS_PER_USER_PER_DAY = 4
-POST_RETENTION_DAYS = 30
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -48,10 +47,6 @@ class Post(db.Model):
     replies = db.relationship('Post', backref=db.backref('parent', remote_side=[id]),
                               lazy='dynamic', order_by='Post.timestamp.asc()')
 
-def prune_old_posts():
-    cutoff = datetime.utcnow() - timedelta(days=POST_RETENTION_DAYS)
-    Post.query.filter(Post.timestamp < cutoff).delete()
-    db.session.commit()
 
 def check_throttle(username):
     today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -125,8 +120,6 @@ def sitemap():
 # BOARD ROUTES
 @app.route('/board')
 def board():
-    with app.app_context():
-        prune_old_posts()
     counts = {}
     for cat in BOARD_CATEGORIES:
         counts[cat] = Post.query.filter_by(category=cat, parent_id=None).count()
