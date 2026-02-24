@@ -7,7 +7,10 @@ from markupsafe import escape
 app = Flask(__name__, static_folder='assets', static_url_path='/assets')
 
 # CONFIGURATION
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///bugs.db')
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///bugs.db')
+if database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
