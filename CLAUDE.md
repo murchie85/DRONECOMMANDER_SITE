@@ -52,6 +52,14 @@ assets/
 | `/api/bugs`          | POST   | Submit a bug (JSON body) |
 | `/api/bugs/<int:id>` | DELETE | Delete a bug by ID       |
 
+## Hosting & Deployment
+- **Domain:** `dronecommander.gg` — registered via **Porkbun** (Feb 2026, $51.80)
+- **Live site:** https://dronecommander.gg/
+- **Hosting:** **Render** (free tier) — auto-deploys from GitHub
+- **GitHub repo:** https://github.com/murchie85/DRONECOMMANDER_SITE
+- **CDN:** Cloudflare (via Render's default setup)
+- **Server:** Gunicorn (4 workers) running in Docker on Render
+
 ## Development
 ```bash
 pip install -r requirements.txt
