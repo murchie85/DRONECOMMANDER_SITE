@@ -329,6 +329,76 @@
         .ship-card h5 { color: #ff6666; font-size: 0.85rem; margin-bottom: 6px; text-transform: uppercase; }
         .ship-card p { color: #999; font-size: 0.8rem; line-height: 1.5; }
 
+        /* Lore tables (build tree, resources, etc.) */
+        .lore-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px;
+        }
+        .lore-table th {
+            background: rgba(0,255,204,0.1);
+            color: #00ffcc;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+        }
+        .lore-table td {
+            padding: 6px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #bbb;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .lore-table tr:hover td { background: rgba(0,255,204,0.03); }
+        .lore-table code {
+            background: rgba(0,255,204,0.1);
+            color: #00ffcc;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.82rem;
+        }
+
+        /* Lore card sub-headings & ordered lists */
+        .lore-card h5 {
+            color: #00ffcc;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+        .lore-card ol {
+            color: #bbb;
+            padding-left: 24px;
+            margin-bottom: 14px;
+        }
+        .lore-card ol li {
+            margin-bottom: 4px;
+            line-height: 1.6;
+            font-size: 0.88rem;
+        }
+
+        /* Tech tree (ASCII diagrams) */
+        .tech-tree {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            overflow-x: auto;
+        }
+        .tech-tree pre {
+            color: #00ffcc;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre;
+        }
+
         @media (max-width: 768px) {
             .comp-layout { flex-direction: column; }
             .toc-sidebar {
@@ -375,6 +445,17 @@
                     <a href="#rts-saturation" class="toc-link">Saturation Fields</a>
                     <a href="#rts-hotzones" class="toc-link">Orbital Hot Zones</a>
                     <a href="#rts-hexfields" class="toc-link">Hex Fields</a>
+                </div>
+                <a href="#gameplay-buildtree" class="toc-link">RTS &mdash; Build Tree</a>
+                <div class="toc-sub">
+                    <a href="#bt-resources" class="toc-link">Resources</a>
+                    <a href="#bt-commandship" class="toc-link">Command Ship</a>
+                    <a href="#bt-buildchains" class="toc-link">Critical Build Chains</a>
+                    <a href="#bt-cyber" class="toc-link">Cyber Department</a>
+                    <a href="#bt-researchship" class="toc-link">Research Ship</a>
+                    <a href="#bt-assaultcarrier" class="toc-link">Assault Carrier</a>
+                    <a href="#bt-priorities" class="toc-link">Build Priority</a>
+                    <a href="#bt-energyhierarchy" class="toc-link">Energy Hierarchy</a>
                 </div>
                 <a href="#gameplay-vn" class="toc-link">Visual Novel</a>
                 <a href="#gameplay-rpg" class="toc-link">RPG</a>
@@ -591,6 +672,317 @@
                 <h4>The Payoff</h4>
                 <p>
                     Three systems, one dynamic battlefield. Saturation fields give space its terrain. Orbital drift gives the map a heartbeat. Hex fields give it a front line. Every match plays differently not because of randomness, but because the geometry is always shifting under your feet &mdash; and the best commanders are the ones who see it coming.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="gameplay-buildtree">RTS &mdash; Build Tree</h3>
+            <div class="lore-card">
+
+                <h4 id="bt-resources">Starting Resources (Per Mission &mdash; Tunable)</h4>
+                <table class="lore-table">
+                    <thead><tr><th>Resource</th><th>Moon Mission Start</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Ore</strong></td><td>1,000</td><td>Enough to get constructors, harvesters, and first hex scouts moving</td></tr>
+                        <tr><td><strong>RP</strong></td><td>60</td><td>Enough to research hex scouts (30 RP) immediately and have 30 left for early choices</td></tr>
+                        <tr><td><strong>Energy</strong></td><td>0</td><td>Must wait for forges to generate</td></tr>
+                        <tr><td><strong>Void Matter</strong></td><td>0</td><td>Must establish enticer operations before hex fields can sustain</td></tr>
+                    </tbody>
+                </table>
+
+                <h5>Resources</h5>
+                <table class="lore-table">
+                    <thead><tr><th>Resource</th><th>Source</th><th>Used For</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Energy</strong></td><td>Nanite Forges (passive generation, scales with forge count)</td><td>Enabling departments, powering ship systems</td></tr>
+                        <tr><td><strong>Ore</strong></td><td>Harvesters (fly to harvest zones on planet surface, return to ship)</td><td>Building all units and structures</td></tr>
+                        <tr><td><strong>Research Points (RP)</strong></td><td>Deployed Surveyors (passive tick while deployed in research zones)</td><td>Unlocking tech, researching new unit types, fleet-wide weapon unlocks, ship ability upgrades, capital ship upgrades</td></tr>
+                        <tr><td><strong>Void Matter</strong></td><td>Enticers (deployed to null zones, harvested &mdash; enticers degrade/die over time)</td><td>Sustaining active hex fields (ongoing cost per tick), fleet upgrades, capital ship systems</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 id="bt-commandship">Command Ship</h4>
+                <p>
+                    The command ship is the backbone. Everything starts here. It generates energy, enables core departments, and builds all non-combat units.
+                </p>
+
+                <h5>Nanite Forges</h5>
+                <p>
+                    Forges are the first thing you activate. They passively generate energy. More forges = faster energy generation. Mission-dependent how many you start with (e.g. 3 for the moon mission, max 6).
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Stat</th><th>Value</th></tr></thead>
+                    <tbody>
+                        <tr><td>Energy per second (per forge)</td><td>~3&ndash;4 (so 3 forges &asymp; 10 energy/sec)</td></tr>
+                        <tr><td>Max forges</td><td>6</td></tr>
+                        <tr><td>Activation requirement</td><td>Command ship must be deployed</td></tr>
+                    </tbody>
+                </table>
+
+                <h5>Department Unlocks</h5>
+                <p>
+                    Departments are enabled by spending energy. Once enabled, they stay on. This is the gating mechanism &mdash; you can't do everything at once, you have to wait for energy to accumulate and choose what to enable first.
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Department</th><th>Energy Cost</th><th>What It Unlocks</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Mining Operations</strong></td><td>200</td><td>Build Harvesters, Build Enticers</td></tr>
+                        <tr><td><strong>Engineering &amp; Prospecting</strong></td><td>200</td><td>Build Surveyors, Scout Researching</td></tr>
+                        <tr><td><strong>Defence Industry</strong></td><td>200</td><td>Turrets, Field Generators, Arc-Defence Ships, Health Boost</td></tr>
+                        <tr><td><strong>Cyber Department</strong></td><td>300</td><td>Cyber offence &amp; defence suite</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>Note:</strong> At 10 energy/sec with 3 forges, the first department takes ~20 seconds to unlock. This paces the early game nicely &mdash; you're defending with what you arrived with while the forges tick up.
+                </p>
+
+                <h5>Unit Build Table &mdash; Command Ship</h5>
+                <table class="lore-table">
+                    <thead><tr><th>Unit</th><th>Dept Required</th><th>Cost</th><th>Prerequisites</th><th>Role</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Constructor</strong></td><td>None (available at start)</td><td>100 ore</td><td>&mdash;</td><td>Stays in ship, performs internal construction tasks, speeds up build times</td></tr>
+                        <tr><td><strong>Harvester</strong></td><td>Mining Operations</td><td>150 ore</td><td>Constructor</td><td>Flies to harvest zones, descends to planet, returns with ore</td></tr>
+                        <tr><td><strong>Enticer</strong></td><td>Mining Operations</td><td>200 ore + 15 RP</td><td>Constructor</td><td>Deployed to null zones, opens void matter extraction &mdash; degrades over time, must be replaced</td></tr>
+                        <tr><td><strong>Surveyor</strong></td><td>Engineering &amp; Prospecting</td><td>150 ore</td><td>Constructor</td><td>Deployed to research zones, passively generates RP while active</td></tr>
+                        <tr><td><strong>Hex Scout</strong></td><td>Engineering &amp; Prospecting</td><td>500 ore</td><td>Scout Researching enabled + researched (30 RP)</td><td>Deploys to hex grid cell, projects hex field, consumes void matter while active</td></tr>
+                        <tr><td><strong>Turret</strong></td><td>Defence Industry</td><td>200 ore</td><td>&mdash;</td><td>Tacks onto ship hull, player picks location</td></tr>
+                        <tr><td><strong>Field Generator</strong></td><td>Defence Industry</td><td>100 ore</td><td>&mdash;</td><td>Tacks onto ship, cheap shield layer, player picks location</td></tr>
+                        <tr><td><strong>Arc-Defence Ship</strong></td><td>Defence Industry</td><td>400 ore</td><td>&mdash;</td><td>Expensive standalone defence vessel, optional</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>Hex Scout Reclaim:</strong> Click any deployed hex scout and hit reclaim &mdash; the scout is destroyed and a portion of void matter is returned to reserves. Use this to reposition your network or consolidate resources when void matter runs low. Simple, no cooldown, immediate.
+                </p>
+
+                <h4 id="bt-buildchains">Critical Build Chains</h4>
+
+                <h5>Chain 1: Hex Scout (Territory Control)</h5>
+                <p>The primary path &mdash; getting hex fields online to claim territory:</p>
+                <ol>
+                    <li>Deploy Command Ship</li>
+                    <li>Enable Nanite Forges &rarr; energy starts generating</li>
+                    <li>Wait for 200 energy</li>
+                    <li>Enable Mining Operations</li>
+                    <li>Build Constructor (100 ore from starting reserves)</li>
+                    <li>Build Harvester (150 ore) &rarr; deploy to harvest zone &rarr; ore income starts</li>
+                    <li>Wait for 200 energy</li>
+                    <li>Enable Engineering &amp; Prospecting</li>
+                    <li>Research Hex Scout (30 RP from starting 60)</li>
+                    <li>Build Hex Scout (500 ore)</li>
+                    <li>Deploy Hex Scout to hex cell &rarr; consumes void matter</li>
+                </ol>
+                <p><strong>Void matter fork:</strong> Before step 11 works long-term, you need enticers:</p>
+                <ul>
+                    <li>After step 6, also:</li>
+                    <li>6b. Build Enticer (200 ore + 15 RP from starting 60)</li>
+                    <li>6c. Deploy Enticer to null zone &rarr; void matter starts flowing</li>
+                </ul>
+                <p>
+                    Players who rush hex scouts without establishing void matter income will watch their fields flicker off. That's the trap, and it's a good one.
+                </p>
+                <p>
+                    <strong>Starting RP budget (60):</strong> The player can afford the hex scout research (30 RP) AND one enticer (15 RP) from starting reserves with 15 RP left over. This means early decisions matter &mdash; do you spend that remaining 15 on a second enticer for safety, or save it for something else? Once starting RP is spent, further RP requires deployed surveyors.
+                </p>
+
+                <h5>Chain 2: Dampener Ship (Hex Assault)</h5>
+                <p>The path to breaking through enemy hex networks:</p>
+                <ol>
+                    <li>Research Ship: Research &ldquo;Dampener Field Theory&rdquo; (40 RP)</li>
+                    <li>Research Ship: Research &ldquo;Dampener Ship Blueprint&rdquo; (30 RP)</li>
+                    <li>Assault Carrier: Build Dampener Ship (300 ore)</li>
+                    <li>Deploy with assault fleet &rarr; reduces enemy hex debuffs in local radius</li>
+                </ol>
+                <p>
+                    <strong>Total cost:</strong> 70 RP + 300 ore. This is a mid-game investment &mdash; you won't have 70 RP to spare early. The player has to decide when to pivot from expanding their own hex network to building the tools to crack the enemy's. Push too early without dampeners and your fleet melts in enemy hexes. Wait too long and the enemy network becomes impenetrable.
+                </p>
+
+                <h5>Chain 3: Cyber Strike (Disruption)</h5>
+                <p>The path to disabling enemy systems without a direct assault:</p>
+                <ol>
+                    <li>Wait for 300 energy</li>
+                    <li>Enable Cyber Department on Command Ship</li>
+                    <li>Research Ship: Research &ldquo;Cyber Warfare Suite&rdquo; (40 RP)</li>
+                    <li>Select target &rarr; launch cyber attack</li>
+                    <li>Enemy gets chance to respond (button-mash defence)</li>
+                </ol>
+                <p>
+                    <strong>Why it's late-game gated:</strong> 300 energy is the most expensive department unlock, and the research prerequisite means you're investing RP that could go to dampeners or upgrades. Cyber is the &ldquo;I've stabilised my economy and hex network, now I want to start dismantling theirs from a distance&rdquo; play.
+                </p>
+
+                <h5>Chain 4: Full Defence Lockdown</h5>
+                <p>For players who want to turtle and weather early aggression:</p>
+                <ol>
+                    <li>Wait for 200 energy</li>
+                    <li>Enable Defence Industry</li>
+                    <li>Build Field Generators (100 ore each, tack onto ships)</li>
+                    <li>Build Turrets (200 ore each, tack onto ships)</li>
+                    <li>Optional: Build Arc-Defence Ships (400 ore)</li>
+                </ol>
+                <p>
+                    <strong>Tradeoff:</strong> You're safe, but you have no ore income beyond starting reserves, no RP generation, and no hex presence. The longer you turtle the further behind you fall on territory. Works as a response to early aggression, not as a long-term strategy.
+                </p>
+
+                <h4 id="bt-cyber">Cyber Department</h4>
+                <p>
+                    The cyber arm operates from the Command Ship once the department is enabled (300 energy) and relevant research is completed on the Research Ship. Cyber attacks are targeted actions with cooldowns &mdash; not passive effects.
+                </p>
+
+                <h5>Offensive Cyber Operations</h5>
+                <table class="lore-table">
+                    <thead><tr><th>Attack</th><th>Research Required</th><th>Cooldown</th><th>Effect</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Hex Disruption</strong></td><td>Cyber Warfare Suite (40 RP)</td><td>90 sec</td><td>Disables a single enemy hex field for 30 seconds &mdash; the scout stays alive but stops projecting. If the hex is a junction, everything beyond it goes dark too</td></tr>
+                        <tr><td><strong>Power Drain</strong></td><td>Cyber Warfare Suite (40 RP)</td><td>120 sec</td><td>Reduces enemy command ship energy generation by 50% for 45 seconds &mdash; slows their department unlocks and construction</td></tr>
+                        <tr><td><strong>Void Siphon</strong></td><td>Advanced Cyber Ops (60 RP)</td><td>150 sec</td><td>Drains 50% of enemy void matter reserves &mdash; their outer hex fields start flickering off as they can't sustain them</td></tr>
+                        <tr><td><strong>System Blind</strong></td><td>Advanced Cyber Ops (60 RP)</td><td>120 sec</td><td>Disables enemy radar for 30 seconds &mdash; they lose visibility on saturation fields, hex ownership, and unit positions outside direct line of sight</td></tr>
+                        <tr><td><strong>Forge Shutdown</strong></td><td>Cyber Mastery (80 RP)</td><td>180 sec</td><td>Powers down enemy command ship entirely for 20 seconds &mdash; no energy generation, no construction, no department functions. The big one</td></tr>
+                    </tbody>
+                </table>
+
+                <h5>Defensive Cyber Operations</h5>
+                <p>
+                    When the enemy launches a cyber attack on you, an alert fires and a <strong>response window</strong> opens. The player has a few seconds to engage a button-mash / key-sequence defence minigame. Success reduces or negates the attack. Failure means full effect.
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Defence</th><th>Research Required</th><th>What It Does</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Basic Firewall</strong></td><td>Cyber Department enabled (no extra research)</td><td>Gives you the response window &mdash; without this, enemy cyber attacks land automatically with no chance to defend</td></tr>
+                        <tr><td><strong>Adaptive Countermeasures</strong></td><td>Cyber Defence Suite (35 RP)</td><td>Slows the response timer &mdash; more time to complete the defence sequence</td></tr>
+                        <tr><td><strong>Auto-Reject Protocol</strong></td><td>Cyber Defence Suite (35 RP)</td><td>30% chance to automatically block an incoming attack with no player input &mdash; good for when you're busy elsewhere</td></tr>
+                        <tr><td><strong>Mirror Protocol</strong></td><td>Advanced Cyber Defence (50 RP)</td><td>On a perfect defence (nail every input), the attack reflects back at the enemy at 50% strength</td></tr>
+                        <tr><td><strong>Hardened Core</strong></td><td>Cyber Mastery (80 RP)</td><td>Passive &mdash; all incoming cyber effects have their duration halved, even on failed defence</td></tr>
+                    </tbody>
+                </table>
+
+                <h5>Cyber Research Tree (on Research Ship)</h5>
+                <div class="tech-tree">
+                    <pre>
+Cyber Warfare Suite (40 RP)
+├── Hex Disruption
+├── Power Drain
+├── Cyber Defence Suite (35 RP)
+│   ├── Adaptive Countermeasures
+│   ├── Auto-Reject Protocol
+│   └── Advanced Cyber Defence (50 RP)
+│       └── Mirror Protocol
+├── Advanced Cyber Ops (60 RP)
+│   ├── Void Siphon
+│   └── System Blind
+└── Cyber Mastery (80 RP)
+    ├── Forge Shutdown
+    └── Hardened Core</pre>
+                </div>
+                <p>
+                    <strong>Total RP to fully unlock cyber tree:</strong> 265 RP. That's a massive investment &mdash; a player who goes all-in on cyber is sacrificing dampener research, hex efficiency upgrades, and weapon upgrades. But a fully kitted cyber player can dismantle an enemy hex network without firing a shot.
+                </p>
+
+                <h4 id="bt-researchship">Research Ship</h4>
+                <p>
+                    The research ship is primarily a buff/upgrade platform. It doesn't build combat units &mdash; it makes everything else better. It has the same defence tack-on options as the command ship (turrets, field generators, etc.).
+                </p>
+
+                <h5>General Upgrades</h5>
+                <table class="lore-table">
+                    <thead><tr><th>Upgrade</th><th>Cost (RP)</th><th>Effect</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Ore Harvest Yield +</strong></td><td>20 RP</td><td>Harvesters return with more ore per trip</td></tr>
+                        <tr><td><strong>Void Harvest Yield +</strong></td><td>25 RP</td><td>Enticers extract void matter faster</td></tr>
+                        <tr><td><strong>Weapons Upgrade I</strong></td><td>30 RP</td><td>Fleet-wide damage boost (small)</td></tr>
+                        <tr><td><strong>Weapons Upgrade II</strong></td><td>60 RP</td><td>Fleet-wide damage boost (medium)</td></tr>
+                        <tr><td><strong>Armour Upgrade I</strong></td><td>30 RP</td><td>Fleet-wide hull HP boost</td></tr>
+                        <tr><td><strong>Engine Boost</strong></td><td>25 RP</td><td>Fleet-wide speed increase</td></tr>
+                        <tr><td><strong>Hex Field Efficiency</strong></td><td>40 RP</td><td>Hex fields consume less void matter per tick</td></tr>
+                        <tr><td><strong>Advanced Hex Research</strong></td><td>50 RP</td><td>Unlocks stronger hex buff/debuff tier</td></tr>
+                        <tr><td><strong>Detection Upgrade</strong></td><td>30 RP</td><td>Increases range for detecting saturation fields and stealthed enemies</td></tr>
+                        <tr><td><strong>Dampener Field Theory</strong></td><td>40 RP</td><td>Prerequisite for Dampener Ship Blueprint</td></tr>
+                        <tr><td><strong>Dampener Ship Blueprint</strong></td><td>30 RP</td><td>Unlocks Dampener Ship construction on Assault Carrier</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 id="bt-assaultcarrier">Assault Carrier</h4>
+                <p>
+                    The assault carrier builds all combat units. No gating departments &mdash; if you have the ore, you build the ship. The constraint is ore income and queue time.
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Unit</th><th>Cost</th><th>Research Required</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Fighters</strong></td><td>80 ore</td><td>&mdash;</td><td>Fast, cheap, swarm unit</td></tr>
+                        <tr><td><strong>Shield Ships</strong></td><td>150 ore</td><td>&mdash;</td><td>Arc shield to soak fire for ships behind them</td></tr>
+                        <tr><td><strong>Beam Ships</strong></td><td>200 ore</td><td>&mdash;</td><td>Long range, high damage, fragile</td></tr>
+                        <tr><td><strong>Battleships</strong></td><td>350 ore</td><td>&mdash;</td><td>Tanky, moderate damage, the backbone</td></tr>
+                        <tr><td><strong>Arkhelion</strong></td><td>500 ore</td><td>&mdash;</td><td>Heavy capital ship, front-line bruiser</td></tr>
+                        <tr><td><strong>Dampener Ship</strong></td><td>300 ore</td><td>Dampener Ship Blueprint (Research Ship)</td><td>Reduces enemy hex debuffs in a radius &mdash; the doorknocker for pushing enemy hex networks</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>Note:</strong> Unit roster is illustrative &mdash; existing units from the current build slot in here. Costs are placeholders for balancing.
+                </p>
+
+                <h5>Fleet-Wide Weapon &amp; Ability Unlocks</h5>
+                <p>
+                    Ships produced by the assault carrier are expendable &mdash; built in bulk, lost in battle, replaced from the queue. But their effectiveness scales with fleet-wide upgrades purchased via RP (and in some cases void matter) on the Research Ship. These are permanent for the duration of the mission.
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Unlock</th><th>Cost</th><th>Effect</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Battleship Weapon II</strong></td><td>RP (TBD)</td><td>All battleships gain access to second weapon system</td></tr>
+                        <tr><td><strong>Battleship Weapon III</strong></td><td>RP (TBD)</td><td>All battleships gain access to third weapon system</td></tr>
+                        <tr><td><strong>Beam Ship Weapon II</strong></td><td>RP (TBD)</td><td>All beam ships gain second weapon</td></tr>
+                        <tr><td><strong>Raider Weapon II</strong></td><td>RP (TBD)</td><td>All raiders gain second weapon</td></tr>
+                        <tr><td><strong>Raider Weapon III</strong></td><td>RP (TBD)</td><td>All raiders gain third weapon</td></tr>
+                        <tr><td><strong><em>(additional per-class unlocks)</em></strong></td><td>RP / Void Matter</td><td>Fleet-wide ability upgrades, defensive systems, etc.</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>Design note:</strong> Each ship class starts with one weapon and can unlock additional systems through RP spending. This means RP is an ongoing operational resource &mdash; not just a tech tree currency. A player generating high RP income has a fundamentally more capable fleet than one who isn't, even with identical ship counts. Void matter also plays a role in some upgrades, creating further tension with hex field maintenance costs.
+                </p>
+
+                <h5>Capital Ships (Reserve Ships)</h5>
+                <p>
+                    Capital ships are distinct from assault carrier production. They are persistent &mdash; they survive between missions, carry upgrades forward, and grow in power over the campaign. Think pets, not cattle.
+                </p>
+                <ul>
+                    <li><strong>Persist across missions</strong> &mdash; damage, upgrades, and loadout carry over</li>
+                    <li><strong>Individually upgradeable</strong> &mdash; RP and void matter spent on a specific capital ship, not fleet-wide</li>
+                    <li><strong>Limited in number</strong> &mdash; you won't have many, each one matters</li>
+                    <li><strong>Boss-tier combat presence</strong> &mdash; significantly stronger than standard fleet units</li>
+                    <li><strong>Named and characterful</strong> &mdash; tied to the narrative, crew dialogue, and story progression</li>
+                </ul>
+                <p>
+                    Capital ship upgrade details will be fleshed out as the system develops. The key constraint: RP and void matter spent on capital ships is RP and void matter NOT spent on fleet-wide unlocks, hex fields, or cyber operations. Every resource in this game should hurt to spend.
+                </p>
+
+                <h4 id="bt-priorities">Build Priority Decision Tree</h4>
+                <p>
+                    At game start (1,000 ore, 60 RP, 0 energy), the player faces genuine strategic choices:
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Strategy</th><th>First Department</th><th>First RP Spend</th><th>Tradeoff</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Econ Rush</strong></td><td>Mining Operations</td><td>Enticer (15 RP)</td><td>Ore and void matter flowing fast, but no hex presence or defences early</td></tr>
+                        <tr><td><strong>Hex Rush</strong></td><td>Engineering &amp; Prospecting</td><td>Hex Scout Research (30 RP)</td><td>Hex scouts online fast using starting ore, but no income &mdash; burns through reserves</td></tr>
+                        <tr><td><strong>Turtle</strong></td><td>Defence Industry</td><td>Save RP</td><td>Survive early waves, but fall behind on territory and economy</td></tr>
+                        <tr><td><strong>Cyber Play</strong></td><td>Mining Operations &rarr; Cyber</td><td>Cyber Warfare Suite (40 RP &mdash; need surveyors first)</td><td>Late-game devastating, but huge early sacrifice</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    All are viable depending on the mission and enemy aggression level. The 60 starting RP is enough to do one thing well, not everything &mdash; that's the tension.
+                </p>
+
+                <h4 id="bt-energyhierarchy">Energy Hierarchy (Future)</h4>
+                <p>
+                    The current resource model uses void matter as the hex field fuel. Long-term, the plan is a tiered energy hierarchy that maps to the game's lore:
+                </p>
+                <table class="lore-table">
+                    <thead><tr><th>Tier</th><th>Resource</th><th>Who Can Access It</th><th>Gameplay Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>4 (lowest)</td><td>Void Matter</td><td>All spacefaring races</td><td>Basic hex field fuel, entry-level constant manipulation</td></tr>
+                        <tr><td>3</td><td>Resonant Essence</td><td>Vionites and above</td><td>Stronger hex effects, advanced tech unlocks</td></tr>
+                        <tr><td>2</td><td>Entropy</td><td>Sovereign-tier civilisations</td><td>Major hex field power, exotic capabilities</td></tr>
+                        <tr><td>1 (highest)</td><td>Arch-Matter</td><td>Ancient / Tier 3 races</td><td>End-game, lore-significant &mdash; may not be player-accessible</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    This hierarchy doesn't need to be implemented now, but the resource system should be built with it in mind &mdash; void matter is tier 4, and the plumbing should allow higher tiers to slot in later.
                 </p>
             </div>
 
