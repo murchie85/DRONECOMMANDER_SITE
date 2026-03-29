@@ -371,6 +371,11 @@
             <a href="#gameplay" class="toc-link">Gameplay</a>
             <div class="toc-sub">
                 <a href="#gameplay-rts" class="toc-link">RTS &mdash; Space Strategy</a>
+                <div class="toc-sub">
+                    <a href="#rts-saturation" class="toc-link">Saturation Fields</a>
+                    <a href="#rts-hotzones" class="toc-link">Orbital Hot Zones</a>
+                    <a href="#rts-hexfields" class="toc-link">Hex Fields</a>
+                </div>
                 <a href="#gameplay-vn" class="toc-link">Visual Novel</a>
                 <a href="#gameplay-rpg" class="toc-link">RPG</a>
             </div>
@@ -473,13 +478,13 @@
             <!-- ============ GAMEPLAY ============ -->
             <h2 class="section-title" id="gameplay">// Gameplay</h2>
 
-            <h3 class="sub-title" id="gameplay-rts">RTS &mdash; Solving the Space Strategy Problem</h3>
+            <h3 class="sub-title" id="gameplay-rts">RTS &mdash; Battlefield Mechanics</h3>
             <div class="lore-card">
                 <p>
                     Space strategy games have a terrain problem. Without hills, chokepoints, or rivers, battles devolve into blobs smashing into blobs in an empty void. Asteroids only get you so far. We wanted something better &mdash; mechanics that create real tactical depth without breaking the fiction of open space.
                 </p>
 
-                <h4>Saturation Fields</h4>
+                <h4 id="rts-saturation">Saturation Fields</h4>
                 <p>
                     Invisible energy-drain zones seeded across the map by generators. Any ship &mdash; ally or enemy &mdash; that enters a saturation field has its energy slowly sapped. They won't show up on your main view, only on radar, so there are no glowing boundary boxes cluttering your screen. You'll need detector ships to scout safe routes, and smart players will bait enemies into fields they don't know are there.
                 </p>
@@ -494,7 +499,7 @@
                     <li><strong>Creates corridors and danger zones</strong> &mdash; flanking matters, recon matters, the map has shape without a single wall</li>
                 </ul>
 
-                <h4>Orbital Hot Zones</h4>
+                <h4 id="rts-hotzones">Orbital Hot Zones</h4>
                 <p>
                     The battle takes place in high orbit &mdash; far enough from the planet that your fleet can manoeuvre freely, close enough that orbital positions matter for bombardment and landing operations. The planet itself arcs slowly across the bottom of the map on its orbital path, disappearing off one side and re-emerging from the other.
                 </p>
@@ -512,9 +517,80 @@
                     <li><strong>Predictable, not random</strong> &mdash; both sides have the same information, rewarding planning over reaction</li>
                 </ul>
 
+                <h4 id="rts-hexfields">Hex Fields</h4>
+                <p>
+                    The missing piece. Saturation fields give space its terrain. Hot zones give the map a heartbeat. Hex fields give it territory &mdash; a living, shifting front line that both sides are fighting to control.
+                </p>
+
+                <h5>The Grid</h5>
+                <p>
+                    At mission start, the entire map is divided into a honeycomb of hexagonal zones. This grid is invisible until a hex scout is deployed into a cell, at which point that hex activates &mdash; visually distinct, owned, and projecting modified physics constants within its boundaries. The grid is programmatic: calculated from map width and height at load time with a configurable <code>hex_diameter</code> (default 700). No overlap, no manual placement in the editor. Hex scouts snap to the nearest unoccupied hex centre on deployment.
+                </p>
+                <p>
+                    The whole map is claimable. Every hex is a potential battleground.
+                </p>
+
+                <h5>What Hex Fields Actually Do</h5>
+                <p>
+                    Hex fields aren't walls. They don't block movement. Any ship can fly into any hex, friendly or hostile. What changes is the physics inside.
+                </p>
+                <p>
+                    A friendly hex modifies local constants in your favour &mdash; better shield regeneration, faster weapon cycling, improved sensor range. The specifics depend on what's been researched and what tier of energy is powering the field. An enemy hex does the opposite: your ships are debuffed, their ships are boosted. Neutral hexes have no effect.
+                </p>
+                <p>
+                    The result is layered, asymmetric defence without a single physical barrier. Pushing through one enemy hex is manageable. Pushing through three in a row, each stacking debuffs, is a meatgrinder &mdash; and that's the point. It replaces the &ldquo;break the wall, break the turret, break the base&rdquo; progression of traditional RTS with something that fits open space: each hex you cross tips the odds further against you until you crack the network.
+                </p>
+                <ul>
+                    <li><strong>No movement restriction</strong> &mdash; any ship can enter any hex</li>
+                    <li><strong>Buff/debuff zones</strong> &mdash; friendly hexes boost your ships, enemy hexes punish them</li>
+                    <li><strong>Stackable depth</strong> &mdash; multiple hex layers create the layered defence that replaces walls and turrets</li>
+                    <li><strong>Researchable effects</strong> &mdash; what each hex actually does depends on your tech progression</li>
+                    <li><strong>Scalable by energy tier</strong> &mdash; a hex powered by void matter gives a modest buff; one running on resonant essence is significantly stronger</li>
+                </ul>
+
+                <h5>Chain Logic</h5>
+                <p>
+                    Hex fields don't operate in isolation. Every active hex must be able to trace an unbroken chain of friendly hexes back to a command ship. The command ship is the power source. If the chain is broken &mdash; because a hex scout was destroyed or shut down &mdash; everything beyond the break goes dark. No buff, no debuff, just neutral space.
+                </p>
+                <p>
+                    This is where the strategy lives. A perfectly built hex network can be collapsed by a surgical strike on a single junction hex. A wide, shallow network is resilient but weak. A narrow, deep one is powerful but brittle. Players have to decide how to shape their network based on the tactical situation, and the enemy is always looking for the load-bearing hex to knock out.
+                </p>
+                <ul>
+                    <li><strong>Hexes chain back to command ship</strong> &mdash; no chain, no power</li>
+                    <li><strong>Junction hexes are high-value targets</strong> &mdash; destroying one can cascade a whole section dark</li>
+                    <li><strong>Network shape is a strategic choice</strong> &mdash; wide and resilient vs deep and powerful</li>
+                    <li><strong>Flood-fill adjacency check</strong> &mdash; each hex knows its neighbours; power propagation is a simple connected-component check from the command ship outward</li>
+                </ul>
+
+                <h5>Void Matter Economy</h5>
+                <p>
+                    Hex fields consume void matter to stay active. Not a one-time build cost &mdash; an ongoing drain, every tick, for every powered hex. Expand too fast and you'll bleed your reserves dry. Lose your harvesters and your network starts collapsing from the edges inward as you're forced to shut down fields to keep critical ones online.
+                </p>
+                <p>
+                    Each hex scout has a manual on/off toggle. Mid-battle, you're managing a power grid under fire &mdash; shutting down rear hexes to keep the front line lit, or going dark on a flank to consolidate resources for a decisive push. The more territory you hold, the more it costs to hold it.
+                </p>
+                <p>
+                    This is the longevity mechanic. Battles aren't just about who has more ships. They're about who can sustain their territorial control while disrupting the enemy's supply chain. Hit their void matter harvesters and watch their hex network flicker and die, hex by hex, as they scramble to decide what to sacrifice.
+                </p>
+                <ul>
+                    <li><strong>Ongoing void matter cost per active hex</strong> &mdash; expansion has a price</li>
+                    <li><strong>Manual on/off toggle per scout</strong> &mdash; triage decisions in real time</li>
+                    <li><strong>Resource pressure creates natural ebb and flow</strong> &mdash; overextension is punished, efficiency is rewarded</li>
+                    <li><strong>Harvesters become strategic targets</strong> &mdash; choke the supply, collapse the network</li>
+                    <li><strong>Mirrors the galactic-scale entropy economy</strong> at a tactical level</li>
+                </ul>
+
+                <h5>Reading the Board</h5>
+                <p>
+                    A well-designed hex battlefield tells a story at a glance. Your hexes glow one colour, the enemy's another, neutral space is dark. You can see where the front line is, where the gaps are, where a chain is thin enough to cut. The enemy's command ship sits behind layers of hostile hexes. Your job is to find the weak point, punch through, and collapse their network from the inside.
+                </p>
+                <p>
+                    Missions can start with pre-established hex networks &mdash; the enemy already dug in, your fleet arriving and deploying its initial hexes as crew chatter contextualises what's happening. No tutorial screen. The player sees the board, hears the team react to it, and understands. Push blue into red. Cut the chains. Take the command ship.
+                </p>
+
                 <h4>The Payoff</h4>
                 <p>
-                    Two systems, one dynamic battlefield. Saturation fields give space its terrain. Orbital drift gives the map a heartbeat. Every match plays differently not because of randomness, but because the geometry is always shifting under your feet &mdash; and the best commanders are the ones who see it coming.
+                    Three systems, one dynamic battlefield. Saturation fields give space its terrain. Orbital drift gives the map a heartbeat. Hex fields give it a front line. Every match plays differently not because of randomness, but because the geometry is always shifting under your feet &mdash; and the best commanders are the ones who see it coming.
                 </p>
             </div>
 
