@@ -19,4 +19,4 @@ EXPOSE 8000
 # Command to run the app using Gunicorn
 # -w 4: Use 4 worker processes (scaling!)
 # -b: Bind to port 8000
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "--timeout", "120", "app:app"]
