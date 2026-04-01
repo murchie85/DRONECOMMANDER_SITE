@@ -440,6 +440,15 @@
             <a href="#synopsis" class="toc-link">Synopsis</a>
             <a href="#gameplay" class="toc-link">Gameplay</a>
             <div class="toc-sub">
+                <a href="#gameplay-baseguide" class="toc-link">RTS &mdash; Base Building Guide</a>
+                <div class="toc-sub">
+                    <a href="#bg-fleet" class="toc-link">Your Fleet</a>
+                    <a href="#bg-economy" class="toc-link">The Economy</a>
+                    <a href="#bg-driftfields" class="toc-link">Drift Fields</a>
+                    <a href="#bg-science" class="toc-link">The Science</a>
+                    <a href="#bg-cyber" class="toc-link">Cyber Warfare</a>
+                    <a href="#bg-openers" class="toc-link">Opening Strategies</a>
+                </div>
                 <a href="#gameplay-rts" class="toc-link">RTS &mdash; Space Strategy</a>
                 <div class="toc-sub">
                     <a href="#rts-saturation" class="toc-link">Saturation Fields</a>
@@ -558,6 +567,222 @@
 
             <!-- ============ GAMEPLAY ============ -->
             <h2 class="section-title" id="gameplay">// Gameplay</h2>
+
+            <h3 class="sub-title" id="gameplay-baseguide">RTS &mdash; Base Building Guide</h3>
+            <div class="lore-card">
+                <p>
+                    <em>Welcome, Commander.</em> Space strategy games have a terrain problem. Without hills, chokepoints, or rivers, battles devolve into blobs smashing into blobs in an empty void. Asteroids only get you so far.
+                </p>
+                <p>
+                    Drone Commander does something different. Instead of importing ground-war mechanics into space and hoping they stick, we built a strategy layer native to orbital combat &mdash; one where the battlefield has structure, territory, and depth without a single wall or turret line. Everything you build, everything you fight over, is rooted in the science-fiction of the universe itself.
+                </p>
+                <p>
+                    This guide walks you through how base building works, what you&rsquo;re managing, and why it all matters.
+                </p>
+
+                <h4 id="bg-fleet">Your Fleet: Three Ships, One War</h4>
+                <p>
+                    You don&rsquo;t build a base in Drone Commander. You deploy a fleet. Your operations run through three capital ships, each with a distinct role. Think of them as your economy, your brain, and your fist.
+                </p>
+
+                <h5>The Command Ship</h5>
+                <p>
+                    This is your nerve centre. Everything starts here. When you deploy the command ship at the start of a mission, your first move is to fire up the Nanite Forges &mdash; internal reactors that passively generate energy. You&rsquo;ll start with three, and they&rsquo;ll quietly tick away, filling your energy reserves while you figure out your opening strategy.
+                </p>
+                <p>
+                    Energy is the gating resource for everything else. You spend it to unlock departments &mdash; the four operational branches that open up your options:
+                </p>
+                <ul>
+                    <li><strong>Mining Operations</strong> &mdash; unlocks harvesters (for ore), enticers (for preparing void matter extraction), and void harvesters</li>
+                    <li><strong>Engineering &amp; Prospecting</strong> &mdash; unlocks surveyors (for research points) and the ability to research drift projectors</li>
+                    <li><strong>Defence Industry</strong> &mdash; lets you mount turrets, shield generators, and other defensive systems directly onto your ships</li>
+                    <li><strong>Cyber Warfare</strong> &mdash; opens up a suite of offensive and defensive digital attacks, but it&rsquo;s the most expensive department to enable, making it a deliberate mid-to-late game commitment</li>
+                </ul>
+                <p>
+                    You can&rsquo;t unlock everything at once. At roughly 10 energy per second from three forges, your first department takes about 20 seconds to come online. That&rsquo;s 20 seconds of defending with whatever you arrived with while you decide: do I go for economy first, or territory, or defences?
+                </p>
+                <p>
+                    <strong class="text-glow">That tension never goes away.</strong>
+                </p>
+
+                <h5>The Research Ship</h5>
+                <p>
+                    Your upgrade platform. The research ship doesn&rsquo;t build combat units &mdash; it makes everything else better. Fleet-wide damage boosts, armour upgrades, engine speed, harvesting efficiency, drift field improvements &mdash; it&rsquo;s all here, and it all costs research points.
+                </p>
+                <p>
+                    The research ship is also where you unlock the blueprints for advanced units like the Dampener Ship and the entire cyber warfare tech tree.
+                </p>
+                <p>
+                    Every RP you spend here is an RP you&rsquo;re not spending somewhere else. Want to go all-in on cyber warfare? That&rsquo;s 265 RP for the full tree &mdash; RP that could have gone to weapons upgrades, drift field efficiency, or dampener blueprints. The research ship is where your long-term strategy takes shape.
+                </p>
+
+                <h5>The Assault Carrier</h5>
+                <p>
+                    Your war factory. The assault carrier builds all your combat ships &mdash; fighters, raiders, beam ships, missile frigates, battleships, shield ships, and heavier capital-class vessels like the Arkhelion.
+                </p>
+                <p>
+                    Before you can build most unit types, you need to research them on the assault carrier (which costs energy), then deploy a construction field &mdash; a platform within a set radius of the carrier where your units are actually assembled. You also set a rally point so completed ships automatically disembark clear of the build zone.
+                </p>
+                <p>
+                    The actual building is handled by constructors &mdash; small utility ships that pick up ore and energy from the command ship, fly over to the construction field, and spend those resources assembling the unit. Fighters are the exception &mdash; they don&rsquo;t need constructors and can be produced directly.
+                </p>
+                <p>
+                    As the game progresses, you can unlock additional construction fields to increase your throughput. More fields mean faster fleet replacement, which matters when you&rsquo;re losing ships in a contested drift zone and need reinforcements <em>now</em>.
+                </p>
+
+                <h4 id="bg-economy">The Economy: Four Resources, One Loop</h4>
+
+                <h5>Energy</h5>
+                <p>
+                    Generated passively by nanite forges on the command ship. Used to unlock departments and research unit types. You don&rsquo;t need to micromanage it &mdash; the forges tick away on their own &mdash; but you do need to decide when to spend your reserves, because unlocking a department at the wrong time means you&rsquo;re sitting without energy when something more urgent comes up.
+                </p>
+
+                <h5>Ore</h5>
+                <p>
+                    The workhorse resource. Ore funds almost every unit and structure in the game. Harvesters fly out from the command ship to mining zones near the planet below, descend to the surface, collect ore, and return to deposit it. The mining zones drift across the map as the planet orbits, so your harvesters are constantly adjusting their routes &mdash; you can&rsquo;t just park them and forget.
+                </p>
+
+                <h5>Research Points (RP)</h5>
+                <p>
+                    Generated by surveyors &mdash; ships you build at the command ship and then deploy to research zones scattered across the map. Once a surveyor is in position, it passively generates about 1 RP per second by scanning the local environment. You can station up to two surveyors per zone.
+                </p>
+                <p>
+                    RP is the currency of strategic choice. It buys drift projector research, cyber warfare unlocks, fleet-wide upgrades, and advanced unit blueprints. You never have enough, and every spend closes a door somewhere else.
+                </p>
+
+                <h5>Void Matter</h5>
+                <p>
+                    The most interesting resource in the game &mdash; and the one that ties everything back to the lore.
+                </p>
+                <p>
+                    To get void matter flowing, you first build an enticer and send it to a null field on the map. The enticer prepares the null field for harvesting (about 30 seconds). Once it&rsquo;s ready, you deploy void harvesters to extraction points within the field, and they begin pulling void matter.
+                </p>
+                <p>
+                    Void matter is what sustains your drift fields &mdash; the territorial hex network that forms the backbone of your defence. Every active drift projector drains about 1 void matter per second. Run out, and your fields start going dark. This means void matter income isn&rsquo;t optional &mdash; it&rsquo;s the lifeblood of your territorial presence.
+                </p>
+
+                <h4 id="bg-driftfields">Drift Fields: Your Terrain in Space</h4>
+                <p>
+                    <strong class="text-glow">This is the heart of Drone Commander&rsquo;s RTS identity.</strong>
+                </p>
+
+                <h5>The Problem</h5>
+                <p>
+                    In a ground-based RTS, terrain does the heavy lifting for strategic depth. Mountains funnel armies. Rivers create chokepoints. Walls and turrets form layered defences that attackers must chew through. None of that exists in space.
+                </p>
+
+                <h5>The Solution</h5>
+                <p>
+                    The entire map is divided into a honeycomb grid of hexagonal zones. At the start of a mission, this grid is invisible. When you build and deploy a drift projector into a hex cell, that cell activates &mdash; visually distinct, owned by you, and projecting altered physics within its boundaries.
+                </p>
+                <p>
+                    Inside a friendly drift field, your ships gain a combat advantage: increased speed and increased firepower. Inside an enemy drift field, your ships are debuffed. The fields don&rsquo;t block movement &mdash; any ship can fly into any hex &mdash; but the further you push into enemy territory, the more the odds stack against you.
+                </p>
+                <p>
+                    This is what replaces walls and turrets. One enemy drift field is manageable. Three in a row, each stacking debuffs on your fleet while buffing theirs, is a meatgrinder. You&rsquo;re not breaking through a gate &mdash; you&rsquo;re fighting uphill through increasingly hostile physics.
+                </p>
+
+                <h5>Chains and Networks</h5>
+                <p>
+                    Drift projectors don&rsquo;t work in isolation. Every active projector must trace an unbroken chain of friendly hexes back to your command ship. The command ship is the power source. If a projector in the middle of your chain gets destroyed, everything beyond it goes dark &mdash; no buff, no debuff, just neutral space.
+                </p>
+                <p>
+                    This is where the real strategy lives. A wide, shallow network is resilient but offers weaker coverage. A narrow, deep one projects power but is brittle &mdash; one surgical strike on a junction hex and half your network collapses. You&rsquo;re constantly making decisions about network shape, and the enemy is always looking for the load-bearing hex to knock out.
+                </p>
+
+                <h5>Managing the Grid</h5>
+                <p>
+                    Each drift projector has a manual on/off toggle. Mid-battle, you might shut down rear hexes to conserve void matter for the front line, or go dark on a flank to consolidate resources for a decisive push. You can also reclaim any drift projector &mdash; destroying it instantly and recovering some void matter &mdash; to reposition your network on the fly.
+                </p>
+
+                <h5>Breaking Through</h5>
+                <p>
+                    When attacking into enemy drift fields, you&rsquo;ll want a Dampener Ship &mdash; a specialist unit that reduces the debuff effects of enemy drift fields within a radius around itself. Dampener ships require significant RP investment to unlock (70 RP across two research tiers), but without them, pushing through deep enemy networks is brutal.
+                </p>
+
+                <h4 id="bg-science">The Science Behind the Strategy</h4>
+                <p>
+                    Here&rsquo;s what makes Drone Commander&rsquo;s base building more than just mechanics.
+                </p>
+
+                <h5>Strange Matter and the Ancient Gold Rush</h5>
+                <p>
+                    Billions of years before the events of the game, ancient races noticed something extraordinary: the Cosmic Microwave Background Radiation &mdash; the echo of the Big Bang &mdash; wasn&rsquo;t perfectly uniform. In twelve locations across the galaxy, CMBR appeared to clump together. When they investigated, they discovered that in these regions, the fundamental constants of the universe were different. The speed of light, the permittivity of space, the values that define how reality works &mdash; all variable.
+                </p>
+                <p>
+                    What they found was a substance they called strange matter &mdash; not the quark-based strange matter of human physics, but something far more profound. This matter allowed direct manipulation of spacetime itself.
+                </p>
+                <p>
+                    A galaxy-wide gold rush followed. Every advanced civilisation raced to these twelve locations to claim what they could. They refined the strange matter into shards &mdash; portable batteries that could locally alter the fundamental constants of the universe. With a shard, you could change the speed limit. You could make distances shorter. You could rewrite the rules.
+                </p>
+
+                <h5>Starlanes and Null Fields</h5>
+                <p>
+                    The ancients used their shards to build starlanes &mdash; corridors across the galaxy where spacetime behaves differently, allowing travel between star systems at speeds that would otherwise be impossible. Different shards had different capabilities, and the starlane network became the infrastructure of galactic civilisation.
+                </p>
+                <p>
+                    Those ancient races are long gone &mdash; wiped out by the Drone Fleet or vanished into history. But the starlanes remain. And where starlanes exist, were planned, or have degraded, they leave behind null fields &mdash; ghostly residue where the strange matter that once warped spacetime has slowly leaked its energy.
+                </p>
+
+                <h5>Void Matter: Bottled Leftovers</h5>
+                <p>
+                    Void matter is what you harvest from null fields. It&rsquo;s the waste product &mdash; the faint, degraded trickle of the original strange matter that once powered starlane corridors. It retains just enough of the source material&rsquo;s properties to allow localised manipulation of physical constants.
+                </p>
+                <p>
+                    When you deploy a drift projector and it creates a hex field, what&rsquo;s actually happening is a crude, small-scale recreation of what the ancients did with shards. You&rsquo;re projecting a zone of altered fundamental constants into the battlefield. Your ships perform better inside because the physics are literally different there &mdash; tuned in your favour.
+                </p>
+                <p>
+                    This is why drift fields cost void matter to sustain. You&rsquo;re actively maintaining a region of warped spacetime, burning through the resource to keep the constants altered. Stop feeding it void matter, and reality snaps back to normal.
+                </p>
+
+                <h5>The Bigger Picture</h5>
+                <p>
+                    The entire RTS economy mirrors what&rsquo;s happening at the galactic scale. The Drone Fleet &mdash; the Dark Worlders &mdash; strip-mine entropy (crystallised, locked information &mdash; essentially the soul of living beings) to power their cosmic infrastructure, including the ability to cast fake universes and import exotic matter. You&rsquo;re doing the same thing at a tactical level: harvesting the remnants of ancient technology to project zones of altered physics that give you a fighting chance.
+                </p>
+                <p>
+                    The resource hierarchy reflects the civilisation tiers of the galaxy:
+                </p>
+                <ul>
+                    <li><strong>Void Matter</strong> &mdash; accessible to all spacefaring races. The dregs. Enough to project basic drift fields</li>
+                    <li><strong>Resonant Essence</strong> &mdash; accessible to the Vionites and above. Discovered after 300 years of pulsar research. Stronger effects</li>
+                    <li><strong>Entropy</strong> &mdash; accessible to sovereign-tier civilisations. The real power source. What the Dark Worlders harvest from the living</li>
+                    <li><strong>Arch-Matter</strong> &mdash; accessible only to the most ancient races. The stuff of legends</li>
+                </ul>
+                <p>
+                    Every resource you spend in Drone Commander has a lore reason for existing, a lore reason for being scarce, and a lore reason for doing what it does. The strategy isn&rsquo;t layered on top of the fiction &mdash; it grows out of it.
+                </p>
+
+                <h4 id="bg-cyber">Cyber Warfare: The Invisible Front</h4>
+                <p>
+                    Once you&rsquo;ve stabilised your economy and drift field network, the Cyber Department opens up an entirely different axis of attack.
+                </p>
+                <p>
+                    Cyber operations are targeted actions with cooldowns, launched from the command ship after enabling the Cyber Warfare department (300 energy &mdash; the most expensive unlock) and completing research on the Research Ship.
+                </p>
+                <p>
+                    On offence, you can disrupt individual enemy drift fields, drain their energy generation, siphon their void matter reserves, blind their radar, or &mdash; at the top of the tree &mdash; shut down their command ship entirely for 20 seconds. A fully invested cyber player can dismantle an enemy drift field network without firing a single shot.
+                </p>
+                <p>
+                    On defence, when the enemy launches a cyber attack on you, an alert fires and you get a response window &mdash; a quick button-mash or key-sequence minigame. Succeed, and you reduce or negate the attack. Fail, and it lands at full strength. Higher-tier defences give you more time, a chance to auto-block, or even reflect the attack back at the enemy.
+                </p>
+                <p>
+                    <strong>The tradeoff:</strong> the full cyber tree costs 265 RP. That&rsquo;s RP not going to dampener research, weapons upgrades, or fleet-wide armour. Going all-in on cyber is a commitment &mdash; but if your enemy isn&rsquo;t prepared for it, it&rsquo;s devastating.
+                </p>
+
+                <h4 id="bg-openers">Opening Strategies</h4>
+                <p>
+                    At mission start with 1,000 ore, 60 RP, 0 energy, and 0 void matter, you face genuine choices:
+                </p>
+                <ul>
+                    <li><strong>Economy Rush</strong> &mdash; Enable Mining Operations first, get harvesters and enticers running immediately. Ore and void matter flowing fast, but you have no territorial presence and no drift fields early. You&rsquo;re betting on out-producing the enemy</li>
+                    <li><strong>Drift Field Rush</strong> &mdash; Enable Engineering &amp; Prospecting first, research drift projectors, and start claiming hexes using your starting ore. Fast territorial control, but you&rsquo;re burning reserves with no income to replenish them. If the enemy disrupts your void matter pipeline, your network collapses</li>
+                    <li><strong>Turtle</strong> &mdash; Enable Defence Industry first, mount turrets and shield generators on your capital ships, and weather early aggression. You survive, but you fall behind on territory, economy, and tech. This works as a reaction to early pressure, not as a long-term plan</li>
+                    <li><strong>Cyber Play</strong> &mdash; A long-game investment. Get Mining Operations running for income, then pour everything into the Cyber Department and its research tree. Devastating in the late game, but you&rsquo;re vulnerable and under-teched for a long time</li>
+                </ul>
+                <p>
+                    The 60 starting RP is enough to do one thing well &mdash; not everything. That&rsquo;s the tension, and it&rsquo;s there from the first second.
+                </p>
+            </div>
 
             <h3 class="sub-title" id="gameplay-rts">RTS &mdash; Battlefield Mechanics</h3>
             <div class="lore-card">
