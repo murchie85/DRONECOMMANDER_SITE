@@ -30,6 +30,12 @@
         .cat-card h3 { color: #00ffcc; font-size: 1.15rem; text-transform: uppercase; margin: 0; }
         .cat-card .count { color: #888; font-size: 0.85rem; margin-top: 4px; }
         .board-note { color: #666; font-size: 0.8rem; margin-top: 30px; text-align: center; }
+        .offline-panel { text-align: center; padding: 60px 30px; background: rgba(255,204,0,0.04); border: 1px solid rgba(255,204,0,0.4); border-radius: 8px; }
+        .offline-panel .status-tag { display: inline-block; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #ffcc00; border: 1px solid #ffcc00; padding: 4px 14px; border-radius: 12px; margin-bottom: 24px; }
+        .offline-panel h3 { color: #ffcc00; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255,204,0,0.4); margin-bottom: 18px; }
+        .offline-panel p { color: #bbb; font-size: 0.95rem; max-width: 520px; margin: 0 auto 12px; line-height: 1.6; }
+        .offline-panel .return-link { display: inline-block; margin-top: 24px; color: #00ffcc; text-decoration: none; border: 1px solid #00ffcc; padding: 10px 22px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s; }
+        .offline-panel .return-link:hover { background: #00ffcc; color: #000; box-shadow: 0 0 15px rgba(0,255,204,0.4); }
     </style>
 </head>
 <body>
@@ -44,16 +50,14 @@
 
     <div class="content-section">
         <h2 class="section-title">// Community Board</h2>
-        <p style="color: #aaa; margin-bottom: 30px;">No sign-up required. Pick a username and jump in.</p>
 
-        {% for cat in categories %}
-        <a href="/board/{{ cat }}" class="cat-card">
-            <h3>{{ cat }}</h3>
-            <p class="count">{{ counts[cat] }} thread{{ 's' if counts[cat] != 1 else '' }}</p>
-        </a>
-        {% endfor %}
-
-        <p class="board-note">Posts are automatically cleared after 30 days. Be respectful — this is a shared space.</p>
+        <div class="offline-panel">
+            <span class="status-tag">// Offline</span>
+            <h3>Down Until Launch</h3>
+            <p>The community board is offline while we prepare for the official launch of Drone Commander.</p>
+            <p>Threads, replies, and category access will return when the game goes live. Thanks for your patience, pilots.</p>
+            <a href="/" class="return-link">&#9664; Return to Command Center</a>
+        </div>
     </div>
 
     <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
