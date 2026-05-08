@@ -255,6 +255,62 @@
             color: #000;
             box-shadow: 0 0 15px rgba(0,255,204,0.4);
         }
+
+        /* Ideation banner (clickable) */
+        .ideation-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, rgba(0,255,204,0.1) 0%, rgba(0,100,80,0.1) 100%);
+            border: 2px solid #00ffcc;
+            border-radius: 8px;
+            padding: 24px 28px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.15);
+            transition: 0.3s;
+            margin-bottom: 36px;
+        }
+        .ideation-banner:hover {
+            background: linear-gradient(135deg, rgba(0,255,204,0.18) 0%, rgba(0,100,80,0.18) 100%);
+            box-shadow: 0 0 35px rgba(0, 255, 204, 0.3);
+            transform: translateY(-2px);
+        }
+        .ideation-banner .ideation-tag {
+            display: inline-block;
+            color: #00ffcc;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            opacity: 0.85;
+        }
+        .ideation-banner h2 {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 6px;
+            text-shadow: 0 0 12px rgba(0,255,204,0.4);
+        }
+        .ideation-banner p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin: 0;
+            max-width: 680px;
+            line-height: 1.5;
+        }
+        .ideation-banner .ideation-arrow {
+            color: #00ffcc;
+            font-size: 2rem;
+            flex-shrink: 0;
+            text-shadow: 0 0 10px rgba(0,255,204,0.5);
+        }
+        @media (max-width: 576px) {
+            .ideation-banner { flex-direction: column; align-items: flex-start; }
+            .ideation-banner .ideation-arrow { align-self: flex-end; }
+        }
     </style>
 </head>
 <body>
@@ -275,8 +331,20 @@
         <p class="tagline">Raw updates from the trenches &mdash; tracking the journey from concept to launch</p>
     </div>
 
+    <!-- Ideation banner -->
+    <div class="content-section" style="padding-bottom: 0;">
+        <a href="/ideation" class="ideation-banner">
+            <div>
+                <span class="ideation-tag">// Ideation</span>
+                <h2>What I'm Working On</h2>
+                <p>Scenes I'm currently scoping out &mdash; cutscene plans, art briefs and rough notes for pieces in design. Click through for the latest.</p>
+            </div>
+            <span class="ideation-arrow">&rarr;</span>
+        </a>
+    </div>
+
     <!-- Timeline -->
-    <div class="content-section">
+    <div class="content-section" style="padding-top: 20px;">
         <h2 class="section-title">// Dev Timeline</h2>
 
         <div class="timeline">

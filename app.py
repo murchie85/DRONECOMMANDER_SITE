@@ -93,6 +93,10 @@ def about():
 def devlog():
     return render_template('devlog.html')
 
+@app.route('/ideation')
+def ideation():
+    return render_template('ideation.html')
+
 @app.route('/community-tools')
 def community_tools():
     return render_template('community_tools.html')
@@ -111,7 +115,7 @@ Sitemap: /sitemap.xml
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/about', '/devlog', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board']
+    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board']
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

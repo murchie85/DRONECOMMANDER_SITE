@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideation - Drone Commander</title>
+    <meta name="description" content="Scenes, cutscene plans and art briefs currently in design for Drone Commander.">
+    <meta property="og:title" content="Ideation - Drone Commander">
+    <meta property="og:description" content="Scenes, cutscene plans and art briefs currently in design for Drone Commander.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ideation - Drone Commander">
+    <meta name="twitter:description" content="Scenes, cutscene plans and art briefs currently in design for Drone Commander.">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ffcc;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .top-bar .brand {
+            color: #00ffcc;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .top-bar .brand:hover { text-shadow: 0 0 10px #00ffcc; }
+        .top-bar .nav-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .top-bar .nav-link:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero-banner {
+            background: linear-gradient(180deg, rgba(0,255,204,0.08) 0%, rgba(18,18,18,1) 100%);
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid rgba(0,255,204,0.2);
+        }
+        .hero-banner h1 {
+            color: #00ffcc;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0,255,204,0.5);
+            margin-bottom: 10px;
+        }
+        .hero-banner .tagline {
+            color: #aaa;
+            font-size: 1rem;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            color: #00ffcc;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(0,255,204,0.3);
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+        }
+
+        /* Scene card */
+        .scene-card {
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.2);
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .scene-card .scene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .scene-card h2 {
+            color: #00ffcc;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .scene-card .scene-status {
+            display: inline-block;
+            background: rgba(255,204,0,0.12);
+            border: 1px solid rgba(255,204,0,0.4);
+            color: #ffcc00;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .scene-card .scene-meta {
+            color: #888;
+            font-size: 0.82rem;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+        .scene-card h3 {
+            color: #00ffcc;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 24px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed rgba(0,255,204,0.2);
+        }
+        .scene-card p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+        }
+        .scene-card ul {
+            color: #bbb;
+            padding-left: 22px;
+            font-size: 0.9rem;
+        }
+        .scene-card ul li {
+            margin-bottom: 8px;
+            line-height: 1.55;
+        }
+        .scene-card ul li strong { color: #00ffcc; }
+
+        /* Beat (shot) list — numbered, cinematic */
+        .beat-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+            counter-reset: beat;
+        }
+        .beat-list li {
+            position: relative;
+            padding: 10px 12px 10px 56px;
+            margin-bottom: 8px;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid rgba(0,255,204,0.3);
+            border-radius: 4px;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            counter-increment: beat;
+        }
+        .beat-list li::before {
+            content: counter(beat, decimal-leading-zero);
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            color: #00ffcc;
+            font-size: 0.78rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(0,255,204,0.4);
+        }
+        .beat-list li strong { color: #00ffcc; }
+        .beat-list li em { color: #ffcc00; font-style: normal; }
+
+        /* Two-column brief grid */
+        .brief-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 14px 0;
+        }
+        .brief-cell {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,255,204,0.15);
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+        .brief-cell h4 {
+            color: #00ffcc;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .brief-cell ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.85rem;
+        }
+        .brief-cell ul li {
+            margin-bottom: 6px;
+            color: #bbb;
+        }
+
+        .quote-line {
+            border-left: 3px solid rgba(0,255,204,0.4);
+            padding: 10px 16px;
+            margin: 12px 0;
+            color: #00ffcc;
+            font-style: italic;
+            font-size: 0.95rem;
+            background: rgba(0,255,204,0.04);
+            text-shadow: 0 0 8px rgba(0,255,204,0.3);
+        }
+        .quote-line .speaker {
+            display: block;
+            color: #888;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            font-style: normal;
+            text-shadow: none;
+        }
+
+        .text-glow { color: #00ffcc; }
+        .text-warn { color: #ffcc00; }
+
+        /* Empty/coming-soon hint */
+        .hint-card {
+            border: 1px dashed rgba(0,255,204,0.25);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 0.88rem;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .brief-grid { grid-template-columns: 1fr; }
+            .hero-banner h1 { font-size: 2.2rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top-bar">
+        <a href="/" class="brand">Drone Commander</a>
+        <div>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/devlog" class="nav-link">DevLog</a>
+            <a href="/latest-update" class="nav-link">Updates</a>
+            <a href="/compendium" class="nav-link">Compendium</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero-banner">
+        <h1>Ideation</h1>
+        <p class="tagline">Scenes I'm currently scoping out &mdash; cutscene plans, art briefs and rough notes for pieces in design.</p>
+    </div>
+
+    <!-- Scenes -->
+    <div class="content-section">
+        <h2 class="section-title">// In Design</h2>
+
+        <!-- ============ DRONE H-POD CUTSCENE ============ -->
+        <div class="scene-card" id="hpod-cutscene">
+            <div class="scene-header">
+                <h2>Drone H-Pod Cutscene</h2>
+                <span class="scene-status">In Ideation</span>
+            </div>
+            <p class="scene-meta">Vibe: 80s/90s anime &mdash; cinematic, cosmic, serious. Reusable shot template for other pilots (Sekarri, Marta, etc.).</p>
+
+            <p>
+                A short, punchy cutscene of <strong class="text-glow">Straker</strong> entering an H-Pod and connecting to his drone vehicle for the first time. The whole sequence should feel like an opening title beat &mdash; closer to <em>Macross Plus</em> or <em>Akira</em> than a tutorial loading screen. The same shot list can be re-skinned for other pilots later (different face, different rig, different hair animation), so it's worth investing in a clean reusable structure now.
+            </p>
+
+            <h3>Beat-by-Beat Shot List</h3>
+            <ol class="beat-list">
+                <li><strong>Slow camera move over Straker's face.</strong> He's serious, locked in. Background pans behind him &mdash; either stars / cosmic space, or the hangar interior drifting past.</li>
+                <li><strong>Snap to black.</strong> Hard cut, single beat of silence.</li>
+                <li><strong>Letterbox close-up: his eyes blinking.</strong> Two slow blinks, anime-style narrow band across the screen.</li>
+                <li><strong>High-tech oxygen mask drops down</strong> from above, sealing onto his face. Single sharp clamp/hiss.</li>
+                <li><strong>Water rises behind him.</strong> Side profile shot &mdash; we see the amniotic fluid fill the pod, glow refracting through it.</li>
+                <li><strong>Straker tapping buttons.</strong> Electric "fireflies" zip across the frame, lens flares streak. Cyber-glow blues and teals.</li>
+                <li><strong>Iron-Man-style rig assembly.</strong> Mental shoulder pads clip on, wires snake into his mask, harness locks. Clean mechanical click-on shots.</li>
+                <li><strong>Fist up, pulls down a roof lever.</strong> <em>(That lever can be what triggered the water in beat 5 &mdash; flashback or causal cut.)</em></li>
+                <li><strong>Cut back to his eyes.</strong> They flare from <span class="text-glow">brown</span> to <span class="text-glow">blue</span>, white halo glow blooming outward.</li>
+                <li><strong>Cosmic collapse.</strong> Procedurally generated stars / fireflies on jet black collapse inward into a single point of light, then expand outward to fill the screen in pure white.</li>
+                <li><strong>"CONNECTION ESTABLISHED"</strong> &mdash; text appears centred as the white settles.</li>
+                <li><strong>Digital voice:</strong> <em>"Greetings, Drone Commander."</em></li>
+            </ol>
+
+            <h3>Art Brief &mdash; Static Pieces I Need</h3>
+            <p>
+                Animation is limited to what the artist already does well: 4&ndash;6 frame loops (hair blowing, blinking, water sloshing, a flicker). Everything else is camera work, layering, and effects done in code. So the art bill is mostly <strong>still images, layered cleanly</strong> so I can pan, mask, fade, and recolour them programmatically.
+            </p>
+            <div class="brief-grid">
+                <div class="brief-cell">
+                    <h4>Character Stills (Straker)</h4>
+                    <ul>
+                        <li>Serious face, three-quarter, plain background (for beat 1)</li>
+                        <li>Letterbox eyes &mdash; eyes-open and eyes-closed frames for blink loop (beat 3)</li>
+                        <li>Side profile bust, neutral expression (beat 5)</li>
+                        <li>Hands tapping a console (beat 6) &mdash; layered so we can flash effects on top</li>
+                        <li>Fist raised, gripping a lever (beat 8)</li>
+                        <li>Eye close-up &mdash; brown variant + blue-glow variant (beat 9)</li>
+                    </ul>
+                </div>
+                <div class="brief-cell">
+                    <h4>Rig &amp; Environment Stills</h4>
+                    <ul>
+                        <li>Oxygen mask asset (closed/clamped state) for the drop-down (beat 4)</li>
+                        <li>H-Pod interior &mdash; side profile, transparent panel for the water column</li>
+                        <li>Shoulder-pad pieces &amp; wire harness, ideally as separate layers</li>
+                        <li>Roof lever asset</li>
+                        <li>Water column &mdash; tileable / liftable so I can raise it via code</li>
+                    </ul>
+                </div>
+                <div class="brief-cell">
+                    <h4>Tiny Animations (4&ndash;6 frames)</h4>
+                    <ul>
+                        <li>Eye blink loop</li>
+                        <li>Hair blowing in air-cycle wind</li>
+                        <li>Water surface slosh / refraction shimmer</li>
+                    </ul>
+                </div>
+                <div class="brief-cell">
+                    <h4>FX &mdash; Code-Driven (no art needed)</h4>
+                    <ul>
+                        <li>Camera pan / slow zoom over stills</li>
+                        <li>Lens flares &amp; firefly particles</li>
+                        <li>Letterbox bars in/out</li>
+                        <li>Snap-to-black, white bloom expansion</li>
+                        <li>Eye colour shift &amp; glow halo (procedural overlay)</li>
+                        <li>Procedural star-collapse &rarr; point-of-light &rarr; white fill</li>
+                        <li>Text crawl: "CONNECTION ESTABLISHED"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Audio &amp; VO</h3>
+            <ul>
+                <li><strong>Mask hiss / clamp</strong> on beat 4</li>
+                <li><strong>Liquid rise</strong> on beat 5 &mdash; muffled, close-mic'd</li>
+                <li><strong>Mechanical clicks</strong> on beat 7 (rig lock-in)</li>
+                <li><strong>Heavy thunk + electrical whine</strong> on the lever pull, beat 8</li>
+                <li><strong>Synth swell</strong> through beats 9&ndash;10 (collapse to white)</li>
+                <li><strong>Digital voice line</strong> on beat 12: <em>"Greetings, Drone Commander."</em></li>
+            </ul>
+            <div class="quote-line">
+                <span class="speaker">// H-Pod &mdash; Voice</span>
+                "Connection established. Greetings, Drone Commander."
+            </div>
+
+            <h3>Reusability Notes</h3>
+            <ul>
+                <li>The shot list should stay <strong>structurally identical</strong> for other pilots &mdash; swap the character stills only.</li>
+                <li>For Sekarri pilots, eye flare colour and glow tint can shift (cyan, gold, violet by pride/lineage).</li>
+                <li>For <strong>Marta</strong> and other human pilots, keep the brown&rarr;blue eye flare to mark them as Drone Pilot Program graduates.</li>
+                <li>For more advanced pilots (Specialists, Coordinators), extra layers can play over the white-bloom &mdash; e.g. multiple ship-icon overlays for a Commodore connecting to a battle wing.</li>
+            </ul>
+        </div>
+
+        <div class="hint-card">
+            More scenes will land here as they hit the design stage. Next likely: <span class="text-warn">Sekarri H-Pod variant</span> &amp; <span class="text-warn">Marta first-connection</span>.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
+        <a href="/devlog" style="color: #00ffcc; text-decoration: none;">&#9664; Back to DevLog</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/" style="color: #00ffcc; text-decoration: none;">Return to Command Center</a>
+    </div>
+</body>
+</html>
