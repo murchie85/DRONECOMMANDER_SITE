@@ -105,6 +105,10 @@ def community_tools():
 def compendium():
     return render_template('compendium.html')
 
+@app.route('/backlog')
+def backlog():
+    return render_template('backlog.html')
+
 @app.route('/robots.txt')
 def robots():
     content = """User-agent: *
@@ -115,7 +119,7 @@ Sitemap: /sitemap.xml
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board']
+    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/backlog']
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
