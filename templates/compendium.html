@@ -599,6 +599,15 @@
                 <a href="#resonant-essence" class="toc-link">Resonant Essence</a>
             </div>
             <a href="#rpg-enemies" class="toc-link">RPG Enemies</a>
+            <a href="#relationship-mechanics" class="toc-link">Relationship Mechanics</a>
+            <div class="toc-sub">
+                <a href="#rm-crowns" class="toc-link">Pride Crowns</a>
+                <a href="#rm-lists" class="toc-link">White &amp; Black Lists</a>
+                <a href="#rm-voting" class="toc-link">Wives &amp; Voting</a>
+                <a href="#rm-settheory" class="toc-link">Collections &amp; Set Theory</a>
+                <a href="#rm-stability" class="toc-link">Pride Stability</a>
+                <a href="#rm-monogamy" class="toc-link">Monogamy &amp; Rollout</a>
+            </div>
         </nav>
 
         <!-- Main Content -->
@@ -2172,7 +2181,7 @@ Cyber Warfare Suite (40 RP)
                     </div>
                 </div>
                 <p>
-                    She has an affinity for <strong>evolutionary gardening</strong> &mdash; cultivating life and lineages across long timescales &mdash; and practises a form of Tarot that is, in truth, <strong>probability gambling</strong>. Her cards are many. Among them are <strong>Straker</strong> and <strong>Fel the Sovereign</strong>.
+                    She has an affinity for <strong>evolutionary gardening</strong> &mdash; cultivating life and lineages across long timescales &mdash; and practises a form of Tarot that is, in truth, <strong>probability gambling</strong>. Her cards are many. Among them are <strong>Straker</strong>, <strong>Fel</strong> and the <strong>Sovereign</strong>.
                 </p>
                 <p>
                     A reading may or may not be true. Either way, it <strong>costs her</strong>.
@@ -2620,6 +2629,92 @@ Cyber Warfare Suite (40 RP)
                 <p>
                     <em>Details to be revealed&hellip;</em>
                 </p>
+            </div>
+
+            <!-- ============ RELATIONSHIP MECHANICS ============ -->
+            <h2 class="section-title" id="relationship-mechanics">// Relationship Mechanics</h2>
+            <div class="lore-card">
+                <p>
+                    <em>A proposal by the fans &mdash; a design framework for how Prides form, hold together, and fracture. Straker does not simply collect women; every Pride is a living social graph that must be negotiated, balanced, and maintained.</em>
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="rm-crowns">1. Pride Crowns Are Limited</h3>
+            <div class="lore-card">
+                <p>
+                    There are a <strong>limited number of Pride Crowns</strong>. Not every character can be a Crown &mdash; only a <strong>few per faction</strong>. The Crown is the anchor of a Pride: her approval (or veto) shapes who else can be admitted.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="rm-lists">2. Whitelists &amp; Blacklists</h3>
+            <div class="lore-card">
+                <p>
+                    Every character &mdash; Crowns included &mdash; carries a <strong class="text-glow">whitelist</strong> of characters she gets along with and a <strong class="text-glow">blacklist</strong> of characters she will not tolerate.
+                </p>
+                <ul>
+                    <li>A Crown will <strong>not allow</strong> anyone from her blacklist into her Pride.</li>
+                    <li>A Crown is <strong>fine with</strong> anyone from her whitelist.</li>
+                    <li>For a <strong>neutral</strong> character (on neither list), Straker has to <strong>do some legwork</strong> &mdash; courting, favours, and persuasion &mdash; to earn the invite.</li>
+                </ul>
+            </div>
+
+            <h3 class="sub-title" id="rm-voting">3. Wives, Maiden Circles &amp; the Hidden Vote</h3>
+            <div class="lore-card">
+                <p>
+                    The second, third, and subsequent women also hold whitelists and blacklists. A wife may <strong>propose to invite her friends</strong> or her <strong>maiden circle</strong>, but will <strong>resist inviting</strong> anyone on her blacklist.
+                </p>
+                <ul>
+                    <li>One character hating another may <strong>not have veto power</strong> on her own.</li>
+                    <li>But <strong>two or three wives hating the same person</strong> will trigger a <strong>vote</strong> that can prevent the invite.</li>
+                    <li>The <strong class="text-glow">Crown's hidden vote is doubled</strong> &mdash; her preference weighs twice as heavily as any other member's.</li>
+                </ul>
+            </div>
+
+            <h3 class="sub-title" id="rm-settheory">4. Collections &amp; Set Theory</h3>
+            <div class="lore-card">
+                <h4>4A &mdash; Named Groups</h4>
+                <p>
+                    Rather than maintaining huge individual lists, you can define <strong>groups</strong> of characters and add an entire group to any whitelist or blacklist. For example:
+                </p>
+                <p style="font-family:'Courier New',monospace; color:#00ffcc; background:rgba(0,255,204,0.05); padding:10px 14px; border-radius:6px; border:1px solid rgba(0,255,204,0.2);">
+                    BLACKFLEET = { Morrigan, Gia, &hellip; }
+                </p>
+                <p>
+                    Adding <strong>BLACKFLEET</strong> to a character's blacklist instantly blacklists every member &mdash; far cleaner than listing each name.
+                </p>
+                <h4 style="margin-top:20px;">4B &mdash; Sums, Unions &amp; Counts</h4>
+                <p>
+                    Lists support <strong>set operations</strong>. You can take the <strong>sum or union</strong> of multiple white/black lists, and you can <strong>count</strong> how many characters like or hate any given individual. This is what powers the voting and stability maths below.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="rm-stability">5. Pride Stability</h3>
+            <div class="lore-card">
+                <p>
+                    Within a Pride you count the characters who <strong>like</strong> each other (mutual whitelist) and those who <strong>dislike</strong> each other (blacklisted but still sharing the Pride).
+                </p>
+                <ul>
+                    <li><strong>More friendships</strong> (whitelisted bonds) &rarr; more stable.</li>
+                    <li><strong>Fewer hatreds</strong> (blacklist pairs forced together) &rarr; more stable.</li>
+                </ul>
+                <p>
+                    A stable Pride is <strong>easier to maintain and keep happy</strong>. A Pride packed with rivals will constantly demand Straker's attention, mediation, and resources to avoid fracturing.
+                </p>
+            </div>
+
+            <h3 class="sub-title" id="rm-monogamy">6. Monogamous Characters &amp; Rollout Plan</h3>
+            <div class="lore-card">
+                <p>
+                    A few characters receive <strong>special treatment</strong> for monogamy. The system is largely in line with the plan above, but <strong>different races have different preferences</strong> &mdash; only the <strong>Sekarri</strong> have Prides, so members of other races may simply not be interested in joining one.
+                </p>
+                <h4>Development Approach</h4>
+                <ul>
+                    <li>Build <strong>monogamy routes first</strong> for roughly <strong>10&ndash;20 characters</strong>, treating them as if they were Crowns.</li>
+                    <li>Then <strong>refactor</strong> those paths so the same characters can exist as <strong>Pride members</strong> (specific to them) rather than Crowns.</li>
+                    <li>Use <strong>code and hierarchy</strong> so each character's script follows a <strong>similar flow</strong> but stays specific to their personality &mdash; easy to slot in.</li>
+                    <li>Then layer in a <strong>whitelist and blacklist between them</strong>.</li>
+                    <li>If this works, <strong>expand outward</strong> to more characters over time &mdash; where some will be <strong>blacklist-to-all</strong> (i.e. strictly monogamous).</li>
+                </ul>
             </div>
 
         </div><!-- /comp-main -->
