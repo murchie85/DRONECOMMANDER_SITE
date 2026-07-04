@@ -105,9 +105,14 @@ def community_tools():
 def compendium():
     return render_template('compendium.html')
 
+@app.route('/progress')
+def progress():
+    return render_template('progress.html')
+
 @app.route('/backlog')
 def backlog():
-    return render_template('backlog.html')
+    # old backlog page replaced by the progress update
+    return redirect(url_for('progress'), code=301)
 
 @app.route('/robots.txt')
 def robots():
@@ -119,7 +124,7 @@ Sitemap: /sitemap.xml
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/backlog']
+    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress']
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

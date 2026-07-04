@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Update - Drone Commander</title>
+    <meta name="description" content="Chapter-by-chapter development progress for Drone Commander — how close each level is to complete, straight from the dev pipeline.">
+    <meta property="og:title" content="Progress Update - Drone Commander">
+    <meta property="og:description" content="Chapter-by-chapter development progress for Drone Commander.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/cover.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{background:#121212;color:#e0e0e0;font-family:'Courier New',monospace;min-height:100vh}
+        a{color:#00ffcc;text-decoration:none}
+        .top-bar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+                 padding:12px 24px;background:rgba(10,10,10,.92);border-bottom:1px solid #00ffcc44;backdrop-filter:blur(6px)}
+        .brand{font-weight:bold;color:#00ffcc;letter-spacing:1px}
+        .nav-link{display:inline-block;color:#e0e0e0;margin-left:18px;font-size:.9rem}
+        .nav-link:hover{color:#00ffcc}
+        .hero-banner{text-align:center;padding:48px 16px 22px}
+        .hero-banner h1{color:#00ffcc;letter-spacing:2px;text-shadow:0 0 18px #00ffcc55}
+        .tagline{color:#8a8a8a;font-size:.95rem}
+        .container-wrap{max-width:900px;margin:0 auto;padding:0 16px 90px}
+
+        /* overall ring */
+        .overall-wrap{display:flex;flex-direction:column;align-items:center;margin:18px 0 8px}
+        .ring-box{position:relative;width:190px;height:190px;filter:drop-shadow(0 0 14px #00ffcc33)}
+        .ring-box svg{transform:rotate(-90deg)}
+        .ring-track{fill:none;stroke:#1e2a28;stroke-width:12}
+        .ring-fill{fill:none;stroke:#00ffcc;stroke-width:12;stroke-linecap:round;
+                   transition:stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)}
+        .ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .ring-label .pct{font-size:2.4rem;font-weight:bold;color:#00ffcc;text-shadow:0 0 12px #00ffcc66}
+        .ring-label .sub{font-size:.7rem;color:#8a8a8a;letter-spacing:2px;text-transform:uppercase}
+        .generated{color:#666;font-size:.75rem;margin-top:10px;letter-spacing:1px}
+
+        /* chapter rows */
+        .sect-title{color:#00ffcc;letter-spacing:2px;font-size:.85rem;text-transform:uppercase;
+                    margin:36px 0 12px;border-bottom:1px solid #00ffcc33;padding-bottom:6px}
+        .ch-row{display:flex;align-items:center;gap:14px;background:#181818;border:1px solid #262626;
+                border-left:3px solid #00ffcc66;border-radius:8px;padding:10px 16px;margin-bottom:8px}
+        .ch-row.future{border-left-color:#b98aff88}
+        .ch-label{min-width:58px;text-align:center;font-size:.7rem;font-weight:bold;letter-spacing:1px;
+                  color:#00ffcc;background:#0d1f1c;border:1px solid #00ffcc44;border-radius:6px;padding:3px 6px}
+        .ch-row.future .ch-label{color:#b98aff;background:#171022;border-color:#b98aff44}
+        .ch-title{flex:1;font-size:.9rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .ch-bar{flex:0 0 34%;height:10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:6px;overflow:hidden}
+        .ch-fill{height:100%;background:linear-gradient(90deg,#007a66,#00ffcc);border-radius:6px;
+                 transition:width 1s cubic-bezier(.22,1,.36,1)}
+        .ch-row.future .ch-fill{background:linear-gradient(90deg,#5b3f8a,#b98aff)}
+        .ch-pct{min-width:46px;text-align:right;font-size:.85rem;color:#00ffcc}
+        .ch-row.future .ch-pct{color:#b98aff}
+        .done .ch-pct::after{content:" ✔"}
+
+        .empty-state{text-align:center;color:#8a8a8a;padding:60px 0}
+        @media (max-width:640px){
+            .ch-bar{flex-basis:26%}
+            .ch-title{font-size:.8rem}
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="brand">// Drone Commander</a>
+        <div>
+            <a href="/devlog" class="nav-link">DevLog</a>
+            <a href="/latest-update" class="nav-link">Updates</a>
+            <a href="/compendium" class="nav-link">Compendium</a>
+            <a href="/" class="nav-link">Hub</a>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <h1>// Progress Update</h1>
+        <p class="tagline">chapter-by-chapter build status, exported straight from the dev pipeline</p>
+    </div>
+
+    <div class="container-wrap">
+        <div class="overall-wrap">
+            <div class="ring-box">
+                <svg width="190" height="190" viewBox="0 0 190 190">
+                    <circle class="ring-track" cx="95" cy="95" r="82"></circle>
+                    <circle class="ring-fill" id="ringFill" cx="95" cy="95" r="82"></circle>
+                </svg>
+                <div class="ring-label">
+                    <div class="pct" id="overallPct">–</div>
+                    <div class="sub">complete</div>
+                </div>
+            </div>
+            <div class="generated" id="generated"></div>
+        </div>
+
+        <div id="content"><div class="empty-state">Loading progress…</div></div>
+    </div>
+
+    <script>
+    (async function(){
+        const content = document.getElementById('content');
+        let data;
+        try {
+            const res = await fetch('/assets/data/progress.json', { cache: 'no-store' });
+            if (!res.ok) throw new Error(res.status);
+            data = await res.json();
+        } catch (err) {
+            content.innerHTML = '<div class="empty-state">No progress data published yet — check back soon.</div>';
+            return;
+        }
+
+        // overall ring
+        const pct = Math.max(0, Math.min(100, data.overallPct || 0));
+        const ring = document.getElementById('ringFill');
+        const C = 2 * Math.PI * 82;
+        ring.style.strokeDasharray = C;
+        ring.style.strokeDashoffset = C;                       // start empty
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            ring.style.strokeDashoffset = C * (1 - pct / 100); // animate to value
+        }));
+        document.getElementById('overallPct').textContent = pct + '%';
+        if (data.generated)
+            document.getElementById('generated').textContent = 'last updated ' + data.generated;
+
+        const row = (label, title, p, future) =>
+            '<div class="ch-row' + (future ? ' future' : '') + (p >= 100 ? ' done' : '') + '">' +
+              '<div class="ch-label">' + label + '</div>' +
+              '<div class="ch-title">' + title + '</div>' +
+              '<div class="ch-bar"><div class="ch-fill" style="width:0%" data-w="' + p + '"></div></div>' +
+              '<div class="ch-pct">' + p + '%</div>' +
+            '</div>';
+
+        const escSpan = document.createElement('span');
+        const esc = s => { escSpan.textContent = s || ''; return escSpan.innerHTML; };
+
+        let html = '';
+        const chapters = data.chapters || [];
+        if (chapters.length) {
+            html += '<div class="sect-title">Chapters</div>';
+            html += chapters.map(c =>
+                row('CH ' + esc((c.label || '?').toUpperCase()), esc(c.title),
+                    Math.max(0, Math.min(100, c.pct || 0)), false)).join('');
+        }
+        const future = data.future || [];
+        if (future.length) {
+            html += '<div class="sect-title">Future Chapters</div>';
+            html += future.map(f =>
+                row('FUTURE', esc(f.title), Math.max(0, Math.min(100, f.pct || 0)), true)).join('');
+        }
+        content.innerHTML = html || '<div class="empty-state">No chapters in the data file.</div>';
+
+        // animate the bars in
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            document.querySelectorAll('.ch-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+        }));
+    })();
+    </script>
+</body>
+</html>
