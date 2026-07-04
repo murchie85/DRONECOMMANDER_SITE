@@ -154,20 +154,21 @@
             html += future.map(f =>
                 row('FUTURE', esc(f.title), Math.max(0, Math.min(100, f.pct || 0)), true, !!f.notCounted)).join('');
         }
-        // story acts — fixed roadmap (see /compendium#story-roadmap); Act 1 tracks the overall milestone
+        // story acts — fixed roadmap (see /compendium#story-roadmap); Act 1 tracks the overall
+        // milestone, acts 2+ are display-only estimates and do NOT feed the overall ring
         const ACTS = [
-            'Saving Earth',
-            'Mirelexia',
-            'The Black Fleet',
-            'The Kethri',
-            'Shal, the Deritonians & the Drakhans',
-            'The Vionites & Daria',
-            'The Honnehari',
-            'The Final Showdown'
+            ['Saving Earth', null],
+            ['Mirelexia', 20],
+            ['The Black Fleet', 30],
+            ['The Kethri', 20],
+            ['Shal, the Deritonians & the Drakhans', 10],
+            ['The Vionites & Daria', 10],
+            ['The Honnehari', 10],
+            ['The Final Showdown', 0]
         ];
-        html += '<div class="sect-title">Story Acts &mdash; Roadmap</div>';
-        html += ACTS.map((t, i) =>
-            row('ACT ' + (i + 1), esc(t), i === 0 ? pct : 0, true, false)).join('');
+        html += '<div class="sect-title">Story Acts &mdash; Roadmap <span style="float:right;color:#666;text-transform:none;letter-spacing:0">acts 2+ are estimates &mdash; not counted in the overall ring</span></div>';
+        html += ACTS.map(([t, p], i) =>
+            row('ACT ' + (i + 1), esc(t), p === null ? pct : p, true, false)).join('');
 
         content.innerHTML = html || '<div class="empty-state">No chapters in the data file.</div>';
 
