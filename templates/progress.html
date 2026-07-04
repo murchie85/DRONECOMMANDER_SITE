@@ -36,6 +36,9 @@
         .ring-label .pct{font-size:2.4rem;font-weight:bold;color:#00ffcc;text-shadow:0 0 12px #00ffcc66}
         .ring-label .sub{font-size:.7rem;color:#8a8a8a;letter-spacing:2px;text-transform:uppercase}
         .generated{color:#666;font-size:.75rem;margin-top:10px;letter-spacing:1px}
+        .milestone-note{color:#9a9a9a;font-style:italic;font-size:.85rem;max-width:600px;
+                        text-align:center;margin:14px auto 0;line-height:1.55}
+        .milestone-note strong{color:#00ffcc;font-style:normal}
 
         /* chapter rows */
         .sect-title{color:#00ffcc;letter-spacing:2px;font-size:.85rem;text-transform:uppercase;
@@ -54,6 +57,9 @@
         .ch-pct{min-width:46px;text-align:right;font-size:.85rem;color:#00ffcc}
         .ch-row.future .ch-pct{color:#b98aff}
         .done .ch-pct::after{content:" ✔"}
+        .ch-row.nc{opacity:.55;border-left-color:#ff6b6b88}
+        .ch-row.nc .ch-label{color:#ff6b6b;background:#1f1010;border-color:#ff6b6b44}
+        .ch-row.nc .ch-pct{color:#ff6b6b}
 
         .empty-state{text-align:center;color:#8a8a8a;padding:60px 0}
         @media (max-width:640px){
@@ -91,6 +97,7 @@
                 </div>
             </div>
             <div class="generated" id="generated"></div>
+            <div class="milestone-note">This is progress towards the <strong>first milestone</strong>. Progress is exponential and I expect to reach 100% within <strong>6 weeks</strong>. If it takes more than 12 weeks, I will poll patrons on whether this should become the <strong>Part&nbsp;1</strong> Drone Commander release.</div>
         </div>
 
         <div id="content"><div class="empty-state">Loading progress…</div></div>
@@ -122,12 +129,12 @@
         if (data.generated)
             document.getElementById('generated').textContent = 'last updated ' + data.generated;
 
-        const row = (label, title, p, future) =>
-            '<div class="ch-row' + (future ? ' future' : '') + (p >= 100 ? ' done' : '') + '">' +
-              '<div class="ch-label">' + label + '</div>' +
+        const row = (label, title, p, future, nc) =>
+            '<div class="ch-row' + (future ? ' future' : '') + (nc ? ' nc' : (p >= 100 ? ' done' : '')) + '">' +
+              '<div class="ch-label">' + (nc ? 'N/C' : label) + '</div>' +
               '<div class="ch-title">' + title + '</div>' +
-              '<div class="ch-bar"><div class="ch-fill" style="width:0%" data-w="' + p + '"></div></div>' +
-              '<div class="ch-pct">' + p + '%</div>' +
+              '<div class="ch-bar"><div class="ch-fill" style="width:0%" data-w="' + (nc ? 0 : p) + '"></div></div>' +
+              '<div class="ch-pct">' + (nc ? '—' : p + '%') + '</div>' +
             '</div>';
 
         const escSpan = document.createElement('span');
@@ -139,14 +146,29 @@
             html += '<div class="sect-title">Chapters</div>';
             html += chapters.map(c =>
                 row('CH ' + esc((c.label || '?').toUpperCase()), esc(c.title),
-                    Math.max(0, Math.min(100, c.pct || 0)), false)).join('');
+                    Math.max(0, Math.min(100, c.pct || 0)), false, !!c.notCounted)).join('');
         }
         const future = data.future || [];
         if (future.length) {
             html += '<div class="sect-title">Future Chapters</div>';
             html += future.map(f =>
-                row('FUTURE', esc(f.title), Math.max(0, Math.min(100, f.pct || 0)), true)).join('');
+                row('FUTURE', esc(f.title), Math.max(0, Math.min(100, f.pct || 0)), true, !!f.notCounted)).join('');
         }
+        // story acts — fixed roadmap (see /compendium#story-roadmap); Act 1 tracks the overall milestone
+        const ACTS = [
+            'Saving Earth',
+            'Mirelexia',
+            'The Black Fleet',
+            'The Kethri',
+            'Shal, the Deritonians & the Drakhans',
+            'The Vionites & Daria',
+            'The Honnehari',
+            'The Final Showdown'
+        ];
+        html += '<div class="sect-title">Story Acts &mdash; Roadmap</div>';
+        html += ACTS.map((t, i) =>
+            row('ACT ' + (i + 1), esc(t), i === 0 ? pct : 0, true, false)).join('');
+
         content.innerHTML = html || '<div class="empty-state">No chapters in the data file.</div>';
 
         // animate the bars in
