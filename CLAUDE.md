@@ -51,6 +51,7 @@ assets/
 | `/api/bugs`          | GET    | List all bugs (desc)     |
 | `/api/bugs`          | POST   | Submit a bug (JSON body) |
 | `/api/bugs/<int:id>` | DELETE | Delete a bug by ID       |
+| `/api/waitlist`      | POST   | Map editor waitlist signup — forwards to a Google Sheet via a hidden Google Form (see README "Waitlist" section; config via `WAITLIST_*` env vars on Render) |
 
 ## Hosting & Deployment
 - **Domain:** `dronecommander.gg` — registered via **Porkbun** (Feb 2026, $51.80)
