@@ -140,6 +140,91 @@
             border: 1px solid #ffcc00;
             color: #ffcc00;
         }
+
+        /* Waitlist */
+        .waitlist-section {
+            max-width: 640px;
+            margin: 0 auto 50px;
+            padding: 36px 30px;
+            text-align: center;
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.25);
+            border-radius: 8px;
+        }
+        .waitlist-section h2 {
+            color: #00ffcc;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(0,255,204,0.5);
+            margin-bottom: 8px;
+        }
+        .waitlist-section .waitlist-subtitle {
+            color: #ffcc00;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .waitlist-section .waitlist-desc {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 26px;
+        }
+        .waitlist-form input {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,255,204,0.3);
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+        }
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0,255,204,0.3);
+        }
+        .waitlist-form button {
+            background: transparent;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 10px 30px;
+            border-radius: 4px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .waitlist-form button:hover:not(:disabled) {
+            background: rgba(0,255,204,0.12);
+            box-shadow: 0 0 15px rgba(0,255,204,0.4);
+        }
+        .waitlist-form button:disabled { opacity: 0.5; cursor: wait; }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #0a0a0a;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            padding: 14px 28px;
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(0,255,204,0.4);
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 100;
+        }
+        .toast-msg.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast-msg.error { border-color: #ff5555; color: #ff5555; box-shadow: 0 0 20px rgba(255,85,85,0.4); }
     </style>
 </head>
 <body>
@@ -159,6 +244,27 @@
         <h1>Community Tools</h1>
         <p class="tagline">Report bugs, upload content, and help shape Drone Commander</p>
     </div>
+
+    <!-- Waitlist -->
+    <div class="content-section" style="padding-bottom: 0;">
+        <div class="waitlist-section">
+            <h2>Wait List</h2>
+            <div class="waitlist-subtitle">Prototype - Map Editor</div>
+            <p class="waitlist-desc">
+                Please note, this will be the buggiest version, it may not work on your machine.
+                It's not yet the user testing phase, just an initial try to see who it works for,
+                and a chance for you to build, create your maps and upload them.
+            </p>
+            <form class="waitlist-form" id="waitlist-form">
+                <input type="text" id="wl-name" placeholder="Name" maxlength="100" required>
+                <input type="text" id="wl-patreon" placeholder="Patreon ID" maxlength="100" required>
+                <!-- future fields (OS, email, etc.) go here -->
+                <button type="submit" id="wl-submit">Join Waitlist</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-msg" id="toast"></div>
 
     <!-- Tools Grid -->
     <div class="content-section">
@@ -190,5 +296,45 @@
     <div style="text-align:center; padding: 40px 20px 30px; border-top: 1px solid rgba(0,255,204,0.15); color: #555; font-size: 0.8rem;">
         <a href="/" style="color: #00ffcc; text-decoration: none;">&#9664; Return to Command Center</a>
     </div>
+
+    <script>
+        const toast = document.getElementById('toast');
+        let toastTimer;
+        function showToast(message, isError) {
+            clearTimeout(toastTimer);
+            toast.textContent = message;
+            toast.classList.toggle('error', !!isError);
+            toast.classList.add('show');
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('wl-name').value.trim();
+            const patreonId = document.getElementById('wl-patreon').value.trim();
+            if (!name || !patreonId) return;
+
+            const btn = document.getElementById('wl-submit');
+            btn.disabled = true;
+            try {
+                const res = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, patreon_id: patreonId })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showToast(data.message);
+                    e.target.reset();
+                } else {
+                    showToast(data.error || 'Submission failed. Try again later.', true);
+                }
+            } catch (err) {
+                showToast('Submission failed. Try again later.', true);
+            } finally {
+                btn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>

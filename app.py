@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask, render_template, request, jsonify, Response, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -192,6 +193,44 @@ def board_reply(category, thread_id):
     db.session.add(reply)
     db.session.commit()
     return redirect(url_for('board_thread', category=category, thread_id=thread_id))
+
+# WAITLIST
+# Entries are stored in Google Sheets via one of two backends (checked in order):
+#  1. Google Form (no auth needed): set WAITLIST_FORM_URL to the form's
+#     .../formResponse URL, plus WAITLIST_ENTRY_NAME / WAITLIST_ENTRY_PATREON
+#     to the entry.NNNN field ids from the form's pre-filled link.
+#  2. Apps Script web app: set WAITLIST_WEBHOOK_URL to the /exec URL.
+# None set = waitlist disabled.
+WAITLIST_FORM_URL = os.environ.get('WAITLIST_FORM_URL', '')
+WAITLIST_ENTRY_NAME = os.environ.get('WAITLIST_ENTRY_NAME', '')
+WAITLIST_ENTRY_PATREON = os.environ.get('WAITLIST_ENTRY_PATREON', '')
+WAITLIST_WEBHOOK_URL = os.environ.get('WAITLIST_WEBHOOK_URL', '')
+
+@app.route('/api/waitlist', methods=['POST'])
+def add_waitlist():
+    data = request.json or {}
+    name = (data.get('name') or '').strip()[:100]
+    patreon_id = (data.get('patreon_id') or '').strip()[:100]
+    if not name or not patreon_id:
+        return jsonify({'error': 'Name and Patreon ID are required.'}), 400
+    try:
+        if WAITLIST_FORM_URL and WAITLIST_ENTRY_NAME and WAITLIST_ENTRY_PATREON:
+            resp = requests.post(WAITLIST_FORM_URL, data={
+                WAITLIST_ENTRY_NAME: name,
+                WAITLIST_ENTRY_PATREON: patreon_id,
+            }, timeout=10)
+        elif WAITLIST_WEBHOOK_URL:
+            resp = requests.post(WAITLIST_WEBHOOK_URL, json={
+                'name': name,
+                'patreon_id': patreon_id,
+                'submitted_at': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+            }, timeout=10)
+        else:
+            return jsonify({'error': 'Waitlist is not open yet. Check back soon.'}), 503
+        resp.raise_for_status()
+    except requests.RequestException:
+        return jsonify({'error': 'Could not save your entry. Try again later.'}), 502
+    return jsonify({'message': f'Submitted for Patreon ID {patreon_id}'}), 201
 
 # API
 @app.route('/api/bugs', methods=['GET'])
