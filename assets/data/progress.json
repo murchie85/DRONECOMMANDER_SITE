@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-04 19:24",
-  "overallPct": 47,
+  "generated": "2026-07-18 12:40",
+  "overallPct": 51,
   "chapters": [
     {
       "label": "1",
@@ -10,7 +10,7 @@
     {
       "label": "2",
       "title": "Day 2 \u2014 Welcome to the Fleet (NOT YET A SCENE \u2014 see priority queue)",
-      "pct": 80
+      "pct": 50
     },
     {
       "label": "3",
@@ -25,62 +25,62 @@
     {
       "label": "5",
       "title": "Day 5 \u2014 Floramel",
-      "pct": 70
+      "pct": 90
     },
     {
       "label": "6",
       "title": "Day 6 / 6b / 6c \u2014 Graduation (Gelan's Trials)",
-      "pct": 50
+      "pct": 60
     },
     {
       "label": "7",
       "title": "Day 7 \u2014 Erika & the Temple",
-      "pct": 60
+      "pct": 80
     },
     {
       "label": "8",
       "title": "Day 8 \u2014 Tiff & Zera",
-      "pct": 10
+      "pct": 20
     },
     {
       "label": "10",
       "title": "Day 10 \u2014 Drunmuire \u2b50 REFERENCE IMPLEMENTATION",
-      "pct": 60
+      "pct": 70
     },
     {
       "label": "10b",
       "title": "Day 10b \u2014 Gyles Caps standalone",
-      "pct": 50
+      "pct": 80
     },
     {
       "label": "11",
       "title": "Day 11 \u2014 Albion's Anchor",
-      "pct": 10
+      "pct": 20
     },
     {
       "label": "12",
       "title": "Day 12 \u2014 Neph's Invasion",
-      "pct": 60
+      "pct": 70
     },
     {
       "label": "13",
       "title": "Day 13 \u2014 Kaelix",
-      "pct": 30
+      "pct": 40
     },
     {
       "label": "16",
       "title": "Day 16 \u2014 Breakers / Starlight Extraction",
-      "pct": 90
+      "pct": 100
     },
     {
       "label": "16b",
       "title": "Day 16b \u2014 Sovereign Tide / Astana",
-      "pct": 50
+      "pct": 40
     },
     {
       "label": "17",
       "title": "Day 17 \u2014 Special Mission Group",
-      "pct": 30
+      "pct": 10
     },
     {
       "label": "18",
