@@ -161,6 +161,20 @@
   .erika-bg .kicker-bar{background:rgba(22,19,15,.92);}
   .folio .pg{font-family:var(--cond); font-weight:bold; font-size:13px; color:var(--red);}
 
+  .intel{background:#0d0a10; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18);
+    padding:14px 16px 16px; margin-top:18px;}
+  .intel .intel-head{display:flex; align-items:baseline; gap:10px; margin-bottom:12px;}
+  .intel .intel-head h4{font-family:var(--display); font-size:26px; color:#fff; margin:0;
+    text-transform:uppercase; line-height:.9;}
+  .intel .intel-head .tag{background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:11px; text-transform:uppercase; letter-spacing:.08em; padding:3px 8px;}
+  .intel-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+  .intel-grid figure{margin:0;}
+  .intel-grid img{width:100%; height:180px; object-fit:contain; background:#000;
+    image-rendering:pixelated; border:1px solid #2c2436;}
+  .intel-grid figcaption{font-family:var(--mono); font-size:10px; color:var(--cyan);
+    margin-top:5px; line-height:1.35;}
+  .intel-grid figcaption b{color:var(--yellow);}
   .cheat{font-family:var(--mono); font-size:12px; background:var(--ink); color:var(--cyan);
     padding:12px 14px; line-height:1.6; border-radius:2px;}
   .cheat b{color:var(--yellow);}
@@ -174,6 +188,7 @@
   @media (max-width:680px){
     .cols{column-count:1;}
     .grid2,.grid2r,.grid-half{grid-template-columns:1fr;}
+    .intel-grid{grid-template-columns:1fr 1fr;}
     .cover{min-height:560px;}
     .cover-lines{width:60%;}
     .starburst{display:none;}
@@ -349,6 +364,31 @@
         <p>You can't hand that to an AI — live combat has too many unknowns. So the job is split: through her <strong>Neural Tether</strong>, an implant fitted in childhood, Kira issues compressed invocations that each unpack into a whole suite of manoeuvres. <em>The intuition is hers; the maths is the machine's.</em></p>
         <p>She drills the invocations in battle sims until an ice beam against a fire enemy is pure reflex. Operators once mocked battle-techs for muttering mid-fight like they were casting spells — the name stuck: <strong>Algo Chants</strong>.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="intel">
+    <div class="intel-head">
+      <span class="tag">Photo intel</span>
+      <h4>Recovered from inside the Harbinger</h4>
+    </div>
+    <div class="intel-grid">
+      <figure>
+        <img src="/assets/img/magazine1/fountain.png" alt="Pixel-art skull fountain pouring glowing liquid into a vat">
+        <figcaption><b>&gt; THE FOUNTAIN</b> — whatever the skull is pumping into that vat, don't drink it.</figcaption>
+      </figure>
+      <figure>
+        <img src="/assets/img/magazine1/doomsphere.png" alt="Pixel-art purple sphere console mapping star systems">
+        <figcaption><b>&gt; DOOMSPHERE</b> — a planet-killer's targeting heart, star systems queued on the glass.</figcaption>
+      </figure>
+      <figure>
+        <img src="/assets/img/magazine1/captured.png" alt="Pixel-art figure suspended in a pink stasis tube">
+        <figcaption><b>&gt; CAPTURED</b> — one of ours, shelved in stasis. Rescue targets confirmed.</figcaption>
+      </figure>
+      <figure>
+        <img src="/assets/img/magazine1/prisoners.png" alt="Pixel-art freed prisoners walking away from a purple crystal">
+        <figcaption><b>&gt; FREED</b> — prisoners walk out of the crystal hold. This is why you run the mission.</figcaption>
+      </figure>
     </div>
   </div>
 
