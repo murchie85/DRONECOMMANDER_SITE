@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Commander Monthly — Issue 01</title>
+    <meta name="description" content="A 4-page retro games magazine built from the Drone Commander dev feed — news, features, lore and community art, August 2026 issue.">
+    <meta property="og:title" content="Drone Commander Monthly — Issue 01">
+    <meta property="og:description" content="A 4-page retro games magazine built from the Drone Commander dev feed — news, features, lore and community art, August 2026 issue.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/mag/kira_cover.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Drone Commander Monthly — Issue 01">
+    <meta name="twitter:description" content="A 4-page retro games magazine built from the Drone Commander dev feed — news, features, lore and community art, August 2026 issue.">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/mag/kira_cover.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+<style>
+  :root{
+    --paper:#f3efe4; --paper-dark:#e9e3d2; --ink:#16130f; --ink-soft:#3a352c;
+    --red:#d6202b; --red-dark:#a8141d; --cyan:#00a99b; --cyan-dark:#007c72;
+    --yellow:#ffcb05; --desk:#262320;
+    --display:'Haettenschweiler','Impact','Arial Narrow',sans-serif;
+    --cond:'Arial Narrow','Helvetica Neue',Arial,sans-serif;
+    --body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'Courier New',monospace;
+  }
+  html{background:var(--desk);}
+  body{
+    background:var(--desk) radial-gradient(ellipse at 50% 0%, #35312c 0%, var(--desk) 70%);
+    color:var(--ink); font-family:var(--body); margin:0; padding:34px 12px 60px;
+  }
+  .rack{max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:46px;}
+  .page{
+    background:var(--paper); box-shadow:0 18px 50px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.4);
+    position:relative; overflow:hidden; border-radius:2px;
+  }
+  .page::after{ /* paper grain */
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 3px),
+                     repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 4px);
+    background-size:100% 3px, 4px 100%;
+  }
+  .page img{display:block; max-width:100%;}
+
+  /* ---------- COVER ---------- */
+  .cover{padding:0; aspect-ratio:210/272; min-height:640px; display:flex; flex-direction:column; background:#0d0b09;}
+  .cover-art{
+    position:absolute; inset:0;
+    background-image:url('/assets/img/mag/kira_cover.jpg');
+    background-size:cover; background-position:32% 20%;
+  }
+  .cover-art::after{content:''; position:absolute; inset:0;
+    background:linear-gradient(105deg, rgba(10,8,6,.88) 0%, rgba(10,8,6,.55) 30%, rgba(10,8,6,0) 55%),
+               linear-gradient(0deg, rgba(10,8,6,.85) 0%, rgba(10,8,6,0) 30%);}
+  .cover-inner{position:relative; z-index:2; display:flex; flex-direction:column; height:100%;}
+  .masthead{padding:20px 26px 6px; display:flex; align-items:baseline; gap:6px; line-height:.82;}
+  .masthead .m1{font-family:var(--display); font-size:clamp(52px,9.5vw,92px); color:var(--red);
+    letter-spacing:1px; text-transform:uppercase; text-shadow:2px 2px 0 rgba(0,0,0,.6);}
+  .masthead .m2{font-family:var(--display); font-size:clamp(52px,9.5vw,92px); color:#fff;
+    letter-spacing:1px; text-transform:uppercase; text-shadow:2px 2px 0 rgba(0,0,0,.6);}
+  .tagline{padding:2px 28px 0; font-family:var(--mono); font-size:12px; color:var(--cyan);
+    letter-spacing:.14em; text-transform:uppercase;}
+  .issue-tab{position:absolute; top:22px; right:22px; background:var(--red); color:#fff;
+    font-family:var(--cond); font-weight:bold; font-size:13px; letter-spacing:.06em;
+    padding:6px 10px; text-transform:uppercase; box-shadow:2px 2px 0 rgba(0,0,0,.5); z-index:3;}
+  .newsflash{margin:14px 0 0 26px; align-self:flex-start; background:var(--yellow); color:var(--ink);
+    font-family:var(--cond); font-weight:bold; font-size:14px; padding:5px 12px; text-transform:uppercase;
+    transform:rotate(-2deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .newsflash b{color:var(--red);}
+  .cover-lines{padding:16px 26px; width:min(46%,300px); display:flex; flex-direction:column; gap:14px;}
+  .cl h3{margin:0; font-family:var(--display); font-size:29px; line-height:.92; color:#fff;
+    text-transform:uppercase; letter-spacing:.5px; text-shadow:2px 2px 0 rgba(0,0,0,.7); text-wrap:balance;}
+  .cl .kick{font-family:var(--cond); font-weight:bold; font-size:12.5px; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.08em; display:block; margin-bottom:2px; text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cl p{margin:3px 0 0; font-family:var(--cond); font-weight:bold; font-size:13px; line-height:1.25; color:#e8e2d4;
+    text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cover-main{margin-top:auto; padding:0 26px 18px; position:relative; z-index:2;}
+  .cover-main .kira{font-family:var(--display); font-size:clamp(64px,13vw,120px); line-height:.85;
+    color:#fff; text-transform:uppercase; text-shadow:3px 3px 0 var(--red), 6px 6px 14px rgba(0,0,0,.8); margin:0;}
+  .cover-main .sub{font-family:var(--cond); font-weight:bold; font-size:16px; color:#fff; margin:8px 0 0;
+    max-width:520px; line-height:1.25; text-shadow:1px 1px 0 rgba(0,0,0,.9);}
+  .cover-main .sub b{color:var(--yellow);}
+  .starburst{position:absolute; right:20px; bottom:120px; width:130px; height:130px; z-index:3;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--yellow); color:var(--ink); font-family:var(--cond); font-weight:bold; font-size:13.5px;
+    line-height:1.1; padding:16px; transform:rotate(8deg); text-transform:uppercase;
+    clip-path:polygon(50% 0%,61% 12%,76% 6%,80% 22%,96% 24%,90% 39%,100% 50%,90% 61%,96% 76%,80% 78%,76% 94%,61% 88%,50% 100%,39% 88%,24% 94%,20% 78%,4% 76%,10% 61%,0% 50%,10% 39%,4% 24%,20% 22%,24% 6%,39% 12%);}
+  .cover-foot{position:relative; z-index:2; display:flex; align-items:flex-end; justify-content:space-between;
+    padding:0 26px 20px; color:#cfc8b8; font-family:var(--mono); font-size:11px;}
+  .barcode{width:74px; height:34px; background:repeating-linear-gradient(90deg,#fff 0 2px,#000 2px 3px,#fff 3px 6px,#000 6px 9px,#fff 9px 10px,#000 10px 13px);
+    border:4px solid #fff; box-sizing:border-box;}
+
+  /* ---------- INNER PAGES ---------- */
+  .inner{padding:26px 30px 60px;}
+  .strap{display:flex; align-items:center; justify-content:space-between; border-bottom:5px solid var(--ink);
+    padding-bottom:8px; margin-bottom:4px;}
+  .strap .sect{font-family:var(--display); font-size:40px; text-transform:uppercase; color:var(--ink); line-height:.9;}
+  .strap .sect em{color:var(--red); font-style:normal;}
+  .strap .meta{font-family:var(--mono); font-size:11px; color:var(--ink-soft); text-align:right; letter-spacing:.08em;}
+  .kicker-bar{background:var(--ink); color:var(--paper); font-family:var(--cond); font-weight:bold; font-size:12px;
+    letter-spacing:.14em; text-transform:uppercase; padding:4px 10px; margin-bottom:18px;}
+  .kicker-bar b{color:var(--yellow);}
+
+  h2.head{font-family:var(--display); font-size:44px; line-height:.9; margin:6px 0 4px; text-transform:uppercase;
+    color:var(--ink); text-wrap:balance;}
+  h2.head .red{color:var(--red);}
+  .standfirst{font-family:var(--cond); font-weight:bold; font-size:15.5px; line-height:1.3; color:var(--ink-soft); margin:6px 0 12px;}
+  .byline{font-family:var(--mono); font-size:11px; color:var(--red-dark); text-transform:uppercase;
+    letter-spacing:.1em; margin-bottom:10px;}
+  .cols{column-count:2; column-gap:22px; column-rule:1px solid #c9c1ac; font-size:13.5px; line-height:1.45;}
+  .cols p{margin:0 0 9px;}
+  .cols p:first-of-type::first-letter{font-family:var(--display); font-size:44px; float:left; line-height:.8;
+    padding:4px 6px 0 0; color:var(--red);}
+  .dropless .cols p:first-of-type::first-letter{all:unset;}
+  strong{color:var(--ink);}
+  .fig{margin:0 0 12px;}
+  .fig img{width:100%; border:2px solid var(--ink); box-sizing:border-box;}
+  .fig figcaption{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); background:var(--paper-dark);
+    border:2px solid var(--ink); border-top:0; padding:5px 8px; letter-spacing:.02em;}
+  .fig figcaption b{color:var(--red);}
+
+  .grid2{display:grid; grid-template-columns:1.35fr 1fr; gap:20px;}
+  .grid2r{display:grid; grid-template-columns:1fr 1.35fr; gap:20px;}
+  .grid-half{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+
+  .box{border:3px solid var(--ink); background:#fff; padding:14px 16px; box-shadow:5px 5px 0 rgba(22,19,15,.18); break-inside:avoid;}
+  .box.cyan{background:#e2f4f1; border-color:var(--cyan-dark);}
+  .box.yellow{background:#fdf3cd; border-color:#b78e00;}
+  .box h4{font-family:var(--display); font-size:24px; margin:0 0 8px; text-transform:uppercase; line-height:.9;}
+  .box.cyan h4{color:var(--cyan-dark);}
+  .box p{font-size:12.8px; line-height:1.42; margin:0 0 8px;}
+  .box ul{margin:0; padding-left:16px; font-size:12.8px; line-height:1.5;}
+  .box .tag{display:inline-block; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:11px; text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; margin-bottom:8px;}
+  .box.cyan .tag{background:var(--cyan-dark);}
+  .box.yellow .tag{background:#b78e00;}
+
+  .shorts{display:flex; flex-direction:column; gap:12px;}
+  .short{border-top:3px solid var(--red); padding-top:6px;}
+  .short h5{font-family:var(--cond); font-weight:bold; font-size:14.5px; text-transform:uppercase; margin:0 0 3px; letter-spacing:.02em;}
+  .short p{font-size:12.3px; line-height:1.4; margin:0; color:var(--ink-soft);}
+  .short .src{font-family:var(--mono); font-size:10px; color:#8a8271; display:block; margin-top:3px;}
+
+  .folio{position:absolute; bottom:0; left:0; right:0; display:flex; justify-content:space-between;
+    padding:8px 30px; font-family:var(--mono); font-size:10.5px; color:var(--ink-soft);
+    border-top:1px solid #c9c1ac; background:var(--paper);}
+
+  /* page 2: Erika art wash behind everything */
+  .erika-bg{
+    background:
+      linear-gradient(rgba(243,239,228,.55), rgba(243,239,228,.42) 45%, rgba(243,239,228,.55)),
+      url('/assets/img/mag/erika_bg.jpg') center 38%/cover no-repeat, var(--paper);
+  }
+  .erika-bg .folio{background:rgba(243,239,228,.85);}
+  .erika-bg .credit{position:absolute; top:6px; right:10px; font-family:var(--mono); font-size:9.5px;
+    color:#7c2f28; letter-spacing:.08em; text-transform:uppercase; text-shadow:0 0 4px rgba(243,239,228,.9);}
+  .erika-bg .strap{border-bottom-color:var(--red-dark);}
+  .erika-bg .cols, .erika-bg .standfirst, .erika-bg .head, .erika-bg .byline{
+    text-shadow:0 0 5px rgba(243,239,228,.95), 0 0 12px rgba(243,239,228,.85), 0 0 2px rgba(243,239,228,1);}
+  .erika-bg .short{background:rgba(243,239,228,.72); padding:6px 8px 8px; border-radius:2px;}
+  .erika-bg .kicker-bar{background:rgba(22,19,15,.92);}
+  .folio .pg{font-family:var(--cond); font-weight:bold; font-size:13px; color:var(--red);}
+
+  .cheat{font-family:var(--mono); font-size:12px; background:var(--ink); color:var(--cyan);
+    padding:12px 14px; line-height:1.6; border-radius:2px;}
+  .cheat b{color:var(--yellow);}
+  .subscribe{display:flex; gap:14px; align-items:center; background:var(--red); color:#fff; padding:14px 18px;
+    margin-top:18px; box-shadow:5px 5px 0 rgba(22,19,15,.18);}
+  .subscribe .big{font-family:var(--display); font-size:30px; text-transform:uppercase; line-height:.9;}
+  .subscribe p{margin:0; font-family:var(--cond); font-weight:bold; font-size:13.5px; line-height:1.35;}
+  .subscribe a{color:var(--yellow); text-decoration:none;}
+  a{color:var(--cyan-dark);}
+
+  @media (max-width:680px){
+    .cols{column-count:1;}
+    .grid2,.grid2r,.grid-half{grid-template-columns:1fr;}
+    .cover{min-height:560px;}
+    .cover-lines{width:60%;}
+    .starburst{display:none;}
+    .strap .sect{font-size:30px;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .starburst{animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:rotate(8deg) scale(1);}50%{transform:rotate(8deg) scale(1.05);}}
+  }
+</style>
+</head>
+<body>
+
+<div class="rack">
+
+<!-- ==================== PAGE 1 : COVER ==================== -->
+<section class="page cover">
+  <div class="cover-art"></div>
+  <div class="issue-tab">Issue 01 · Aug 2026</div>
+  <div class="cover-inner">
+    <div class="masthead"><span class="m1">Drone</span><span class="m2">Commander</span></div>
+    <div class="tagline">// The smarter read for the abducted · monthly</div>
+    <div class="newsflash"><b>News flash!</b> First builds ship — Mac &amp; Windows · p2</div>
+
+    <div class="cover-lines">
+      <div class="cl">
+        <span class="kick">Milestone hit</span>
+        <h3>Ship it!</h3>
+        <p>Shipping prep is DONE — playable demos now carve out in hours, not weeks</p>
+      </div>
+      <div class="cl">
+        <span class="kick">First details</span>
+        <h3>Harbinger: Final Run</h3>
+        <p>Sabotage a planet-killer from the inside — C4 the Sentinel Nurseries, outrun slowed time</p>
+      </div>
+      <div class="cl">
+        <span class="kick">You decide</span>
+        <h3>Rexalia</h3>
+        <p>Vote on the 7ft 7 Voidblade Sentinel's new look</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Preview overload</span>
+        <p>Kaelix Day 13 · Save Points · Jump mechanics · Clockwork Knight · Albion's Anchor · Snow on Earth · NPC persistence</p>
+      </div>
+    </div>
+
+    <div class="starburst">Steam page live — wishlist now!</div>
+
+    <div class="cover-main">
+      <p class="kira">Kira</p>
+      <p class="sub"><b>ALGO CHANTS!</b> How the Freexyl's sharpest mind shapes raw plasma with a whisper — full combat dossier inside</p>
+    </div>
+    <div class="cover-foot">
+      <span>dronecommander.gg</span>
+      <span style="display:flex; align-items:flex-end; gap:10px;">£3.49 · free for patrons<span class="barcode"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGE 2 : NEWS ==================== -->
+<section class="page inner erika-bg">
+  <div class="credit">BG: "Erika's warm welcome home" · patron exclusive</div>
+  <div class="strap">
+    <div class="sect">Command <em>Briefing</em></div>
+    <div class="meta">TRANSMISSION 08.2026<br>SOURCE: PATREON DEV FEED</div>
+  </div>
+  <div class="kicker-bar">All the intel from the front line — <b>every word from real dev updates</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head">There it is: <span class="red">it ships</span></h2>
+      <p class="byline">Posted 7 July · Milestone report</p>
+      <p class="standfirst">The hardest unglamorous problem in solo dev — turning a two-year project into a shippable executable — is officially solved.</p>
+      <div class="cols">
+        <p>Remember when the dev said shipping prep could take anything from one week to six? <strong>That is now done.</strong> The Mac build compiled first, with Windows following days later — and the community actually caught the Windows build working <strong>live on stream</strong>.</p>
+        <p>What does it mean in practice? When it's time to share, a playable demo can be carved out <strong>in hours or days, not weeks</strong>. The stated focus stays on the first big milestone — 25 hours of continuous gameplay, full Act 1 up to Saving Earth — before a one-hour demo is cut for the public. Small test builds may go to Patreon volunteers in the meantime.</p>
+        <p>And the release plan isn't one demo, it's a <strong>Release Factory</strong>: frequent Alpha cuts for testers, frequent playable segments for top fans, and one or two polished demos for casuals.</p>
+      </div>
+      <figure class="fig" style="margin-top:12px;">
+        <img src="/assets/img/mag/ship_builds.jpg" alt="Drone Commander Build 1.0.0 title screen with developer menu">
+        <figcaption><b>BUILD 1.0.0</b> — the first shippable build's title screen, dev menu unlocked: Map Maker, RPG Planner, Cutscene Builder, RTS.</figcaption>
+      </figure>
+    </div>
+
+    <div class="shorts">
+      <div class="short" style="border-color:var(--cyan-dark);">
+        <h5 style="color:var(--cyan-dark);">Quick saves</h5>
+      </div>
+      <div class="short">
+        <h5>New VA signing</h5>
+        <p>Rainer Walter joins the cast — voicing Elanor Draycott, and lined up for Myriel, the Chronicler Deritonian.</p>
+        <span class="src">// 8 June</span>
+      </div>
+      <div class="short">
+        <h5>Klepacki on the trailer</h5>
+        <p>The showcase trailer debuts the first commissioned Frank Klepacki track. "Lots of boom boom, kiss kiss, bang bang."</p>
+        <span class="src">// 19 May</span>
+      </div>
+      <div class="short">
+        <h5>Design a level, leave your mark</h5>
+        <p>A shared level-design project is open: propose layouts, ambush points and dialogue beats — the group vote decides what ships in-game.</p>
+        <span class="src">// 12 May</span>
+      </div>
+      <div class="short">
+        <h5>Steam page survives review</h5>
+        <p>Two hours of form-wrangling and $100 later, the Steam page cleared Valve's review — wishlists are open and count toward launch visibility.</p>
+        <span class="src">// 14 May → 10 June</span>
+      </div>
+      <div class="short">
+        <h5>Catch it live</h5>
+        <p>Level building, plot writing and alpha dev streamed regularly at twitch.tv/murchie85.</p>
+        <span class="src">// ongoing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2r" style="margin-top:20px;">
+    <figure class="fig">
+      <img src="/assets/img/mag/dev_menu.jpg" alt="Drone Commander debug menu with fleet officer">
+      <figcaption><b>DEV MENU</b> — the in-game development tracker opens its own web server to log real-time progress.</figcaption>
+    </figure>
+    <div class="dropless">
+      <h2 class="head" style="font-size:32px;">Progress tracker goes <span class="red">public</span></h2>
+      <p class="byline">Posted 4 July · dronecommander.gg/progress</p>
+      <div class="cols" style="column-count:1;">
+        <p>A live tracker now shows progress toward the 25-hour Act 1 milestone — fed by the developer's own in-game tracking tools, chapter by chapter, against a master plan written two years ago.</p>
+        <p>The promise attached to it has teeth: <strong>if the milestone isn't hit within 12 weeks, all patrons vote</strong> on whether Part 1 releases as a full Drone Commander 1 game. Progress is compounding — the dev expects 100% within six weeks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box yellow" style="margin-top:20px;">
+    <span class="tag">Watch it now</span>
+    <h4 style="font-size:30px;">The 2.5-hour showcase</h4>
+    <div class="grid2" style="gap:16px;">
+      <p style="font-size:13.5px;">Recorded 9 June and clocking in at a hefty two and a half hours, this is the full end-to-end
+      playthrough — RPG exploration, RTS battles that carry real story arcs, visual-novel sequences and an end-of-day
+      romance scene. Deliberately <strong>not</strong> a sizzle reel: "an honest play through — not the best bit, not the worst."
+      Four days of 2am finishes went into getting it out the door.</p>
+      <p class="cheat" style="margin:0; font-size:13px; align-self:center;">
+        <b>&gt; PRESS PLAY:</b><br>
+        <a href="https://youtu.be/pt4k9mjy7vg" style="color:var(--cyan); font-weight:bold;">youtu.be/pt4k9mjy7vg</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">02</span><span>AUG 2026</span></div>
+</section>
+
+<!-- ==================== PAGE 3 : FEATURE ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Feature <em>// War Effort</em></div>
+    <div class="meta">FROM THE 16 JULY UPDATE LOGS<br>+ KIRA DOSSIER, 11 JULY</div>
+  </div>
+  <div class="kicker-bar">Exclusive — inside the mission that takes the fight to the planet-killers</div>
+
+  <h2 class="head">Harbinger: <span class="red">Final Run</span></h2>
+  <p class="standfirst">A full mission-based dungeon inside the Drone Fleet's planet-killer. Sabotage critical systems, recover ancient artefacts, rescue prisoners — and cripple the monster from within.</p>
+
+  <div class="grid2">
+    <div class="cols">
+      <p>Biomes that once took a month now fall in days — "I'm knocking out assets daily, some of them are amazing" — and the new pace has pushed the Harbinger mission to the front of the queue. Three mechanics are in active development.</p>
+      <p><strong>Sentinel Nurseries</strong> — arm C4 charges and destroy crystal nurseries before new defenders awaken. <strong>Temporal Chambers</strong> — fight through areas where time slows to a crawl, using short bursts of speed to destroy the temporal emitters. <strong>Radiant Field Generators</strong> — deploy reality anchors just to survive.</p>
+      <p>Around it, the RPG spine keeps thickening: animated <strong>save points</strong> scattered through the world (three animation styles in testing) with autosave at checkpoints, and a proper <strong>jump mechanic</strong> — jump points let you drop one-way off cliffs and time leaps onto moving platforms.</p>
+      <p>Story-side, <strong>Kaelix Day 11</strong> was refactored from the ground up and outlined live on stream — "it feels much better and makes sense given her background" — with a new voice actress waiting to record it.</p>
+    </div>
+    <div>
+      <div class="box cyan">
+        <span class="tag">Combat dossier</span>
+        <h4>Kira's Algo Chants ⚡</h4>
+        <p><strong>Kira Virethorne</strong>, Sekarri Science Fleet officer aboard the Freexyl, fights by shaping raw plasma with nanite swarms in real time.</p>
+        <p>You can't hand that to an AI — live combat has too many unknowns. So the job is split: through her <strong>Neural Tether</strong>, an implant fitted in childhood, Kira issues compressed invocations that each unpack into a whole suite of manoeuvres. <em>The intuition is hers; the maths is the machine's.</em></p>
+        <p>She drills the invocations in battle sims until an ice beam against a fire enemy is pure reflex. Operators once mocked battle-techs for muttering mid-fight like they were casting spells — the name stuck: <strong>Algo Chants</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-half" style="margin-top:18px;">
+    <figure class="fig">
+      <img src="/assets/img/mag/ingame_rts.jpg" alt="In-game screenshot: armed Sekarri delivering an ultimatum above an RTS battlefield">
+      <figcaption><b>IN-GAME</b> — "Lay down your weapons traitor, I promise your males will be spared..." VN dialogue rides directly above the RTS layer.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="/assets/img/mag/kiss_scene.jpg" alt="Animated visual novel kiss scene">
+      <figcaption><b>BOOM BOOM, KISS KISS</b> — end-of-day VN scenes are fully animated; romance arcs close out each showcase day.</figcaption>
+    </figure>
+  </div>
+
+  <div class="cheat" style="margin-top:16px;">
+    <b>&gt; ALSO CONFIRMED IN THE BUILD:</b> save/load complete with defined savepoints + "save toast" prompts · state
+    management refactor — every game moment now boots standalone · NPC persistence · Clockwork Knight boss with
+    environment hazards in Albion's Anchor · dynamic snow that calms when you find shelter · Straker's avatar swaps
+    to combat armour in-fight
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">03</span><span>AUG 2026</span></div>
+</section>
+
+<!-- ==================== PAGE 4 : BACK PAGE ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Transmissions <em>// Lore &amp; Community</em></div>
+    <div class="meta">BACK PAGE<br>ISSUE 01 CLOSES</div>
+  </div>
+  <div class="kicker-bar">Deep lore, reader votes and the art desk — <b>see you next transmission</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:34px;">First look: <span class="red">Kryptosis</span></h2>
+      <p class="byline">Posted 29 July · Lore drop</p>
+      <div class="cols" style="column-count:1;">
+        <p>Of 400 humans abducted at random, <strong>Fel broke protocol</strong> to target one man: Straker. The animated cutscene shows him suspended in a Kryptosis pod — a state in which a living nervous system is slowed, encoded and continuously stabilised against its own neural template.</p>
+        <p>The Sekarri fitted the pods for two to twelve months of holding — long enough to watch how Earth's families reacted to the loss, which they naively thought would soften the news that no one was going home. <strong>They misread human family dynamics. Possibly intentionally.</strong></p>
+        <p>The name plays on <em>crypt</em>, <em>cryptography</em> — the mental engrams are encoded — and <em>-osis</em>, as in hypnosis.</p>
+      </div>
+      <figure class="fig" style="margin-top:10px;">
+        <img src="/assets/img/mag/fel_kryptosis.jpg" alt="Fel bathed in blue light beside the Kryptosis pod">
+        <figcaption><b>CUTSCENE STILL</b> — Fel at the pod. Animated cutscenes run throughout the game.</figcaption>
+      </figure>
+    </div>
+
+    <div>
+      <div class="box yellow">
+        <span class="tag">Reader vote</span>
+        <h4>Dress the Sentinel</h4>
+        <p><strong>Rexalia</strong> — 7ft 7 Voidblade Sentinel of the Aetherialis — shut down the Veyr beacons one by one, erasing every trace of her people before they abandoned the galaxy. She never forgave the order she carried out.</p>
+        <p>Now patrons vote on her extra costume. The 1 August post pulled <strong>135 likes</strong> and counting.</p>
+        <img src="/assets/img/mag/rexalia_concepts.jpg" alt="Rexalia armour concept sheet" style="border:2px solid #b78e00;">
+      </div>
+
+      <div class="box" style="margin-top:16px;">
+        <span class="tag">Art desk</span>
+        <h4>Community corner</h4>
+        <p>Guest art of <strong>Gia</strong> hit 173 likes — the issue's most-liked post — with commissions flowing in from readers sideguy, WBC and That Side Character. Fan art keeps landing in the Discord daily.</p>
+        <img src="/assets/img/mag/security_trio.jpg" alt="Three Sekarri security officers" style="border:2px solid var(--ink);">
+        <p style="font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); margin-top:5px;">LANGARA'S FINEST — the security detail wants a word about your bug reports.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box cyan" style="margin-top:18px;">
+    <span class="tag">Next transmission</span>
+    <h4>In issue 02...</h4>
+    <ul>
+      <li><strong>Neph's future</strong> — the readers voted: badly wounded, but she survives</li>
+      <li><strong>Varya completed</strong> — full reveal of the new character art</li>
+      <li>Fel's sister, Neph's sister and Fel's brother enter production — then it's the Vionites' turn</li>
+      <li>A "very very large amount of new content" teased 1 August — details to come</li>
+    </ul>
+  </div>
+
+  <div class="subscribe">
+    <div class="big">Enlist!</div>
+    <p>Every screenshot, vote and lore drop in this issue came from the free dev feed →
+      <a href="https://www.patreon.com/DroneCommander">patreon.com/DroneCommander</a> ·
+      <a href="https://dronecommander.gg">dronecommander.gg</a> ·
+      <a href="https://murchie85.itch.io/drone-commander">itch.io</a> ·
+      <a href="https://www.twitch.tv/murchie85">twitch.tv/murchie85</a></p>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>AUG 2026</span></div>
+</section>
+
+</div>
+
+</body>
+</html>
