@@ -186,14 +186,30 @@
   a{color:var(--cyan-dark);}
 
   @media (max-width:680px){
-    .cols{column-count:1;}
-    .grid2,.grid2r,.grid-half{grid-template-columns:1fr;}
-    .intel-grid{grid-template-columns:1fr 1fr;}
-    .cover{min-height:560px;}
-    .cover-lines{width:60%;}
-    .starburst{display:none;}
-    .strap .sect{font-size:30px;}
+    body:not(.pageview) .cols{column-count:1;}
+    body:not(.pageview) .grid2, body:not(.pageview) .grid2r, body:not(.pageview) .grid-half{grid-template-columns:1fr;}
+    body:not(.pageview) .intel-grid{grid-template-columns:1fr 1fr;}
+    body:not(.pageview) .cover{min-height:560px;}
+    body:not(.pageview) .cover-lines{width:60%;}
+    body:not(.pageview) .starburst{display:none;}
+    body:not(.pageview) .strap .sect{font-size:30px;}
   }
+
+  /* ---------- PAGE VIEW (mobile flip-through) ---------- */
+  .pv-toggle{position:fixed; right:12px; bottom:12px; z-index:50; background:var(--ink); color:var(--cyan);
+    font-family:var(--mono); font-size:12px; padding:9px 14px; border:1px solid var(--cyan); border-radius:20px;
+    cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.55); letter-spacing:.04em;}
+  body.pageview .pv-toggle{display:none;}
+  .pv-nav{display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:12px; z-index:50;
+    background:var(--ink); border:1px solid var(--cyan); border-radius:24px; padding:5px 8px;
+    align-items:center; gap:6px; color:var(--cyan); font-family:var(--mono); font-size:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.55); white-space:nowrap;}
+  body.pageview .pv-nav{display:flex;}
+  .pv-nav button{background:none; border:0; color:var(--yellow); font-size:17px; cursor:pointer;
+    padding:3px 9px; font-family:var(--mono); line-height:1;}
+  .pv-nav .pv-exit{color:#9a9282; font-size:13px; border-left:1px solid #3a352c;}
+  body.pageview{padding:8px 6px 72px;}
+  body.pageview .rack{margin:0 auto;}
   @media (prefers-reduced-motion: no-preference){
     .starburst{animation:pulse 2.4s ease-in-out infinite;}
     @keyframes pulse{0%,100%{transform:rotate(8deg) scale(1);}50%{transform:rotate(8deg) scale(1.05);}}
@@ -479,6 +495,72 @@
 </section>
 
 </div>
+
+<button class="pv-toggle" id="pvToggle" type="button">&#128196; page view</button>
+<div class="pv-nav">
+  <button id="pvPrev" type="button" aria-label="Previous page">&#9664;</button>
+  <span id="pvLabel">PAGE 1 / 4</span>
+  <button id="pvNext" type="button" aria-label="Next page">&#9654;</button>
+  <button id="pvExit" class="pv-exit" type="button" aria-label="Switch to scrolling view">scroll</button>
+</div>
+
+<script>
+(function () {
+  var DESIGN_W = 880;
+  var pages = [].slice.call(document.querySelectorAll('.page'));
+  var rack = document.querySelector('.rack');
+  var label = document.getElementById('pvLabel');
+  var cur = 0, pv = false;
+
+  function layout() {
+    if (!pv) return;
+    var scale = Math.min((window.innerWidth - 12) / DESIGN_W, 1);
+    pages.forEach(function (p, i) {
+      if (i === cur) {
+        p.style.display = '';
+        p.style.width = DESIGN_W + 'px';
+        p.style.transform = 'scale(' + scale + ')';
+        p.style.transformOrigin = 'top left';
+        p.style.marginBottom = '';
+        var h = p.offsetHeight;
+        p.style.marginBottom = (-h * (1 - scale)) + 'px';
+      } else {
+        p.style.display = 'none';
+      }
+    });
+    rack.style.width = (DESIGN_W * scale) + 'px';
+    rack.style.maxWidth = 'none';
+    label.textContent = 'PAGE ' + (cur + 1) + ' / ' + pages.length;
+  }
+  function enter() { pv = true; document.body.classList.add('pageview'); layout(); window.scrollTo(0, 0); }
+  function exit() {
+    pv = false; document.body.classList.remove('pageview');
+    pages.forEach(function (p) { p.style.display = ''; p.style.transform = ''; p.style.width = ''; p.style.marginBottom = ''; });
+    rack.style.width = ''; rack.style.maxWidth = '';
+  }
+  function go(d) { cur = (cur + d + pages.length) % pages.length; layout(); window.scrollTo(0, 0); }
+
+  document.getElementById('pvToggle').addEventListener('click', enter);
+  document.getElementById('pvExit').addEventListener('click', exit);
+  document.getElementById('pvPrev').addEventListener('click', function () { go(-1); });
+  document.getElementById('pvNext').addEventListener('click', function () { go(1); });
+  window.addEventListener('resize', layout);
+
+  var sx = null, sy = null;
+  window.addEventListener('touchstart', function (e) {
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchend', function (e) {
+    if (sx === null || !pv) { sx = null; return; }
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+    sx = null;
+  }, { passive: true });
+
+  if (window.matchMedia('(max-width: 700px)').matches) enter();
+})();
+</script>
 
 </body>
 </html>
