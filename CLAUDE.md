@@ -27,8 +27,8 @@ templates/
   reporter.html     # Bug reporter form + log table
   todo.html         # Placeholder page for unfinished features
 assets/
-  audio/DCThemeV2.mp3 # Theme music with play/pause toggle
-  img/dcBg.png      # Background image (Fel/Straker artwork)
+  audio/DCThemeV2.mp3 # Theme music (untracked/local-only — not deployed, no template references it)
+  img/dcBg.webp     # Background image (Fel/Straker artwork)
   css/style.css     # Stylesheet (currently minimal, most CSS is inline)
 ```
 
@@ -83,4 +83,6 @@ bash backup.sh    # creates dated zip in parent directory
 - Templates use inline `<style>` blocks rather than external CSS
 - Color scheme: `#00ffcc` glow on dark `#121212` background
 - All pages have SEO meta tags (description, Open Graph, Twitter Card)
+- Images: serve WebP (portraits ≤800px wide, displayed at 280px), `loading="lazy"` on below-fold `<img>`; OG image is `cover.jpg` (JPEG for link-preview compatibility). Keep new art under ~300KB — Render bills bandwidth ($0.15/GB past 5GB/mo on Hobby)
+- Static assets get `Cache-Control: max-age=30d` via `SEND_FILE_MAX_AGE_DEFAULT` — rename the file when art changes
 - `make_project.py` was used to scaffold the project; safe to ignore

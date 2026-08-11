@@ -2,6 +2,7 @@ import os
 import requests
 from flask import Flask, render_template, request, jsonify, Response, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_compress import Compress
 from datetime import datetime
 from markupsafe import escape
 
@@ -13,8 +14,12 @@ if database_url.startswith('postgres://'):
     database_url = database_url.replace('postgres://', 'postgresql://', 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Cache static assets (images/audio) for 30 days in browsers and CDNs —
+# filenames change when art changes, so long max-age is safe.
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 60 * 60 * 24 * 30
 
 db = SQLAlchemy(app)
+Compress(app)
 
 # MODEL
 class Bug(db.Model):
