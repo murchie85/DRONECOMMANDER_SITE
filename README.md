@@ -6,11 +6,45 @@ The official web hub for **Drone Commander**, a sci-fi game blending **Visual No
 
 ---
 
+# 🚨 BANDWIDTH RULES — READ BEFORE ADDING ANY IMAGE OR ASSET 🚨
+
+> **In August 2026 this site got SUSPENDED by Render for blowing through the 5 GB/month free bandwidth cap.** The cause: giant unoptimized PNGs (one character portrait was 8.9 MB at 4800×4800, displayed at 280px). Just ~200 compendium visits burned the whole month's quota. Everything below exists so that never happens again. **Do not undo it.**
+
+## The Iron Rules
+
+1. **Every image must be ≤ ~300 KB.** Use **WebP** (or JPEG for photos/OG images). Never commit a raw PNG export.
+2. **Resize to display size.** Portraits show at 280px wide → save at ~800px max (2–3× retina headroom). Full-width art → 1600px max.
+3. **Lazy-load everything below the fold:** `<img loading="lazy" decoding="async" ...>`. Only above-the-fold heroes load eagerly.
+4. **Never replace an image keeping the same filename** — assets are cached for 30 days (`SEND_FILE_MAX_AGE_DEFAULT` in `app.py`). New art = new filename + updated template reference.
+5. **OG/link-preview image stays JPEG** (`assets/img/cover.jpg`) — WebP breaks some platforms' preview cards.
+6. **Video/audio never gets served from Render.** Embed YouTube; game downloads live on itch.io/Steam.
+
+## The Guardrails (already in place — keep them)
+
+| Guardrail | Where | What it does |
+|-----------|-------|--------------|
+| Pre-commit size gate | `.git/hooks/pre-commit` (local only, **recreate if you re-clone**) | Blocks any commit containing a file > 500 KB. Override only deliberately with `git commit --no-verify` |
+| WebP + right-sizing | `assets/img/` | Aug 2026 pass took the site from 25.3 MB → 2.1 MB of images (Rexalia: 8.9 MB → 80 KB) |
+| Lazy loading | all templates | Visitors only download images they scroll to |
+| 30-day asset caching | `app.py` `SEND_FILE_MAX_AGE_DEFAULT` | Browsers/CDNs stop re-downloading unchanged assets |
+| gzip/brotli HTML | `flask-compress` in `app.py` | Compendium HTML: 357 KB → 95 KB over the wire |
+| Cloudflare (free plan) | DNS: `emerie`/`ethan.ns.cloudflare.com`, domain at Porkbun | Proxies all traffic, caches `/assets/*` at the edge with **unmetered** bandwidth — cached hits never touch Render's meter. SSL mode: Full (strict). **Do NOT enable "Cache Everything"** (would cache HTML and delay content updates) |
+
+## Billing setup (Aug 2026)
+
+- **Render Hobby plan + card on file** — 5 GB/month free, then metered at **$0.15/GB**. There is **no spend cap on Render** — protection comes from the layers above plus the payment card:
+- The card on file is a **Revolut virtual card with a limited balance** — worst case a charge declines and the site suspends again; no scary bill is possible.
+- **Do not upgrade to Pro for bandwidth** — $25/month buys only 20 GB more included (= $3 of overage). Pro is for teams, not bandwidth.
+- Deploys **do not auto-trigger while suspended** — after unsuspending, push a commit (or Manual Deploy in the dashboard) to ship anything pushed during the suspension.
+- Check **Render Dashboard → Billing → Included Usage** occasionally; Render also emails as usage climbs.
+
+---
+
 ## Pages
 
 | Route | Description |
 |-------|-------------|
-| `/` | Landing page — background video, bottom dock nav, audio toggle |
+| `/` | Landing page — background video, bottom dock nav |
 | `/about` | Game overview, genre pillars, screenshots, developer bio, community stats |
 | `/devlog` | Development timeline — Dec 2025 to Feb 2026 |
 | `/latest-update` | Current progress, highlights, and roadmap |
