@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Commander Monthly — Issue 02</title>
+    <meta name="description" content="Issue 02 of the Drone Commander retro games mag — the Breakers go 007, Rexalia's Evening Grove dress, the Sound Desk with composers Ninefold Drift and Evgeny Ryabovol, Nyrissa, and tribute art. September 2026.">
+    <meta property="og:title" content="Drone Commander Monthly — Issue 02">
+    <meta property="og:description" content="Issue 02 of the Drone Commander retro games mag — the Breakers go 007, Rexalia's Evening Grove dress, the Sound Desk with composers Ninefold Drift and Evgeny Ryabovol, Nyrissa, and tribute art. September 2026.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/mag2/cover_007tall_s.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Drone Commander Monthly — Issue 02">
+    <meta name="twitter:description" content="Issue 02 of the Drone Commander retro games mag — the Breakers go 007, Rexalia's Evening Grove dress, the Sound Desk with composers Ninefold Drift and Evgeny Ryabovol, Nyrissa, and tribute art. September 2026.">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/mag2/cover_007tall_s.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+<style>
+  :root{
+    --paper:#f3efe4; --paper-dark:#e9e3d2; --ink:#16130f; --ink-soft:#3a352c;
+    --red:#d6202b; --red-dark:#a8141d; --cyan:#00a99b; --cyan-dark:#007c72;
+    --yellow:#ffcb05; --desk:#262320; --pink:#ff5c8a; --wine:#4a0a1f;
+    --display:'Haettenschweiler','Impact','Arial Narrow',sans-serif;
+    --cond:'Arial Narrow','Helvetica Neue',Arial,sans-serif;
+    --body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'Courier New',monospace;
+  }
+  html{background:var(--desk);}
+  body{background:var(--desk) radial-gradient(ellipse at 50% 0%, #35312c 0%, var(--desk) 70%);
+    color:var(--ink); font-family:var(--body); margin:0; padding:34px 12px 60px;}
+  .rack{max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:46px;}
+  .page{background:var(--paper); box-shadow:0 18px 50px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.4);
+    position:relative; overflow:hidden; border-radius:2px;}
+  .page::after{content:''; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 3px),
+                     repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 4px);
+    background-size:100% 3px, 4px 100%;}
+  .page img{display:block; max-width:100%;}
+  a{color:var(--cyan-dark);}
+
+  /* ---------- COVER (three variants) ---------- */
+  .cover{padding:0; aspect-ratio:210/272; min-height:640px; display:flex; flex-direction:column; background:#0d0b09;}
+  .cover-art{position:absolute; inset:0; background-size:cover; background-position:center 18%;}
+  .cover-art::after{content:''; position:absolute; inset:0;
+    background:linear-gradient(105deg, rgba(10,8,6,.86) 0%, rgba(10,8,6,.5) 32%, rgba(10,8,6,0) 58%),
+               linear-gradient(0deg, rgba(10,8,6,.9) 0%, rgba(10,8,6,0) 32%);}
+  .v-tall .cover-art{background-image:url('/assets/img/mag2/cover_007tall_s.jpg');}
+  .v-square .cover-art{background-image:url('/assets/img/mag2/cover_007square_s.jpg'); background-size:100% auto; background-position:top center;}
+  .v-square .cover-art::after{background:linear-gradient(0deg, rgba(10,8,6,1) 0%, rgba(10,8,6,1) 22%, rgba(10,8,6,.2) 46%, rgba(10,8,6,0) 60%),
+               linear-gradient(180deg, rgba(10,8,6,.55) 0%, rgba(10,8,6,0) 22%);}
+  /* generated red/pink alluring backdrop for the Rexalia variant */
+  .v-flirt .cover-art{background-image:
+      radial-gradient(ellipse 60% 45% at 68% 30%, rgba(255,140,175,.55), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 18% 85%, rgba(200,30,80,.7), transparent 70%),
+      radial-gradient(circle 8% at 82% 78%, rgba(255,210,225,.35), transparent 100%),
+      radial-gradient(circle 5% at 12% 30%, rgba(255,190,210,.28), transparent 100%),
+      radial-gradient(circle 3% at 55% 12%, rgba(255,220,230,.35), transparent 100%),
+      radial-gradient(circle 4% at 40% 70%, rgba(255,120,160,.3), transparent 100%),
+      linear-gradient(160deg, #3a0716 0%, #7a1030 38%, #c2185b 72%, #5a0a24 100%);
+    background-size:auto;}
+  .v-flirt .cover-art::before{content:''; position:absolute; inset:0; opacity:.35; mix-blend-mode:screen;
+    background-image:radial-gradient(circle, rgba(255,230,240,.9) 0 1px, transparent 2px),
+                     radial-gradient(circle, rgba(255,200,220,.7) 0 1.5px, transparent 3px);
+    background-size:90px 90px, 160px 160px; background-position:0 0, 45px 60px;}
+  .v-flirt .cover-art::after{background:linear-gradient(105deg, rgba(40,4,16,.8) 0%, rgba(40,4,16,.35) 34%, rgba(40,4,16,0) 55%),
+               linear-gradient(0deg, rgba(30,3,12,.85) 0%, rgba(30,3,12,0) 30%);}
+  .flirt-fig{display:none; position:absolute; right:-6%; top:12%; height:80%; z-index:1;
+    filter:drop-shadow(0 0 34px rgba(255,90,150,.55)) drop-shadow(0 0 6px rgba(0,0,0,.6));}
+  .flirt-fig img{height:100%; width:auto; max-width:none;}
+  .v-flirt .flirt-fig{display:block;}
+  .cover-inner{position:relative; z-index:2; display:flex; flex-direction:column; height:100%;}
+  .masthead{padding:18px 26px 0;}
+  .masthead img{width:min(52%,380px); filter:drop-shadow(2px 3px 0 rgba(0,0,0,.65));}
+  .tagline{padding:6px 28px 0; font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:.14em; text-transform:uppercase;}
+  .v-flirt .tagline{color:#ffd1de;}
+  .issue-tab{position:absolute; top:22px; right:22px; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:13px; letter-spacing:.06em; padding:6px 10px; text-transform:uppercase; box-shadow:2px 2px 0 rgba(0,0,0,.5); z-index:3;}
+  .newsflash{margin:14px 0 0 26px; align-self:flex-start; background:var(--yellow); color:var(--ink); font-family:var(--cond);
+    font-weight:bold; font-size:14px; padding:5px 12px; text-transform:uppercase; transform:rotate(-2deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .newsflash b{color:var(--red);}
+  .cover-lines{padding:16px 26px; width:min(46%,300px); display:flex; flex-direction:column; gap:13px;}
+  .cl h3{margin:0; font-family:var(--display); font-size:28px; line-height:.92; color:#fff; text-transform:uppercase;
+    letter-spacing:.5px; text-shadow:2px 2px 0 rgba(0,0,0,.7); text-wrap:balance;}
+  .cl .kick{font-family:var(--cond); font-weight:bold; font-size:12.5px; color:var(--yellow); text-transform:uppercase;
+    letter-spacing:.08em; display:block; margin-bottom:2px; text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cl p{margin:3px 0 0; font-family:var(--cond); font-weight:bold; font-size:13px; line-height:1.25; color:#e8e2d4; text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cover-main{margin-top:auto; padding:0 26px 16px; position:relative; z-index:2;}
+  .cover-main .big{font-family:var(--display); font-size:clamp(56px,11vw,104px); line-height:.85; color:#fff; text-transform:uppercase;
+    text-shadow:3px 3px 0 var(--red), 6px 6px 14px rgba(0,0,0,.8); margin:0;}
+  .cover-main .sub{font-family:var(--cond); font-weight:bold; font-size:16px; color:#fff; margin:8px 0 0; max-width:540px; line-height:1.25; text-shadow:1px 1px 0 rgba(0,0,0,.9);}
+  .cover-main .sub b{color:var(--yellow);}
+  .main-007, .main-rex{display:none;}
+  .v-tall .main-007, .v-square .main-007{display:block;}
+  .v-flirt .main-rex{display:block;}
+  .v-flirt .cover-main .big{text-shadow:3px 3px 0 #7a1030, 6px 6px 14px rgba(0,0,0,.8);}
+  /* square variant: cover lines become a bottom band */
+  .v-square .cover-lines{width:100%; flex-direction:row; flex-wrap:wrap; gap:10px 18px; padding:8px 26px 10px; order:3;}
+  .v-square .cover-lines .cl{flex:1 1 30%; min-width:150px;}
+  .v-square .cl h3{font-size:22px;}
+  .v-square .cover-main{order:2; padding-bottom:6px;}
+  .v-square .newsflash{order:1;}
+  .v-square .cover-foot{order:4;}
+  .starburst{position:absolute; right:20px; bottom:118px; width:130px; height:130px; z-index:3; display:flex; align-items:center;
+    justify-content:center; text-align:center; background:var(--yellow); color:var(--ink); font-family:var(--cond); font-weight:bold;
+    font-size:13.5px; line-height:1.1; padding:16px; transform:rotate(8deg); text-transform:uppercase;
+    clip-path:polygon(50% 0%,61% 12%,76% 6%,80% 22%,96% 24%,90% 39%,100% 50%,90% 61%,96% 76%,80% 78%,76% 94%,61% 88%,50% 100%,39% 88%,24% 94%,20% 78%,4% 76%,10% 61%,0% 50%,10% 39%,4% 24%,20% 22%,24% 6%,39% 12%);}
+  .v-square .starburst{bottom:auto; top:120px;}
+  .cover-foot{position:relative; z-index:2; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 20px;
+    color:#cfc8b8; font-family:var(--mono); font-size:11px;}
+  .barcode{width:74px; height:34px; background:repeating-linear-gradient(90deg,#fff 0 2px,#000 2px 3px,#fff 3px 6px,#000 6px 9px,#fff 9px 10px,#000 10px 13px);
+    border:4px solid #fff; box-sizing:border-box;}
+  .cover-switch{position:fixed; left:12px; top:12px; z-index:60; display:flex; gap:4px; align-items:center; background:var(--ink);
+    border:1px solid var(--yellow); border-radius:20px; padding:4px 6px 4px 10px; font-family:var(--mono); font-size:11px; color:var(--yellow);
+    box-shadow:0 4px 14px rgba(0,0,0,.55);}
+  .cover-switch button{background:none; border:1px solid transparent; color:#e8e2d4; font-family:var(--mono); font-size:11px; padding:4px 8px; border-radius:14px; cursor:pointer;}
+  .cover-switch button.on, .cover-switch button:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  /* ---------- INNER PAGES ---------- */
+  .inner{padding:26px 30px 60px;}
+  .strap{display:flex; align-items:center; justify-content:space-between; border-bottom:5px solid var(--ink); padding-bottom:8px; margin-bottom:4px;}
+  .strap .sect{font-family:var(--display); font-size:40px; text-transform:uppercase; color:var(--ink); line-height:.9;}
+  .strap .sect em{color:var(--red); font-style:normal;}
+  .strap .meta{font-family:var(--mono); font-size:11px; color:var(--ink-soft); text-align:right; letter-spacing:.08em;}
+  .kicker-bar{background:var(--ink); color:var(--paper); font-family:var(--cond); font-weight:bold; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; padding:4px 10px; margin-bottom:18px;}
+  .kicker-bar b{color:var(--yellow);}
+  h2.head{font-family:var(--display); font-size:44px; line-height:.9; margin:6px 0 4px; text-transform:uppercase; color:var(--ink); text-wrap:balance;}
+  h2.head .red{color:var(--red);}
+  .standfirst{font-family:var(--cond); font-weight:bold; font-size:15.5px; line-height:1.3; color:var(--ink-soft); margin:6px 0 12px;}
+  .byline{font-family:var(--mono); font-size:11px; color:var(--red-dark); text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px;}
+  .cols{column-count:2; column-gap:22px; column-rule:1px solid #c9c1ac; font-size:13.5px; line-height:1.45;}
+  .cols p{margin:0 0 9px;}
+  .cols p:first-of-type::first-letter{font-family:var(--display); font-size:44px; float:left; line-height:.8; padding:4px 6px 0 0; color:var(--red);}
+  .dropless .cols p:first-of-type::first-letter{all:unset;}
+  .one{column-count:1;}
+  strong{color:var(--ink);}
+  .fig{margin:0 0 12px;}
+  .fig img{width:100%; border:2px solid var(--ink); box-sizing:border-box;}
+  .fig figcaption{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); background:var(--paper-dark); border:2px solid var(--ink);
+    border-top:0; padding:5px 8px; letter-spacing:.02em;}
+  .fig figcaption b{color:var(--red);}
+  .grid2{display:grid; grid-template-columns:1.35fr 1fr; gap:20px;}
+  .grid2r{display:grid; grid-template-columns:1fr 1.35fr; gap:20px;}
+  .grid-half{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .box{border:3px solid var(--ink); background:#fff; padding:14px 16px; box-shadow:5px 5px 0 rgba(22,19,15,.18); break-inside:avoid;}
+  .box.cyan{background:#e2f4f1; border-color:var(--cyan-dark);}
+  .box.yellow{background:#fdf3cd; border-color:#b78e00;}
+  .box.rose{background:#fbe4ec; border-color:#9c1b45;}
+  .box h4{font-family:var(--display); font-size:24px; margin:0 0 8px; text-transform:uppercase; line-height:.9;}
+  .box.cyan h4{color:var(--cyan-dark);}
+  .box.rose h4{color:#9c1b45;}
+  .box p{font-size:12.8px; line-height:1.42; margin:0 0 8px;}
+  .box ul{margin:0; padding-left:16px; font-size:12.8px; line-height:1.5;}
+  .box .tag{display:inline-block; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold; font-size:11px;
+    text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; margin-bottom:8px;}
+  .box.cyan .tag{background:var(--cyan-dark);}
+  .box.yellow .tag{background:#b78e00;}
+  .box.rose .tag{background:#9c1b45;}
+  .shorts{display:flex; flex-direction:column; gap:12px;}
+  .short{border-top:3px solid var(--red); padding-top:6px;}
+  .short h5{font-family:var(--cond); font-weight:bold; font-size:14.5px; text-transform:uppercase; margin:0 0 3px; letter-spacing:.02em;}
+  .short p{font-size:12.3px; line-height:1.4; margin:0; color:var(--ink-soft);}
+  .short .src{font-family:var(--mono); font-size:10px; color:#8a8271; display:block; margin-top:3px;}
+  .folio{position:absolute; bottom:0; left:0; right:0; display:flex; justify-content:space-between; padding:8px 30px; font-family:var(--mono);
+    font-size:10.5px; color:var(--ink-soft); border-top:1px solid #c9c1ac; background:var(--paper);}
+  .folio .pg{font-family:var(--cond); font-weight:bold; font-size:13px; color:var(--red);}
+  .cheat{font-family:var(--mono); font-size:12px; background:var(--ink); color:var(--cyan); padding:12px 14px; line-height:1.6; border-radius:2px;}
+  .cheat b{color:var(--yellow);}
+  .subscribe{display:flex; gap:14px; align-items:center; background:var(--red); color:#fff; padding:14px 18px; margin-top:18px; box-shadow:5px 5px 0 rgba(22,19,15,.18);}
+  .subscribe .big{font-family:var(--display); font-size:30px; text-transform:uppercase; line-height:.9;}
+  .subscribe p{margin:0; font-family:var(--cond); font-weight:bold; font-size:13.5px; line-height:1.35;}
+  .subscribe a{color:var(--yellow); text-decoration:none;}
+
+  /* Rexalia page */
+  .rex-stage{position:relative; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; min-height:520px;
+    background:
+      radial-gradient(ellipse 60% 45% at 65% 25%, rgba(255,140,175,.5), transparent 70%),
+      radial-gradient(ellipse 55% 40% at 20% 90%, rgba(200,30,80,.7), transparent 70%),
+      linear-gradient(160deg, #3a0716 0%, #7a1030 40%, #c2185b 75%, #5a0a24 100%);}
+  .rex-stage::before{content:''; position:absolute; inset:0; opacity:.3; mix-blend-mode:screen;
+    background-image:radial-gradient(circle, rgba(255,230,240,.9) 0 1px, transparent 2px); background-size:70px 70px;}
+  .rex-stage img{position:relative; z-index:1; height:100%; max-height:560px; width:auto; margin:0 auto; display:block;
+    filter:drop-shadow(0 0 28px rgba(255,90,150,.55));}
+  .rex-stage .stamp{position:absolute; left:12px; bottom:12px; z-index:2; background:var(--yellow); color:var(--ink); font-family:var(--cond);
+    font-weight:bold; font-size:12px; text-transform:uppercase; padding:4px 10px; transform:rotate(-3deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+
+  /* Q&A */
+  .qa{display:flex; flex-direction:column; gap:10px;}
+  .qa .q{font-family:var(--cond); font-weight:bold; font-size:13.5px; color:var(--red-dark); text-transform:uppercase; letter-spacing:.03em; margin:0;}
+  .qa .a{font-size:13.2px; line-height:1.45; margin:0; padding-left:14px; border-left:3px solid var(--cyan);}
+  /* VN script */
+  .script{background:#0d0a10; color:#e8e2d4; border:3px solid var(--ink); padding:14px 16px; font-family:var(--mono); font-size:12.5px; line-height:1.55; box-shadow:5px 5px 0 rgba(22,19,15,.18);}
+  .script .who{color:var(--cyan); font-weight:bold;}
+  .script .who.s{color:var(--yellow);}
+  .script .beat{color:#8a8271; font-style:italic;}
+  .script p{margin:0 0 6px;}
+
+  @media (max-width:680px){
+    body:not(.pageview) .cols{column-count:1;}
+    body:not(.pageview) .grid2, body:not(.pageview) .grid2r, body:not(.pageview) .grid-half{grid-template-columns:1fr;}
+    body:not(.pageview) .cover{min-height:560px;}
+    body:not(.pageview) .cover-lines{width:60%;}
+    body:not(.pageview) .starburst{display:none;}
+    body:not(.pageview) .strap .sect{font-size:30px;}
+    body:not(.pageview) .flirt-fig{height:60%; right:-20%;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .starburst{animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:rotate(8deg) scale(1);}50%{transform:rotate(8deg) scale(1.05);}}
+  }
+  /* page view (mobile flip-through) */
+  .pv-toggle{position:fixed; right:12px; bottom:12px; z-index:50; background:var(--ink); color:var(--cyan); font-family:var(--mono); font-size:12px;
+    padding:9px 14px; border:1px solid var(--cyan); border-radius:20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.55); letter-spacing:.04em;}
+  body.pageview .pv-toggle{display:none;}
+  .pv-nav{display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:12px; z-index:50; background:var(--ink); border:1px solid var(--cyan);
+    border-radius:24px; padding:5px 8px; align-items:center; gap:6px; color:var(--cyan); font-family:var(--mono); font-size:12px; box-shadow:0 4px 14px rgba(0,0,0,.55); white-space:nowrap;}
+  body.pageview .pv-nav{display:flex;}
+  .pv-nav button{background:none; border:0; color:var(--yellow); font-size:17px; cursor:pointer; padding:3px 9px; font-family:var(--mono); line-height:1;}
+  .pv-nav .pv-exit{color:#9a9282; font-size:13px; border-left:1px solid #3a352c;}
+  body.pageview{padding:8px 6px 72px;}
+  body.pageview .rack{margin:0 auto;}
+</style>
+</head>
+<body>
+
+<div class="rack">
+
+<!-- ==================== 01 : COVER ==================== -->
+<section class="page cover v-tall">
+  <div class="cover-art"></div>
+  <div class="flirt-fig"><img src="/assets/img/mag2/flirt_top.webp" alt="Rexalia in the Evening Grove dress"></div>
+  <div class="issue-tab">Issue 02 · Sep 2026</div>
+  <div class="cover-inner">
+    <div class="masthead"><img src="/assets/img/mag2/logo.png" alt="Drone Commander"></div>
+    <div class="tagline">// Monthly · the smarter read for the abducted</div>
+    <div class="newsflash"><b>News flash!</b> 150+ fleshed-out characters — the roster goes galactic · p2</div>
+
+    <div class="cover-lines">
+      <div class="cl">
+        <span class="kick">The vote is in</span>
+        <h3>Neph lives</h3>
+        <p>"Badly wounded but survives" wins — and the storyboards that got binned</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Sound desk</span>
+        <h3>Meet the composers</h3>
+        <p>Ninefold Drift's Q&amp;A, Evgeny Ryabovol joins the score — plus the $10k-a-track story</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Writers' room</span>
+        <h3>Nyrissa</h3>
+        <p>"Don't worry. This will only take several hours." The Freexyl gets its Blackadder</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Preview overload</span>
+        <p>Albion's Anchor · Amu's Cave · Harbinger Run · Kaelix voicing · Vionite scenes · Timeline tool · Guest artist Fox</p>
+      </div>
+    </div>
+
+    <div class="starburst">Tribute art inside!</div>
+
+    <div class="cover-main">
+      <div class="main-007">
+        <p class="big">The Breakers</p>
+        <p class="sub"><b>LICENCE TO THRILL.</b> Straker suits up with Fel, Morrigan and Neph — the 007 lineup, in full</p>
+      </div>
+      <div class="main-rex">
+        <p class="big">Rexalia</p>
+        <p class="sub"><b>THE EVENING GROVE DRESS.</b> You voted. The 7ft 7 Voidblade Sentinel wore it — full reveal inside</p>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <span>dronecommander.gg</span>
+      <span style="display:flex; align-items:flex-end; gap:10px;">£3.49 · free for patrons<span class="barcode"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 02 : COMMAND BRIEFING ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Command <em>Briefing</em></div>
+    <div class="meta">TRANSMISSION 09.2026<br>SOURCE: PATREON DEV FEED, AUGUST</div>
+  </div>
+  <div class="kicker-bar">Everything that happened since Issue 01 — <b>straight from the dev feed</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head">150 characters <span class="red">and counting</span></h2>
+      <p class="byline">Posted 20 &amp; 15 August · Milestone report</p>
+      <p class="standfirst">The cast list just crossed a number most studios never reach: over 150 fleshed-out characters, from Freexyl side-crew to Deritonian priestesses.</p>
+      <div class="cols">
+        <p>More than <strong>100 core characters</strong> now carry fully rendered art, sprites and backstories — and the supporting cast keeps growing on top. The trick to the pace: NPCs are drawn without the final rendering layer, which gets them done in about <strong>40% of the time</strong> of a fully fledged piece like Fel or Kira.</p>
+        <p>Behind it sits a new <strong>Timeline tool</strong> bolted onto the in-game dev tracker (the purple button, top right of the title screen). It maps every major event, branch and character beat so the whole game can be planned at a high level — "the lore is as deep as a 40-year running sci-fi epic," and now there's a chart to prove it.</p>
+        <p>Current board: Nyrissa 80% · Marta's Passion 80% · hostage-rescue cutscene 80% · Amu's Cave 70% · Albion's Anchor 65% · Daria's first meeting 10% · FNS Ember 10%.</p>
+      </div>
+      <figure class="fig" style="margin-top:12px;">
+        <img src="/assets/img/mag2/npcs.jpg" alt="Lineup of five new Drone Commander NPCs">
+        <figcaption><b>NEW FACES</b> — a slice of the NPC roster: Freexyl crew, a Deritonian, and a wolf officer with medals to spare.</figcaption>
+      </figure>
+    </div>
+
+    <div class="shorts">
+      <div class="short" style="border-color:var(--cyan-dark);"><h5 style="color:var(--cyan-dark);">Quick saves</h5></div>
+      <div class="short">
+        <h5>Neph survives — the vote is in</h5>
+        <p>"Badly wounded but survives" won the patron poll, clearing a path for Neph to reach DC2. Full story p6.</p>
+        <span class="src">// 8 Aug</span>
+      </div>
+      <div class="short">
+        <h5>Keep the line</h5>
+        <p>Patrons were asked whether a deliberately shocking Kaelix line should be tamed for a hesitant voice actress. Verdict: <strong>keep it</strong> — and after a re-read, the actress agreed. Lesson logged: spicy dialogue goes in the brief from day one.</p>
+        <span class="src">// 20–21 Aug</span>
+      </div>
+      <div class="short">
+        <h5>Guest artist Fox lines up</h5>
+        <p>Erika first, Kira next, then Liora and Floramel — a four-character guest run in Fox's style. The Kira announcement alone pulled 144 likes.</p>
+        <span class="src">// 14 &amp; 17 Aug</span>
+      </div>
+      <div class="short">
+        <h5>Nyrissa's story hits YouTube</h5>
+        <p>Her story drops on the channel this week. Read her lines first on p6.</p>
+        <span class="src">// 16 Aug</span>
+      </div>
+      <div class="short">
+        <h5>Vionites, early</h5>
+        <p>They arrive late in the game, but scenes are being shared now. "Do try to survive the week — I've grown mildly invested."</p>
+        <span class="src">// 23 Aug</span>
+      </div>
+      <div class="short">
+        <h5>Issue 01 landed</h5>
+        <p>"Wake up! It's 2008" — the first magazine drew 95 likes, a mobile fix, and a promise: monthly at least, with interviews and milestones.</p>
+        <span class="src">// 9 Aug</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-half" style="margin-top:18px;">
+    <figure class="fig">
+      <img src="/assets/img/mag2/timeline.jpg" alt="Timeline planning tool showing Day 1 abduction events">
+      <figcaption><b>TIMELINE TOOL</b> — Day 1 Abduction → Day 2 Welcome to the Fleet → Day 3 Amu. Branches, characters and events, all on one board.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="/assets/img/mag2/scenery.jpg" alt="Level editor showing giant Sekarri statues in Albion's Anchor">
+      <figcaption><b>ALBION'S ANCHOR</b> — "the detail in some of the scenery is legit insane." Statues the size of a district, in the editor.</figcaption>
+    </figure>
+  </div>
+
+  <div class="cheat">
+    <b>&gt; IN THE PIPELINE (11 AUG):</b> Straker 007 with three Bond girls ✔ · Hara oppressing a human cadet · Kethri stealth agent NPC ✔ ·
+    Rexalia full armour · Rexalia new outfit ✔ · WW1 abduction scenes · Morrigan &amp; Fel animated flashback · Varya ✔ + pixel sprite ·
+    Anchor's Demon phase 2 · animated kissing scene · Marta sobbing · Chinese NPCs ×2 · animated Kaelix scene · Kaelix voicing starts
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">02</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 03 : REXALIA'S DRESS ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Rexalia's <em>Dress</em></div>
+    <div class="meta">FROM THE 1 AUG VOTE<br>TO THE 23 AUG REVEAL</div>
+  </div>
+  <div class="kicker-bar">You voted for the costume — <b>here's the Evening Grove dress</b></div>
+
+  <div class="grid2r">
+    <div class="rex-stage">
+      <img src="/assets/img/mag2/flirt_full.webp" alt="Rexalia, full-length, in the red and gold Evening Grove dress">
+      <span class="stamp">Patron-voted outfit</span>
+    </div>
+    <div>
+      <h2 class="head" style="font-size:38px;">Off duty, <span class="red">on purpose</span></h2>
+      <p class="byline">Rexalia · Voidblade Sentinel · 7ft 7 / 2.31m</p>
+      <div class="cols one">
+        <p>The 1 August post put it plainly: lots of lore, but the TLDR is <strong>you vote on a new (extra) costume for her</strong>. 137 likes later, the answer is the <strong>Evening Grove dress</strong> — red silk, gold rings, a braids-down variant that followed on 23 August.</p>
+        <p>It matters because of who wears it. Rexalia is a warrior of the <strong>Aetherialis</strong>, the Honnehari's answer to the Vanguard. When her leaders prepared to leave the galaxy, she was the one ordered to shut down the <strong>Veyr</strong> — the invariant beacons that read and shaped reality across the sector. She called the departure a betrayal. Then she did it anyway, beacon by beacon, until the galaxy read as though her people had never existed.</p>
+        <p>She wakes now with fragmented memories and unfinished feelings, and one question above the war, above Straker, above everything: <strong>what became of her people?</strong> The dress is a night off from that. She's earned one.</p>
+      </div>
+      <div class="box rose" style="margin-top:12px;">
+        <span class="tag">Also in the wardrobe</span>
+        <h4>Full armour incoming</h4>
+        <p>A <strong>Rexalia full-armour variant</strong> is on the art list alongside the new outfit — the poll "has a big influence on the outcome," so keep voting.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">03</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 04 : SOUND DESK ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Sound <em>Desk</em></div>
+    <div class="meta">COMPOSERS · VOICE · STRAIGHT TALK<br>INTERVIEW SERIES 01</div>
+  </div>
+  <div class="kicker-bar">Who's scoring your journey — <b>and what it really costs to hire a band</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:36px;">Q&amp;A: <span class="red">Ninefold Drift</span></h2>
+      <p class="byline">Jan C. · composer · Germany</p>
+      <div class="qa">
+        <p class="q">Who are we listening to out there?</p>
+        <p class="a">"Among your favourite tunes while exploring, you might find a few tracks by me, Jan C., aka Ninefold Drift. It's a pleasure to meet you all! I'm a 25-year-old composer from Germany."</p>
+        <p class="q">How does a biology student end up scoring a space opera?</p>
+        <p class="a">"During my studies of Biology and Educational Science, I've found myself focusing quite a bit on aesthetics and, thus... music."</p>
+        <p class="q">What do games mean to you?</p>
+        <p class="a">"To me, games and well-designed art in general can feel like self-contained worlds where we can experience possibilities that don't exist in our everyday lives and learn from them."</p>
+        <p class="q">Where will players hear you?</p>
+        <p class="a">"For Drone Commander, I had the great opportunity to compose some music for the journey you are about to be thrown into. You'll mainly hear my tunes scattered throughout the RPG's exploration segments: ancient ruins, cursed villages, and icy mountains. So I suppose I'm now partially responsible for your auditory experience. No pressure at all, right?..."</p>
+        <p class="q">Parting words?</p>
+        <p class="a">"I hope you enjoy my little contributions to the game. See you out there! :)"</p>
+      </div>
+    </div>
+    <div>
+      <div class="box cyan">
+        <span class="tag">Also on the score</span>
+        <h4>Evgeny Ryabovol</h4>
+        <p><strong>Composer · Sound Designer · Audio Producer.</strong> Kyiv-based, ten-plus years in game and film audio, 200+ projects, and a taste for orchestral scores crossed with synth-rock.</p>
+        <p>Hear his work at <a href="https://www.ryabovol.com/">ryabovol.com</a>. Full interview next issue.</p>
+      </div>
+      <div class="box" style="margin-top:14px;">
+        <span class="tag">Voice booth</span>
+        <h4>Bane, briefly</h4>
+        <p>The VA behind the Sovereign, Arkon, Irvin and the FOM troopers dropped a rendition of Bane from <em>The Dark Knight</em> — <a href="https://www.instagram.com/reels/DcCCdR_zc9C/">watch the reel</a>.</p>
+        <p>Also confirmed: Rainer Walter (Elanor Draycott, Myriel) and Klepacki's trailer track, both from Issue 01.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box yellow" style="margin-top:18px;">
+    <span class="tag">Straight talk · from the dev</span>
+    <h4>"$10,000 per track, please"</h4>
+    <div class="cols one dropless" style="font-size:13px;">
+      <p>The plan was to hire a small, unheard-of band with vocals for a couple of promo tracks — that <em>Titan A.E.</em> cinematic feel for the trailers. Found one, eleven likes or so. They said yes instantly. Then the agent stepped in: <strong>"$10,000 per track, please."</strong> For context, even Hollywood would walk unless you're Iron Maiden.</p>
+      <p>The misconception is that everyone's got money, including big companies. The truth is the bigger the company, the <em>less</em> they pay — ask any boyband member what they earn per month, or a <em>LOTR</em> cast member how far the payout lasted. That was Samwise; imagine the elf on the wall.</p>
+      <p><strong>The advice:</strong> don't be offended when someone says a number way beyond you. And don't be scared to offer 50% of whatever they just said — most people have no idea how to value themselves, or the people they represent. If you're building something, people come onboard for a reasonable sum or they don't. Plenty more fish in the sea. (And when it comes to rock bands, the average Norwegian plumber has a savage metal band.)</p>
+    </div>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 05 : TRIBUTE ART & SPECIAL THANKS ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Tribute <em>Art</em></div>
+    <div class="meta">&amp; SPECIAL THANKS<br>COMMUNITY POSTER PAGE</div>
+  </div>
+  <div class="kicker-bar">A huge thank you to <b>That Side Character</b> — and the artists he keeps commissioning</div>
+
+  <figure class="fig" style="margin:0 0 14px;">
+    <img src="/assets/img/mag2/floramel.jpg" alt="Tribute art of Floramel reclining in a starship cabin, by WBC_X">
+    <figcaption><b>FLORAMEL, OFF SHIFT</b> — tribute art by <b>WBC_X</b>, commissioned by That Side Character. Not main game art: a fan tribute to Floramel, and a gorgeous one.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="box rose">
+      <span class="tag">Special thanks</span>
+      <h4>That Side Character</h4>
+      <p>Some readers support a project. That Side Character has been <strong>supporting it hard</strong> — backing the game month after month and going a step further by <strong>commissioning tribute art from other artists</strong> off his own back, then sharing it with the whole community. The Floramel piece above is one of them.</p>
+      <p>Thank you. Genuinely. This is the kind of thing that keeps a solo dev going at 2am.</p>
+    </div>
+    <div>
+      <div class="box">
+        <span class="tag">A word on tribute art</span>
+        <h4>Fan work, and proud of it</h4>
+        <p>Tribute pieces like this are <strong>fan art</strong>, not canon game assets — the official Floramel lives in the visual novel with her own artist's line. We're showing this one because it's beautiful and because the love behind it is the whole point of a community page.</p>
+      </div>
+      <div class="box cyan" style="margin-top:14px;">
+        <span class="tag">Roll of honour</span>
+        <h4>Also this month</h4>
+        <ul>
+          <li><strong>sideguy</strong> and <strong>WBC</strong> — Gia fan art, another big thank you</li>
+          <li><strong>MAD</strong> — back in action with a Punch &amp; Judy scene</li>
+          <li><strong>Fox</strong> — guest artist run: Erika → Kira → Liora → Floramel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 06 : WRITERS' ROOM (back page) ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Writers' <em>Room</em></div>
+    <div class="meta">SCRIPT · ENEMY DESIGN · CUTTING-ROOM FLOOR<br>BACK PAGE</div>
+  </div>
+  <div class="kicker-bar">New characters, new enemies, and the lore that didn't make the cut — <b>see you next transmission</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:36px;">Nyrissa: <span class="red">"Studying."</span></h2>
+      <p class="byline">Character notes · 12 August</p>
+      <p class="standfirst">The Freexyl's newest scientist gets a Blackadder personality: sarcastic, fatalistic, funny — cheerful, curious, mildly vain, and completely convinced everyone else is being melodramatic about ethics.</p>
+      <div class="script">
+        <p><span class="who s">STRAKER:</span> You're experimenting on me.</p>
+        <p><span class="who">NYRISSA:</span> "Studying."</p>
+        <p><span class="who s">STRAKER:</span> You're experimenting on me!</p>
+        <p><span class="who">NYRISSA:</span> "Experimentation requires an intervention variable. We're still establishing baseline measurements."</p>
+        <p class="beat">(beat)</p>
+        <p><span class="who">NYRISSA:</span> "The experiments are afterwards."</p>
+        <p style="margin-top:10px;"><span class="who">NYRISSA:</span> "Relax. I've performed this procedure hundreds of times."</p>
+        <p><span class="who s">STRAKER:</span> On humans?</p>
+        <p><span class="who">NYRISSA:</span> "Oh heavens, no."</p>
+        <p style="margin-top:10px;"><span class="who">NYRISSA:</span> "Don't worry. This will only take several hours."</p>
+      </div>
+      <p style="font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); margin:6px 0 0;">// She isn't trying to be funny. When she tries to reassure you, it gets worse. Her story hits YouTube this week.</p>
+    </div>
+
+    <div>
+      <div class="box">
+        <span class="tag">Enemy design · open call</span>
+        <h4>Dark Worlder foot soldiers</h4>
+        <p>One of the last big enemies left to design — and one the dev has been "very, very reluctant" to do. Think <strong>evil, ethereal blood angels</strong>: red, space-marine-like troopers. The reluctance is the problem itself: who can stand against them?</p>
+        <p>Concept art in progress shows two Dark Troopers decimating a combined US, Chinese and European assault, snapping the necks of Sekarri and humans alike. <strong>Designs welcome</strong> — the dev is open to iterating on yours.</p>
+      </div>
+      <figure class="fig" style="margin-top:14px;">
+        <img src="/assets/img/mag2/varya.jpg" alt="Varya, Neph's scarred younger sister, in a dark ship interior">
+        <figcaption><b>VARYA</b> — Neph's younger sister. Scarred, solitary, traditional; walked away from all of it to hunt Honnehari traces across dead worlds. "She's still my sister. I'm not killing her."</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="grid2r" style="margin-top:16px;">
+    <figure class="fig">
+      <img src="/assets/img/mag2/nephboards.jpg" alt="Storyboard art of Neph in battle with Straker and a companion">
+      <figcaption><b>THE BINNED BOARDS</b> — three stand-offs, a shotgun blast to the ribs, a death-goddess ascension. All discarded now that Neph survives.</figcaption>
+    </figure>
+    <div class="box cyan">
+      <span class="tag">Cutting-room floor</span>
+      <h4>Lore that didn't ship</h4>
+      <ul>
+        <li><strong>Neph's accounting error.</strong> Earth's public demand is 1 million; the real obligation upstream is 100k. The ~900k gap is pure skim for the Dominion — and the logs reveal it tops up every five years. Never a one-time tribute.</li>
+        <li><strong>Amu and Straker, spiritual twins.</strong> The original plan had Kane and Ivakan merge their DNA with a ship AI to create Amu, while on Earth a three-parent cure produced Straker — both from one split resonant-essence source. The twin ending was cut; a "below-universe" link between them survives.</li>
+        <li><strong>Drones, literally.</strong> A drone bee exists to mate, then die. Alongside human, Kethri and ship drones, real insect drones are coming in the Mirelexian saga.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box yellow" style="margin-top:16px;">
+    <span class="tag">Next transmission</span>
+    <h4>In issue 03...</h4>
+    <ul>
+      <li><strong>Evgeny Ryabovol</strong> — the full Sound Desk interview</li>
+      <li><strong>Kira by Fox</strong> — the guest-artist run continues</li>
+      <li><strong>Harbinger Run</strong> — the final piece of Act One, and a genuine massive milestone</li>
+      <li>Varya's pixel sprite, WW1 abduction scenes, and Rexalia in full armour</li>
+    </ul>
+  </div>
+
+  <div class="subscribe">
+    <div class="big">Enlist!</div>
+    <p>Every vote, screenshot and line in this issue came from the free dev feed →
+      <a href="https://www.patreon.com/DroneCommander">patreon.com/DroneCommander</a> ·
+      <a href="https://dronecommander.gg">dronecommander.gg</a> ·
+      <a href="https://dronecommander.gg/magazine">Issue 01</a> ·
+      <a href="https://www.twitch.tv/murchie85">twitch.tv/murchie85</a></p>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>SEP 2026</span></div>
+</section>
+
+</div>
+
+<button class="pv-toggle" id="pvToggle" type="button">&#128196; page view</button>
+<div class="pv-nav">
+  <button id="pvPrev" type="button" aria-label="Previous page">&#9664;</button>
+  <span id="pvLabel">PAGE 1 / 6</span>
+  <button id="pvNext" type="button" aria-label="Next page">&#9654;</button>
+  <button id="pvExit" class="pv-exit" type="button" aria-label="Switch to scrolling view">scroll</button>
+</div>
+<script>
+(function () {
+  var DESIGN_W = 880;
+  var pages = [].slice.call(document.querySelectorAll('.page'));
+  var rack = document.querySelector('.rack');
+  var label = document.getElementById('pvLabel');
+  var cur = 0, pv = false;
+  function layout() {
+    if (!pv) return;
+    var scale = Math.min((window.innerWidth - 12) / DESIGN_W, 1);
+    pages.forEach(function (p, i) {
+      if (i === cur) {
+        p.style.display = ''; p.style.width = DESIGN_W + 'px';
+        p.style.transform = 'scale(' + scale + ')'; p.style.transformOrigin = 'top left';
+        p.style.marginBottom = '';
+        var h = p.offsetHeight; p.style.marginBottom = (-h * (1 - scale)) + 'px';
+      } else { p.style.display = 'none'; }
+    });
+    rack.style.width = (DESIGN_W * scale) + 'px'; rack.style.maxWidth = 'none';
+    label.textContent = 'PAGE ' + (cur + 1) + ' / ' + pages.length;
+  }
+  window.__pvLayout = layout;
+  function enter() { pv = true; document.body.classList.add('pageview'); layout(); window.scrollTo(0, 0); }
+  function exit() {
+    pv = false; document.body.classList.remove('pageview');
+    pages.forEach(function (p) { p.style.display = ''; p.style.transform = ''; p.style.width = ''; p.style.marginBottom = ''; });
+    rack.style.width = ''; rack.style.maxWidth = '';
+  }
+  function go(d) { cur = (cur + d + pages.length) % pages.length; layout(); window.scrollTo(0, 0); }
+  document.getElementById('pvToggle').addEventListener('click', enter);
+  document.getElementById('pvExit').addEventListener('click', exit);
+  document.getElementById('pvPrev').addEventListener('click', function () { go(-1); });
+  document.getElementById('pvNext').addEventListener('click', function () { go(1); });
+  window.addEventListener('resize', layout);
+  var sx = null, sy = null;
+  window.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchend', function (e) {
+    if (sx === null || !pv) { sx = null; return; }
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+    sx = null;
+  }, { passive: true });
+  if (window.matchMedia('(max-width: 700px)').matches) enter();
+})();
+</script>
+
+</body>
+</html>
