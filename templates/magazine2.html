@@ -183,6 +183,24 @@
   .rex-stage .stamp{position:absolute; left:12px; bottom:12px; z-index:2; background:var(--yellow); color:var(--ink); font-family:var(--cond);
     font-weight:bold; font-size:12px; text-transform:uppercase; padding:4px 10px; transform:rotate(-3deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
 
+  /* 007 poster page */
+  .poster{position:relative; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .poster img{width:100%; display:block;}
+  .poster .stamp{position:absolute; left:14px; top:14px; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding:5px 10px; transform:rotate(-3deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .poster .cap{position:absolute; left:0; right:0; bottom:0; padding:40px 16px 12px; color:#fff; font-family:var(--cond); font-weight:bold; font-size:13px;
+    background:linear-gradient(0deg, rgba(10,8,6,.92) 0%, rgba(10,8,6,0) 100%); text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .poster .cap b{color:var(--yellow);}
+  .todo{background:#fff3c4; border:3px dashed #b78e00; padding:10px 12px; font-family:var(--mono); font-size:12px; color:#7a5a00; margin:8px 0;}
+  /* pull-out pages */
+  .pullout-art{border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .pullout-art img{width:100%; display:block;}
+  .rex-stage.tall{min-height:0;}
+  .rex-stage.tall img{max-height:none; height:auto; width:78%; margin:0 auto;}
+  .accent{margin:0; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .accent img{width:100%; display:block;}
+  .accent.rose{background:linear-gradient(160deg,#3a0716,#c2185b); padding:10px 10px 0;}
+  .accent.rose img{width:100%;}
   /* Q&A */
   .qa{display:flex; flex-direction:column; gap:10px;}
   .qa .q{font-family:var(--cond); font-weight:bold; font-size:13.5px; color:var(--red-dark); text-transform:uppercase; letter-spacing:.03em; margin:0;}
@@ -370,39 +388,116 @@
   <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">02</span><span>SEP 2026</span></div>
 </section>
 
-<!-- ==================== 03 : REXALIA'S DRESS ==================== -->
+<!-- ==================== 03 : PULL-OUT — REXALIA ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Pull-out <em>Poster</em></div>
+    <div class="meta">REXALIA · THE EVENING GROVE DRESS<br>PATRON-VOTED OUTFIT</div>
+  </div>
+  <div class="kicker-bar">Full-page art — <b>pin it up</b> · her story on the next page</div>
+  <div class="rex-stage tall">
+    <img src="/assets/img/mag2/flirt_full.webp" alt="Rexalia, full-length, in the red and gold Evening Grove dress">
+    <span class="stamp">You voted for this</span>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">03</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 04 : REXALIA'S DRESS (story) ==================== -->
 <section class="page inner">
   <div class="strap">
     <div class="sect">Rexalia's <em>Dress</em></div>
     <div class="meta">FROM THE 1 AUG VOTE<br>TO THE 23 AUG REVEAL</div>
   </div>
-  <div class="kicker-bar">You voted for the costume — <b>here's the Evening Grove dress</b></div>
-
-  <div class="grid2r">
-    <div class="rex-stage">
-      <img src="/assets/img/mag2/flirt_full.webp" alt="Rexalia, full-length, in the red and gold Evening Grove dress">
-      <span class="stamp">Patron-voted outfit</span>
-    </div>
+  <div class="kicker-bar">You voted for the costume — <b>here's how the Evening Grove dress happened</b></div>
+  <div class="grid2">
     <div>
-      <h2 class="head" style="font-size:38px;">Off duty, <span class="red">on purpose</span></h2>
+      <h2 class="head" style="font-size:40px;">Off duty, <span class="red">on purpose</span></h2>
       <p class="byline">Rexalia · Voidblade Sentinel · 7ft 7 / 2.31m</p>
-      <div class="cols one">
+      <div class="cols">
         <p>The 1 August post put it plainly: lots of lore, but the TLDR is <strong>you vote on a new (extra) costume for her</strong>. 137 likes later, the answer is the <strong>Evening Grove dress</strong> — red silk, gold rings, a braids-down variant that followed on 23 August.</p>
         <p>It matters because of who wears it. Rexalia is a warrior of the <strong>Aetherialis</strong>, the Honnehari's answer to the Vanguard. When her leaders prepared to leave the galaxy, she was the one ordered to shut down the <strong>Veyr</strong> — the invariant beacons that read and shaped reality across the sector. She called the departure a betrayal. Then she did it anyway, beacon by beacon, until the galaxy read as though her people had never existed.</p>
         <p>She wakes now with fragmented memories and unfinished feelings, and one question above the war, above Straker, above everything: <strong>what became of her people?</strong> The dress is a night off from that. She's earned one.</p>
       </div>
-      <div class="box rose" style="margin-top:12px;">
+    </div>
+    <div>
+      <figure class="accent rose">
+        <img src="/assets/img/mag2/flirt_top.webp" alt="Rexalia, detail — the Evening Grove dress">
+      </figure>
+      <div class="box rose" style="margin-top:14px;">
         <span class="tag">Also in the wardrobe</span>
         <h4>Full armour incoming</h4>
         <p>A <strong>Rexalia full-armour variant</strong> is on the art list alongside the new outfit — the poll "has a big influence on the outcome," so keep voting.</p>
       </div>
     </div>
   </div>
-
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">03</span><span>SEP 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>SEP 2026</span></div>
 </section>
 
-<!-- ==================== 04 : SOUND DESK ==================== -->
+<!-- ==================== 05 : PULL-OUT — THE BREAKERS 007 ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Pull-out <em>Poster</em></div>
+    <div class="meta">THE BREAKERS · 007 EDITION<br>LICENCE TO THRILL</div>
+  </div>
+  <div class="kicker-bar">Straker suits up with <b>Fel, Morrigan and Neph</b> — files on all three overleaf</div>
+  <div class="pullout-art">
+    <img src="/assets/img/mag2/cover_007tall_s.jpg" alt="The Breakers 007 lineup: Straker in a suit with a pistol, flanked by Fel, Neph and Morrigan">
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 06 : THE BREAKERS — CHARACTER FILES ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">The <em>Breakers</em></div>
+    <div class="meta">CHARACTER FILES<br>THE WARLORD · THE MONEY · THE CLONE</div>
+  </div>
+  <div class="kicker-bar">Who's who in the lineup — <b>and the friendship that first cracked Neph</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:36px;">Neph: <span class="red">the warlord</span></h2>
+      <p class="byline">Supreme leader of the Dominion · primary antagonist</p>
+      <div class="cols one">
+        <p>Towering, crimson-maned, spiked armour, a throne — every inch the warlord. Neph made early contact with Earth and cultivated the shadow government that became the <strong>Foundation of Man</strong>, offering them a homeworld in exchange for help annexing Earth. Before the evacuation of Alara she abducted the semi-sentient <strong>Carapax</strong> and converted them into her armies.</p>
+        <p>Publicly she demands <strong>1 million humans</strong> to "pay off" the Dark Worlders. The real ask was 100,000. The gap is skim — an "accounting error" in her favour — and a private confession reveals she means to top it up every five years. It was never a one-time tribute.</p>
+      </div>
+    </div>
+    <figure class="accent">
+      <img src="/assets/img/mag2/faces_007.jpg" alt="Detail from the 007 lineup — Fel, Neph and Morrigan">
+    </figure>
+  </div>
+
+  <div class="grid2r" style="margin-top:16px;">
+    <figure class="accent" style="background:#fff;">
+      <img src="/assets/img/mag2/kat_think.webp" alt="Kat, Sekarri combat specialist, in armour — thinking">
+    </figure>
+    <div class="box rose">
+      <span class="tag">Before the throne</span>
+      <h4>Neph &amp; Kat</h4>
+      <p>Long before the Dominion, Neph was a girl with a best friend. <strong>Kat</strong> — today a combat specialist stuck training rookies — was as close to her as anyone has ever been. Kat's brother <strong>Bas</strong> was competent, handsome, and enjoyed Neph's company; and every Sekarri girl adores her brother, because his friends are the boys she might one day meet.</p>
+      <p>Neph wanted the three of them in one pride — her, Kat and Bas. Under pride law that would put Kat in a pride with her own brother, and Kat refused. <strong>Vehemently.</strong> It wasn't the moment Neph went off the rails — but it was the first crack, the beginning of a warped reading of history that she has never stopped writing.</p>
+    </div>
+  </div>
+
+  <div class="grid-half" style="margin-top:16px;">
+    <div class="box">
+      <span class="tag">Character file</span>
+      <h4>Vess Avraxian</h4>
+      <p><strong>7'9", chief investor in the Black Fleet.</strong> An ex-pirate who made her fortune by shady means and was far more ruthless than Morrigan in her prime. She fronted the cash for Morrigan's ships — "Without me there'd be no Black Fleet" — and lets Morrigan take the limelight, right up until she doesn't: <em>"I AM THE BOSS of this whole show — got it?"</em></p>
+      <p>She holds the rare <strong>Shards</strong> — dispersion material of processed strange matter — and she knows exactly what you and "that silver AI wench" are doing with one. Everyone is on her payroll. Even Morrigan. Her bodyguard, incidentally, was snatched from one of Neph's safehouses.</p>
+    </div>
+    <div class="box cyan">
+      <span class="tag">Character file</span>
+      <h4>Kaelix</h4>
+      <p><strong>7'8", the Freexyl's granddaughter — and a clone.</strong> The original Kaelix was a hero of the Genetic Wars: she burned down the Caelin labs, died of her wounds, and broadcast the evidence to the world first. Then the Langarans bought her body and grew the Kaelix series from her DNA.</p>
+      <p>The one aboard now is a digital variant of that mind in a cloned body — acquired by Neph, her priorities corrupted, then deprogrammed by Vess's people. "Same way you humans reprogram each other: media, ideology. Neph has simply mastered and automated it." Beneath the layers, the hero who torched the labs is still trying to get out. You can date her. It isn't easy.</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>SEP 2026</span></div>
+</section>
+
+<!-- ==================== 05 : SOUND DESK ==================== -->
 <section class="page inner">
   <div class="strap">
     <div class="sect">Sound <em>Desk</em></div>
@@ -453,7 +548,7 @@
     </div>
   </div>
 
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>SEP 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">07</span><span>SEP 2026</span></div>
 </section>
 
 <!-- ==================== 05 : TRIBUTE ART & SPECIAL THANKS ==================== -->
@@ -494,7 +589,7 @@
     </div>
   </div>
 
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>SEP 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">08</span><span>SEP 2026</span></div>
 </section>
 
 <!-- ==================== 06 : WRITERS' ROOM (back page) ==================== -->
@@ -575,7 +670,7 @@
       <a href="https://www.twitch.tv/murchie85">twitch.tv/murchie85</a></p>
   </div>
 
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>SEP 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">09</span><span>SEP 2026</span></div>
 </section>
 
 </div>
@@ -583,7 +678,7 @@
 <button class="pv-toggle" id="pvToggle" type="button">&#128196; page view</button>
 <div class="pv-nav">
   <button id="pvPrev" type="button" aria-label="Previous page">&#9664;</button>
-  <span id="pvLabel">PAGE 1 / 6</span>
+  <span id="pvLabel">PAGE 1 / 9</span>
   <button id="pvNext" type="button" aria-label="Next page">&#9654;</button>
   <button id="pvExit" class="pv-exit" type="button" aria-label="Switch to scrolling view">scroll</button>
 </div>
