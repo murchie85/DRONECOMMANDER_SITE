@@ -192,6 +192,18 @@
     background:linear-gradient(0deg, rgba(10,8,6,.92) 0%, rgba(10,8,6,0) 100%); text-shadow:1px 1px 0 rgba(0,0,0,.8);}
   .poster .cap b{color:var(--yellow);}
   .todo{background:#fff3c4; border:3px dashed #b78e00; padding:10px 12px; font-family:var(--mono); font-size:12px; color:#7a5a00; margin:8px 0;}
+  /* Writers' Room: Nyrissa cutscene wash behind everything */
+  .nyrissa-bg{background:
+      linear-gradient(rgba(243,239,228,.58), rgba(243,239,228,.44) 40%, rgba(243,239,228,.6)),
+      url('/assets/img/mag2/nyrissa_bg.jpg') center 12%/cover no-repeat, var(--paper);}
+  .nyrissa-bg .folio{background:rgba(243,239,228,.85);}
+  .nyrissa-bg .credit{position:absolute; top:6px; right:10px; font-family:var(--mono); font-size:9.5px; color:#1f4f6e;
+    letter-spacing:.08em; text-transform:uppercase; text-shadow:0 0 4px rgba(243,239,228,.9);}
+  .nyrissa-bg .strap{border-bottom-color:#1f4f6e;}
+  .nyrissa-bg .cols, .nyrissa-bg .standfirst, .nyrissa-bg .head, .nyrissa-bg .byline{
+    text-shadow:0 0 5px rgba(243,239,228,.95), 0 0 12px rgba(243,239,228,.85), 0 0 2px rgba(243,239,228,1);}
+  .nyrissa-bg .kicker-bar{background:rgba(22,19,15,.92);}
+  .nyrissa-bg .fig figcaption{background:rgba(233,227,210,.92);}
   /* pull-out pages */
   .pullout-art{border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
   .pullout-art img{width:100%; display:block;}
@@ -593,7 +605,8 @@
 </section>
 
 <!-- ==================== 06 : WRITERS' ROOM (back page) ==================== -->
-<section class="page inner">
+<section class="page inner nyrissa-bg">
+  <div class="credit">BG: Nyrissa — "Aphoros scene" cutscene</div>
   <div class="strap">
     <div class="sect">Writers' <em>Room</em></div>
     <div class="meta">SCRIPT · ENEMY DESIGN · CUTTING-ROOM FLOOR<br>BACK PAGE</div>
