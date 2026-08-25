@@ -44,9 +44,8 @@
     background:linear-gradient(105deg, rgba(10,8,6,.86) 0%, rgba(10,8,6,.5) 32%, rgba(10,8,6,0) 58%),
                linear-gradient(0deg, rgba(10,8,6,.9) 0%, rgba(10,8,6,0) 32%);}
   .v-tall .cover-art{background-image:url('/assets/img/mag2/cover_007tall_s.jpg');}
-  .v-square .cover-art{background-image:url('/assets/img/mag2/cover_007square_s.jpg'); background-size:100% auto; background-position:top center;}
-  .v-square .cover-art::after{background:linear-gradient(0deg, rgba(10,8,6,1) 0%, rgba(10,8,6,1) 22%, rgba(10,8,6,.2) 46%, rgba(10,8,6,0) 60%),
-               linear-gradient(180deg, rgba(10,8,6,.55) 0%, rgba(10,8,6,0) 22%);}
+  .v-square .cover-art{background-image:url('/assets/img/mag2/cover_007square_s.jpg'); background-size:100% auto; background-position:center 150px; background-repeat:no-repeat; background-color:#0d0b09;}
+  .v-square .cover-art::after{background:linear-gradient(0deg, rgba(10,8,6,1) 0%, rgba(10,8,6,1) 24%, rgba(10,8,6,.15) 34%, rgba(10,8,6,0) 45%);}
   /* generated red/pink alluring backdrop for the Rexalia variant */
   .v-flirt .cover-art{background-image:
       radial-gradient(ellipse 60% 45% at 68% 30%, rgba(255,140,175,.55), transparent 70%),
@@ -63,7 +62,7 @@
     background-size:90px 90px, 160px 160px; background-position:0 0, 45px 60px;}
   .v-flirt .cover-art::after{background:linear-gradient(105deg, rgba(40,4,16,.8) 0%, rgba(40,4,16,.35) 34%, rgba(40,4,16,0) 55%),
                linear-gradient(0deg, rgba(30,3,12,.85) 0%, rgba(30,3,12,0) 30%);}
-  .flirt-fig{display:none; position:absolute; right:-6%; top:12%; height:80%; z-index:1;
+  .flirt-fig{display:none; position:absolute; right:-13%; top:4%; height:93%; z-index:1;
     filter:drop-shadow(0 0 34px rgba(255,90,150,.55)) drop-shadow(0 0 6px rgba(0,0,0,.6));}
   .flirt-fig img{height:100%; width:auto; max-width:none;}
   .v-flirt .flirt-fig{display:block;}
@@ -74,7 +73,7 @@
   .v-flirt .tagline{color:#ffd1de;}
   .issue-tab{position:absolute; top:22px; right:22px; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
     font-size:13px; letter-spacing:.06em; padding:6px 10px; text-transform:uppercase; box-shadow:2px 2px 0 rgba(0,0,0,.5); z-index:3;}
-  .newsflash{margin:14px 0 0 26px; align-self:flex-start; background:var(--yellow); color:var(--ink); font-family:var(--cond);
+  .newsflash{margin:14px 0 0 26px; align-self:flex-start; max-width:min(42%,300px); line-height:1.2; background:var(--yellow); color:var(--ink); font-family:var(--cond);
     font-weight:bold; font-size:14px; padding:5px 12px; text-transform:uppercase; transform:rotate(-2deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
   .newsflash b{color:var(--red);}
   .cover-lines{padding:16px 26px; width:min(46%,300px); display:flex; flex-direction:column; gap:13px;}
@@ -91,13 +90,14 @@
   .main-007, .main-rex{display:none;}
   .v-tall .main-007, .v-square .main-007{display:block;}
   .v-flirt .main-rex{display:block;}
+  .v-flirt .cover-lines{width:min(40%,265px);}
   .v-flirt .cover-main .big{text-shadow:3px 3px 0 #7a1030, 6px 6px 14px rgba(0,0,0,.8);}
   /* square variant: cover lines become a bottom band */
   .v-square .cover-lines{width:100%; flex-direction:row; flex-wrap:wrap; gap:10px 18px; padding:8px 26px 10px; order:3;}
   .v-square .cover-lines .cl{flex:1 1 30%; min-width:150px;}
   .v-square .cl h3{font-size:22px;}
   .v-square .cover-main{order:2; padding-bottom:6px;}
-  .v-square .newsflash{order:1;}
+  .v-square .newsflash{order:1; position:absolute; left:0; top:150px; margin:14px 0 0 26px;}
   .v-square .cover-foot{order:4;}
   .starburst{position:absolute; right:20px; bottom:118px; width:130px; height:130px; z-index:3; display:flex; align-items:center;
     justify-content:center; text-align:center; background:var(--yellow); color:var(--ink); font-family:var(--cond); font-weight:bold;
@@ -225,14 +225,14 @@
 <div class="rack">
 
 <!-- ==================== 01 : COVER ==================== -->
-<section class="page cover v-tall">
+<section class="page cover v-flirt">
   <div class="cover-art"></div>
   <div class="flirt-fig"><img src="/assets/img/mag2/flirt_top.webp" alt="Rexalia in the Evening Grove dress"></div>
   <div class="issue-tab">Issue 02 · Sep 2026</div>
   <div class="cover-inner">
     <div class="masthead"><img src="/assets/img/mag2/logo.png" alt="Drone Commander"></div>
     <div class="tagline">// Monthly · the smarter read for the abducted</div>
-    <div class="newsflash"><b>News flash!</b> 150+ fleshed-out characters — the roster goes galactic · p2</div>
+    <div class="newsflash"><b>News flash!</b> 150+ characters · p2</div>
 
     <div class="cover-lines">
       <div class="cl">
@@ -345,7 +345,23 @@
     </figure>
   </div>
 
-  <div class="cheat">
+  <div class="box yellow" style="margin-top:18px;">
+    <span class="tag">What I'm working on</span>
+    <h4 style="font-size:30px;">The Vionites</h4>
+    <div class="grid2r" style="gap:16px;">
+      <figure class="fig" style="margin:0;">
+        <img src="/assets/img/mag2/vionite.jpg" alt="Vionite noble in blue and gold armour: 'Do try to survive the week — I've grown mildly invested.'">
+        <figcaption><b>IN-GAME</b> — "Off you go, Straker of the Breakers. Do try to survive the week — I've grown mildly invested."</figcaption>
+      </figure>
+      <div>
+        <p style="font-size:13.2px;">Right now the focus is building out the <strong>Vionites</strong> — the most powerful known race in the galaxy. They sit dead on the line of the Tier system: top of <strong>Tier 1</strong>, transitioning into <strong>Tier 2</strong> on the back of their recent grasp of Resonant Essence. They're the only Tier 1 race that can cross space without dispersion fields.</p>
+        <p style="font-size:13.2px;">Their empire runs to <strong>~100 billion citizens across multiple star systems</strong>: militaristic mouse-like generals in the <strong>Core Worlds</strong>, politicians, retail and luxury in the <strong>Home Worlds</strong>, and hippie squirrel-like populations out on the <strong>Fringe</strong>. Their energy footprint is too big to hide, so they prepared for war — and they're the only race insane enough to go toe-to-toe with the Drone Fleet.</p>
+        <p style="font-size:13.2px;"><strong>Done:</strong> Oryen's scene ✔ · their massive, superior fleet ✔<br><strong>Next:</strong> the Vionites' bespoke RTS interface — with a short showcase video on YouTube soon.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cheat" style="margin-top:16px;">
     <b>&gt; IN THE PIPELINE (11 AUG):</b> Straker 007 with three Bond girls ✔ · Hara oppressing a human cadet · Kethri stealth agent NPC ✔ ·
     Rexalia full armour · Rexalia new outfit ✔ · WW1 abduction scenes · Morrigan &amp; Fel animated flashback · Varya ✔ + pixel sprite ·
     Anchor's Demon phase 2 · animated kissing scene · Marta sobbing · Chinese NPCs ×2 · animated Kaelix scene · Kaelix voicing starts
