@@ -64,6 +64,8 @@
         .p-row.expanded .p-detail{display:block}
         .p-reason{margin-top:8px;color:#ff9a9a}
         .p-reason strong{color:#ff6b6b}
+        .p-note{margin-top:8px;color:#9fdcb4}
+        .p-note strong{color:#7CFC9A}
         .p-link{display:inline-block;margin-top:8px;font-size:.75rem;border-bottom:1px dashed #00ffcc44}
         .empty-state{text-align:center;color:#8a8a8a;padding:60px 0}
         .count-note{color:#666;font-size:.75rem;margin-bottom:10px;letter-spacing:1px}
@@ -159,6 +161,7 @@
                     </div>
                     <div class="p-detail">${esc(p.message) || '<em>no quote captured</em>'}
                         ${st === 'not-doing' && p.reason ? `<div class="p-reason"><strong>Why not:</strong> ${esc(p.reason)}</div>` : ''}
+                        ${st === 'implemented' && p.reason ? `<div class="p-note"><strong>Note:</strong> ${esc(p.reason)}</div>` : ''}
                         ${p.link ? `<a class="p-link" href="${esc(p.link)}" target="_blank" rel="noopener">view original message on Discord →</a>` : ''}
                     </div>
                 </div>`;

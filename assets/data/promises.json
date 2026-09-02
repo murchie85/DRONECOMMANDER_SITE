@@ -3130,7 +3130,7 @@
   "summary": "Many save opportunities, will look into autosaving",
   "message": "Saving isn't just capturing all stats and states, it requires establishing the corresponding load logic.   This can get heavy extremely fast, increasing the amount of work required by 10x.  The game has many cutscenes, some of which have processes that flow into the game.   Take a drunmuire example, theres an opening screen cutscene, then your ship flies in, theres some conversations, and the ship goes into stealth.  (later you'll come back and be able to unstealth the ship to fly up to the Freexyl.)  When you reload, you'd want all those events to have been run and in their final place i.e. the dropship spawened, in stealth, the character dilaogue at a certain point, the plyer at a certain point and so on.  Effectively lots of moving parts.   Having clearly defined save points means that loading into those places are more predictable and easier to code.   There are other reasons, but these are the big ones - hope that makes sense (there will be lots of save opportunities and i'll look into autosaving).",
   "link": "https://discord.com/channels/1212811845543399566/1228121017864552510/1516448546365374574",
-  "status": "open",
+  "status": "implemented",
   "reason": "",
   "id": 285
  },
@@ -3141,7 +3141,7 @@
   "summary": "Will do his best on request",
   "message": "I'll do my best",
   "link": "https://discord.com/channels/1212811845543399566/1408757476727455895/1516455677822767115",
-  "status": "open",
+  "status": "implemented",
   "reason": "",
   "id": 286
  },
@@ -3174,8 +3174,8 @@
   "summary": "Game will have saving plus autosave",
   "message": "It'll have that rest assured, it'll also autosave incase you forgot to",
   "link": "https://discord.com/channels/1212811845543399566/1228121017864552510/1520808031544152194",
-  "status": "open",
-  "reason": "",
+  "status": "implemented",
+  "reason": "Autosaves at key points",
   "id": 289
  },
  {
@@ -3196,8 +3196,8 @@
   "summary": "Implementing a global fix for the bug",
   "message": "Yea me too. Its  no biggie ill be implementing a global fix for all",
   "link": "https://discord.com/channels/1212811845543399566/1228121017864552510/1523980353360887858",
-  "status": "open",
-  "reason": "",
+  "status": "implemented",
+  "reason": "Fixed globally, but could creep up again",
   "id": 291
  },
  {
