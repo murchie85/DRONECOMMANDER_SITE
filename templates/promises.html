@@ -67,6 +67,11 @@
         .p-note{margin-top:8px;color:#9fdcb4}
         .p-note strong{color:#7CFC9A}
         .p-link{display:inline-block;margin-top:8px;font-size:.75rem;border-bottom:1px dashed #00ffcc44}
+        .group-title{color:#00ffcc;letter-spacing:2px;font-size:.85rem;text-transform:uppercase;
+                     margin:46px 0 12px;border-bottom:1px solid #00ffcc33;padding-bottom:6px}
+        .group-title:first-child{margin-top:0}
+        .group-title.g-implemented{color:#7CFC9A;border-bottom-color:#7CFC9A33}
+        .group-title.g-not-doing{color:#ff6b6b;border-bottom-color:#ff6b6b33}
         .empty-state{text-align:center;color:#8a8a8a;padding:60px 0}
         .count-note{color:#666;font-size:.75rem;margin-bottom:10px;letter-spacing:1px}
         @media (max-width:640px){
@@ -149,7 +154,15 @@
             });
             document.getElementById('countNote').textContent = `showing ${rows.length} of ${data.length}`;
             if (!rows.length){ content.innerHTML = '<div class="empty-state">Nothing matches.</div>'; return; }
-            content.innerHTML = rows.map(p => {
+            const groups = [['open','// Open Promises'], ['implemented','// Done'], ['not-doing','// Not Doing']];
+            content.innerHTML = groups.map(([st, label]) => {
+                const grp = rows.filter(p => statusOf(p) === st);
+                if (!grp.length) return '';
+                return `<div class="group-title g-${st}">${label} — ${grp.length}</div>` + grp.map(renderRow).join('');
+            }).join('');
+        }
+
+        function renderRow(p){
                 const st = statusOf(p);
                 const stLabel = st === 'not-doing' ? 'not doing' : st;
                 return `<div class="p-row st-${st}" data-id="${p.id}">
@@ -165,7 +178,6 @@
                         ${p.link ? `<a class="p-link" href="${esc(p.link)}" target="_blank" rel="noopener">view original message on Discord →</a>` : ''}
                     </div>
                 </div>`;
-            }).join('');
         }
 
         content.addEventListener('click', e => {
