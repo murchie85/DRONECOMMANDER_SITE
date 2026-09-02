@@ -123,6 +123,10 @@ def magazine():
 def magazine2():
     return render_template('magazine2.html')
 
+@app.route('/promises')
+def promises():
+    return render_template('promises.html')
+
 @app.route('/backlog')
 def backlog():
     # old backlog page replaced by the progress update
@@ -138,7 +142,7 @@ Sitemap: /sitemap.xml
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress', '/magazine', '/magazine2']
+    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress', '/magazine', '/magazine2', '/promises']
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
