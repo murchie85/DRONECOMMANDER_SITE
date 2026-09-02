@@ -3207,8 +3207,8 @@
   "summary": "Try to make the build smaller",
   "message": "sorry man, i wish i could make it smaller. I'll try",
   "link": "https://discord.com/channels/1212811845543399566/1408757476727455895/1524386817330253955",
-  "status": "open",
-  "reason": "",
+  "status": "implemented",
+  "reason": "Done via compression and optimisation",
   "id": 292
  },
  {
@@ -3267,24 +3267,13 @@
   "id": 297
  },
  {
-  "date": "2026-07-24",
-  "channel": "feedback_smallstuff_log",
-  "strength": "firm",
-  "summary": "Will check out teamchat later",
-  "message": "thanks rookiertri! sorry i haven't checked out teamchat yet but will do later and thank you for your messages!",
-  "link": "https://discord.com/channels/1212811845543399566/1408757476727455895/1530217477848436746",
-  "status": "open",
-  "reason": "",
-  "id": 298
- },
- {
   "date": "2026-07-26",
   "channel": "feedback_smallstuff_log",
   "strength": "firm",
   "summary": "Finish final script section today",
   "message": "Yeah mostly the end scene and her final reveal to do. About 3 hours worth but no rush on it. Ill finish the script today for the final bit though",
   "link": "https://discord.com/channels/1212811845543399566/1408757476727455895/1530875136993918986",
-  "status": "open",
+  "status": "implemented",
   "reason": "",
   "id": 299
  },
