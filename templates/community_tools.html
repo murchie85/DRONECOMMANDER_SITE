@@ -183,6 +183,22 @@
             margin-bottom: 14px;
             font-size: 0.9rem;
         }
+        .waitlist-form select,
+        .waitlist-form textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,255,204,0.3);
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+        }
+        .waitlist-form textarea { resize: vertical; min-height: 80px; }
+        .waitlist-form select:invalid { color: #777; }
+        .waitlist-form select:focus,
+        .waitlist-form textarea:focus,
         .waitlist-form input:focus {
             outline: none;
             border-color: #00ffcc;
@@ -262,6 +278,29 @@
                 <button type="submit" id="wl-submit">Join Waitlist</button>
             </form>
         </div>
+
+        <div class="waitlist-section">
+            <h2>Map Editor Beta</h2>
+            <div class="waitlist-subtitle">Patrons - Build Your Own Rooms</div>
+            <p class="waitlist-desc">
+                Get Drone Commander with the Map Editor unlocked. It's buggy as heck, but you can
+                create rooms, run around in them, and share the map files. Send in your best work -
+                if a room looks good, it might make it into the game.
+            </p>
+            <form class="waitlist-form" id="beta-form">
+                <input type="text" id="beta-name" placeholder="Name" maxlength="100" required>
+                <input type="text" id="beta-patreon" placeholder="Patreon ID" maxlength="100" required>
+                <input type="text" id="beta-contact" placeholder="Email or Discord" maxlength="150" required>
+                <select id="beta-os" required>
+                    <option value="" disabled selected>Operating system</option>
+                    <option>Windows</option>
+                    <option>Mac</option>
+                    <option>Linux</option>
+                </select>
+                <textarea id="beta-experience" placeholder="Mapping experience (optional) - made levels or mods before?" maxlength="1000"></textarea>
+                <button type="submit" id="beta-submit">Apply for Beta</button>
+            </form>
+        </div>
     </div>
 
     <div class="toast-msg" id="toast"></div>
@@ -321,6 +360,40 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: name, patreon_id: patreonId })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showToast(data.message);
+                    e.target.reset();
+                } else {
+                    showToast(data.error || 'Submission failed. Try again later.', true);
+                }
+            } catch (err) {
+                showToast('Submission failed. Try again later.', true);
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('beta-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const val = (id) => document.getElementById(id).value.trim();
+            const body = {
+                name: val('beta-name'),
+                patreon_id: val('beta-patreon'),
+                contact: val('beta-contact'),
+                os: val('beta-os'),
+                experience: val('beta-experience')
+            };
+            if (!body.name || !body.patreon_id || !body.contact || !body.os) return;
+
+            const btn = document.getElementById('beta-submit');
+            btn.disabled = true;
+            try {
+                const res = await fetch('/api/beta-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
                 });
                 const data = await res.json();
                 if (res.ok) {

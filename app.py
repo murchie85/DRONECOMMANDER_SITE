@@ -249,6 +249,40 @@ def add_waitlist():
         return jsonify({'error': 'Could not save your entry. Try again later.'}), 502
     return jsonify({'message': f'Submitted for Patreon ID {patreon_id}'}), 201
 
+# MAP EDITOR BETA
+# Patron signups for the beta Map Editor build, forwarded to a second Google Form.
+# Set BETA_FORM_URL (.../formResponse) plus a BETA_ENTRY_* id per field.
+BETA_FORM_URL = os.environ.get('BETA_FORM_URL', '')
+BETA_FIELDS = {  # json key -> (env var, max length, required)
+    'name': ('BETA_ENTRY_NAME', 100, True),
+    'patreon_id': ('BETA_ENTRY_PATREON', 100, True),
+    'contact': ('BETA_ENTRY_CONTACT', 150, True),
+    'os': ('BETA_ENTRY_OS', 20, True),
+    'experience': ('BETA_ENTRY_EXPERIENCE', 1000, False),
+}
+BETA_OS_CHOICES = {'Windows', 'Mac', 'Linux'}
+
+@app.route('/api/beta-signup', methods=['POST'])
+def add_beta_signup():
+    data = request.json or {}
+    values = {key: (data.get(key) or '').strip()[:maxlen]
+              for key, (_, maxlen, _) in BETA_FIELDS.items()}
+    if any(required and not values[key] for key, (_, _, required) in BETA_FIELDS.items()):
+        return jsonify({'error': 'Name, Patreon ID, contact and OS are required.'}), 400
+    if values['os'] not in BETA_OS_CHOICES:
+        return jsonify({'error': 'Pick Windows, Mac or Linux.'}), 400
+    entry_ids = {key: os.environ.get(env, '') for key, (env, _, _) in BETA_FIELDS.items()}
+    if not BETA_FORM_URL or not all(entry_ids.values()):
+        return jsonify({'error': 'Beta signups are not open yet. Check back soon.'}), 503
+    try:
+        resp = requests.post(BETA_FORM_URL, data={
+            entry_ids[key]: value for key, value in values.items()
+        }, timeout=10)
+        resp.raise_for_status()
+    except requests.RequestException:
+        return jsonify({'error': 'Could not save your entry. Try again later.'}), 502
+    return jsonify({'message': f'Beta application received for Patreon ID {values["patreon_id"]}'}), 201
+
 # API
 @app.route('/api/bugs', methods=['GET'])
 def get_bugs():

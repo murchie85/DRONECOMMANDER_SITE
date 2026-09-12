@@ -91,6 +91,7 @@ bash backup.sh
 | `/api/bugs` | POST | Submit a bug (JSON body) |
 | `/api/bugs/<id>` | DELETE | Delete a bug by ID |
 | `/api/waitlist` | POST | Join the map editor waitlist (JSON: `name`, `patreon_id`) |
+| `/api/beta-signup` | POST | Apply for the Map Editor beta (JSON: `name`, `patreon_id`, `contact`, `os`, `experience`) |
 
 ### Example POST
 
@@ -137,6 +138,23 @@ curl -X POST https://dronecommander.gg/api/waitlist \
 ```
 
 ⚠️ Keep the Google Form URL private — anyone who has it can append rows (though they can't read the sheet).
+
+## Map Editor Beta signup
+
+A second card on `/community-tools` takes patron applications for the beta Map Editor build. Same mechanism as the waitlist: the form POSTs to `/api/beta-signup`, which forwards to a **separate** Google Form (its own sheet). Fields: Name, Patreon ID, Email or Discord, OS (Windows/Mac/Linux), Mapping experience (optional).
+
+Render env vars (unset = "Beta signups are not open yet"):
+
+| Env var | Value |
+|---------|-------|
+| `BETA_FORM_URL` | The beta form's `/formResponse` URL |
+| `BETA_ENTRY_NAME` | Field id for Name |
+| `BETA_ENTRY_PATREON` | Field id for Patreon ID |
+| `BETA_ENTRY_CONTACT` | Field id for Email or Discord |
+| `BETA_ENTRY_OS` | Field id for OS (make it a Short answer question, not multiple choice) |
+| `BETA_ENTRY_EXPERIENCE` | Field id for Mapping experience (Paragraph, not required) |
+
+To add a field, add the question to the form, then one line in `BETA_FIELDS` in `app.py`, an input plus a `body` key in `community_tools.html`, and the env var.
 
 ## Links
 
