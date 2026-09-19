@@ -123,6 +123,34 @@
             padding-left: 14px;
         }
         .toc-sub .toc-link { font-size: 0.72rem; color: #666; }
+        .toc-sub.collapsed { display: none; }
+        .toc-link.has-sub { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+        .toc-caret {
+            flex-shrink: 0;
+            padding: 0 6px;
+            color: #555;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .toc-caret:hover { color: #00ffcc; }
+        .toc-link.open > .toc-caret { transform: rotate(90deg); color: #00ffcc; }
+        .toc-filter {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px 8px;
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.25);
+            border-radius: 4px;
+            color: #00ffcc;
+            font-family: inherit;
+            font-size: 0.75rem;
+            outline: none;
+        }
+        .toc-filter:focus { border-color: #00ffcc; box-shadow: 0 0 6px rgba(0,255,204,0.25); }
+        .toc-filter::placeholder { color: #555; }
+        .toc-hidden { display: none !important; }
+        .toc-empty { display: none; color: #555; font-size: 0.72rem; padding: 4px 0; }
 
         /* Main content */
         .comp-main {
@@ -471,6 +499,8 @@
         <!-- Sidebar TOC -->
         <nav class="toc-sidebar">
             <div class="toc-title">Contents</div>
+            <input type="search" class="toc-filter" id="tocFilter" placeholder="Filter contents&hellip;" aria-label="Filter contents" autocomplete="off">
+            <div class="toc-empty" id="tocEmpty">No matches.</div>
             <a href="#synopsis" class="toc-link">Synopsis</a>
             <a href="#story-roadmap" class="toc-link">Story Roadmap (Planning)</a>
             <a href="#drones" class="toc-link">Drones</a>
@@ -3399,7 +3429,7 @@ Cyber Warfare Suite (40 RP)
                 </p>
                 <ul>
                     <li><strong>Legal head.</strong> The Crown signs the formal documents &mdash; house deeds, contracts and the like.</li>
-                    <li><strong>Often close to the male, but not always.</strong> Many Crowns are Velara. Plenty are not. The role is about the pride, not the romance.</li>
+                    <li><strong>Often close to the male, but not always.</strong> Many Crowns are Velara. Plenty are not.</li>
                     <li><strong>Host.</strong> She organises the gatherings and does her best to make sure the Astraria attend.</li>
                     <li><strong>Negotiator.</strong> When a pride begins to fracture, the Crown steps in. That can mean cutting off an Astraria who has become divisive, or making the Velara and the male see reason.</li>
                 </ul>
@@ -4123,17 +4153,94 @@ Cyber Warfare Suite (40 RP)
         // Highlight current TOC section on scroll
         const sections = document.querySelectorAll('[id]');
         const tocLinks = document.querySelectorAll('.toc-link');
+        const tocNav = document.querySelector('.toc-sidebar');
+        const tocFilter = document.getElementById('tocFilter');
+
+        // Collapsible top-level groups: a link followed by a .toc-sub
+        const groups = [];
+        tocNav.querySelectorAll(':scope > .toc-sub').forEach(sub => {
+            const head = sub.previousElementSibling;
+            if (!head || !head.classList.contains('toc-link')) return;
+            const group = { head, sub, pinned: false };
+            const caret = document.createElement('span');
+            caret.className = 'toc-caret';
+            caret.innerHTML = '&#9654;';
+            caret.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                group.pinned = sub.classList.contains('collapsed');
+                setOpen(group, group.pinned);
+            });
+            head.classList.add('has-sub');
+            head.appendChild(caret);
+            head.addEventListener('click', () => setOpen(group, true));
+            sub.classList.add('collapsed');
+            groups.push(group);
+        });
+        function setOpen(group, open) {
+            group.sub.classList.toggle('collapsed', !open);
+            group.head.classList.toggle('open', open);
+        }
+        // Open the group holding the active link, close the rest (unless pinned open)
+        function revealActive(link) {
+            if (tocFilter.value.trim()) return;
+            groups.forEach(g => {
+                const holds = g.head === link || g.sub.contains(link);
+                if (holds) setOpen(g, true);
+                else if (!g.pinned) setOpen(g, false);
+            });
+            // Keep the active link in view inside the sticky sidebar (desktop only)
+            if (window.matchMedia('(min-width: 769px)').matches) {
+                const top = link.offsetTop; // nav is sticky, so it is the offsetParent
+                if (top < tocNav.scrollTop || top > tocNav.scrollTop + tocNav.clientHeight - 30) {
+                    tocNav.scrollTop = top - tocNav.clientHeight / 2;
+                }
+            }
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     tocLinks.forEach(link => {
-                        link.classList.toggle('active',
-                            link.getAttribute('href') === '#' + entry.target.id);
+                        const on = link.getAttribute('href') === '#' + entry.target.id;
+                        link.classList.toggle('active', on);
+                        if (on) revealActive(link);
                     });
                 }
             });
         }, { rootMargin: '-80px 0px -70% 0px' });
         sections.forEach(section => observer.observe(section));
+
+        // Filter box: show matching links plus the headings above them
+        function filterLevel(container, q, force) {
+            let any = false;
+            Array.from(container.children).forEach(el => {
+                if (!el.classList.contains('toc-link')) return;
+                const next = el.nextElementSibling;
+                const sub = next && next.classList.contains('toc-sub') ? next : null;
+                const own = force || el.textContent.toLowerCase().includes(q);
+                const below = sub ? filterLevel(sub, q, own) : false;
+                const show = own || below;
+                el.classList.toggle('toc-hidden', !show);
+                if (sub) sub.classList.toggle('toc-hidden', !show);
+                any = any || show;
+            });
+            return any;
+        }
+        tocFilter.addEventListener('input', () => {
+            const q = tocFilter.value.trim().toLowerCase();
+            if (!q) {
+                tocNav.querySelectorAll('.toc-hidden').forEach(el => el.classList.remove('toc-hidden'));
+                groups.forEach(g => setOpen(g, g.pinned));
+                document.getElementById('tocEmpty').style.display = 'none';
+                const active = tocNav.querySelector('.toc-link.active');
+                if (active) revealActive(active);
+                return;
+            }
+            groups.forEach(g => setOpen(g, true));
+            const any = filterLevel(tocNav, q, false);
+            document.getElementById('tocEmpty').style.display = any ? 'none' : 'block';
+        });
     </script>
 </body>
 </html>
