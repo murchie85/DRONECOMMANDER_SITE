@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import Flask, render_template, request, jsonify, Response, redirect, url_for
+from flask import Flask, render_template, request, jsonify, Response, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_compress import Compress
 from datetime import datetime
@@ -97,7 +97,7 @@ def about():
 
 @app.route('/devlog')
 def devlog():
-    return render_template('devlog.html')
+    return render_template('devlog.html', posts=BLOG_POSTS)
 
 @app.route('/ideation')
 def ideation():
@@ -127,6 +127,29 @@ def magazine2():
 def promises():
     return render_template('promises.html')
 
+# Blog posts, newest first. Each post body lives in templates/blog/<slug>.html
+BLOG_POSTS = [
+    {
+        'slug': 'the-crown-and-pride-orbits',
+        'title': 'The Crown & Pride Orbits',
+        'date': '19 September 2026',
+        'summary': 'How a Sekarri pride actually works: one male, seven females, three orbits of closeness, and the Crown who holds it all together.',
+        'image': 'img/mag/kiss_scene.jpg',
+    },
+]
+
+@app.route('/blog')
+def blog():
+    # posts are listed at the top of the Blogs (devlog) page
+    return redirect('/devlog#posts')
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    post = next((p for p in BLOG_POSTS if p['slug'] == slug), None)
+    if post is None:
+        abort(404)
+    return render_template(f'blog/{slug}.html', post=post)
+
 @app.route('/backlog')
 def backlog():
     # old backlog page replaced by the progress update
@@ -143,6 +166,7 @@ Sitemap: /sitemap.xml
 @app.route('/sitemap.xml')
 def sitemap():
     pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress', '/magazine', '/magazine2', '/promises']
+    pages += [f"/blog/{p['slug']}" for p in BLOG_POSTS]
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

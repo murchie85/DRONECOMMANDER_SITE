@@ -20,12 +20,14 @@ instance/bugs.db    # SQLite database (gitignored data)
 templates/
   landing.html      # Landing page — floating title, bottom dock nav, YouTube bg video
   about.html        # About page — game overview, screenshots, developer bio, community stats
-  devlog.html       # Development log — timeline entries Dec 2025 - Feb 2026
+  devlog.html       # "Blogs" page (nav label) — blog post cards from BLOG_POSTS, then the development log — timeline entries Dec 2025 - Feb 2026
   latest_update.html # Latest update — current progress and roadmap
   compendium.html   # Compendium — full game lore: species, factions, characters, science
   community_tools.html # Community tools hub — links to bug reporter, uploaders
   reporter.html     # Bug reporter form + log table
   todo.html         # Placeholder page for unfinished features
+  blog_base.html    # Shared blog layout + CSS (the one place templates use inheritance)
+  blog/<slug>.html  # One file per blog post, extends blog_base.html
 assets/
   audio/DCThemeV2.mp3 # Theme music (untracked/local-only — not deployed, no template references it)
   img/dcBg.webp     # Background image (Fel/Straker artwork)
@@ -37,10 +39,12 @@ assets/
 |--------------------|--------------------------------|
 | `/`                | Landing page (command center)  |
 | `/about`           | About the game                 |
-| `/devlog`          | Development log                |
+| `/devlog`          | Blogs page: post cards + development log |
 | `/latest-update`   | Latest development update      |
 | `/compendium`      | Game lore compendium           |
 | `/community-tools` | Community tools hub            |
+| `/blog`            | Redirects to `/devlog#posts`   |
+| `/blog/<slug>`     | Blog post — add an entry to `BLOG_POSTS` in `app.py` (newest first) plus `templates/blog/<slug>.html`; sitemap picks it up automatically |
 | `/bug-reporter`    | Bug reporter UI                |
 | `/robots.txt`      | SEO crawler directives         |
 | `/sitemap.xml`     | SEO sitemap                    |

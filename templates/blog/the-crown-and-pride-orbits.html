@@ -1,0 +1,77 @@
+{% extends "blog_base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.summary }}{% endblock %}
+{% block og_image %}{{ post.image }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block content %}
+        <article class="post-body">
+            <div class="post-date">{{ post.date }} &middot; Sekarri Lore</div>
+            <h1 class="post-title">{{ post.title }}</h1>
+            <p class="post-lead">
+                People keep asking how a Sekarri pride actually works day to day. Who is close to who? Who is in charge? Here is the full picture.
+            </p>
+
+            <h2>The Shape of a Pride</h2>
+            <p>
+                Sekarri births run seven females to every male, so a typical pride is <strong class="text-glow">one male and seven females</strong>. The seven are not all equally close to him. They usually break down like this:
+            </p>
+            <ul>
+                <li><strong>Velara (usually 2)</strong> &mdash; the closest to the male romantically. This is the real love triangle of a pride.</li>
+                <li><strong>Lorena (usually 3)</strong> &mdash; the middle ground. They have varying degrees of relations with the male, but are more enriched by love of the group, and sometimes a more intimate love with each other.</li>
+                <li><strong>Astraria (usually 2)</strong> &mdash; the furthest out. Often away by duty or by choice, and sometimes floating between prides.</li>
+            </ul>
+
+            <figure class="post-figure">
+                <img src="/assets/img/kira.webp" alt="Kira Virethorne" width="800" height="678">
+                <figcaption>Kira feels she identifies most as an Astraria, as her love for her work takes priority, but she still has physical and affectionate needs the pride can fulfill.</figcaption>
+            </figure>
+
+            <h2>The Cordara</h2>
+            <p>
+                Within the Velara, one woman (two at most, but usually one) is the male's single closest love. The Sekarri word for her is the <strong class="text-glow">Cordara</strong> &mdash; &ldquo;Heart-bound&rdquo;.
+            </p>
+
+            <figure class="post-figure">
+                <img src="/assets/img/mag/kiss_scene.jpg" alt="A Sekarri woman kissing a human soldier" width="950" height="644" loading="lazy">
+                <figcaption>The Cordara is the most intimate with the male. This is the closest to monogamy, an artefact of the Sekarri's previous 1&ndash;1 gender balance that evolution has not had time to phase out. This is what makes humans and Sekarri semi-compatible.</figcaption>
+            </figure>
+
+            <h2>Dating a Pride</h2>
+            <figure class="post-figure">
+                <img src="/assets/img/academy_dance.webp" alt="Three Sekarri cadets arm in arm at the academy" width="1200" height="1200" loading="lazy">
+                <figcaption>Sekarri females usually form part of the pride in advance, before dating males; it improves stability. The male usually only picks the first two he is attracted to. After that the females choose. Hence a male may attend two dates with a pride: the first romantic, and if that works, a less intimate second one with the outer orbit. As long as they get on, it can proceed. Sometimes the male and a composite pride of four or five might meet on one big date; it depends on the region. Some parts of Alara are Victorian formal, others are more modern and it's just a big date outing.</figcaption>
+            </figure>
+
+            <h2>Pride Love</h2>
+            <p>
+                Above all, the eight members relate most to the <strong>group love</strong> they share with each other. Affection runs between everyone &mdash; female to female, male to female. When a pride cooks together they will share kisses and hugs as they go. On special occasions the male may be shared with the outer females, if they all wish it, but mostly it is a constant kind of pride love where everyone is affectionate with each other anyway.
+            </p>
+            <p>
+                Festive occasions are common. The classic one: the Astraria comes home, and all eight cook dinner together.
+            </p>
+
+            <h2>The Crown</h2>
+            <p>
+                The <strong class="text-glow">Crown</strong> is the centre of the pride &mdash; the one responsible for its <strong>stability</strong>. She is usually a female. It can be the male; that is just rarer. In the olden days the Crown was thought of as a kind of modern Alpha-Female.
+            </p>
+            <ul>
+                <li><strong>Legal head.</strong> She signs the formal documents, house deeds and so on.</li>
+                <li><strong>Often close to the male, but not always.</strong> Many Crowns are Velara. Plenty are not.</li>
+                <li><strong>Host.</strong> She organises the gatherings and does her best to make sure the Astraria attend.</li>
+                <li><strong>Negotiator.</strong> When a pride starts to fracture, the Crown steps in. That can mean cutting off an Astraria who is being divisive, or making the Velara and the male see reason.</li>
+            </ul>
+
+            <h2>Three Orbits &mdash; and the True Centre</h2>
+            <p>
+                From the male's point of view a pride is <strong>three orbits</strong>: Velara on the inside, then Lorena, then Astraria &mdash; each progressively more emotionally distant from him.
+            </p>
+            <p>
+                But that is only his view. In reality, the true orbits are around the <strong class="text-glow">Crown</strong>. More on that to come.
+            </p>
+
+            <div class="post-footer">
+                <a href="/devlog#posts">&#9664; All posts</a>
+                <a href="/compendium#pride-crown">Read more in the Compendium &#9654;</a>
+            </div>
+        </article>
+{% endblock %}

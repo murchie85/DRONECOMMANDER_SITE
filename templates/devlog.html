@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevLog - Drone Commander</title>
-    <meta name="description" content="Development log for Drone Commander — follow the journey from RTS rewrites to character art and cutscene systems.">
-    <meta property="og:title" content="DevLog - Drone Commander">
+    <title>Blogs &amp; DevLog - Drone Commander</title>
+    <meta name="description" content="Blogs and development log for Drone Commander — lore deep-dives, plus follow the journey from RTS rewrites to character art and cutscene systems.">
+    <meta property="og:title" content="Blogs &amp; DevLog - Drone Commander">
     <meta property="og:description" content="Follow the development journey of Drone Commander — RTS rewrites, character art, cutscene systems and more.">
     <meta property="og:image" content="https://dronecommander.gg/assets/img/cover.jpg">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DevLog - Drone Commander">
+    <meta name="twitter:title" content="Blogs &amp; DevLog - Drone Commander">
     <meta name="twitter:description" content="Follow the development journey of Drone Commander — RTS rewrites, character art, cutscene systems and more.">
     <meta name="twitter:image" content="https://dronecommander.gg/assets/img/cover.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
@@ -71,6 +71,49 @@
             text-shadow: 0 0 20px rgba(0,255,204,0.5);
             margin-bottom: 10px;
         }
+        /* Blog post cards */
+        .post-card {
+            display: flex;
+            background: rgba(0,255,204,0.04);
+            border: 1px solid rgba(0,255,204,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .post-card:hover {
+            border-color: #00ffcc;
+            box-shadow: 0 0 20px rgba(0,255,204,0.2);
+        }
+        .post-card img {
+            width: 260px;
+            flex-shrink: 0;
+            object-fit: cover;
+            object-position: center 25%;
+        }
+        .post-card-body { padding: 20px 24px; }
+        .post-card h3 {
+            color: #00ffcc;
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .post-card p { color: #bbb; margin: 0; font-size: 0.9rem; }
+        .post-card .post-date {
+            color: #777;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .post-card .post-more { color: #00ffcc; font-size: 0.8rem; margin-top: 10px; display: inline-block; }
+        @media (max-width: 576px) {
+            .post-card { flex-direction: column; }
+            .post-card img { width: 100%; height: 180px; }
+        }
+
         .hero-banner .tagline {
             color: #aaa;
             font-size: 1rem;
@@ -328,8 +371,24 @@
 
     <!-- Hero -->
     <div class="hero-banner">
-        <h1>Development Log</h1>
-        <p class="tagline">Raw updates from the trenches &mdash; tracking the journey from concept to launch</p>
+        <h1>Blogs</h1>
+        <p class="tagline">Lore deep-dives and raw updates from the trenches &mdash; tracking the journey from concept to launch</p>
+    </div>
+
+    <!-- Blog posts -->
+    <div class="content-section" id="posts" style="padding-bottom: 0;">
+        <h2 class="section-title">// Latest Posts</h2>
+        {% for post in posts %}
+        <a href="/blog/{{ post.slug }}" class="post-card">
+            <img src="/assets/{{ post.image }}" alt="{{ post.title }}">
+            <div class="post-card-body">
+                <div class="post-date">{{ post.date }}</div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.summary }}</p>
+                <span class="post-more">Read post &rarr;</span>
+            </div>
+        </a>
+        {% endfor %}
     </div>
 
     <!-- Ideation banner -->
