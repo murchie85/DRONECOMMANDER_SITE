@@ -3,7 +3,8 @@ import requests
 from flask import Flask, render_template, request, jsonify, Response, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_compress import Compress
-from datetime import datetime
+import time
+from datetime import datetime, timedelta
 from markupsafe import escape
 
 app = Flask(__name__, static_folder='assets', static_url_path='/assets')
@@ -70,10 +71,55 @@ def check_throttle(username):
 with app.app_context():
     db.create_all()
 
+# VISITOR COUNTER
+# Shows Cloudflare Web Analytics visits (last 30 days) on the landing page.
+# Needs CF_API_TOKEN (Account Analytics: Read), CF_ACCOUNT_ID and CF_SITE_TAG
+# on Render; without them the counter is simply hidden. Cached per worker for
+# an hour so Cloudflare sees at most a few calls an hour.
+CF_API_TOKEN = os.environ.get('CF_API_TOKEN', '')
+CF_ACCOUNT_ID = os.environ.get('CF_ACCOUNT_ID', '')
+CF_SITE_TAG = os.environ.get('CF_SITE_TAG', '')
+VISITS_QUERY = '''
+query($account: string!, $site: string!, $start: Time!, $end: Time!) {
+  viewer { accounts(filter: {accountTag: $account}) {
+    rumPageloadEventsAdaptiveGroups(limit: 1, filter: {siteTag: $site, datetime_geq: $start, datetime_leq: $end}) {
+      sum { visits }
+    }
+  } }
+}'''
+_visits_cache = {'value': None, 'expires': 0}
+
+def get_monthly_visits():
+    if not (CF_API_TOKEN and CF_ACCOUNT_ID and CF_SITE_TAG):
+        return None
+    now = time.time()
+    if now < _visits_cache['expires']:
+        return _visits_cache['value']
+    end = datetime.utcnow()
+    variables = {
+        'account': CF_ACCOUNT_ID,
+        'site': CF_SITE_TAG,
+        'start': (end - timedelta(days=30)).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'end': end.strftime('%Y-%m-%dT%H:%M:%SZ'),
+    }
+    try:
+        resp = requests.post('https://api.cloudflare.com/client/v4/graphql',
+                             json={'query': VISITS_QUERY, 'variables': variables},
+                             headers={'Authorization': f'Bearer {CF_API_TOKEN}'},
+                             timeout=3)
+        groups = resp.json()['data']['viewer']['accounts'][0]['rumPageloadEventsAdaptiveGroups']
+        value = groups[0]['sum']['visits'] if groups else 0
+        _visits_cache.update(value=value, expires=now + 3600)
+    except Exception as e:
+        app.logger.warning('Cloudflare visits fetch failed: %s', e)
+        # Keep showing the last good number; retry in 10 minutes
+        _visits_cache['expires'] = now + 600
+    return _visits_cache['value']
+
 # ROUTES
 @app.route('/')
 def index():
-    return render_template('landing.html')
+    return render_template('landing.html', visits=get_monthly_visits())
 
 @app.route('/bug-reporter')
 def bug_reporter():

@@ -87,6 +87,37 @@
             text-transform: uppercase;
         }
 
+        /* Patreon call-to-action under the title */
+        .patreon-cta {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 12px 30px;
+            pointer-events: auto;
+            background: rgba(255,66,77,0.15);
+            border: 2px solid #ff424d;
+            border-radius: 4px;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+            backdrop-filter: blur(4px);
+            animation: patreon-glow 2.5s ease-in-out infinite;
+            transition: 0.3s;
+        }
+        .patreon-cta:hover {
+            background: #ff424d;
+            color: #fff;
+            box-shadow: 0 0 28px rgba(255,66,77,0.8);
+        }
+        @keyframes patreon-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255,66,77,0.35); }
+            50% { box-shadow: 0 0 24px rgba(255,66,77,0.7); }
+        }
+
         /* Bottom dock nav */
         .bottom-dock {
             position: absolute;
@@ -178,14 +209,33 @@
             text-shadow: 0 0 10px rgba(0,255,204,0.6);
         }
 
+        /* Visitor counter — bottom right */
+        .visit-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 20px;
+            z-index: 11;
+            color: rgba(0,255,204,0.6);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        .visit-counter b {
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0,255,204,0.6);
+        }
+
         @media (max-width: 576px) {
             .hero-title h1 { font-size: 2.2rem; letter-spacing: 3px; }
             .hero-title p { font-size: 0.85rem; }
             .hero-title { top: 8%; }
+            .patreon-cta { margin-top: 16px; padding: 10px 20px; font-size: 0.85rem; letter-spacing: 1px; }
             .dock-btn { padding: 8px 14px; font-size: 0.72rem; }
             .bottom-dock { gap: 6px; padding: 20px 12px 22px; }
             .social-links { bottom: 8px; left: 12px; gap: 10px; }
             .social-links a { font-size: 0.7rem; }
+            .visit-counter { bottom: 8px; right: 12px; font-size: 0.7rem; }
         }
     </style>
     <script type="application/ld+json">
@@ -224,6 +274,7 @@
     <div class="hero-title">
         <h1>Drone Commander</h1>
         <p>Command Center Access</p>
+        <a href="https://www.patreon.com/DroneCommander" class="patreon-cta" target="_blank" rel="noopener">&#9829; Support Us on Patreon</a>
     </div>
 
     <!-- Bottom dock nav -->
@@ -243,6 +294,11 @@
         <a href="https://x.com/OmegaStormX" target="_blank" rel="noopener">Twitter</a>
         <a href="https://www.reddit.com/r/DroneCommander/" target="_blank" rel="noopener">Reddit</a>
     </div>
+
+    {% if visits %}
+    <!-- Visitor counter (Cloudflare Web Analytics, last 30 days) -->
+    <div class="visit-counter">&#9673; <b>{{ "{:,}".format(visits) }}</b> visits this month</div>
+    {% endif %}
 
     <!-- YouTube IFrame API -->
     <script src="https://www.youtube.com/iframe_api"></script>
