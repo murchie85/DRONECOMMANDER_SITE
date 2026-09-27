@@ -1,0 +1,78 @@
+{% extends "blog_base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block description %}{{ post.summary }}{% endblock %}
+{% block og_image %}{{ post.image }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block content %}
+        <article class="post-body">
+            <div class="post-date">{{ post.date }} &middot; Alpha</div>
+            <h1 class="post-title">{{ post.title }}</h1>
+            <p class="post-lead">
+                The Alpha is ready and the first tester has played it. Here is exactly how I plan to get it to you &mdash; who gets it first, why, and what happens after. No surprises.
+            </p>
+
+            <h2>Why a Careful Rollout</h2>
+            <p>
+                I will be straight with you. We know Drone Commander's Patreon content gets leaked &mdash; most likely someone subs for a month, copies everything, and it ends up on a mirror site. Art is one thing. But the Alpha is the whole game in progress: the code, the art, the music. There are companies that take a build like that and try to fast-track a release before the original developer. It happens.
+            </p>
+            <p>
+                There is still a lot of development ahead, so I want to <strong class="text-glow">protect the game until it is close to release</strong>. When I asked you on Patreon, you overwhelmingly said the same thing: take the slower, safer road. Thank you for that.
+            </p>
+
+            <h2>Who Gets the Alpha First</h2>
+            <p>
+                Priority goes to the tiers who have put the biggest stake in the game:
+            </p>
+            <ul>
+                <li><strong>The Drone Commander</strong> tier</li>
+                <li><strong>Drone Commodore</strong> tier</li>
+            </ul>
+            <p>
+                Then <strong>Drone Master</strong> members who signed up before a cut-off date, so a quick sub-and-dip can't grab it.
+            </p>
+            <p>
+                <strong>Everyone else still gets the Alpha</strong> &mdash; just nearer to release, at a point where a leak can no longer hurt the game. And the Alpha is effectively a demo, so it will also go on <strong>Steam</strong> for everyone in a few months.
+            </p>
+
+            <h2>It Goes Out in Waves</h2>
+            <p>
+                Rather than send it to everyone on day one, it goes out in small waves:
+            </p>
+            <ul>
+                <li><strong>Wave 1 &mdash; 5 testers.</strong> I fix anything critical they find.</li>
+                <li><strong>Wave 2 &mdash; 10 more</strong>, once wave 1 is running without serious problems.</li>
+                <li><strong>Then 15, 20 and onwards</strong>, each wave only after the last one is stable.</li>
+            </ul>
+            <p>
+                This keeps each build solid before more people play it, and it means a bug that breaks the game only ever hits a handful of people instead of everyone.
+            </p>
+
+            <h2>How You'll Receive It</h2>
+            <ul>
+                <li><strong>A personal download link</strong>, sent to you directly. Links expire after a few days, so if yours runs out just ask and I'll send a fresh one.</li>
+                <li><strong>Licensed to you.</strong> The game opens with your name on it. It is a thank-you, and a gentle reminder that this copy is yours alone.</li>
+                <li><strong>Windows.</strong> On a Mac? Just let me know &mdash; a Mac build is easy for me to make.</li>
+                <li><strong>Fully offline.</strong> Nothing in the game phones home. Once it is installed, it just plays.</li>
+            </ul>
+
+            <h2>What I Ask of You</h2>
+            <ul>
+                <li><strong>Please don't share the build or its art.</strong> Every leak makes it harder to open the Alpha up to more people.</li>
+                <li><strong>Report bugs</strong> through the <a href="/bug-reporter">Bug Reporter</a>. Tell me what you were doing when it broke &mdash; that is gold.</li>
+                <li><strong>Tell me what you loved</strong>, and what dragged. That shapes the next build.</li>
+            </ul>
+
+            <h2>After the Alpha</h2>
+            <p>
+                There will be at least one more demo, with different content and characters. Each round follows the same careful pattern, opening up wider as release gets closer.
+            </p>
+            <p>
+                Thank you for backing this game and for looking out for it. It means more than you know.
+            </p>
+
+            <div class="post-footer">
+                <a href="/devlog#posts">&#9664; All posts</a>
+                <a href="/bug-reporter">Bug Reporter &#9654;</a>
+            </div>
+        </article>
+{% endblock %}
