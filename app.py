@@ -169,6 +169,10 @@ def magazine():
 def magazine2():
     return render_template('magazine2.html')
 
+@app.route('/magazine3')
+def magazine3():
+    return render_template('magazine3.html')
+
 @app.route('/promises')
 def promises():
     return render_template('promises.html')

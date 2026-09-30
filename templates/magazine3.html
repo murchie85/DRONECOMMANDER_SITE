@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Commander Monthly — Issue 03</title>
+    <meta name="description" content="Issue 03 of the Drone Commander retro games mag: the playable Alpha lands, Oryen and the Vionite Empire, lead composer Evgeny Ryabovol interviewed, Gigi Edgley in talks, Liora by Fox, and the C&amp;C + FF7 + Halo formula. October 2026.">
+    <meta property="og:title" content="Drone Commander Monthly — Issue 03">
+    <meta property="og:description" content="Issue 03 of the Drone Commander retro games mag: the playable Alpha lands, Oryen and the Vionite Empire, lead composer Evgeny Ryabovol interviewed, Gigi Edgley in talks, Liora by Fox, and the C&amp;C + FF7 + Halo formula. October 2026.">
+    <meta property="og:image" content="https://dronecommander.gg/assets/img/mag3/cover_og.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Drone Commander Monthly — Issue 03">
+    <meta name="twitter:description" content="Issue 03 of the Drone Commander retro games mag: the playable Alpha lands, Oryen and the Vionite Empire, lead composer Evgeny Ryabovol interviewed, Gigi Edgley in talks, Liora by Fox, and the C&amp;C + FF7 + Halo formula. October 2026.">
+    <meta name="twitter:image" content="https://dronecommander.gg/assets/img/mag3/cover_og.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+<style>
+  :root{
+    --paper:#f3efe4; --paper-dark:#e9e3d2; --ink:#16130f; --ink-soft:#3a352c;
+    --red:#d6202b; --red-dark:#a8141d; --cyan:#00a99b; --cyan-dark:#007c72;
+    --yellow:#ffcb05; --desk:#262320; --pink:#ff5c8a; --wine:#4a0a1f;
+    --display:'Haettenschweiler','Impact','Arial Narrow',sans-serif;
+    --cond:'Arial Narrow','Helvetica Neue',Arial,sans-serif;
+    --body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'Courier New',monospace;
+  }
+  html{background:var(--desk);}
+  body{background:var(--desk) radial-gradient(ellipse at 50% 0%, #35312c 0%, var(--desk) 70%);
+    color:var(--ink); font-family:var(--body); margin:0; padding:34px 12px 60px;}
+  .rack{max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:46px;}
+  .page{background:var(--paper); box-shadow:0 18px 50px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.4);
+    position:relative; overflow:hidden; border-radius:2px;}
+  .page::after{content:''; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:repeating-linear-gradient(0deg, #000 0 1px, transparent 1px 3px),
+                     repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 4px);
+    background-size:100% 3px, 4px 100%;}
+  .page img{display:block; max-width:100%;}
+  a{color:var(--cyan-dark);}
+
+  /* ---------- COVER (three variants) ---------- */
+  .cover{padding:0; aspect-ratio:210/272; min-height:640px; display:flex; flex-direction:column; background:#0d0b09;}
+  .cover-art{position:absolute; inset:0; background-size:cover; background-position:center 18%;}
+  .cover-art::after{content:''; position:absolute; inset:0;
+    background:linear-gradient(105deg, rgba(10,8,6,.86) 0%, rgba(10,8,6,.5) 32%, rgba(10,8,6,0) 58%),
+               linear-gradient(0deg, rgba(10,8,6,.9) 0%, rgba(10,8,6,0) 32%);}
+  .v-tall .cover-art{background-image:url('/assets/img/mag2/cover_007tall_s.jpg');}
+  .v-square .cover-art{background-image:url('/assets/img/mag2/cover_007square_s.jpg'); background-size:100% auto; background-position:center 150px; background-repeat:no-repeat; background-color:#0d0b09;}
+  .v-square .cover-art::after{background:linear-gradient(0deg, rgba(10,8,6,1) 0%, rgba(10,8,6,1) 24%, rgba(10,8,6,.15) 34%, rgba(10,8,6,0) 45%);}
+  /* generated red/pink alluring backdrop for the Rexalia variant */
+  .v-flirt .cover-art{background-image:
+      radial-gradient(ellipse 60% 45% at 68% 30%, rgba(255,140,175,.55), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 18% 85%, rgba(200,30,80,.7), transparent 70%),
+      radial-gradient(circle 8% at 82% 78%, rgba(255,210,225,.35), transparent 100%),
+      radial-gradient(circle 5% at 12% 30%, rgba(255,190,210,.28), transparent 100%),
+      radial-gradient(circle 3% at 55% 12%, rgba(255,220,230,.35), transparent 100%),
+      radial-gradient(circle 4% at 40% 70%, rgba(255,120,160,.3), transparent 100%),
+      linear-gradient(160deg, #3a0716 0%, #7a1030 38%, #c2185b 72%, #5a0a24 100%);
+    background-size:auto;}
+  .v-flirt .cover-art::before{content:''; position:absolute; inset:0; opacity:.35; mix-blend-mode:screen;
+    background-image:radial-gradient(circle, rgba(255,230,240,.9) 0 1px, transparent 2px),
+                     radial-gradient(circle, rgba(255,200,220,.7) 0 1.5px, transparent 3px);
+    background-size:90px 90px, 160px 160px; background-position:0 0, 45px 60px;}
+  .v-flirt .cover-art::after{background:linear-gradient(105deg, rgba(40,4,16,.8) 0%, rgba(40,4,16,.35) 34%, rgba(40,4,16,0) 55%),
+               linear-gradient(0deg, rgba(30,3,12,.85) 0%, rgba(30,3,12,0) 30%);}
+  .flirt-fig{display:none; position:absolute; right:-13%; top:4%; height:93%; z-index:1;
+    filter:drop-shadow(0 0 34px rgba(255,90,150,.55)) drop-shadow(0 0 6px rgba(0,0,0,.6));}
+  .flirt-fig img{height:100%; width:auto; max-width:none;}
+  .v-flirt .flirt-fig{display:block;}
+  .cover-inner{position:relative; z-index:2; display:flex; flex-direction:column; height:100%;}
+  .masthead{padding:18px 26px 0;}
+  .masthead img{width:min(52%,380px); filter:drop-shadow(2px 3px 0 rgba(0,0,0,.65));}
+  .tagline{padding:6px 28px 0; font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:.14em; text-transform:uppercase;}
+  .v-flirt .tagline{color:#ffd1de;}
+  .issue-tab{position:absolute; top:22px; right:22px; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:13px; letter-spacing:.06em; padding:6px 10px; text-transform:uppercase; box-shadow:2px 2px 0 rgba(0,0,0,.5); z-index:3;}
+  .newsflash{margin:14px 0 0 26px; align-self:flex-start; max-width:min(42%,300px); line-height:1.2; background:var(--yellow); color:var(--ink); font-family:var(--cond);
+    font-weight:bold; font-size:14px; padding:5px 12px; text-transform:uppercase; transform:rotate(-2deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .newsflash b{color:var(--red);}
+  .cover-lines{padding:16px 26px; width:min(46%,300px); display:flex; flex-direction:column; gap:13px;}
+  .cl h3{margin:0; font-family:var(--display); font-size:28px; line-height:.92; color:#fff; text-transform:uppercase;
+    letter-spacing:.5px; text-shadow:2px 2px 0 rgba(0,0,0,.7); text-wrap:balance;}
+  .cl .kick{font-family:var(--cond); font-weight:bold; font-size:12.5px; color:var(--yellow); text-transform:uppercase;
+    letter-spacing:.08em; display:block; margin-bottom:2px; text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cl p{margin:3px 0 0; font-family:var(--cond); font-weight:bold; font-size:13px; line-height:1.25; color:#e8e2d4; text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .cover-main{margin-top:auto; padding:0 26px 16px; position:relative; z-index:2;}
+  .cover-main .big{font-family:var(--display); font-size:clamp(56px,11vw,104px); line-height:.85; color:#fff; text-transform:uppercase;
+    text-shadow:3px 3px 0 var(--red), 6px 6px 14px rgba(0,0,0,.8); margin:0;}
+  .cover-main .sub{font-family:var(--cond); font-weight:bold; font-size:16px; color:#fff; margin:8px 0 0; max-width:540px; line-height:1.25; text-shadow:1px 1px 0 rgba(0,0,0,.9);}
+  .cover-main .sub b{color:var(--yellow);}
+  .main-007, .main-rex{display:none;}
+  .v-tall .main-007, .v-square .main-007{display:block;}
+  .v-flirt .main-rex{display:block;}
+  .v-flirt .cover-lines{width:min(40%,265px);}
+  .v-flirt .cover-main .big{text-shadow:3px 3px 0 #7a1030, 6px 6px 14px rgba(0,0,0,.8);}
+  /* square variant: cover lines become a bottom band */
+  .v-square .cover-lines{width:100%; flex-direction:row; flex-wrap:wrap; gap:10px 18px; padding:8px 26px 10px; order:3;}
+  .v-square .cover-lines .cl{flex:1 1 30%; min-width:150px;}
+  .v-square .cl h3{font-size:22px;}
+  .v-square .cover-main{order:2; padding-bottom:6px;}
+  .v-square .newsflash{order:1; position:absolute; left:0; top:150px; margin:14px 0 0 26px;}
+  .v-square .cover-foot{order:4;}
+  .starburst{position:absolute; right:20px; bottom:118px; width:130px; height:130px; z-index:3; display:flex; align-items:center;
+    justify-content:center; text-align:center; background:var(--yellow); color:var(--ink); font-family:var(--cond); font-weight:bold;
+    font-size:13.5px; line-height:1.1; padding:16px; transform:rotate(8deg); text-transform:uppercase;
+    clip-path:polygon(50% 0%,61% 12%,76% 6%,80% 22%,96% 24%,90% 39%,100% 50%,90% 61%,96% 76%,80% 78%,76% 94%,61% 88%,50% 100%,39% 88%,24% 94%,20% 78%,4% 76%,10% 61%,0% 50%,10% 39%,4% 24%,20% 22%,24% 6%,39% 12%);}
+  .v-square .starburst{bottom:auto; top:120px;}
+  .cover-foot{position:relative; z-index:2; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 20px;
+    color:#cfc8b8; font-family:var(--mono); font-size:11px;}
+  .barcode{width:74px; height:34px; background:repeating-linear-gradient(90deg,#fff 0 2px,#000 2px 3px,#fff 3px 6px,#000 6px 9px,#fff 9px 10px,#000 10px 13px);
+    border:4px solid #fff; box-sizing:border-box;}
+  .cover-switch{position:fixed; left:12px; top:12px; z-index:60; display:flex; gap:4px; align-items:center; background:var(--ink);
+    border:1px solid var(--yellow); border-radius:20px; padding:4px 6px 4px 10px; font-family:var(--mono); font-size:11px; color:var(--yellow);
+    box-shadow:0 4px 14px rgba(0,0,0,.55);}
+  .cover-switch button{background:none; border:1px solid transparent; color:#e8e2d4; font-family:var(--mono); font-size:11px; padding:4px 8px; border-radius:14px; cursor:pointer;}
+  .cover-switch button.on, .cover-switch button:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  /* ---------- INNER PAGES ---------- */
+  .inner{padding:26px 30px 60px;}
+  .strap{display:flex; align-items:center; justify-content:space-between; border-bottom:5px solid var(--ink); padding-bottom:8px; margin-bottom:4px;}
+  .strap .sect{font-family:var(--display); font-size:40px; text-transform:uppercase; color:var(--ink); line-height:.9;}
+  .strap .sect em{color:var(--red); font-style:normal;}
+  .strap .meta{font-family:var(--mono); font-size:11px; color:var(--ink-soft); text-align:right; letter-spacing:.08em;}
+  .kicker-bar{background:var(--ink); color:var(--paper); font-family:var(--cond); font-weight:bold; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; padding:4px 10px; margin-bottom:18px;}
+  .kicker-bar b{color:var(--yellow);}
+  h2.head{font-family:var(--display); font-size:44px; line-height:.9; margin:6px 0 4px; text-transform:uppercase; color:var(--ink); text-wrap:balance;}
+  h2.head .red{color:var(--red);}
+  .standfirst{font-family:var(--cond); font-weight:bold; font-size:15.5px; line-height:1.3; color:var(--ink-soft); margin:6px 0 12px;}
+  .byline{font-family:var(--mono); font-size:11px; color:var(--red-dark); text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px;}
+  .cols{column-count:2; column-gap:22px; column-rule:1px solid #c9c1ac; font-size:13.5px; line-height:1.45;}
+  .cols p{margin:0 0 9px;}
+  .cols p:first-of-type::first-letter{font-family:var(--display); font-size:44px; float:left; line-height:.8; padding:4px 6px 0 0; color:var(--red);}
+  .dropless .cols p:first-of-type::first-letter{all:unset;}
+  .one{column-count:1;}
+  strong{color:var(--ink);}
+  .fig{margin:0 0 12px;}
+  .fig img{width:100%; border:2px solid var(--ink); box-sizing:border-box;}
+  .fig figcaption{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); background:var(--paper-dark); border:2px solid var(--ink);
+    border-top:0; padding:5px 8px; letter-spacing:.02em;}
+  .fig figcaption b{color:var(--red);}
+  .grid2{display:grid; grid-template-columns:1.35fr 1fr; gap:20px;}
+  .grid2r{display:grid; grid-template-columns:1fr 1.35fr; gap:20px;}
+  .grid-half{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .box{border:3px solid var(--ink); background:#fff; padding:14px 16px; box-shadow:5px 5px 0 rgba(22,19,15,.18); break-inside:avoid;}
+  .box.cyan{background:#e2f4f1; border-color:var(--cyan-dark);}
+  .box.yellow{background:#fdf3cd; border-color:#b78e00;}
+  .box.rose{background:#fbe4ec; border-color:#9c1b45;}
+  .box h4{font-family:var(--display); font-size:24px; margin:0 0 8px; text-transform:uppercase; line-height:.9;}
+  .box.cyan h4{color:var(--cyan-dark);}
+  .box.rose h4{color:#9c1b45;}
+  .box p{font-size:12.8px; line-height:1.42; margin:0 0 8px;}
+  .box ul{margin:0; padding-left:16px; font-size:12.8px; line-height:1.5;}
+  .box .tag{display:inline-block; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold; font-size:11px;
+    text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; margin-bottom:8px;}
+  .box.cyan .tag{background:var(--cyan-dark);}
+  .box.yellow .tag{background:#b78e00;}
+  .box.rose .tag{background:#9c1b45;}
+  .shorts{display:flex; flex-direction:column; gap:12px;}
+  .short{border-top:3px solid var(--red); padding-top:6px;}
+  .short h5{font-family:var(--cond); font-weight:bold; font-size:14.5px; text-transform:uppercase; margin:0 0 3px; letter-spacing:.02em;}
+  .short p{font-size:12.3px; line-height:1.4; margin:0; color:var(--ink-soft);}
+  .short .src{font-family:var(--mono); font-size:10px; color:#8a8271; display:block; margin-top:3px;}
+  .folio{position:absolute; bottom:0; left:0; right:0; display:flex; justify-content:space-between; padding:8px 30px; font-family:var(--mono);
+    font-size:10.5px; color:var(--ink-soft); border-top:1px solid #c9c1ac; background:var(--paper);}
+  .folio .pg{font-family:var(--cond); font-weight:bold; font-size:13px; color:var(--red);}
+  .cheat{font-family:var(--mono); font-size:12px; background:var(--ink); color:var(--cyan); padding:12px 14px; line-height:1.6; border-radius:2px;}
+  .cheat b{color:var(--yellow);}
+  .subscribe{display:flex; gap:14px; align-items:center; background:var(--red); color:#fff; padding:14px 18px; margin-top:18px; box-shadow:5px 5px 0 rgba(22,19,15,.18);}
+  .subscribe .big{font-family:var(--display); font-size:30px; text-transform:uppercase; line-height:.9;}
+  .subscribe p{margin:0; font-family:var(--cond); font-weight:bold; font-size:13.5px; line-height:1.35;}
+  .subscribe a{color:var(--yellow); text-decoration:none;}
+
+  /* Rexalia page */
+  .rex-stage{position:relative; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; min-height:520px;
+    background:
+      radial-gradient(ellipse 60% 45% at 65% 25%, rgba(255,140,175,.5), transparent 70%),
+      radial-gradient(ellipse 55% 40% at 20% 90%, rgba(200,30,80,.7), transparent 70%),
+      linear-gradient(160deg, #3a0716 0%, #7a1030 40%, #c2185b 75%, #5a0a24 100%);}
+  .rex-stage::before{content:''; position:absolute; inset:0; opacity:.3; mix-blend-mode:screen;
+    background-image:radial-gradient(circle, rgba(255,230,240,.9) 0 1px, transparent 2px); background-size:70px 70px;}
+  .rex-stage img{position:relative; z-index:1; height:100%; max-height:560px; width:auto; margin:0 auto; display:block;
+    filter:drop-shadow(0 0 28px rgba(255,90,150,.55));}
+  .rex-stage .stamp{position:absolute; left:12px; bottom:12px; z-index:2; background:var(--yellow); color:var(--ink); font-family:var(--cond);
+    font-weight:bold; font-size:12px; text-transform:uppercase; padding:4px 10px; transform:rotate(-3deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+
+  /* 007 poster page */
+  .poster{position:relative; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .poster img{width:100%; display:block;}
+  .poster .stamp{position:absolute; left:14px; top:14px; background:var(--red); color:#fff; font-family:var(--cond); font-weight:bold;
+    font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding:5px 10px; transform:rotate(-3deg); box-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .poster .cap{position:absolute; left:0; right:0; bottom:0; padding:40px 16px 12px; color:#fff; font-family:var(--cond); font-weight:bold; font-size:13px;
+    background:linear-gradient(0deg, rgba(10,8,6,.92) 0%, rgba(10,8,6,0) 100%); text-shadow:1px 1px 0 rgba(0,0,0,.8);}
+  .poster .cap b{color:var(--yellow);}
+  .todo{background:#fff3c4; border:3px dashed #b78e00; padding:10px 12px; font-family:var(--mono); font-size:12px; color:#7a5a00; margin:8px 0;}
+  /* Writers' Room: Nyrissa cutscene wash behind everything */
+  .nyrissa-bg{background:
+      linear-gradient(rgba(243,239,228,.58), rgba(243,239,228,.44) 40%, rgba(243,239,228,.6)),
+      url('/assets/img/mag2/nyrissa_bg.jpg') center center/100% auto no-repeat, var(--paper);}
+  .nyrissa-bg .folio{background:rgba(243,239,228,.85);}
+  .nyrissa-bg .credit{position:absolute; top:6px; right:10px; font-family:var(--mono); font-size:9.5px; color:#1f4f6e;
+    letter-spacing:.08em; text-transform:uppercase; text-shadow:0 0 4px rgba(243,239,228,.9);}
+  .nyrissa-bg .strap{border-bottom-color:#1f4f6e;}
+  .nyrissa-bg .cols, .nyrissa-bg .standfirst, .nyrissa-bg .head, .nyrissa-bg .byline{
+    text-shadow:0 0 5px rgba(243,239,228,.95), 0 0 12px rgba(243,239,228,.85), 0 0 2px rgba(243,239,228,1);}
+  .nyrissa-bg .kicker-bar{background:rgba(22,19,15,.92);}
+  .nyrissa-bg .fig figcaption{background:rgba(233,227,210,.92);}
+  /* pull-out pages */
+  .pullout-art{border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .pullout-art img{width:100%; display:block;}
+  .rex-stage.tall{min-height:0;}
+  .rex-stage.tall img{max-height:none; height:auto; width:78%; margin:0 auto;}
+  .accent{margin:0; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; background:#0d0b09;}
+  .accent img{width:100%; display:block;}
+  .accent.rose{background:linear-gradient(160deg,#3a0716,#c2185b); padding:10px 10px 0;}
+  .accent.rose img{width:100%;}
+  /* Q&A */
+  .qa{display:flex; flex-direction:column; gap:10px;}
+  .qa .q{font-family:var(--cond); font-weight:bold; font-size:13.5px; color:var(--red-dark); text-transform:uppercase; letter-spacing:.03em; margin:0;}
+  .qa .a{font-size:13.2px; line-height:1.45; margin:0; padding-left:14px; border-left:3px solid var(--cyan);}
+  /* VN script */
+  .script{background:#0d0a10; color:#e8e2d4; border:3px solid var(--ink); padding:14px 16px; font-family:var(--mono); font-size:12.5px; line-height:1.55; box-shadow:5px 5px 0 rgba(22,19,15,.18);}
+  .script .who{color:var(--cyan); font-weight:bold;}
+  .script .who.s{color:var(--yellow);}
+  .script .beat{color:#8a8271; font-style:italic;}
+  .script p{margin:0 0 6px;}
+
+  @media (max-width:680px){
+    body:not(.pageview) .cols{column-count:1;}
+    body:not(.pageview) .grid2, body:not(.pageview) .grid2r, body:not(.pageview) .grid-half{grid-template-columns:1fr;}
+    body:not(.pageview) .cover{min-height:560px;}
+    body:not(.pageview) .cover-lines{width:60%;}
+    body:not(.pageview) .starburst{display:none;}
+    body:not(.pageview) .strap .sect{font-size:30px;}
+    body:not(.pageview) .flirt-fig{height:60%; right:-20%;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .starburst{animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:rotate(8deg) scale(1);}50%{transform:rotate(8deg) scale(1.05);}}
+  }
+  /* page view (mobile flip-through) */
+  .pv-toggle{position:fixed; right:12px; bottom:12px; z-index:50; background:var(--ink); color:var(--cyan); font-family:var(--mono); font-size:12px;
+    padding:9px 14px; border:1px solid var(--cyan); border-radius:20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.55); letter-spacing:.04em;}
+  body.pageview .pv-toggle{display:none;}
+  .pv-nav{display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:12px; z-index:50; background:var(--ink); border:1px solid var(--cyan);
+    border-radius:24px; padding:5px 8px; align-items:center; gap:6px; color:var(--cyan); font-family:var(--mono); font-size:12px; box-shadow:0 4px 14px rgba(0,0,0,.55); white-space:nowrap;}
+  body.pageview .pv-nav{display:flex;}
+  .pv-nav button{background:none; border:0; color:var(--yellow); font-size:17px; cursor:pointer; padding:3px 9px; font-family:var(--mono); line-height:1;}
+  .pv-nav .pv-exit{color:#9a9282; font-size:13px; border-left:1px solid #3a352c;}
+  body.pageview{padding:8px 6px 72px;}
+  body.pageview .rack{margin:0 auto;}
+  /* ---------- ISSUE 03 ---------- */
+  .v-oryen .cover-art{background-image:url('/assets/img/mag3/oryen_spicy.webp'); background-size:cover; background-position:62% 12%;}
+  .v-oryen .cover-art::after{background:linear-gradient(105deg, rgba(6,10,30,.88) 0%, rgba(6,10,30,.55) 30%, rgba(6,10,30,0) 52%),
+               linear-gradient(0deg, rgba(6,10,30,.92) 0%, rgba(6,10,30,0) 30%);}
+  .v-oryen .tagline{color:#9fd8ff;}
+  .v-oryen .cover-main .big{text-shadow:3px 3px 0 #2a4fd6, 6px 6px 14px rgba(0,0,0,.8);}
+  .v-oryen .cover-lines{width:min(40%,270px);}
+  .vionite .strap{border-bottom-color:#1d2f7a;}
+  .vionite .strap .sect em{color:#2a4fd6;}
+  .art-note{font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin:10px 0 0;}
+  .art-note b{color:var(--red);}
+  code{font-family:var(--mono); font-size:.92em; background:var(--paper-dark); padding:0 3px;}
+  /* Tez page: procedural 'search room' backdrop */
+  .tez-stage{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:40px 18px 16px; border:3px solid var(--ink);
+    box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden;
+    background:
+      radial-gradient(ellipse 40% 55% at 26% -5%, rgba(255,196,130,.34), transparent 70%),
+      radial-gradient(ellipse 40% 55% at 76% -5%, rgba(255,160,110,.26), transparent 70%),
+      radial-gradient(ellipse 60% 45% at 50% 70%, rgba(90,120,230,.22), transparent 70%),
+      linear-gradient(180deg, #333b5c 0%, #1b1f36 62%, #0d0e1a 100%);}
+  .tez-stage::before{content:''; position:absolute; left:0; right:0; bottom:0; height:16%;
+    background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.45)); pointer-events:none;}
+  .tez-stage::after{content:''; position:absolute; inset:0; pointer-events:none; opacity:.18;
+    background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 1px, transparent 1px 64px);}
+  .tez-stage .hud{position:absolute; top:12px; left:18px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:#ffb27a;
+    text-shadow:0 0 8px rgba(255,140,80,.6); z-index:2;}
+  .tez-stage figure{margin:0; position:relative; z-index:1; display:flex; flex-direction:column; justify-content:flex-end;}
+  .tez-stage img{width:100%; filter:drop-shadow(0 10px 18px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(255,160,100,.18));}
+  .tez-stage figcaption{margin-top:8px; font-family:var(--mono); font-size:10.5px; color:#e8e2d4; background:rgba(10,10,20,.6); padding:5px 8px; border-left:3px solid #ffb27a;}
+  .tez-stage figcaption b{color:#ffb27a;}
+  .tez-solo{margin:0; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); padding:14px 10px 0; display:flex; align-items:flex-end; justify-content:center;
+    background:radial-gradient(ellipse at 50% 25%, rgba(255,190,120,.35), transparent 65%), linear-gradient(180deg,#333b5c,#0d0e1a);}
+  .tez-solo img{width:100%; filter:drop-shadow(0 0 16px rgba(255,160,100,.3));}
+
+  /* ================= VARIANTS: a = newsstand, b = royal court ================= */
+  body.var-a [data-variant]:not([data-variant="a"]),
+  body.var-b [data-variant]:not([data-variant="b"]){display:none !important;}
+
+  /* --- B cover: waist-up Oryen on a procedural stained-glass court --- */
+  .v-royal{background:#070b1f;}
+  .v-royal .cover-art{background:
+      radial-gradient(ellipse 38% 46% at 70% 40%, rgba(120,180,255,.55), transparent 70%),
+      radial-gradient(ellipse 60% 30% at 70% 100%, rgba(224,180,74,.35), transparent 70%),
+      conic-gradient(from 200deg at 70% 105%, rgba(255,255,255,0) 0deg, rgba(160,200,255,.14) 8deg, rgba(255,255,255,0) 16deg, rgba(160,200,255,.12) 26deg, rgba(255,255,255,0) 34deg, rgba(160,200,255,.14) 46deg, rgba(255,255,255,0) 56deg, rgba(160,200,255,.1) 66deg, rgba(255,255,255,0) 80deg),
+      linear-gradient(180deg, #1b2c6e 0%, #0f1a47 45%, #070b1f 100%);}
+  .v-royal .cover-art::before{content:''; position:absolute; inset:0; opacity:.22;
+    background-image:
+      linear-gradient(60deg, transparent 48%, rgba(224,180,74,.8) 49%, rgba(224,180,74,.8) 51%, transparent 52%),
+      linear-gradient(-60deg, transparent 48%, rgba(224,180,74,.8) 49%, rgba(224,180,74,.8) 51%, transparent 52%),
+      linear-gradient(0deg, transparent 48%, rgba(140,190,255,.6) 49%, rgba(140,190,255,.6) 51%, transparent 52%);
+    background-size:90px 156px; mask-image:radial-gradient(ellipse 55% 60% at 70% 35%, #000 20%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 55% 60% at 70% 35%, #000 20%, transparent 75%);}
+  .v-royal .cover-art::after{background:linear-gradient(105deg, rgba(5,8,24,.9) 0%, rgba(5,8,24,.55) 30%, rgba(5,8,24,0) 50%),
+      linear-gradient(0deg, rgba(5,8,24,.95) 0%, rgba(5,8,24,0) 34%);}
+  .royal-fig{position:absolute; right:-34%; bottom:0; width:128%; z-index:1;
+    filter:drop-shadow(0 0 40px rgba(120,180,255,.45)) drop-shadow(0 0 6px rgba(0,0,0,.6));
+    -webkit-mask-image:linear-gradient(0deg, transparent 0%, #000 22%); mask-image:linear-gradient(0deg, transparent 0%, #000 22%);}
+  .royal-fig img{width:100%; max-width:none;}
+  .v-royal .issue-tab{background:#e0b44a; color:#0b1030;}
+  .v-royal .tagline{color:#e0b44a;}
+  .v-royal .newsflash{background:#e0b44a;}
+  .v-royal .cover-lines{width:min(38%,260px);}
+  .v-royal .cl .kick{color:#e0b44a;}
+  .v-royal .cover-main .big{color:#f6e7b8; text-shadow:3px 3px 0 #8a6a1c, 6px 6px 16px rgba(0,0,0,.85);}
+  .v-royal .cover-main .sub b{color:#e0b44a;}
+  .v-royal .starburst{background:#e0b44a; bottom:auto; top:120px; right:24px;}
+
+  /* --- B theme: midnight + gold pages --- */
+  body.var-b{--paper:#10162f; --paper-dark:#1a2248; --ink:#efe6cf; --ink-soft:#b9b7c8; --red:#e0b44a; --red-dark:#c99a32; --cyan:#7fb6ff; --cyan-dark:#8fc0ff;
+    background:#05070f radial-gradient(ellipse at 50% 0%, #1a2150 0%, #05070f 70%);}
+  body.var-b .page::after{mix-blend-mode:screen; opacity:.03;}
+  body.var-b .strap{border-bottom-color:#e0b44a;}
+  body.var-b .kicker-bar{background:#e0b44a; color:#0b1030;}
+  body.var-b .kicker-bar b{color:#6b1020;}
+  body.var-b .box{background:#161e40; border-color:#e0b44a; box-shadow:5px 5px 0 rgba(0,0,0,.35);}
+  body.var-b .box.cyan{background:#12264a; border-color:#7fb6ff;}
+  body.var-b .box.yellow{background:#2a2412; border-color:#e0b44a;}
+  body.var-b .box.rose{background:#2c1026; border-color:#e06b9a;}
+  body.var-b .box.rose h4, body.var-b .box.rose .tag{color:#ffc4da;} body.var-b .box.rose .tag{background:#9c1b45; color:#fff;}
+  body.var-b .box .tag{color:#0b1030;} body.var-b .box.cyan .tag{background:#2a5fb0; color:#fff;}
+  body.var-b .fig img, body.var-b .fig figcaption, body.var-b .accent, body.var-b .pullout-art, body.var-b .tez-stage, body.var-b .tez-solo, body.var-b .script{border-color:#e0b44a;}
+  body.var-b .fig figcaption{background:#1a2248; color:#d7d3e3;}
+  body.var-b .cheat{background:#05070f; border:1px solid #e0b44a;}
+  body.var-b .cols{column-rule-color:#2e3868;}
+  body.var-b .folio{background:var(--paper); border-top-color:#2e3868;}
+  body.var-b .qa .a{border-left-color:#e0b44a;}
+  body.var-b .subscribe{background:#8a1a2e;}
+  body.var-b .vionite .strap .sect em{color:#7fb6ff;}
+  body.var-b code{background:#1a2248;}
+
+  /* switcher */
+  .var-switch{position:fixed; left:12px; top:12px; z-index:60; display:flex; gap:4px; align-items:center; background:#16130f;
+    border:1px solid #ffcb05; border-radius:20px; padding:4px 6px 4px 10px; font-family:'Courier New',monospace; font-size:11px; color:#ffcb05;
+    box-shadow:0 4px 14px rgba(0,0,0,.55);}
+  .var-switch button{background:none; border:1px solid transparent; color:#e8e2d4; font-family:'Courier New',monospace; font-size:11px; padding:4px 8px; border-radius:14px; cursor:pointer;}
+  .var-switch button.on, .var-switch button:hover{border-color:#00a99b; color:#00d6c3;}
+  @media (max-width:680px){ .var-switch{top:auto; bottom:58px; left:50%; transform:translateX(-50%);} }
+  .oryen-stage{position:relative; border:3px solid var(--ink); box-shadow:5px 5px 0 rgba(22,19,15,.18); overflow:hidden; height:430px;
+    display:flex; justify-content:center; align-items:flex-end;
+    background:
+      radial-gradient(ellipse 34% 60% at 50% 30%, rgba(140,195,255,.6), transparent 70%),
+      radial-gradient(ellipse 70% 30% at 50% 108%, rgba(224,180,74,.45), transparent 70%),
+      conic-gradient(from 180deg at 50% 110%, rgba(255,255,255,0) 0deg, rgba(160,200,255,.16) 10deg, rgba(255,255,255,0) 20deg, rgba(160,200,255,.12) 34deg, rgba(255,255,255,0) 48deg, rgba(160,200,255,.14) 62deg, rgba(255,255,255,0) 76deg, rgba(160,200,255,.12) 90deg, rgba(255,255,255,0) 104deg, rgba(160,200,255,.16) 118deg, rgba(255,255,255,0) 132deg),
+      linear-gradient(180deg, #1d2f78 0%, #101b4d 55%, #070b1f 100%);}
+  .oryen-stage::before{content:''; position:absolute; inset:0; opacity:.25;
+    background-image:linear-gradient(60deg, transparent 48%, rgba(224,180,74,.8) 49%, rgba(224,180,74,.8) 51%, transparent 52%),
+      linear-gradient(-60deg, transparent 48%, rgba(224,180,74,.8) 49%, rgba(224,180,74,.8) 51%, transparent 52%);
+    background-size:80px 138px;
+    -webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 30%, #000 10%, transparent 70%); mask-image:radial-gradient(ellipse 60% 70% at 50% 30%, #000 10%, transparent 70%);}
+  .oryen-stage img{position:relative; z-index:1; height:112%; width:auto; max-width:none; margin-bottom:-4%;
+    filter:drop-shadow(0 0 30px rgba(140,195,255,.5));}
+  .oryen-quote{position:absolute; z-index:2; left:16px; bottom:16px; max-width:34%; font-family:var(--display); font-size:30px; line-height:.95;
+    color:#f6e7b8; text-transform:uppercase; text-shadow:2px 2px 0 #0b1030, 0 0 18px rgba(0,0,0,.6);}
+  ul.quotes{list-style:none; padding:0; margin:0;}
+  ul.quotes li{font-size:12.6px; line-height:1.42; padding:6px 0 6px 12px; border-left:3px solid var(--red); margin-bottom:6px; font-style:italic;}
+  .rating-badge{position:absolute; left:14px; bottom:48px; z-index:2; width:118px; height:118px; border-radius:50%; background:var(--red); color:#fff;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:4px solid #fff;
+    box-shadow:0 0 0 3px var(--ink), 5px 6px 0 rgba(0,0,0,.35); transform:rotate(8deg);}
+  .rating-badge .score{font-family:var(--display); font-size:52px; line-height:.8;}
+  .rating-badge .outof{font-family:var(--cond); font-weight:bold; font-size:14px; margin-top:-2px;}
+  .rating-badge .lbl{font-family:var(--cond); font-weight:bold; font-size:10px; text-transform:uppercase; letter-spacing:.06em; line-height:1.1; margin-top:3px;}
+  body.var-b .rating-badge{background:#e0b44a; color:#0b1030; border-color:#0b1030;}
+  ul.fixlist{margin:0 0 9px; padding-left:16px; font-size:13.2px; line-height:1.45;}
+  ul.fixlist li{margin-bottom:3px;}
+  .fig.pixel img{image-rendering:pixelated; image-rendering:crisp-edges;}
+  .pixel-stage{border:2px solid var(--ink); border-bottom:0; padding:18px 14px;
+    background:radial-gradient(ellipse 60% 80% at 50% 40%, rgba(140,195,255,.35), transparent 70%), linear-gradient(180deg,#1d2f78,#070b1f);}
+  .pixel-stage img{width:100%; border:0 !important; image-rendering:pixelated;}
+  .desert-stage{border:2px solid var(--ink); border-bottom:0; padding:18px;
+    background:radial-gradient(ellipse 70% 60% at 60% 40%, #f7dca6 0%, transparent 70%), linear-gradient(170deg,#f1c98a 0%,#d99a5b 60%,#a8603a 100%);}
+  .desert-stage img{width:100%; border:0 !important; image-rendering:pixelated;}
+  body.var-b .desert-stage, body.var-b .pixel-stage{border-color:#e0b44a;}
+</style>
+</head>
+<body class="var-a">
+<div class="var-switch" role="group" aria-label="Magazine variant">VARIANT
+  <button type="button" data-v="a">A · Newsstand</button>
+  <button type="button" data-v="b">B · Royal Court</button>
+</div>
+
+<div class="rack">
+
+<!-- ==================== 01 : COVER ==================== -->
+<section class="page cover v-oryen" data-variant="a">
+  <div class="cover-art"></div>
+  <div class="issue-tab">Issue 03 · Oct 2026</div>
+  <div class="cover-inner">
+    <div class="masthead"><img src="/assets/img/mag2/logo.png" alt="Drone Commander"></div>
+    <div class="tagline">// Monthly · the smarter read for the abducted</div>
+    <div class="newsflash"><b>It's playable!</b> The Alpha is out · p2</div>
+
+    <div class="cover-lines">
+      <div class="cl">
+        <span class="kick">3,000 hours later</span>
+        <h3>The Alpha is here</h3>
+        <p>Testers rate it 8.5/10, 50+ fixes already in, and who gets it next</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Sound desk</span>
+        <h3>Evgeny Ryabovol</h3>
+        <p>The lead composer on Slipknot, goosebumps, and why Kira's his favourite</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Voice actor corner</span>
+        <h3>Gigi Edgley</h3>
+        <p>Farscape's Chiana is in talks, and she's got her eye on Morrigan</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Also inside</span>
+        <p>Vionite Royalty · Starlanes explained · The C&amp;C + FF7 + Halo formula · Tez · Varya · Liora by Fox</p>
+      </div>
+    </div>
+
+    <div class="starburst">Liora by Fox inside!</div>
+
+    <div class="cover-main">
+      <p class="big">Oryen</p>
+      <p class="sub"><b>VIONITE ROYALTY, OFF DUTY.</b> The Strategon's daughter has a side no peasant commoner should see</p>
+    </div>
+    <div class="cover-foot">
+      <span>dronecommander.gg</span>
+      <span style="display:flex; align-items:flex-end; gap:10px;">£3.49 · free for patrons<span class="barcode"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 01 (variant B) : COVER — ROYAL COURT ==================== -->
+<section class="page cover v-royal" data-variant="b">
+  <div class="cover-art"></div>
+  <div class="royal-fig"><img src="/assets/img/mag3/oryen_flirt_top.webp" alt="Oryen in blue and gold armour, winking, a finger to her lips"></div>
+  <div class="issue-tab">Issue 03 · Oct 2026</div>
+  <div class="cover-inner">
+    <div class="masthead"><img src="/assets/img/mag2/logo.png" alt="Drone Commander"></div>
+    <div class="tagline">// Monthly · by royal appointment</div>
+    <div class="newsflash"><b>It's playable!</b> The Alpha is out · p2</div>
+    <div class="cover-lines">
+      <div class="cl">
+        <span class="kick">3,000 hours later</span>
+        <h3>The Alpha is here</h3>
+        <p>Testers rate it 8.5/10, 50+ fixes already in, and who gets it next</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Sound desk</span>
+        <h3>Evgeny Ryabovol</h3>
+        <p>The lead composer on Slipknot, goosebumps, and why Kira's his favourite</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Voice actor corner</span>
+        <h3>Gigi Edgley</h3>
+        <p>Farscape's Chiana is in talks, and she's got her eye on Morrigan</p>
+      </div>
+      <div class="cl">
+        <span class="kick">Also inside</span>
+        <p>Vionite Royalty · Starlanes explained · The C&amp;C + FF7 + Halo formula · Tez · Varya · Liora by Fox</p>
+      </div>
+    </div>
+    <div class="starburst">Tez · Liora · Varya inside!</div>
+    <div class="cover-main">
+      <p class="big">Oryen</p>
+      <p class="sub"><b>HER GRACE WILL SEE YOU NOW.</b> The Strategon's daughter, the Vionite court, and the lore of an empire of two hundred billion</p>
+    </div>
+    <div class="cover-foot">
+      <span>dronecommander.gg</span>
+      <span style="display:flex; align-items:flex-end; gap:10px;">£3.49 · free for patrons<span class="barcode"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 02 : COMMAND BRIEFING ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Command <em>Briefing</em></div>
+    <div class="meta">TRANSMISSION 10.2026<br>SOURCE: PATREON DEV FEED, SEPTEMBER</div>
+  </div>
+  <div class="kicker-bar">Everything since Issue 02, <b>straight from the dev feed</b></div>
+
+  <figure class="fig" style="margin:0 0 14px; position:relative;">
+    <div class="rating-badge"><span class="score">8.5</span><span class="outof">/10</span><span class="lbl">Alpha tester<br>average</span></div>
+    <img src="/assets/img/mag3/alpha_hero.webp" alt="Playable Alpha title card">
+    <figcaption><b>PLAYABLE ALPHA</b>: "Drone Commander Alpha is Finally Here". The announcement video went up on 29 September.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head">3,000 hours. <span class="red">Now you can play it.</span></h2>
+      <p class="byline">Posted 23–29 September · Milestone report</p>
+      <p class="standfirst">Two-and-a-bit years, built on books written years before that, and it all comes down to a build you can finally hold in your hands.</p>
+      <div class="cols">
+        <p>"I remember the first year, a lot of doubt. People were saying the game is vapourware and not going to see the light of day. The thing is, I never once doubted my ability to knock the game out. It just got challenging at times."</p>
+        <p>The Alpha was declared <strong>complete on 23 September</strong>. It's a real level, not a throwaway test. It's set during the <strong>Vanguard Special Mission Group</strong> campaigns after Neph's assault on Earth: you fly all over the planet liberating nations and cities. Roughly <strong>an hour</strong> long, with exploration, combat, romance, war "and the occasional OMG". It also includes <strong>Forge Breaker</strong> free-play, the <strong>Map Builder</strong>, and a DrewsThatDude track saved for one special moment.</p>
+        <p>First tester <strong>Root</strong> gave it an <strong>A+</strong>. Then the ratings rolled in, and the Alpha now averages <strong>8.5 out of 10</strong>. "For an Alpha, I'm over the moon." The rollout goes <strong>5 → 10 → 20 → 40 → all patrons</strong>, with a daily fix-and-release loop behind it.</p>
+        <p>Testers reported lots and lots of bugs, and they're being smashed. <strong>v1.2</strong> brought 20+ fixes and a new key/mouse setup, and <strong>30+ more changes</strong> have landed since, including some big overhauls:</p>
+        <ul class="fixlist">
+          <li><strong>FPS-style controls are now the default.</strong> Keyboard-only "classic mode" stays in for the emulator crowd.</li>
+          <li><strong>Dynamic zoom is gone</strong>, so the player has full control of the camera.</li>
+          <li><strong>Collisions fixed</strong> in the vast majority of cases.</li>
+          <li>A proper <strong>RPG tutorial</strong>.</li>
+        </ul>
+        <p>This isn't release. There's no date until Phase 1 (the Dark Worlder battle at Earth) is finished. "But it's definitely downhill from here."</p>
+      </div>
+    </div>
+
+    <div class="shorts">
+      <div class="short" style="border-color:var(--cyan-dark);"><h5 style="color:var(--cyan-dark);">Quick saves</h5></div>
+      <div class="short">
+        <h5>Tea vs. MacBook</h5>
+        <p>On Alpha release day, a trainset session ended with tea on the dev laptop. The build was already saved to a pen drive, ~1TB went up to the cloud, and everything now lives on proper object storage. New builds upload in minutes instead of 2 hours.</p>
+        <span class="src">// 27 Sep</span>
+      </div>
+      <div class="short">
+        <h5>Load times: gone</h5>
+        <p>Under a second on M1 Macs. Windows went from up to a minute down to 5–10 seconds, with more to come.</p>
+        <span class="src">// 22 Sep</span>
+      </div>
+      <div class="short">
+        <h5>Fel's #1 fan</h5>
+        <p>The competition was drawn with <code>random.choice()</code>. Winner: <strong>Fenirsulven (Fen)</strong>, whose name gets dropped by Tabby in the Alpha. Honourable mentions: Yu Gi, GermanShafer, Ollie Chatwin.</p>
+        <span class="src">// 25 Sep</span>
+      </div>
+      <div class="short">
+        <h5>Map Editor ships</h5>
+        <p>Early access went out to about 10 patrons via the community tools page.</p>
+        <span class="src">// 12 Sep</span>
+      </div>
+      <div class="short">
+        <h5>Daria is playable</h5>
+        <p>Fully in the party, stats and all. "Her boobs bounce like mad tho."</p>
+        <span class="src">// 12 Sep</span>
+      </div>
+      <div class="short">
+        <h5>RTS gets physical</h5>
+        <p>Collision damage (bigger ship, bigger hit, velocity included) and units that spin out of control just before they die.</p>
+        <span class="src">// 21–24 Sep</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cheat" style="margin-top:6px;">
+    <b>&gt; ALSO ON THE BENCH:</b> the Alpha patch train (30+ changes and counting) · First human military vehicle (a jet-engined Osprey that drops troops and rescues families) · walkable-mask anti-boundary-hacking ·
+    Ivrixia's residence in the Honnehari temple · Kaelix mission ✔ · Vionite intro mission ✔ · Albion's Anchor 90% (boss at 70%) ·
+    Sentient Defender boss for Amu's Cave · abandoned desert world where you meet Varya · Chinese &amp; Spanish port prototypes · merch test
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">02</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 03 : INSIDE THE ALPHA ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Inside the <em>Alpha</em></div>
+    <div class="meta">SCREENS · SPRITES<br>AS PLAYED BY TESTERS</div>
+  </div>
+  <div class="kicker-bar">Straight from the build, <b>no mock-ups</b></div>
+
+  <figure class="fig">
+    <img src="/assets/img/mag3/scr_tiff_office.webp" alt="RPG scene in Tiff's office: Tiff at her desk says 'What is it? I'm busy.' as the squad approaches">
+    <figcaption><b>TIFF'S OFFICE</b>: "What is it? I'm busy." Walk in unannounced and that's the welcome you get.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="/assets/img/mag3/scr_medbay.webp" alt="Med bay scene: Amu says 'Which is impossible. You're not the same species. You don't share a biology, let alone a thought.'">
+    <figcaption><b>THE MED BAY</b>: where Straker and Fel were taken after passing out on Day 4. Amu has questions. "You're not the same species. You don't share a biology, let alone a thought."</figcaption>
+  </figure>
+
+  <div class="grid-half">
+    <figure class="fig">
+      <img src="/assets/img/mag3/scr_root.webp" alt="Alpha screenshot from a tester's machine">
+      <figcaption><b>FROM ROOT'S MACHINE</b>: "Go on. Don't make me scrape you off some Canadian mud."</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="/assets/img/mag3/scr_party.webp" alt="Party menu showing Daria, Straker and a Sekarri companion">
+      <figcaption><b>PARTY SCREEN</b>: Daria joins the lineup, fully playable.</figcaption>
+    </figure>
+  </div>
+
+  <figure class="fig pixel">
+    <img src="/assets/img/mag3/sprites_tiff_amu.png" alt="Pixel-art sprite turnarounds: Tiff (top row) and Amu (bottom row)">
+    <figcaption><b>SPRITE DESIGNS</b>: new turnarounds for <b>Tiff</b> (top) and <b>Amu</b> (bottom), front, three-quarter, back and side.</figcaption>
+  </figure>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">03</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 03 : PULL-OUT — ORYEN ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Pull-out <em>Poster</em></div>
+    <div class="meta">ORYEN OZERANE · VIONITE CORE WORLDS<br>THE CENTREPIECE</div>
+  </div>
+  <div class="kicker-bar">Full-page art, so <b>pin it up</b> · the Vionite Empire file is overleaf</div>
+  <div class="pullout-art">
+    <img src="/assets/img/mag3/oryen_spicy.webp" alt="Oryen in a blue bikini aboard a Vionite ship, looking back over her shoulder">
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 04 : ORYEN — THE BATTLE PRINCESS ==================== -->
+<section class="page inner vionite">
+  <div class="strap">
+    <div class="sect">The <em>Battle Princess</em></div>
+    <div class="meta">CHARACTER FEATURE · PART 1 OF 2<br>ORYEN OZERANE · VIONITE CORE WORLDS</div>
+  </div>
+  <div class="kicker-bar">"So. The human. My guards swore you were harmless. <b>How disappointing it would be if they were right."</b></div>
+
+  <div class="oryen-stage">
+    <img src="/assets/img/mag3/oryen_flirt_top.webp" alt="Oryen in blue and gold armour, winking, a finger to her lips">
+    <div class="oryen-quote">"I'd hate for you to forget me."</div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px;">
+    <div>
+      <h2 class="head" style="font-size:38px;">Ceremony <span class="red">made flesh</span></h2>
+      <p class="byline">Daughter of Strategon Ezorath Ozerane · flagship: the RoseCrown</p>
+      <div class="cols">
+        <p>Oryen is the natural-born daughter of <strong>Strategon Ezorath Ozerane</strong>, Supreme Core Strategon and front-runner for StratZar. Of all his children, she's the one being groomed hardest for the crown his bloodline never quite reached. Vionite military royalty is <strong>partly earned</strong> through service and command, so Oryen is the family's bid to win the throne rather than inherit it.</p>
+        <p>She's a bratty military princess with a size complex, and a lonely one under the polish. The staff is "sixty generations of Core command, distilled into one object, and they entrusted it to ME before my fortieth year." She finds Straker intriguing, the way a cat finds a new toy intriguing. "I assumed you'd be taller."</p>
+        <p>She wants the crown. Her father <em>needs</em> it. "He'd sooner die than let you see the difference."</p>
+        <p>Under the polish is the same strategic stock the Black Section once judged worth cloning. It's why a synthetic half-sister named <strong>Daria</strong> exists, though Oryen has never been told. A Core Worlds joke calls Daria "the Strategon's other daughter", and Oryen <em>hates</em> it.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box">
+        <span class="tag">In her own words</span>
+        <h4>The Oryen phrasebook</h4>
+        <ul class="quotes">
+          <li>"Granting? Human, I bumped a fleet review for this. You were the more entertaining option. Narrowly."</li>
+          <li>"We are the only race in this galaxy insane enough to stand toe to toe with the Drone Fleet, and the only one capable. The rest of you are... clutter. Well-meaning clutter, occasionally."</li>
+          <li>"I know what your species sees when it looks at us: the little animals you call 'mice'. Hold that thought, human... then count who owns the largest war fleet in the galaxy."</li>
+          <li>"We are not gods, human. We are simply the only ones still armed."</li>
+          <li>"Do not embarrass me, human. I bruise politically."</li>
+        </ul>
+      </div>
+      <div class="box cyan" style="margin-top:14px;">
+        <span class="tag">Romance file</span>
+        <h4>Flirtation, not courtship</h4>
+        <p>Oryen is an ongoing <strong>flirtation thread</strong>, not a romance route (yet). Tell her you're spoken for and she'll inform you that <strong>"The Crown does not queue."</strong> Or ask whether she's lonely up there, if you dare.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="fig pixel pixel-royal" style="margin-top:16px;">
+    <div class="pixel-stage"><img src="/assets/img/mag3/oryen_pixel.png" alt="Oryen's pixel-art sprite turnaround: back, side, front and three-quarter views"></div>
+    <figcaption><b>ORYEN IN PIXELS</b>: her RPG sprite turnaround, cape, crown-ears and all.</figcaption>
+  </figure>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 05 : ORYEN — AN AUDIENCE ==================== -->
+<section class="page inner vionite">
+  <div class="strap">
+    <div class="sect">An <em>Audience</em> with Oryen</div>
+    <div class="meta">CHARACTER FEATURE · PART 2 OF 2<br>THE BATTLE · THE SANCTUM · THE EMPIRE</div>
+  </div>
+  <div class="kicker-bar">How you meet the Vionites, <b>and what it's like to be noticed by one</b></div>
+
+  <figure class="fig" style="margin:0 0 14px;">
+    <img src="/assets/img/mag3/oryen_staff.webp" alt="Oryen thrusting her staff of office, cape flaring" style="background:radial-gradient(ellipse at 50% 60%, #2a3f8f 0%, #0d1330 70%);">
+    <figcaption><b>"ORYEN, BURN THEM OUT."</b> The staff thrust from her battle entrance. Her combat poses come with blink, smirk and frown variants.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:34px;">"Make way for <span class="red">my daughter</span>"</h2>
+      <p class="byline">The entrance · RTS mission "The Vionite Empire"</p>
+      <div class="cols">
+        <p>You meet her in the worst way: losing. The Breakers and the allied human fleets are being overrun by an Entropy Spawn armada when the Vionite fleet arrives. Ezorath reclaims the system for the Empire: <em>"Make way for my daughter, the battle princess Oryen."</em> The court applauds. The Queen says, "Oryen, burn them out. Two hundred billion Vionites are watching."</p>
+        <p>She braces, thrusts the staff, and smirks. Then she has your ships <strong>teleported out of the way</strong> and frozen in suspension fields. "Inferior primitive forces, fear not. I've simply transported you out of harm's way." When the spawn adapt, it takes every fleet in the system, humans included, to finish the job. Her verdict on the human contribution: "Crude. Loud. Unspeakably ugly. It worked. I will never say that again."</p>
+        <p>Afterwards comes the <strong>sanctum</strong>. The camera pans from her boots to her crown, and when it stops she's already caught you looking. "'Teleport those primitives out of our way, I'll deal with them later.' I had been saving that line for a WEEK. And here you are. Later."</p>
+      </div>
+    </div>
+    <div>
+      <figure class="fig" style="margin:0;">
+        <img src="/assets/img/mag3/oryen_ship_scene.webp" alt="Oryen levitating above a glowing blue circle aboard a Vionite ship, pointing at two captives">
+        <figcaption><b>THE RUNAWAYS</b>: a human and a Sekarri who tried to flee <em>into</em> the Empire. "Holding hands, as if that would help. I signed the committal myself. Filed under 'curiosities'. They were asleep on my rock before I finished my tea."</figcaption>
+      </figure>
+      <div class="box yellow" style="margin-top:14px;">
+        <span class="tag">The dark holding world</span>
+        <h4>Trespassers sleep</h4>
+        <p>The Empire is cloaked. Intruders have their memories scrubbed and are frozen on a barren little rock kept "for exactly this." Oryen can be persuaded to release the two runaways to you. As for your own memories: "I've instructed them to leave your memories exactly as they are."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-half" style="margin-top:16px;">
+    <div class="box cyan">
+      <span class="tag">The Empire</span>
+      <h4>Two royalties, one war</h4>
+      <p>Mouse- and squirrel-like, averaging 4ft 2, and <strong>two hundred billion</strong> strong. Generals in the <strong>Core Worlds</strong>, retail and politics in the <strong>Home Worlds</strong>, hippie squirrel-folk on the <strong>Fringe</strong>. A <strong>military royalty</strong> shares power with a <strong>retail royalty</strong>, and the ranks run StratZar → Strategon → Field Stratarch → Viceroy. They've spent <strong>600 years</strong> on a Total War build-up against the Drone Fleet. Ezorath, their greatest strategist, secretly hates it.</p>
+    </div>
+    <div class="box">
+      <span class="tag">You decide · poll</span>
+      <h4>"Your choice will become lore"</h4>
+      <p>With a big chunk of <strong>Act 8</strong> being written, all of it heavy on Vionites, patrons were asked a question the Empire's diplomats never covered: <em>how do you get a Vionite girl into bed?</em> The winning answer is going into canon.</p>
+      <p style="font-family:var(--mono); font-size:10.5px; margin:0;">// Final sting of the audience: "Off you go, Straker of the Breakers. Do try to survive the week. I've grown mildly invested."</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 06 : PULL-OUT — VIONITE ROYALTY ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Pull-out <em>Poster</em></div>
+    <div class="meta">THE VIONITE COURT<br>"TWO HUNDRED BILLION VIONITES ARE WATCHING"</div>
+  </div>
+  <div class="kicker-bar">The royal box applauds the battle princess, <b>stained glass and all</b></div>
+  <div class="pullout-art">
+    <img src="/assets/img/mag3/vionite_court.webp" alt="Four Vionite royals in blue and gold applauding from the royal box beneath stained-glass windows">
+  </div>
+  <div class="box" style="margin-top:14px;">
+    <span class="tag">Who's in the box</span>
+    <h4>The Core Worlds court</h4>
+    <p>This is the scene from Oryen's battle entrance, when Ezorath announces her, the court rises, and the Queen gives the order. Ezorath himself is calm, polite and warm but distant in person, and a power broadcast in public. He has a hundred grandchildren and a fondness for dad jokes.</p>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">07</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 06 : SOUND DESK — EVGENY ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Sound <em>Desk</em></div>
+    <div class="meta">INTERVIEW SERIES 02<br>THE LEAD COMPOSER</div>
+  </div>
+  <div class="kicker-bar">Promised last issue, delivered in full: <b>Evgeny Ryabovol</b>, the man behind the score</div>
+
+  <div class="grid2r">
+    <figure class="fig" style="margin:0;">
+      <img src="/assets/img/mag3/evgeny.webp" alt="Evgeny Ryabovol smiling and making a peace sign in his studio, cymbals and guitars behind him">
+      <figcaption><b>EVGENY RYABOVOL</b>: lead composer, sound designer, audio producer. In the studio, cymbals at the ready.</figcaption>
+    </figure>
+    <div>
+      <h2 class="head" style="font-size:40px;">"Music has no <span class="red">limits</span>"</h2>
+      <p class="byline">Evgeny Ryabovol · composer · <a href="https://www.ryabovol.com/">ryabovol.com</a></p>
+      <p class="standfirst">When the fleet moves, the boss drops or the trailer hits, that's Evgeny. Ten-plus years in game and film audio, 200+ projects, and a taste for orchestral scores crossed with synth-rock. We asked him five questions.</p>
+    </div>
+  </div>
+
+  <div class="qa" style="margin-top:16px;">
+    <p class="q">What got you into music?</p>
+    <p class="a">"I got into music as a teenager, while I was still at school. Around the age of 15, I picked up an old acoustic guitar, and that was the beginning of a journey that has lasted for about 20 years. I was looking for a way to express myself, and eventually I started my own rock band at school. Since then, music has been my constant companion in life."</p>
+    <p class="q">How long have you been playing?</p>
+    <p class="a">"About 20 years. I'm not a particularly advanced guitarist, because over the years my interests grew beyond just playing an instrument. I became deeply involved in composition, music production, and sound design. For me, music has always been about much more than playing guitar."</p>
+    <p class="q">Favourite band or singer?</p>
+    <p class="a">"If I had to name one favourite band, it would probably be <strong>Slipknot</strong>. I love their energy, attitude, and the character of their music."</p>
+  </div>
+
+  <div class="grid2" style="margin-top:14px;">
+    <div class="qa">
+      <p class="q">Favourite Drone Commander character?</p>
+      <p class="a">"I'd probably choose <strong>Kira</strong>. I really like her combination of intelligence, curiosity, and emotional openness. She actively contributes to the team and helps push things forward."</p>
+      <p class="q">Advice for anyone wanting to learn music?</p>
+      <p class="a">"One simple piece of advice: don't expect it to be easy. You'll learn something new every day, because the world of music has no limits. But the most important thing is to decide for yourself what music means to you. And when you finally create that first piece of music that gives you goosebumps, you'll understand that all the time and effort were worth it."</p>
+    </div>
+    <figure class="accent" style="background:radial-gradient(ellipse at 50% 30%, #3a7bd5 0%, #142b55 60%, #0a1428 100%); display:flex; align-items:flex-end; justify-content:center; padding:12px 12px 0;">
+      <img src="/assets/img/kira.webp" alt="Kira Virethorne, Evgeny's favourite character" style="width:100%; filter:drop-shadow(0 0 18px rgba(120,190,255,.45));">
+    </figure>
+  </div>
+
+  <div class="box yellow" style="margin-top:16px;">
+    <span class="tag">Also on the desk</span>
+    <h4>A theme song per saga</h4>
+    <p>Each instalment (DC1, DC2, DC3) is planned to get its <strong>own theatrical theme song</strong>, recorded by a band and singer, with its own music video and its own "Bond girls": Fel and Neph for DC1, Morrigan and the Annunaki for DC2. Plus more tracks from <strong>Jan (Ninefold Drift)</strong>, and a <strong>DrewsThatDude</strong> special saved for one moment in the Alpha.</p>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">08</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 07 : VOICE ACTOR CORNER ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Voice Actor <em>Corner</em></div>
+    <div class="meta">CASTING · DUBS · THE BOOTH<br>NEW REGULAR FEATURE</div>
+  </div>
+  <div class="kicker-bar">Giving some love to the voices, <b>the people who make the cast talk back</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:40px;">Gigi Edgley: <span class="red">in talks</span></h2>
+      <p class="byline">Farscape's Chiana · announced 12 September</p>
+      <p class="standfirst">An actress from one of the great sci-fi series of all time is in talks to join the cast.</p>
+      <div class="cols one">
+        <p>Gigi Edgley, known to a generation as <strong>Chiana in <em>Farscape</em></strong>, is in talks to join Drone Commander, and roles are being discussed now. "Gigi I think is going to be fantastic to work with. We get on really well, similar backgrounds." She's shown real interest in <strong>Morrigan</strong>, and other characters have been run past her too. Watch this space.</p>
+        <p>It also changes the long game. With the engine, core art, music and actors in place, and assuming the game does well, <strong>DC2 and DC3 follow much more quickly</strong>.</p>
+      </div>
+    </div>
+    <figure class="accent" style="background:radial-gradient(ellipse at 50% 30%, #7a1030 0%, #2a0612 70%); display:flex; align-items:flex-end; justify-content:center; padding:12px 12px 0;">
+      <img src="/assets/img/Morrigan.webp" alt="Morrigan, the role Gigi Edgley has shown interest in" style="width:100%;">
+    </figure>
+  </div>
+
+  <div class="grid-half" style="margin-top:16px;">
+    <div class="box cyan">
+      <span class="tag">In the booth now</span>
+      <h4>Who's recording</h4>
+      <ul>
+        <li><strong>Rainer Walter</strong> (Elanor Draycott, Myriel) voiced a <strong>Mandarin dub</strong> of Yeverii's romance scene: <em>"Just Us." · 只有我们</em>, on YouTube now</li>
+        <li><strong>Floramel</strong>: a new VA who "really fits" is close to being signed</li>
+        <li>Voicing underway for <strong>Oryen</strong>, <strong>Ozerane</strong> and <strong>Kaelix</strong>, plus a stand-in Fel for in-flight lines</li>
+        <li>A <strong>Polish VA</strong> is being sought for a special Marta scene</li>
+        <li>Fel's VA changes in the final cut of the Intense Briefing</li>
+      </ul>
+    </div>
+    <div class="box">
+      <span class="tag">Straight talk · localisation</span>
+      <h4>500 voices = your language</h4>
+      <p><strong>Plan A:</strong> a direct port. If 500+ fans push for a language, it gets full voice acting. Otherwise it's English VAs with translated text.</p>
+      <p><strong>Plan B, the stretch:</strong> the dev speaks seven languages, so ports with 500+ active supporters (not paying, just asking) could get <strong>"National Moments"</strong>, scenes that involve that nation.</p>
+      <p>Chinese and Spanish prototypes are first.</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">09</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 08 : GUEST ARTIST — LIORA BY FOX ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Guest <em>Artist</em></div>
+    <div class="meta">FOX · RUN 2 OF 4<br>ERIKA → KIRA → LIORA → FLORAMEL</div>
+  </div>
+  <div class="kicker-bar">"Liora's been waiting for you, <b>pizza can come later.</b>" · 170 likes, the month's most-loved post</div>
+  <div class="pullout-art" style="background:#3a0a0a;">
+    <img src="/assets/img/mag3/liora_fox.webp" alt="Liora by guest artist Fox, lounging on red cushions">
+  </div>
+  <div class="grid-half" style="margin-top:14px;">
+    <div class="box rose">
+      <span class="tag">Who is she?</span>
+      <h4>Liora Quorialis</h4>
+      <p>Fel's sister. A pacifist, and she works at <strong>McMusty Burger</strong>, hence the pizza joke. She grew up alongside Fel and Morrigan, before the Black Fleet split the family in two.</p>
+    </div>
+    <div class="box cyan">
+      <span class="tag">Coming up</span>
+      <h4>Floramel next, then comics</h4>
+      <p>Fox's <strong>Floramel</strong> is up next. Talks are also on with <strong>Jon</strong> for <strong>comic strips</strong> in this magazine, a 4-page strip if you want it (you voted that you like the mags).</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">10</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 09 : TEZ ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Meet <em>Tez</em></div>
+    <div class="meta">SECURITY · HUMAN SECTOR<br>NEW ART, DELIVERED 26 SEP</div>
+  </div>
+  <div class="kicker-bar">Stop and search: <b>Straker's least favourite checkpoint, and his most frequent</b></div>
+
+  <div class="tez-stage">
+    <span class="hud">STOP AND SEARCH // SUBJECT: STRAKER</span>
+    <figure>
+      <img src="/assets/img/mag3/tez_wall1.webp" alt="Tez, snarling, holds Straker against a wall for a search">
+      <figcaption><b>SEARCH #1</b> · "Hands on the wall, human. You don't have rights here... you have me."</figcaption>
+    </figure>
+    <figure>
+      <img src="/assets/img/mag3/tez_wall2.webp" alt="Tez, blushing, leans in close behind a flustered Straker">
+      <figcaption><b>SEARCH #3 THIS WEEK</b> · "Routine search, Straker. ...Hold still."</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2r" style="margin-top:16px; grid-template-columns:.62fr 1.38fr;">
+    <figure class="tez-solo">
+      <img src="/assets/img/mag3/tez_stand.webp" alt="Tez standing, hands on hips, in her security uniform">
+    </figure>
+    <div>
+      <div class="box">
+        <span class="tag">Character file</span>
+        <h4>Tez</h4>
+        <p><strong>Sekarri security, Human Sector.</strong> Four hundred humans on one deck, and a curfew to enforce. Snep gave her the job ("keep them contained, Tez... it's for their own good"), and she took it as a punishment posting. Then the one called Straker started arguing back. Every. Single. Time.</p>
+        <p>Humans don't have rights recognised by Sekarri councils yet, and Tez makes sure you know it. She's firm-handed and a little dangerous, and she's warming up far faster than she'd admit. When Neph came, the humans she'd locked up fought for the ship anyway. "He fought for us."</p>
+      </div>
+      <div class="script" style="margin-top:14px;">
+        <p><span class="who">TEZ:</span> "Ah human, hmm, Straker, right? One of your pals, Sung was it? Hacked our tether comms... I swear, that boy's a pain. I'd love to drag him into a dark room and get my money's worth."</p>
+        <p class="beat">(beat)</p>
+        <p><span class="who">TEZ:</span> "Ahem... well, hypothetically speaking."</p>
+        <p style="margin-top:10px;"><span class="who s">STRAKER:</span> No, no you can't.</p>
+        <p><span class="who">TEZ:</span> "Finally, someone who pushes back."</p>
+        <p style="margin-top:10px;"><span class="who">TEZ:</span> "Curfew's lifted. You could go home, you know. ...Stay."</p>
+      </div>
+      <p class="art-note">// Her micro-intro, <b>TEZ · CURFEW</b>, tells the whole arc as security-log entries, from punishment posting to "...I've started looking forward to it."</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">11</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 10 : ART DROP — VARYA ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Art <em>Drop</em></div>
+    <div class="meta">VARYA · BLOOD KISS<br>MICRO-INTRO NO. 1</div>
+  </div>
+  <div class="kicker-bar">Neph's scarred younger sister, <b>and the kiss that launched the Micro-Intros</b></div>
+  <div class="pullout-art">
+    <img src="/assets/img/mag3/varya_kiss.webp" alt="Varya with her greatsword, and a blood kiss sequence">
+  </div>
+  <p class="art-note">// <b>VARYA</b>: traditional, solitary, and she walked away from all of it. You'll meet her on an abandoned desert world, now being drawn up.</p>
+  <div class="box" style="margin-top:14px;">
+    <span class="tag">Micro-Intros</span>
+    <h4>Now showing</h4>
+    <p>Short cinematic character intros, "super easy to do," so they keep coming: <strong>Varya · Blood Kiss</strong>, <strong>Morrigan · Shore Leave</strong> (read the YouTube description for new lore), <strong>Floramel · Dreamwalker</strong>, <strong>Tabby</strong>. In the can: Fel · After Hours, Kira · No Strings, Liora · Extra Fries, Neph · The Tribute, Gia · Gentle Giant, Makara · Last Orders.</p>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">12</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== WORKSHOP ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">The <em>Workshop</em></div>
+    <div class="meta">BEHIND THE SCENES<br>3D ROOMS · TILESETS · WIP</div>
+  </div>
+  <div class="kicker-bar">How the sets get built, <b>before anyone's standing in them</b></div>
+
+  <figure class="fig">
+    <img src="/assets/img/mag3/tabby_room_3d.webp" alt="3D model of Tabby's fleet quarters: a bed, two desks with holographic screens, cyan ceiling lights and circuit-patterned walls">
+    <figcaption><b>TABBY'S FLEET QUARTERS</b>: the visual novel backdrop, modelled as a full 3D room first. Sometimes the whole room gets built in 3D so every camera angle stays consistent.</figcaption>
+  </figure>
+
+  <div class="grid2r" style="grid-template-columns:.9fr 1.1fr;">
+    <div class="box">
+      <span class="tag">Set dressing</span>
+      <h4>Not her best room</h4>
+      <p>This is Tabby's <strong>fleet quarters</strong>: standard issue, cabinets and bunk. It's not as spruced up as her place back on <strong>Alara</strong>, or her shore-leave room aboard another ship in the Freexyl's fleet. You'll see all three.</p>
+    </div>
+    <div class="box cyan">
+      <span class="tag">Why 3D?</span>
+      <h4>One room, every angle</h4>
+      <p>Build the room once, then pull any shot you need: wide establishing views, close-ups over a desk, the angle from the doorway. The painted VN backgrounds all stay faithful to the same space.</p>
+    </div>
+  </div>
+
+  <figure class="fig pixel" style="margin-top:16px;">
+    <div class="desert-stage"><img src="/assets/img/mag3/desert_tiles.webp" alt="Pixel-art tileset for a desert world: domed buildings, rock spires, crates, sand tiles, gates and a small explorer figure for scale"></div>
+    <figcaption><b>WIP · THE DESERT WORLD</b>: domes, rock spires, sand and gates, with a tiny explorer for scale. This is where you'll meet <b>Varya</b>, and it holds deep, ancient secrets about the <b>Skrill</b> and the <b>Honnehari</b>.</figcaption>
+  </figure>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">13</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 11 : DESIGNER'S NOTES ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Designer's <em>Notes</em></div>
+    <div class="meta">THE SECRET FORMULA<br>+ THE STORMPAW DMR</div>
+  </div>
+  <div class="kicker-bar">Aiming for 10s across the board, <b>and how you actually get there</b></div>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:40px;">C&amp;C + FF7 + Halo <span class="red">= DC</span></h2>
+      <p class="byline">From the 29 August post · "the inspiration formula behind DC"</p>
+      <div class="cols">
+        <p>The core driver: take the <strong>underlying soul</strong> of the three best games in three genres and bring what made them amazing into a single magnum opus.</p>
+        <p><strong>Command &amp; Conquer: war and babes.</strong> Spin-offs failed because even when they nailed the gameplay, they missed what people loved: the babes and the lore.</p>
+        <p><strong>Final Fantasy 7: story and music.</strong> The gameplay was nothing new and the graphics are "doggy doodoo" now, yet people keep going back. Everything about it was pure cinema, from Sephiroth to Aerith's death.</p>
+        <p><strong>Halo: gameplay and sci-fi.</strong> The magic 30-second loop: take out the tank enemies, then mop up the grunts. Halo 2's battle rifle then added a second loop in the middle.</p>
+        <p>"Emulation is not my goal!" The aim is to imagine what those three souls would look like if they were built today. That's why DC has three genres: RPG, RTS and VN.</p>
+      </div>
+    </div>
+    <div>
+      <figure class="fig">
+        <img src="/assets/img/mag3/scr_stormpaw.webp" alt="Stormpaw DMR scope view in a top-down level">
+        <figcaption><b>STORMPAW DMR</b>: the camera pulls out, the battlefield blurs but stays visible, and a real magnified scope window sits on your target.</figcaption>
+      </figure>
+      <div class="box cyan">
+        <span class="tag">Solved</span>
+        <h4>Snipers in top-down</h4>
+        <p>In 2D, a guy two screens away isn't smaller, he's just off-screen, so top-down games skip snipers. The Stormpaw fixes that: a plasma DMR that's slow, heavy and hits like a truck, with a line-of-sight blackout and a reticle that turns red when blocked. It's DC's battle-rifle loop.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cheat" style="margin-top:16px;">
+    <b>&gt; THE INNOVATION LIST:</b> VN with dynamic zoom and proper animation · characters that influence your judgement · a pride system instead of harem fantasy (with a guest female novelist writer) ·
+    no multiverse hand-waving · RTS cruise modes that fix space boredom · travelling fleetyards instead of open-space base building · seamless RPG ↔ VN switching ·
+    RTS co-commanders who can run the whole show · FF/Xenoblade adventure battles mixed with Gears-style total war · <b>Western values, Eastern sensibilities</b>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">14</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 12 : LORE LAB ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Lore <em>Lab</em></div>
+    <div class="meta">STARLANES · PRIDES · DENS<br>CANON CLARIFIED</div>
+  </div>
+  <div class="kicker-bar">Three big questions from the month, <b>answered by the dev</b></div>
+
+  <h2 class="head" style="font-size:38px;">How do you <span class="red">walk</span> a Starlane?</h2>
+  <p class="byline">2 September · "Time to clear up the StarLane lore"</p>
+  <div class="grid2">
+    <div class="cols">
+      <p>The books that came before, <em>Dispersion Divide</em> and <em>Dispersion Wars</em>, had tunnels under Earth that connected to tunnels on other planets. Drone Commander added <strong>Starlanes</strong>: passages in space that act like huge buffs on the laws of physics. That left a tension between how ships travel them and how people do. Now it's solved.</p>
+      <p><strong>On foot:</strong> Planet → <strong>AnchorHold</strong> → <strong>Drift Hall</strong> → Starlane → Drift Hall on the target world. An AnchorHold is an out-of-phase labyrinth deep underground. On Earth it's <strong>Albion's Anchor</strong>, and on Mirelexia it's <strong>Anchor's Helm</strong>. At its centre is a Drift Hall that only admits the worthy. Place a <strong>Shard</strong>, anchor it, activate it, and the hall melds into the lane. Every step is a fraction of a light-year.</p>
+      <p><strong>By ship:</strong> much simpler. A ship with a Shard travels freely and re-carves old, unused lanes. Once a lane is carved, ships without a Shard can follow, but slower. To an outside observer they appear to be glitching.</p>
+    </div>
+    <figure class="fig" style="margin:0;">
+      <img src="/assets/img/mag3/ivrixia.webp" alt="A white Honnehari figure with a staff and glowing orb in space">
+      <figcaption><b>IVRIXIA</b>: her residence in the Honnehari temple is being built out now, a resonant construct you'll run into all over the galaxy.</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid-half" style="margin-top:16px;">
+    <div class="box rose">
+      <span class="tag">Pride dynamics</span>
+      <h4>You're not the centre</h4>
+      <p>A Sekarri pride is usually one male and seven or more females. You choose who you date, but once you have your core <strong>Velara</strong>, they get the main say on the other girls. "This is about realism, not a JRPG fantasy fest." Everyone orbits, and you're important without being the centre. Monogamous or single? You get the small room. The full breakdown, including the <strong>Crown</strong> and the new <strong>Cordara</strong>, is on the site's new blog: <a href="/blog/the-crown-and-pride-orbits">The Crown &amp; Pride Orbits</a>.</p>
+      <p style="font-family:var(--mono); font-size:10.5px;">// Kira is Astraria, so you can go full flirt within minutes. Fel will know about it, though. And don't tell Kira you think Tabby's hot.</p>
+    </div>
+    <div class="box">
+      <span class="tag">Put your minds at ease</span>
+      <h4>Marta &amp; Den Bonding</h4>
+      <p>Marta's default path is <strong>monogamous, with Rhyzark</strong>. Her playthroughs are mostly talking to Camellia, blowing up enemy ships and arguing with Rhyzark.</p>
+      <p>One branch of the <strong>Kethri</strong> has a 1.5:1 male-to-female imbalance, which is why Garland and Vinnie are feral all the time. They practise <strong>Den Bonding</strong>: one female with one to three males. If you go truly off-road, Marta <em>might</em> explore it, with consequences, and possibly only in New Game+. Nothing's set in stone.</p>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">15</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== 13 : BACK PAGE ==================== -->
+<section class="page inner">
+  <div class="strap">
+    <div class="sect">Back <em>Page</em></div>
+    <div class="meta">POLLS · WHAT'S NEXT · ENLIST<br>SEE YOU NEXT TRANSMISSION</div>
+  </div>
+  <div class="kicker-bar">The Alpha is out, Act 1 is ~6 weeks away, <b>and there's a lot coming</b></div>
+
+  <figure class="fig" style="margin:0 0 14px;">
+    <img src="/assets/img/mag3/alpha_done.webp" alt="Karaoke party scene with the crew celebrating">
+    <figcaption><b>"ANNNND I'M DONE!"</b>: the art that marked Alpha completion on 23 September. Party time.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="box yellow">
+      <span class="tag">Next transmission</span>
+      <h4>In issue 04...</h4>
+      <ul>
+        <li><strong>Alpha tester reports</strong>: gameplay videos from the first batch, if you want them</li>
+        <li><strong>The Morrigan &amp; Fel animation</strong>: the origin of their rift, back in their academy days, a high-production piece</li>
+        <li><strong>The first female Dark Worlder</strong> and the <strong>Dark Troopers</strong></li>
+        <li><strong>The Final Harbinger Assault</strong>: the last main level of the first 20 hours</li>
+        <li>Floramel by Fox, and the Act 1 progress report</li>
+      </ul>
+    </div>
+    <div>
+      <div class="box">
+        <span class="tag">Have your say</span>
+        <h4>Open polls</h4>
+        <ul>
+          <li><strong>What do you hate in gaming?</strong> 57 comments and counting. "I'll be sure to use this data."</li>
+          <li><strong>Release Act 1 at Christmas</strong>, or push on so we get everything? A poll is coming.</li>
+          <li><strong>VN Inspector</strong>: keep the old click-around scenes, or move them into the RPG?</li>
+          <li><strong>Who should POV-hold you?</strong> Fel, Tabby, Kira, Amu, Floramel, Yeverii...</li>
+        </ul>
+      </div>
+      <div class="box cyan" style="margin-top:14px;">
+        <span class="tag">Coming soon</span>
+        <h4>Giveaways</h4>
+        <p>DC shirts, caps, mugs and posters, plus role-play competitions to win Fel's, Tabby's, Morrigan's, even Neph's heart.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subscribe">
+    <div class="big">Enlist!</div>
+    <p>Every vote, screenshot and line in this issue came from the dev feed. Patrons read it first, a week early →
+      <a href="https://www.patreon.com/DroneCommander">patreon.com/DroneCommander</a> ·
+      <a href="https://dronecommander.gg">dronecommander.gg</a> ·
+      <a href="https://dronecommander.gg/magazine">Issue 01</a> ·
+      <a href="https://dronecommander.gg/magazine2">Issue 02</a></p>
+  </div>
+
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">16</span><span>OCT 2026</span></div>
+</section>
+
+</div>
+
+<button class="pv-toggle" id="pvToggle" type="button">&#128196; page view</button>
+<div class="pv-nav">
+  <button id="pvPrev" type="button" aria-label="Previous page">&#9664;</button>
+  <span id="pvLabel">PAGE 1 / 13</span>
+  <button id="pvNext" type="button" aria-label="Next page">&#9654;</button>
+  <button id="pvExit" class="pv-exit" type="button" aria-label="Switch to scrolling view">scroll</button>
+</div>
+<script>
+(function () {
+  var DESIGN_W = 880;
+  var allPages = [].slice.call(document.querySelectorAll('.page'));
+  var pages = allPages;
+  function refreshPages() { var v = document.body.className.match(/var-(\w)/); v = v ? v[1] : 'a';
+    pages = allPages.filter(function (p) { var d = p.getAttribute('data-variant'); return !d || d === v; }); }
+  refreshPages();
+  var rack = document.querySelector('.rack');
+  var label = document.getElementById('pvLabel');
+  var cur = 0, pv = false;
+  function layout() {
+    if (!pv) return;
+    var scale = Math.min((window.innerWidth - 12) / DESIGN_W, 1);
+    pages.forEach(function (p, i) {
+      if (i === cur) {
+        p.style.display = ''; p.style.width = DESIGN_W + 'px';
+        p.style.transform = 'scale(' + scale + ')'; p.style.transformOrigin = 'top left';
+        p.style.marginBottom = '';
+        var h = p.offsetHeight; p.style.marginBottom = (-h * (1 - scale)) + 'px';
+      } else { p.style.display = 'none'; }
+    });
+    allPages.forEach(function (p) { if (pages.indexOf(p) < 0) p.style.display = 'none'; });
+    rack.style.width = (DESIGN_W * scale) + 'px'; rack.style.maxWidth = 'none';
+    label.textContent = 'PAGE ' + (cur + 1) + ' / ' + pages.length;
+  }
+  window.__pvLayout = layout;
+  function enter() { pv = true; document.body.classList.add('pageview'); layout(); window.scrollTo(0, 0); }
+  function exit() {
+    pv = false; document.body.classList.remove('pageview');
+    allPages.forEach(function (p) { p.style.display = ''; p.style.transform = ''; p.style.width = ''; p.style.marginBottom = ''; });
+    rack.style.width = ''; rack.style.maxWidth = '';
+  }
+  function go(d) { cur = (cur + d + pages.length) % pages.length; layout(); window.scrollTo(0, 0); }
+  document.getElementById('pvToggle').addEventListener('click', enter);
+  document.getElementById('pvExit').addEventListener('click', exit);
+  document.getElementById('pvPrev').addEventListener('click', function () { go(-1); });
+  document.getElementById('pvNext').addEventListener('click', function () { go(1); });
+  window.addEventListener('resize', layout);
+  var sx = null, sy = null;
+  window.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchend', function (e) {
+    if (sx === null || !pv) { sx = null; return; }
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+    sx = null;
+  }, { passive: true });
+
+  // variant switcher (?v=a|b)
+  function setVariant(v) {
+    document.body.className = document.body.className.replace(/\bvar-\w\b/, '').trim() + ' var-' + v;
+    [].forEach.call(document.querySelectorAll('.var-switch button'), function (b) { b.classList.toggle('on', b.getAttribute('data-v') === v); });
+    refreshPages(); if (cur >= pages.length) cur = 0; if (pv) layout();
+    try { history.replaceState(null, '', '?v=' + v); } catch (e) {}
+  }
+  [].forEach.call(document.querySelectorAll('.var-switch button'), function (b) {
+    b.addEventListener('click', function () { setVariant(b.getAttribute('data-v')); });
+  });
+  var qv = (location.search.match(/[?&]v=([ab])/) || [])[1];
+  setVariant(qv || 'a');
+  if (window.matchMedia('(max-width: 700px)').matches) enter();
+})();
+</script>
+
+</body>
+</html>
