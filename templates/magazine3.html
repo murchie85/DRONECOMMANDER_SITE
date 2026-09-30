@@ -380,6 +380,22 @@
     background:radial-gradient(ellipse 70% 60% at 60% 40%, #f7dca6 0%, transparent 70%), linear-gradient(170deg,#f1c98a 0%,#d99a5b 60%,#a8603a 100%);}
   .desert-stage img{width:100%; border:0 !important; image-rendering:pixelated;}
   body.var-b .desert-stage, body.var-b .pixel-stage{border-color:#e0b44a;}
+  table.stat{width:100%; border-collapse:collapse; font-size:12.4px;}
+  table.stat th{text-align:left; font-family:var(--cond); text-transform:uppercase; font-size:11px; letter-spacing:.06em; color:var(--cyan-dark); padding:5px 8px 5px 0; vertical-align:top; white-space:nowrap;}
+  table.stat td{padding:5px 0; border-bottom:1px dashed rgba(0,0,0,.18); line-height:1.35;}
+  body.var-b table.stat td{border-bottom-color:rgba(255,255,255,.15);}
+  .worlds{display:grid; grid-template-columns:1fr .8fr 1fr; gap:14px; margin-top:16px; align-items:stretch;}
+  .world{margin:0; border:2px solid var(--ink); background:var(--paper-dark); display:flex; flex-direction:column;}
+  .world img{width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 20%; border-bottom:2px solid var(--ink);}
+  .world figcaption{font-family:var(--mono); font-size:10.2px; padding:6px 8px; line-height:1.4; color:var(--ink-soft);}
+  .world figcaption b{color:var(--red);}
+  .world-mid{padding:12px 14px; background:#1d2f78; color:#e9eefc; border-color:var(--ink); justify-content:center;}
+  .world-mid h4{font-family:var(--display); font-size:26px; margin:6px 0; text-transform:uppercase; color:#f6e7b8; line-height:.9;}
+  .world-mid p{font-size:12.4px; line-height:1.42; margin:0;}
+  .world-mid strong{color:#f6e7b8;}
+  .world-mid .tag{align-self:flex-start; background:#e0b44a; color:#0b1030; font-family:var(--cond); font-weight:bold; font-size:11px; text-transform:uppercase; letter-spacing:.08em; padding:3px 8px;}
+  body.var-b .world{border-color:#e0b44a;}
+  @media (max-width:680px){ body:not(.pageview) .worlds{grid-template-columns:1fr;} }
 </style>
 </head>
 <body class="var-a">
@@ -602,6 +618,63 @@
   <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">04</span><span>OCT 2026</span></div>
 </section>
 
+<!-- ==================== VIONITE PRIMER ==================== -->
+<section class="page inner vionite">
+  <div class="strap">
+    <div class="sect">Meet the <em>Vionites</em></div>
+    <div class="meta">SPECIES PRIMER<br>THE EMPIRE THAT PREPARED FOR WAR</div>
+  </div>
+  <div class="kicker-bar">Small, floating, and the only race insane enough to go toe-to-toe with the Drone Fleet, <b>and the only one capable</b></div>
+
+  <figure class="fig">
+    <img src="/assets/img/mag3/vionites_group.webp" alt="A lineup of Vionites: Oryen in armour, a pale horned noble, a grey-furred officer and a flower-crowned squirrel girl">
+    <figcaption><b>THE VIONITES</b>: mouse-like and squirrel-like in form, with huge diversity in looks and culture depending on how far you live from the Core.</figcaption>
+  </figure>
+
+  <div class="grid2r" style="grid-template-columns:.8fr 1.2fr;">
+    <div class="box cyan">
+      <span class="tag">Species file</span>
+      <h4>By the numbers</h4>
+      <table class="stat">
+        <tr><th>Population</th><td>~200 billion, across multiple star systems</td></tr>
+        <tr><th>Height</th><td>4.2 ft (1.28 m) on average</td></tr>
+        <tr><th>Temperament</th><td>Highly intelligent, passionate, aggressive</td></tr>
+        <tr><th>Tier</th><td>Top of Tier 1, or bottom of Tier 2, depending on who's measuring</td></tr>
+        <tr><th>Party trick</th><td>The only Tier 1 race that can cross space <strong>without dispersion fields</strong></td></tr>
+      </table>
+    </div>
+    <div>
+      <h2 class="head" style="font-size:34px;">Too bright <span class="red">to hide</span></h2>
+      <div class="cols">
+        <p>Every other race in the galaxy survives by keeping quiet. The Vionites can't: their <strong>energy footprint is too high to hide</strong>. So they did the only other thing available and prepared for war, culturally, politically and scientifically.</p>
+        <p>The Empire is now deep into a <strong>Total War</strong> campaign that's been building for six centuries, aimed squarely at the Drone Fleet. It's a whole civilisation pivoting toward a single purpose, dragging <strong>reluctant Home Worlds</strong> and <strong>indifferent Fringe Worlds</strong> along with it. They're closer to godhood than any other living species, and painfully aware of how far short they still fall. Everyone floats, many control things with their minds, and their soldiers die and get revived with ease. Every other species looks to them like a primitive distraction.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="worlds">
+    <figure class="world">
+      <img src="/assets/img/mag3/cirine_drydock.webp" alt="Cirine, a Vionite shock trooper in black armour, at the Endline Fleet Drydock">
+      <figcaption><b>CORE WORLDS</b> · Militaristic mouse-like generals, the military royalty, the war machine. Pictured: <b>Cirine</b>, shock trooper and your escort. "Vionite males? Didn't you know, mate? They are busy entertaining all those human girls that arrived."</figcaption>
+    </figure>
+    <div class="world world-mid">
+      <span class="tag">Home Worlds</span>
+      <h4>Money &amp; politics</h4>
+      <p>Retail, politicians and luxury: home of the <strong>retail royalty</strong>, the trade syndicates and the wealth of the Core markets. It's also where you'll find friends of Lysandara, the journalist who smuggled herself to Earth.</p>
+    </div>
+    <figure class="world">
+      <img src="/assets/img/mag3/fringe_squirrel.webp" alt="A cheerful Fringe Worlds squirrel girl with flowers in her hair, giving a peace sign in a glowing forest">
+      <figcaption><b>FRINGE WORLDS</b> · Hippie squirrel-like populations, as far from the war room as it gets.</figcaption>
+    </figure>
+  </div>
+
+  <div class="cheat" style="margin-top:14px;">
+    <b>&gt; CHAIN OF COMMAND:</b> <b>StratZar</b> (multiple star-system campaigns) → <b>Strategon</b> (in-system general) → <b>Field Stratarch</b> (planetary surface ops) → <b>Viceroy</b> (battle groups) ·
+    plus Praetor-Wings, Orbital Wardens, Fleet Magisters, Drift Commanders, Neural Prefects, Spectral Wardens, Entropy Liaisons and a <b>Societal Curator</b> keeping the propaganda humming
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>OCT 2026</span></div>
+</section>
+
 <!-- ==================== 04 : ORYEN — THE BATTLE PRINCESS ==================== -->
 <section class="page inner vionite">
   <div class="strap">
@@ -649,7 +722,7 @@
     <div class="pixel-stage"><img src="/assets/img/mag3/oryen_pixel.png" alt="Oryen's pixel-art sprite turnaround: back, side, front and three-quarter views"></div>
     <figcaption><b>ORYEN IN PIXELS</b>: her RPG sprite turnaround, cape, crown-ears and all.</figcaption>
   </figure>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">05</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 05 : ORYEN — AN AUDIENCE ==================== -->
@@ -701,7 +774,7 @@
       <p style="font-family:var(--mono); font-size:10.5px; margin:0;">// Final sting of the audience: "Off you go, Straker of the Breakers. Do try to survive the week. I've grown mildly invested."</p>
     </div>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">06</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">07</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 06 : PULL-OUT — VIONITE ROYALTY ==================== -->
@@ -719,7 +792,53 @@
     <h4>The Core Worlds court</h4>
     <p>This is the scene from Oryen's battle entrance, when Ezorath announces her, the court rises, and the Queen gives the order. Ezorath himself is calm, polite and warm but distant in person, and a power broadcast in public. He has a hundred grandchildren and a fondness for dad jokes.</p>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">07</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">08</span><span>OCT 2026</span></div>
+</section>
+
+<!-- ==================== TRYNNERA ==================== -->
+<section class="page inner vionite">
+  <div class="strap">
+    <div class="sect">Meet <em>Trynnera</em></div>
+    <div class="meta">VIONITE · CORE WORLDS RESEARCHER<br>THE STELLAR WORKSHOP</div>
+  </div>
+  <div class="kicker-bar">Flirtatious, threatening, and the one who explains <b>how the Vionites learned to read souls</b></div>
+
+  <figure class="fig">
+    <img src="/assets/img/mag3/trynnera_2.webp" alt="Trynnera, a Vionite with long braided hair in a white techsuit: 'You're human eh? You're smaller than the skull suggested.'">
+    <figcaption><b>THE STELLAR WORKSHOP</b>: "You're human, eh? You're smaller than the skull suggested." (Hold that thought, and read the box below.)</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div>
+      <h2 class="head" style="font-size:34px;">An architect <span class="red">of essence</span></h2>
+      <p class="byline">Stellar architect · one of Strategon Ozerane's primary strategic researchers</p>
+      <div class="cols">
+        <p>One of the technologies to trickle out of the Resonant Essence discovery is <strong>Stellar Architecture</strong>: building entire planets out of resonant stream fields, and shaping not just a world's geology but its <strong>causality</strong>, locking in its stability for decades at a time. Trynnera is one of the few who can do it. By her <strong>six hundredth birthday</strong> she'll have signed off on fully viable worlds for the Empire, each one secured by <strong>rolling causality horizons</strong> she maintains personally.</p>
+        <p>She works from what's officially called a <strong>Resonance Cradle</strong>, though everyone just calls it "the workshop". It's dominated by two towering ethereal constructs laced with ember-bright circuitry, where planetary futures are shaped in real time.</p>
+        <p>She's Core Worlds through and through: sharp, playful in a way that keeps you off balance, and entirely capable of stopping your heart with her mind if the conversation gets boring. You meet her there with one job: convince Amu to leave.</p>
+      </div>
+      <figure class="fig" style="margin-top:12px;">
+        <img src="/assets/img/mag3/trynnera_1.webp" alt="Trynnera laughing: 'Still way taller than any of us. But primitive though, I could stop your heart with mind.'">
+        <figcaption><b>SHE MEANS IT</b>: "Still way taller than any of us. But primitive though, I could stop your heart with mind."</figcaption>
+      </figure>
+    </div>
+    <div>
+      <div class="box yellow">
+        <span class="tag">Science lore</span>
+        <h4>Resonant Essence</h4>
+        <p>Humans once knew about light speed but believed in the Ether. The Vionites are at a similar stage: they've glimpsed entropy at work, and they call it <strong>Resonant Essence</strong>. Seeing it took <strong>200 fleet ships working for 300 years</strong> in a pulsar system, where time dilation, radiation and the gravity gradient let them watch information work at its most fundamental level.</p>
+        <p><strong>The fuel analogy:</strong> if entropy is petrol, the crude fuel everyone burns, then Resonant Essence is diesel. It's the same stuff refined into something far denser, and it's linked directly to time, life and space.</p>
+        <p>When they finally built instruments to measure it, they expected a new field, particle or dimension. What they found was the <strong>soul data of living beings</strong>: immortal data streams that grow, split and merge. It shook them. Every species shares the same ancient source code, and true mastery of it is <strong>at least a hundred thousand years away</strong>.</p>
+      </div>
+      <div class="box" style="margin-top:14px;">
+        <span class="tag">Around 1450 AD</span>
+        <h4>The Deadlight Survey</h4>
+        <p>A Vionite survey breached a timelocked <strong>Void Stasis Krypt</strong>, possibly a billion years old. Inside were seven perfectly preserved Honnehari dead, still resonating more energy than an entire human city, and a depleted <strong>Eridix</strong>: an AI construct that exists only half in our timestream. It became the Rosetta Stone for everything that followed.</p>
+        <p>And, inexplicably, <strong>a single human skull</strong>. It sits in Ozerane's desk drawer. Few Vionites know it exists, but Trynnera does. Humans are Tier 0. They shouldn't even be a footnote. So how does one end up sealed alongside god-tier beings? Small, fragile, and impossible.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">09</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 06 : SOUND DESK — EVGENY ==================== -->
@@ -768,7 +887,7 @@
     <h4>A theme song per saga</h4>
     <p>Each instalment (DC1, DC2, DC3) is planned to get its <strong>own theatrical theme song</strong>, recorded by a band and singer, with its own music video and its own "Bond girls": Fel and Neph for DC1, Morrigan and the Annunaki for DC2. Plus more tracks from <strong>Jan (Ninefold Drift)</strong>, and a <strong>DrewsThatDude</strong> special saved for one moment in the Alpha.</p>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">08</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">10</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 07 : VOICE ACTOR CORNER ==================== -->
@@ -814,7 +933,7 @@
       <p>Chinese and Spanish prototypes are first.</p>
     </div>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">09</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">11</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 08 : GUEST ARTIST — LIORA BY FOX ==================== -->
@@ -839,7 +958,7 @@
       <p>Fox's <strong>Floramel</strong> is up next. Talks are also on with <strong>Jon</strong> for <strong>comic strips</strong> in this magazine, a 4-page strip if you want it (you voted that you like the mags).</p>
     </div>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">10</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">12</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 09 : TEZ ==================== -->
@@ -884,7 +1003,7 @@
       <p class="art-note">// Her micro-intro, <b>TEZ · CURFEW</b>, tells the whole arc as security-log entries, from punishment posting to "...I've started looking forward to it."</p>
     </div>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">11</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">13</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 10 : ART DROP — VARYA ==================== -->
@@ -903,7 +1022,7 @@
     <h4>Now showing</h4>
     <p>Short cinematic character intros, "super easy to do," so they keep coming: <strong>Varya · Blood Kiss</strong>, <strong>Morrigan · Shore Leave</strong> (read the YouTube description for new lore), <strong>Floramel · Dreamwalker</strong>, <strong>Tabby</strong>. In the can: Fel · After Hours, Kira · No Strings, Liora · Extra Fries, Neph · The Tribute, Gia · Gentle Giant, Makara · Last Orders.</p>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">12</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">14</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== WORKSHOP ==================== -->
@@ -936,7 +1055,7 @@
     <div class="desert-stage"><img src="/assets/img/mag3/desert_tiles.webp" alt="Pixel-art tileset for a desert world: domed buildings, rock spires, crates, sand tiles, gates and a small explorer figure for scale"></div>
     <figcaption><b>WIP · THE DESERT WORLD</b>: domes, rock spires, sand and gates, with a tiny explorer for scale. This is where you'll meet <b>Varya</b>, and it holds deep, ancient secrets about the <b>Skrill</b> and the <b>Honnehari</b>.</figcaption>
   </figure>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">13</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">15</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 11 : DESIGNER'S NOTES ==================== -->
@@ -977,7 +1096,7 @@
     no multiverse hand-waving · RTS cruise modes that fix space boredom · travelling fleetyards instead of open-space base building · seamless RPG ↔ VN switching ·
     RTS co-commanders who can run the whole show · FF/Xenoblade adventure battles mixed with Gears-style total war · <b>Western values, Eastern sensibilities</b>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">14</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">16</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 12 : LORE LAB ==================== -->
@@ -1016,7 +1135,7 @@
       <p>One branch of the <strong>Kethri</strong> has a 1.5:1 male-to-female imbalance, which is why Garland and Vinnie are feral all the time. They practise <strong>Den Bonding</strong>: one female with one to three males. If you go truly off-road, Marta <em>might</em> explore it, with consequences, and possibly only in New Game+. Nothing's set in stone.</p>
     </div>
   </div>
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">15</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">17</span><span>OCT 2026</span></div>
 </section>
 
 <!-- ==================== 13 : BACK PAGE ==================== -->
@@ -1072,7 +1191,7 @@
       <a href="https://dronecommander.gg/magazine2">Issue 02</a></p>
   </div>
 
-  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">16</span><span>OCT 2026</span></div>
+  <div class="folio"><span>DRONE COMMANDER MONTHLY</span><span class="pg">18</span><span>OCT 2026</span></div>
 </section>
 
 </div>
