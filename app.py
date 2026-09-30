@@ -169,8 +169,19 @@ def magazine():
 def magazine2():
     return render_template('magazine2.html')
 
+# Issue 03 is patrons-only for its first few days: share the secret link on Patreon,
+# then flip MAGAZINE3_PUBLIC to True to open /magazine3 to everyone.
+MAGAZINE3_PUBLIC = False
+MAGAZINE3_SECRET_PATH = '/m3-lfsps4ls'
+
 @app.route('/magazine3')
 def magazine3():
+    if not MAGAZINE3_PUBLIC:
+        abort(404)
+    return render_template('magazine3.html')
+
+@app.route(MAGAZINE3_SECRET_PATH)
+def magazine3_preview():
     return render_template('magazine3.html')
 
 @app.route('/promises')
