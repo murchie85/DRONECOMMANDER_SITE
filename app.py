@@ -171,7 +171,7 @@ def magazine2():
 
 # Issue 03 is patrons-only for its first few days: share the secret link on Patreon,
 # then flip MAGAZINE3_PUBLIC to True to open /magazine3 to everyone.
-MAGAZINE3_PUBLIC = False
+MAGAZINE3_PUBLIC = True
 MAGAZINE3_SECRET_PATH = '/m3-lfsps4ls'
 
 @app.route('/magazine3')
@@ -226,7 +226,7 @@ Sitemap: /sitemap.xml
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress', '/magazine', '/magazine2', '/promises']
+    pages = ['/', '/about', '/devlog', '/ideation', '/latest-update', '/compendium', '/community-tools', '/bug-reporter', '/board', '/progress', '/magazine', '/magazine2', '/magazine3', '/promises']
     pages += [f"/blog/{p['slug']}" for p in BLOG_POSTS]
     base = request.host_url.rstrip('/')
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
