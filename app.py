@@ -191,6 +191,13 @@ def promises():
 # Blog posts, newest first. Each post body lives in templates/blog/<slug>.html
 BLOG_POSTS = [
     {
+        'slug': 'alpha-rollout-plan',
+        'title': 'How the Alpha Rolls Out',
+        'date': '26 September 2026',
+        'summary': 'Who gets the Drone Commander Alpha first, why it goes out in small waves, and how everyone else gets it nearer release.',
+        'image': 'img/dcBg.webp',
+    },
+    {
         'slug': 'the-crown-and-pride-orbits',
         'title': 'The Crown & Pride Orbits',
         'date': '19 September 2026',
