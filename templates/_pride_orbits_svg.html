@@ -1,0 +1,108 @@
+{# Three-era pride orbit diagram. Included by the Crown blog post and the compendium. #}
+<style>
+    .orbit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 10px 0 6px; }
+    .orbit-grid > * { min-width: 0; }
+    .orbit-panel { background: rgba(0,255,204,0.03); border: 1px solid rgba(0,255,204,0.2); border-radius: 8px; padding: 10px 8px 6px; }
+    .orbit-panel svg { width: 100%; max-width: 100%; height: auto; display: block; overflow: visible; font-family: 'Courier New', monospace; }
+    .orbit-panel .orbit-title { color: #00ffcc; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; text-align: center; margin: 0 0 4px; }
+    .orbit-panel .orbit-sub { color: #777; font-size: 0.7rem; text-align: center; margin: 0 0 6px; font-style: italic; }
+    .orbit-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: center; color: #999; font-size: 0.72rem; margin-bottom: 10px; }
+    .orbit-legend span { white-space: nowrap; }
+    .orbit-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 5px; box-sizing: border-box; }
+    @media (max-width: 700px) { .orbit-grid { grid-template-columns: 1fr; } }
+</style>
+<div class="orbit-grid">
+    <div class="orbit-panel">
+        <p class="orbit-title">Age of Alpha Females</p>
+        <p class="orbit-sub">no Crown &middot; no fixed orbits</p>
+        <svg viewBox="0 0 300 300" role="img" aria-label="Alpha era: male at centre, Alpha female beside him with her attention pointing outward, six other females scattered loosely">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff8866"/></marker></defs>
+            <circle cx="150" cy="150" r="105" fill="none" stroke="rgba(0,255,204,0.15)" stroke-dasharray="2 7"/>
+            <!-- scattered females -->
+            <g font-size="11" text-anchor="middle" dominant-baseline="central">
+                <g><circle cx="62" cy="96" r="12" fill="#121212" stroke="#888"/><text x="62" y="96" fill="#aaa">F</text></g>
+                <g><circle cx="48" cy="188" r="12" fill="#121212" stroke="#888"/><text x="48" y="188" fill="#aaa">F</text></g>
+                <g><circle cx="118" cy="252" r="12" fill="#121212" stroke="#888"/><text x="118" y="252" fill="#aaa">F</text></g>
+                <g><circle cx="212" cy="248" r="12" fill="#121212" stroke="#888"/><text x="212" y="248" fill="#aaa">F</text></g>
+                <g><circle cx="132" cy="56" r="12" fill="#121212" stroke="#888"/><text x="132" y="56" fill="#aaa">F</text></g>
+                <g><circle cx="226" cy="76" r="12" fill="#121212" stroke="#888"/><text x="226" y="76" fill="#aaa">F</text></g>
+                <!-- male + alpha -->
+                <g><circle cx="138" cy="150" r="14" fill="#e0e0e0"/><text x="138" y="150" fill="#121212" font-weight="bold">M</text></g>
+                <g><circle cx="170" cy="150" r="14" fill="#ff8866"/><text x="170" y="150" fill="#121212" font-weight="bold">&#945;</text></g>
+            </g>
+            <!-- alpha attention outward -->
+            <line x1="186" y1="150" x2="250" y2="150" stroke="#ff8866" stroke-width="1.5" marker-end="url(#arr)"/>
+            <circle cx="268" cy="150" r="9" fill="none" stroke="#ff8866"/><circle cx="268" cy="150" r="3" fill="#ff8866"/>
+            <text x="222" y="170" fill="#ff8866" font-size="11" text-anchor="middle">hunting &middot; rivals</text>
+            <text x="150" y="288" fill="#777" font-size="11.5" text-anchor="middle">beside him, but only superficially</text>
+        </svg>
+    </div>
+    <div class="orbit-panel">
+        <p class="orbit-title">Traditional Era</p>
+        <p class="orbit-sub">the Crown is the literal centre</p>
+        <svg viewBox="0 0 300 300" role="img" aria-label="Traditional era: Crown at the centre, two Lorena close to her, two Astraria orbiting on the left, the male and two Velara on the right">
+            <circle cx="150" cy="150" r="58" fill="none" stroke="rgba(0,255,204,0.3)"/>
+            <circle cx="150" cy="150" r="108" fill="none" stroke="rgba(0,255,204,0.2)" stroke-dasharray="5 5"/>
+            <!-- divider between astraria side and male side -->
+            <line x1="150" y1="30" x2="150" y2="270" stroke="rgba(255,255,255,0.06)"/>
+            <g font-size="11" text-anchor="middle" dominant-baseline="central">
+                <!-- crown -->
+                <g><circle cx="150" cy="150" r="16" fill="#00ffcc"/><text x="150" y="150" fill="#121212" font-weight="bold">C</text></g>
+                <!-- lorena near crown -->
+                <g><circle cx="150" cy="92" r="12" fill="#121212" stroke="#aaa"/><text x="150" y="92" fill="#ccc">L</text></g>
+                <g><circle cx="150" cy="208" r="12" fill="#121212" stroke="#aaa"/><text x="150" y="208" fill="#ccc">L</text></g>
+                <!-- astraria, left -->
+                <g><circle cx="58" cy="108" r="12" fill="#121212" stroke="#666" stroke-dasharray="3 2"/><text x="58" y="108" fill="#999">A</text></g>
+                <g><circle cx="58" cy="192" r="12" fill="#121212" stroke="#666" stroke-dasharray="3 2"/><text x="58" y="192" fill="#999">A</text></g>
+                <!-- male + velara, right -->
+                <g><circle cx="246" cy="150" r="14" fill="#e0e0e0"/><text x="246" y="150" fill="#121212" font-weight="bold">M</text></g>
+                <g><circle cx="222" cy="112" r="12" fill="#121212" stroke="#ffcc00"/><text x="222" y="112" fill="#ffcc00">V</text></g>
+                <g><circle cx="222" cy="188" r="12" fill="#121212" stroke="#ffcc00"/><text x="222" y="188" fill="#ffcc00">V</text></g>
+            </g>
+            <text x="58" y="236" fill="#777" font-size="11" text-anchor="middle">Astraria side</text>
+            <text x="238" y="236" fill="#777" font-size="11" text-anchor="middle">male &amp; Velara side</text>
+            <text x="150" y="288" fill="#777" font-size="11.5" text-anchor="middle">roles set in stone</text>
+        </svg>
+    </div>
+    <div class="orbit-panel">
+        <p class="orbit-title">Modern Era</p>
+        <p class="orbit-sub">two centres of gravity</p>
+        <svg viewBox="0 0 300 300" role="img" aria-label="Modern era: two centres of gravity, the male and Cordara on the left with a Velara orbiting, the Crown on the right with Lorena and Astraria orbiting, roles able to move between them">
+            <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker></defs>
+            <!-- whole pride -->
+            <ellipse cx="150" cy="150" rx="140" ry="100" fill="none" stroke="rgba(0,255,204,0.15)" stroke-dasharray="2 7"/>
+            <!-- male system -->
+            <circle cx="92" cy="150" r="44" fill="none" stroke="rgba(255,204,0,0.35)"/>
+            <!-- crown system -->
+            <circle cx="212" cy="150" r="42" fill="none" stroke="rgba(0,255,204,0.3)"/>
+            <circle cx="212" cy="150" r="74" fill="none" stroke="rgba(0,255,204,0.18)" stroke-dasharray="5 5"/>
+            <g font-size="11" text-anchor="middle" dominant-baseline="central">
+                <!-- male + cordara -->
+                <g><circle cx="80" cy="150" r="14" fill="#e0e0e0"/><text x="80" y="150" fill="#121212" font-weight="bold">M</text></g>
+                <g><circle cx="106" cy="150" r="13" fill="#ffcc00"/><text x="106" y="150" fill="#121212" font-weight="bold" font-size="11">Co</text></g>
+                <g><circle cx="92" cy="106" r="12" fill="#121212" stroke="#ffcc00"/><text x="92" y="106" fill="#ffcc00">V</text></g>
+                <!-- crown -->
+                <g><circle cx="212" cy="150" r="16" fill="#00ffcc"/><text x="212" y="150" fill="#121212" font-weight="bold">C</text></g>
+                <g><circle cx="212" cy="108" r="12" fill="#121212" stroke="#aaa"/><text x="212" y="108" fill="#ccc">L</text></g>
+                <g><circle cx="238" cy="182" r="12" fill="#121212" stroke="#aaa"/><text x="238" y="182" fill="#ccc">L</text></g>
+                <g><circle cx="270" cy="112" r="12" fill="#121212" stroke="#666" stroke-dasharray="3 2"/><text x="270" y="112" fill="#999">A</text></g>
+                <g><circle cx="248" cy="222" r="12" fill="#121212" stroke="#666" stroke-dasharray="3 2"/><text x="248" y="222" fill="#999">A</text></g>
+            </g>
+            <!-- roles move -->
+            <path d="M122,176 Q150,196 190,176" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="3 3" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
+            <text x="153" y="206" fill="#888" font-size="11" text-anchor="middle">roles can move</text>
+            <text x="92" y="60" fill="#ffcc00" font-size="11" text-anchor="middle">romance</text>
+            <text x="212" y="60" fill="#00ffcc" font-size="11" text-anchor="middle">the pride</text>
+            <text x="150" y="288" fill="#777" font-size="11.5" text-anchor="middle">closer to him = further from control</text>
+        </svg>
+    </div>
+</div>
+<div class="orbit-legend">
+    <span><i style="background:#e0e0e0;"></i>Male</span>
+    <span><i style="background:#ff8866;"></i>Alpha female</span>
+    <span><i style="background:#00ffcc;"></i>Crown</span>
+    <span><i style="background:#ffcc00;"></i>Cordara</span>
+    <span><i style="border:1.5px solid #ffcc00;"></i>Velara</span>
+    <span><i style="border:1.5px solid #aaa;"></i>Lorena</span>
+    <span><i style="border:1.5px dashed #777;"></i>Astraria</span>
+</div>
